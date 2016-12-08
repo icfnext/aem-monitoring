@@ -1,0 +1,55 @@
+
+#facet-filters coral-tag {
+    margin: 2px;
+}
+
+#filter-editor {
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #eeeeee;
+    margin: 10px 0;
+}
+
+#add-filter-label {
+    padding-right: 10px;
+}
+
+#filter-editor div.inline {
+    margin-right: 10px;
+}
+
+.filter-editor-enter {
+    max-height: 0;
+}
+
+.filter-editor-enter.filter-editor-enter-active {
+    max-height: 60px;
+    transition: height 500ms linear;
+}
+
+.filter-editor-leave {
+    opacity: 1;
+}
+
+.filter-editor-leave.filter-editor-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+}
+
+.facet-filters-enter {
+    opacity: 0.01;
+}
+
+.facet-filters-enter.facet-filters-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+}
+
+.facet-filters-leave {
+    opacity: 1;
+}
+
+.facet-filters-leave.facet-filters-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+}

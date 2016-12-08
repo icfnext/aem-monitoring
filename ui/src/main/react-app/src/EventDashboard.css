@@ -1,0 +1,89 @@
+#chart {
+    background: #f9f9f9;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+ul.facet-legend {
+    list-style-type: none;
+    margin: 10px 0;
+    padding: 0;
+    width: 200px;
+}
+
+.facet-legend li {
+    display: block;
+    padding: 5px;
+    border: solid #333333 1px;
+}
+
+.facet-label {
+    display: block;
+    padding: 1px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.8;
+    background-color: #ffffff;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.facet-title {
+    margin: 0 2px;
+}
+
+.facet-count {
+    font-weight: 900;
+    float: right;
+    padding-right: 2px;
+}
+
+body, html {
+    padding : 0px;
+    margin : 0px;
+    height : 100%;
+}
+
+#wrapper {
+    width: 95%;
+    margin: 0px;
+    padding: 10px;
+}
+
+#header {
+    height:55px;
+    width:650px;
+}
+
+.inline {
+    display: inline-block;
+}
+
+#header coral-select {
+    margin-right: 10px;
+}
+
+#nav {
+    padding-top: 10px;
+    width:200px;
+    height:658px;
+    float:left;
+}
+
+#content {
+    padding:10px;
+    height:90%;
+    width:1000px;
+    float:left;
+}
+
+#results {
+    padding: 0 10px;
+    display: inline-block;
+}
+
+
+
+
+

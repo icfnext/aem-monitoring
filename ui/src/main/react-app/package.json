@@ -1,0 +1,32 @@
+{
+  "name": "react-app",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:4502",
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-preset-react": "^6.16.0",
+    "cpx": "^1.5.0",
+    "load-json-file": "^2.0.0",
+    "react-scripts": "0.7.0",
+    "webpack": "^1.13.3"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-css": "^3.0.0",
+    "chart.js": "^2.4.0",
+    "color-js": "^1.0.3",
+    "html-webpack-plugin": "^2.24.1",
+    "react": "^15.4.0",
+    "react-addons-css-transition-group": "^15.4.1",
+    "react-dom": "^15.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "build:clean": "cd build rm -r aem && mkdir aem && mv static/js/*.js aem/bundle.js && mv static/css/*.css aem/bundle.css && rm -r static"
+  }
+}

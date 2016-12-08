@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Create Folder"
+    sling:resourceType="granite/ui/components/coral/foundation/dialog">
+    <items jcr:primaryType="nt:unstructured">
+        <form
+            granite:id="ggp-groupings-folder-model"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form"
+            action="${requestPathInfo.suffix}/*"
+            async="{Boolean}true"
+            foundationForm="{Boolean}true"
+            method="post"
+            style="vertical">
+            <successresponse
+                jcr:primaryType="nt:unstructured"
+                jcr:title="The folder was created successfully"
+                sling:resourceType="granite/ui/components/coral/foundation/form/responses/reload"/>
+            <items jcr:primaryType="nt:unstructured">
+                <title
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                    fieldLabel="Title"
+                    name="./jcr:title"
+                    required="true"/>
+                <name
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                    fieldLabel="Name"
+                    name=":nameHint"
+                    validation="foundation.jcr.name"/>
+                <charset
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                    name="_charset_"
+                    value="utf-8"/>
+                <primaryType
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                        name="./jcr:primaryType"
+                        value="sling:Folder"/>
+            </items>
+        </form>
+    </items>
+    <footer jcr:primaryType="nt:unstructured">
+        <cancel
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/button"
+            text="Cancel">
+            <parentConfig
+                jcr:primaryType="nt:unstructured"
+                close="{Boolean}true"/>
+        </cancel>
+        <create
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/button"
+            formId="ggp-groupings-folder-model"
+            text="Create"
+            type="submit"
+            variant="primary"/>
+    </footer>
+</jcr:root>
