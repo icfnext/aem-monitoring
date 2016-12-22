@@ -1,6 +1,14 @@
+#facet-filters {
+    margin-bottom: 5px;
+}
 
 #facet-filters coral-tag {
-    margin: 2px;
+    margin: 0 2px 2px 0;
+    cursor: pointer;
+    padding: .625rem;
+    border: #d0d0d0 solid 1px;
+    background: #eee;
+    height: auto;
 }
 
 #filter-editor {

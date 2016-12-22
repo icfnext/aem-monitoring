@@ -18,4 +18,6 @@ public interface EventQueryRepository {
     FacetedTimeSeries executeFacetedQuery(EventQuery query, int maxFacetCount) throws MonitoringDBException;
 
     EventListing getEvents(EventQuery query) throws MonitoringDBException;
+
+    void deleteOldData(long deleteBeforeEpoch) throws MonitoringDBException;
 }

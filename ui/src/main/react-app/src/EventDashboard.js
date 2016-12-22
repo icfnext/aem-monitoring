@@ -206,9 +206,13 @@ class EventDashboard extends React.Component {
                         typeChanged={this.typeChanged.bind(this)}
                         selectedTime={this.state.selectedTime}
                         timeChanged={this.timeChanged.bind(this)}
-                        propertyList={this.state.realPropertyList}
+                        realPropertyList={this.state.realPropertyList}
+                        stringPropertyList={this.state.stringPropertyList}
                         selectedYAxis={this.state.selectedYAxis}
                         yAxisChanged={this.yAxisChanged.bind(this)}
+                        filters={this.state.filters}
+                        onClose={this.facetRemoved.bind(this)}
+                        addFilter={this.addFilter.bind(this)}
                     />
                     <FacetBar
                         propertyList={this.state.stringPropertyList}
@@ -224,12 +228,6 @@ class EventDashboard extends React.Component {
                             selectedYAxis={this.state.selectedYAxis}
                             selectedTime={this.state.selectedTime}
                             pointClicked={this.showEvents.bind(this)}
-                        />
-                        <FacetFilters
-                            filters={this.state.filters}
-                            onClose={this.facetRemoved.bind(this)}
-                            propertyList={this.state.propertyList}
-                            addFilter={this.addFilter.bind(this)}
                         />
                     </div>
                 </div>

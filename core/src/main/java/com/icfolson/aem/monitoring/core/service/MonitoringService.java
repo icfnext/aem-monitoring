@@ -37,12 +37,12 @@ public interface MonitoringService {
      * @param name The metric name
      * @param value The metric value
      */
-    void recordMetric(final String name, final float value);
+    void recordMetric(final String[] name, final float value);
 
     /**
      * @param name The counter name
      * @param incrementValue The counter increment value
      */
-    void incrementCounter(final String name, final int incrementValue);
+    void incrementCounter(final String[] name, final int incrementValue);
 
 }

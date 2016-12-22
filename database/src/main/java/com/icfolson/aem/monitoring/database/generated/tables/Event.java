@@ -37,7 +37,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Event extends TableImpl<EventRecord> {
 
-    private static final long serialVersionUID = 115505;
+    private static final long serialVersionUID = -1603346374;
 
     /**
      * The reference instance of <code>MONITORING.EVENT</code>
@@ -55,7 +55,7 @@ public class Event extends TableImpl<EventRecord> {
     /**
      * The column <code>MONITORING.EVENT.EVENT_ID</code>.
      */
-    public final TableField<EventRecord, Long> EVENT_ID = createField("EVENT_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_D5CA9CF8_9D3C_495E_B347_7BB9C42703A6)", org.jooq.impl.SQLDataType.BIGINT)), this, "");
+    public final TableField<EventRecord, Long> EVENT_ID = createField("EVENT_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_DE5B8B55_FA3A_4E09_A5D5_2AD0CE56A502)", org.jooq.impl.SQLDataType.BIGINT)), this, "");
 
     /**
      * The column <code>MONITORING.EVENT.SYSTEM_ID</code>.

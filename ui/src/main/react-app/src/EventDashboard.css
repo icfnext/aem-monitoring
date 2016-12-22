@@ -1,21 +1,73 @@
+body, html {
+    padding : 0;
+    margin : 0;
+    height : 100%;
+}
+
+#wrapper {
+    width: 99%;
+    margin: 0;
+}
+
+#header {
+    width:99%;
+    padding: 10px;
+}
+
+#header coral-select {
+    padding-right: 10px;
+}
+
+#header coral-tag {
+    vertical-align: top;
+}
+
+#nav {
+    width:200px;
+    float:left;
+    padding: 0 10px;
+}
+
+#content {
+    height:90%;
+    width:1000px;
+    float:left;
+}
+
 #chart {
     background: #f9f9f9;
     border: 1px solid #cccccc;
     padding: 10px;
-    margin-bottom: 10px;
+    border-radius: .1875rem;
 }
 
-ul.facet-legend {
+#facet-selector {
+    border-radius: .1875rem;
+}
+
+#facet-selector coral-selectlist-item {
+    padding: .625rem .9375rem;
+}
+
+#facet-legend {
     list-style-type: none;
-    margin: 10px 0;
     padding: 0;
     width: 200px;
+    border-radius: .1875rem;
+    overflow: hidden;
 }
 
-.facet-legend li {
+#facet-legend li {
     display: block;
     padding: 5px;
     border: solid #333333 1px;
+    cursor: pointer;
+}
+
+#facet-legend li:hover {
+    opacity: 0.9;
+    padding: 4px;
+    transition: all 100ms ease-in;
 }
 
 .facet-label {
@@ -29,6 +81,12 @@ ul.facet-legend {
     white-space: nowrap;
 }
 
+#facet-legend li:hover .facet-label {
+    opacity: 1;
+    padding: 2px 0;
+    transition: all 100ms ease-in;
+}
+
 .facet-title {
     margin: 0 2px;
 }
@@ -39,47 +97,12 @@ ul.facet-legend {
     padding-right: 2px;
 }
 
-body, html {
-    padding : 0px;
-    margin : 0px;
-    height : 100%;
-}
-
-#wrapper {
-    width: 95%;
-    margin: 0px;
-    padding: 10px;
-}
-
-#header {
-    height:55px;
-    width:650px;
-}
-
-.inline {
+#results {
+    padding: 0 10px;
     display: inline-block;
 }
 
-#header coral-select {
-    margin-right: 10px;
-}
-
-#nav {
-    padding-top: 10px;
-    width:200px;
-    height:658px;
-    float:left;
-}
-
-#content {
-    padding:10px;
-    height:90%;
-    width:1000px;
-    float:left;
-}
-
-#results {
-    padding: 0 10px;
+.inline {
     display: inline-block;
 }
 

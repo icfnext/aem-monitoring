@@ -4,9 +4,11 @@
 package com.icfolson.aem.monitoring.database.generated;
 
 
+import com.icfolson.aem.monitoring.database.generated.tables.Counter;
 import com.icfolson.aem.monitoring.database.generated.tables.CounterValue;
 import com.icfolson.aem.monitoring.database.generated.tables.Event;
 import com.icfolson.aem.monitoring.database.generated.tables.EventProperty;
+import com.icfolson.aem.monitoring.database.generated.tables.Metric;
 import com.icfolson.aem.monitoring.database.generated.tables.MetricValue;
 import com.icfolson.aem.monitoring.database.generated.tables.System;
 import com.icfolson.aem.monitoring.database.generated.tables.SystemProperty;
@@ -36,7 +38,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Monitoring extends SchemaImpl {
 
-    private static final long serialVersionUID = 1112548199;
+    private static final long serialVersionUID = 683025316;
 
     /**
      * The reference instance of <code>MONITORING</code>
@@ -49,6 +51,11 @@ public class Monitoring extends SchemaImpl {
     public final System SYSTEM = com.icfolson.aem.monitoring.database.generated.tables.System.SYSTEM;
 
     /**
+     * The table <code>MONITORING.SYSTEM_PROPERTY</code>.
+     */
+    public final SystemProperty SYSTEM_PROPERTY = com.icfolson.aem.monitoring.database.generated.tables.SystemProperty.SYSTEM_PROPERTY;
+
+    /**
      * The table <code>MONITORING.EVENT</code>.
      */
     public final Event EVENT = com.icfolson.aem.monitoring.database.generated.tables.Event.EVENT;
@@ -59,19 +66,24 @@ public class Monitoring extends SchemaImpl {
     public final EventProperty EVENT_PROPERTY = com.icfolson.aem.monitoring.database.generated.tables.EventProperty.EVENT_PROPERTY;
 
     /**
+     * The table <code>MONITORING.COUNTER</code>.
+     */
+    public final Counter COUNTER = com.icfolson.aem.monitoring.database.generated.tables.Counter.COUNTER;
+
+    /**
      * The table <code>MONITORING.COUNTER_VALUE</code>.
      */
     public final CounterValue COUNTER_VALUE = com.icfolson.aem.monitoring.database.generated.tables.CounterValue.COUNTER_VALUE;
 
     /**
+     * The table <code>MONITORING.METRIC</code>.
+     */
+    public final Metric METRIC = com.icfolson.aem.monitoring.database.generated.tables.Metric.METRIC;
+
+    /**
      * The table <code>MONITORING.METRIC_VALUE</code>.
      */
     public final MetricValue METRIC_VALUE = com.icfolson.aem.monitoring.database.generated.tables.MetricValue.METRIC_VALUE;
-
-    /**
-     * The table <code>MONITORING.SYSTEM_PROPERTY</code>.
-     */
-    public final SystemProperty SYSTEM_PROPERTY = com.icfolson.aem.monitoring.database.generated.tables.SystemProperty.SYSTEM_PROPERTY;
 
     /**
      * No further instances allowed
@@ -98,9 +110,9 @@ public class Monitoring extends SchemaImpl {
 
     private final List<Sequence<?>> getSequences0() {
         return Arrays.<Sequence<?>>asList(
-            Sequences.SYSTEM_SEQUENCE_98728855_9885_43B2_BF93_50A3899BC107,
-            Sequences.SYSTEM_SEQUENCE_A1B396BD_02EF_4B35_AE49_A8A31EFAB2FC,
-            Sequences.SYSTEM_SEQUENCE_D5CA9CF8_9D3C_495E_B347_7BB9C42703A6);
+            Sequences.SYSTEM_SEQUENCE_2DAFF3D9_4963_471A_B0A1_64EF64BC1577,
+            Sequences.SYSTEM_SEQUENCE_7CA45243_ED25_439D_B8A8_61048174A2B8,
+            Sequences.SYSTEM_SEQUENCE_DE5B8B55_FA3A_4E09_A5D5_2AD0CE56A502);
     }
 
     @Override
@@ -113,10 +125,12 @@ public class Monitoring extends SchemaImpl {
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
             System.SYSTEM,
+            SystemProperty.SYSTEM_PROPERTY,
             Event.EVENT,
             EventProperty.EVENT_PROPERTY,
+            Counter.COUNTER,
             CounterValue.COUNTER_VALUE,
-            MetricValue.METRIC_VALUE,
-            SystemProperty.SYSTEM_PROPERTY);
+            Metric.METRIC,
+            MetricValue.METRIC_VALUE);
     }
 }

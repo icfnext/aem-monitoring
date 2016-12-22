@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public interface MonitoringMetric {
 
-    String getName();
+    String[] getName();
 
     LocalDateTime getTimestamp();
 

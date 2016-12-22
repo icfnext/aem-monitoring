@@ -1,5 +1,6 @@
 package com.icfolson.aem.monitoring.newrelic;
 
+import com.google.common.base.Joiner;
 import com.icfolson.aem.monitoring.core.model.MonitoringCounter;
 import com.icfolson.aem.monitoring.core.model.MonitoringEvent;
 import com.icfolson.aem.monitoring.core.model.MonitoringMetric;
@@ -23,14 +24,16 @@ public class NewRelicWriter implements MonitoringWriter {
 
     @Override
     public void writeMetric(final MonitoringMetric metric) {
-        final String name = metric.getName();
+        final String name = Joiner.on('/').join(metric.getName());
         final String prefixedName = name.startsWith(CUSTOM_METRIC_PREFIX) ? name : CUSTOM_METRIC_PREFIX + name;
         NewRelic.recordMetric(prefixedName, metric.getValue());
     }
 
     @Override
     public void incrementCounter(final MonitoringCounter counter) {
-        NewRelic.incrementCounter(counter.getName(), counter.getIncrement());
+        final String name = Joiner.on('/').join(counter.getName());
+        final String prefixedName = name.startsWith(CUSTOM_METRIC_PREFIX) ? name : CUSTOM_METRIC_PREFIX + name;
+        NewRelic.incrementCounter(prefixedName, counter.getIncrement());
     }
 
 }

@@ -16,11 +16,9 @@ import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Identity;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
-import org.jooq.UniqueKey;
 import org.jooq.impl.TableImpl;
 
 
@@ -37,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MetricValue extends TableImpl<MetricValueRecord> {
 
-    private static final long serialVersionUID = 1438376319;
+    private static final long serialVersionUID = 2049907952;
 
     /**
      * The reference instance of <code>MONITORING.METRIC_VALUE</code>
@@ -53,19 +51,14 @@ public class MetricValue extends TableImpl<MetricValueRecord> {
     }
 
     /**
-     * The column <code>MONITORING.METRIC_VALUE.COUNTER_VALUE_ID</code>.
+     * The column <code>MONITORING.METRIC_VALUE.METRIC_ID</code>.
      */
-    public final TableField<MetricValueRecord, Long> COUNTER_VALUE_ID = createField("COUNTER_VALUE_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_98728855_9885_43B2_BF93_50A3899BC107)", org.jooq.impl.SQLDataType.BIGINT)), this, "");
+    public final TableField<MetricValueRecord, Long> METRIC_ID = createField("METRIC_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
      * The column <code>MONITORING.METRIC_VALUE.SYSTEM_ID</code>.
      */
     public final TableField<MetricValueRecord, UUID> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.UUID.nullable(false), this, "");
-
-    /**
-     * The column <code>MONITORING.METRIC_VALUE.METRIC_NAME</code>.
-     */
-    public final TableField<MetricValueRecord, String> METRIC_NAME = createField("METRIC_NAME", org.jooq.impl.SQLDataType.VARCHAR.length(128).nullable(false), this, "");
 
     /**
      * The column <code>MONITORING.METRIC_VALUE.TIME</code>.
@@ -111,32 +104,8 @@ public class MetricValue extends TableImpl<MetricValueRecord> {
      * {@inheritDoc}
      */
     @Override
-    public Identity<MetricValueRecord, Long> getIdentity() {
-        return Keys.IDENTITY_METRIC_VALUE;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public UniqueKey<MetricValueRecord> getPrimaryKey() {
-        return Keys.CONSTRAINT_36;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<UniqueKey<MetricValueRecord>> getKeys() {
-        return Arrays.<UniqueKey<MetricValueRecord>>asList(Keys.CONSTRAINT_36);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public List<ForeignKey<MetricValueRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<MetricValueRecord, ?>>asList(Keys.CONSTRAINT_368);
+        return Arrays.<ForeignKey<MetricValueRecord, ?>>asList(Keys.CONSTRAINT_368, Keys.CONSTRAINT_36);
     }
 
     /**

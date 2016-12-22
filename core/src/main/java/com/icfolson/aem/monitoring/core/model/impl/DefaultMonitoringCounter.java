@@ -6,22 +6,22 @@ import java.time.LocalDateTime;
 
 public class DefaultMonitoringCounter implements MonitoringCounter {
 
-    private final String name;
+    private final String[] name;
     private final LocalDateTime timestamp;
     private final int increment;
 
-    public DefaultMonitoringCounter(final String name, final int increment) {
+    public DefaultMonitoringCounter(final String[] name, final int increment) {
         this(name, LocalDateTime.now(), increment);
     }
 
-    public DefaultMonitoringCounter(final String name, final LocalDateTime timestamp, final int increment) {
+    public DefaultMonitoringCounter(final String[] name, final LocalDateTime timestamp, final int increment) {
         this.name = name;
         this.timestamp = timestamp;
         this.increment = increment;
     }
 
     @Override
-    public String getName() {
+    public String[] getName() {
         return name;
     }
 

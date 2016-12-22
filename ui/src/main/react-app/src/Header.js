@@ -1,7 +1,8 @@
 import React from 'react';
 import {Select, SelectItem} from './coral/Coral';
 import $ from 'jquery';
-import TIME_CONSTANTS from './times'
+import TIME_CONSTANTS from './times';
+import FacetFilters from './FacetFilters';
 
 class EventTypeSelector extends React.Component {
     render() {
@@ -63,6 +64,7 @@ class EventTimeSelector extends React.Component {
                     <SelectItem text="One Hour Ago" value={TIME_CONSTANTS.INDICES.HOUR}/>
                     <SelectItem text="One Day Ago" value={TIME_CONSTANTS.INDICES.DAY}/>
                     <SelectItem text="One Week Ago" value={TIME_CONSTANTS.INDICES.WEEK}/>
+                    <SelectItem text="One Month Ago" value={TIME_CONSTANTS.INDICES.MONTH}/>
                 </Select>
             </div>
         );
@@ -72,22 +74,29 @@ class EventTimeSelector extends React.Component {
 class Header extends React.Component {
     render() {
         return (
-
-            <div id="header">
-                <EventTypeSelector
-                    types={this.props.types}
-                    selectedType={this.props.selectedType}
-                    typeChanged={this.props.typeChanged}
-                />
-                <EventTimeSelector
-                    selectedTime={this.props.selectedTime}
-                    timeChanged={this.props.timeChanged}
-                />
-                <YAxisSelector
-                    propertyList={this.props.propertyList}
-                    selectedProperty={this.props.selectedYAxis}
-                    propertyChanged={this.props.yAxisChanged}
-                />
+            <div>
+                <div id="header">
+                    <EventTypeSelector
+                        types={this.props.types}
+                        selectedType={this.props.selectedType}
+                        typeChanged={this.props.typeChanged}
+                    />
+                    <EventTimeSelector
+                        selectedTime={this.props.selectedTime}
+                        timeChanged={this.props.timeChanged}
+                    />
+                    <YAxisSelector
+                        propertyList={this.props.realPropertyList}
+                        selectedProperty={this.props.selectedYAxis}
+                        propertyChanged={this.props.yAxisChanged}
+                    />
+                    <FacetFilters
+                        filters={this.props.filters}
+                        propertyList={this.props.stringPropertyList}
+                        onClose={this.props.onClose}
+                        addFilter={this.props.addFilter}
+                    />
+                </div>
             </div>
         );
     }

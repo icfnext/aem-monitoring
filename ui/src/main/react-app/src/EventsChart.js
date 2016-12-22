@@ -1,6 +1,7 @@
 import React from 'react';
 import Chart from "chart.js";
 import COLORS from './colors'
+import moment from 'moment';
 import $ from 'jquery';
 import _ from 'lodash';
 
@@ -71,7 +72,12 @@ class EventsChart extends React.Component {
                     display: false
                 },
                 tooltips: {
-
+                    callbacks: {
+                        title: function (title) {
+                            let epoch = Number(title[0].xLabel);
+                            return moment(epoch).format("M/D/YYYY hh:mm");
+                        }
+                    }
                 },
                 hover: {
                     mode: 'nearest',

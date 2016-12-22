@@ -31,6 +31,7 @@ class EventFacetSelector extends React.Component {
                         placeholder="Facet"
                         value={this.props.selectedProperty}
                         onChange={this.props.propertyChanged}
+                        id="facet-selector"
                     >
                         {items}
                     </SelectList>
@@ -64,7 +65,7 @@ class Facet extends React.Component {
 
 class FacetLegend extends React.Component {
     render() {
-        if (!this.props.chartData || !this.props.chartData.facets) {
+        if (this.props.selectedProperty === null || !this.props.chartData || !this.props.chartData.facets) {
             return null;
         } else {
             let facets = [];
@@ -82,7 +83,7 @@ class FacetLegend extends React.Component {
                 />)
             });
             return (
-                <ul className="facet-legend">{facets}</ul>
+                <ul id="facet-legend">{facets}</ul>
             );
         }
     }
@@ -99,6 +100,7 @@ class FacetBar extends React.Component {
                 />
                 <FacetLegend
                     facet={this.props.facet}
+                    selectedProperty={this.props.selectedProperty}
                     chartData={this.props.chartData}
                     addFacet={this.props.addFacet}
                 />

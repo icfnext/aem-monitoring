@@ -35,6 +35,7 @@ class Button extends React.Component {
 }
 
 var textFieldProps = [
+    'id',
     'name',
     'value',
     'placeholder',
@@ -69,6 +70,7 @@ class TextField extends React.Component {
 }
 
 var selectProps = [
+    'id',
     'name',
     'placeholder',
     'multiple',

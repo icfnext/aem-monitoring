@@ -6,8 +6,8 @@ public interface MonitoringFilterChain {
 
     void filterEvent(final MonitoringEvent event);
 
-    void filterMetric(final String name, final float value);
+    void filterMetric(final String[] name, final float value);
 
-    void filterCounter(final String name, final int value);
+    void filterCounter(final String[] name, final int value);
 
 }

@@ -16,11 +16,9 @@ import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Identity;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
-import org.jooq.UniqueKey;
 import org.jooq.impl.TableImpl;
 
 
@@ -37,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class CounterValue extends TableImpl<CounterValueRecord> {
 
-    private static final long serialVersionUID = 338087378;
+    private static final long serialVersionUID = -325882439;
 
     /**
      * The reference instance of <code>MONITORING.COUNTER_VALUE</code>
@@ -53,19 +51,14 @@ public class CounterValue extends TableImpl<CounterValueRecord> {
     }
 
     /**
-     * The column <code>MONITORING.COUNTER_VALUE.COUNTER_VALUE_ID</code>.
+     * The column <code>MONITORING.COUNTER_VALUE.COUNTER_ID</code>.
      */
-    public final TableField<CounterValueRecord, Long> COUNTER_VALUE_ID = createField("COUNTER_VALUE_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_A1B396BD_02EF_4B35_AE49_A8A31EFAB2FC)", org.jooq.impl.SQLDataType.BIGINT)), this, "");
+    public final TableField<CounterValueRecord, Long> COUNTER_ID = createField("COUNTER_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
      * The column <code>MONITORING.COUNTER_VALUE.SYSTEM_ID</code>.
      */
     public final TableField<CounterValueRecord, UUID> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.UUID.nullable(false), this, "");
-
-    /**
-     * The column <code>MONITORING.COUNTER_VALUE.METRIC_NAME</code>.
-     */
-    public final TableField<CounterValueRecord, String> METRIC_NAME = createField("METRIC_NAME", org.jooq.impl.SQLDataType.VARCHAR.length(128).nullable(false), this, "");
 
     /**
      * The column <code>MONITORING.COUNTER_VALUE.TIME</code>.
@@ -111,32 +104,8 @@ public class CounterValue extends TableImpl<CounterValueRecord> {
      * {@inheritDoc}
      */
     @Override
-    public Identity<CounterValueRecord, Long> getIdentity() {
-        return Keys.IDENTITY_COUNTER_VALUE;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public UniqueKey<CounterValueRecord> getPrimaryKey() {
-        return Keys.CONSTRAINT_E;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<UniqueKey<CounterValueRecord>> getKeys() {
-        return Arrays.<UniqueKey<CounterValueRecord>>asList(Keys.CONSTRAINT_E);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public List<ForeignKey<CounterValueRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<CounterValueRecord, ?>>asList(Keys.CONSTRAINT_E9);
+        return Arrays.<ForeignKey<CounterValueRecord, ?>>asList(Keys.CONSTRAINT_E9, Keys.CONSTRAINT_E);
     }
 
     /**

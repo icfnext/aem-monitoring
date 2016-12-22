@@ -172,13 +172,7 @@ class FacetFilters extends React.Component {
             }
             filters.push(<Tag key="add" icon="add" size="XS" id="addFilter" onClick={this.showAddFilter.bind(this)}/>);
             return (
-                <div>
-                    <ReactCSSTransitionGroup
-                        transitionName="filter-editor"
-                        transitionEnterTimeout={500}
-                        transitionLeaveTimeout={300}>
-                        {editors}
-                    </ReactCSSTransitionGroup>
+                <div className="inline">
                     <div>Filters:</div>
                     <div id="facet-filters">
                         <ReactCSSTransitionGroup

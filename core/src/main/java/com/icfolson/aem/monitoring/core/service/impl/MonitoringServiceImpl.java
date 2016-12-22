@@ -94,13 +94,13 @@ public class MonitoringServiceImpl implements MonitoringService, MonitoringFilte
     }
 
     @Override
-    public void recordMetric(final String name, final float value) {
+    public void recordMetric(final String[] name, final float value) {
         final MonitoringFilterChain chain = new DefaultFilterChain(filters.iterator(), this);
         chain.filterMetric(name, value);
     }
 
     @Override
-    public void incrementCounter(final String name, final int incrementValue) {
+    public void incrementCounter(final String[] name, final int incrementValue) {
         final MonitoringFilterChain chain = new DefaultFilterChain(filters.iterator(), this);
         chain.filterCounter(name, incrementValue);
     }
@@ -134,11 +134,11 @@ public class MonitoringServiceImpl implements MonitoringService, MonitoringFilte
         writers.forEach(writer -> writer.writeEvent(event));
     }
 
-    private void writeMetric(final String name, final float value) {
+    private void writeMetric(final String[] name, final float value) {
         writers.forEach(writer -> writer.writeMetric(new DefaultMonitoringMetric(name, value)));
     }
 
-    private void writeCounter(final String name, final int increment) {
+    private void writeCounter(final String[] name, final int increment) {
         writers.forEach(writer -> writer.incrementCounter(new DefaultMonitoringCounter(name, increment)));
     }
 
@@ -148,12 +148,12 @@ public class MonitoringServiceImpl implements MonitoringService, MonitoringFilte
     }
 
     @Override
-    public void filterMetric(final String name, final float value) {
+    public void filterMetric(final String[] name, final float value) {
         writeMetric(name, value);
     }
 
     @Override
-    public void filterCounter(final String name, final int value) {
+    public void filterCounter(final String[] name, final int value) {
         writeCounter(name, value);
     }
 
@@ -173,12 +173,12 @@ public class MonitoringServiceImpl implements MonitoringService, MonitoringFilte
         }
 
         @Override
-        public void filterMetric(final String name, final float value, final MonitoringFilterChain filterChain) {
+        public void filterMetric(final String[] name, final float value, final MonitoringFilterChain filterChain) {
             wrapped.filterMetric(name, value, filterChain);
         }
 
         @Override
-        public void filterCounter(final String name, final int value, final MonitoringFilterChain filterChain) {
+        public void filterCounter(final String[] name, final int value, final MonitoringFilterChain filterChain) {
             wrapped.filterCounter(name, value, filterChain);
         }
 

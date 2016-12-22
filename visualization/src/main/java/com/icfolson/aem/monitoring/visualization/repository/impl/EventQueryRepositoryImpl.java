@@ -52,8 +52,6 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
 
     private static final Logger LOG = LoggerFactory.getLogger(EventQueryRepositoryImpl.class);
 
-    private static final int LIMIT = 500;
-
     @Reference
     private ConnectionProvider connectionProvider;
 
@@ -96,8 +94,9 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
     @Override
     public List<EventTypeDescriptor> getEventDescriptors() throws MonitoringDBException {
         final List<EventTypeDescriptor> out = new ArrayList<>();
-        final Map<String, EventTypeDescriptor> map = new HashMap<>();
+        final Map<String, EventTypeDescriptor> typeMap = new HashMap<>();
         try (final DSLContext context = getContext()) {
+            final Map<String, Map<String, EventPropertyDescriptor>> propertyMap = new HashMap<>();
             final Result<Record4<String, String, Integer, Integer>> result = context
                 .select(Tables.EVENT.TYPE,
                     Tables.EVENT_PROPERTY.NAME,
@@ -109,19 +108,36 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
                 .groupBy(Tables.EVENT.TYPE, Tables.EVENT_PROPERTY.NAME)
                 .fetch();
             for (final Record4<String, String, Integer, Integer> record : result) {
-                final String eventName = record.value1();
+                final String typeName = record.value1();
                 final String propertyName = record.value2();
                 final boolean string = record.value3() > 0;
                 final boolean real = record.value4() > 0;
-                EventTypeDescriptor typeDescriptor = map.get(eventName);
+                EventTypeDescriptor typeDescriptor = typeMap.get(typeName);
+                Map<String, EventPropertyDescriptor> propertiesByName = propertyMap.get(typeName);
                 if (typeDescriptor == null) {
-                    typeDescriptor = new EventTypeDescriptor(eventName);
-                    map.put(eventName, typeDescriptor);
+                    typeDescriptor = new EventTypeDescriptor(typeName);
+                    typeMap.put(typeName, typeDescriptor);
                     out.add(typeDescriptor);
+                    propertiesByName = new HashMap<>();
+                    propertyMap.put(typeName, propertiesByName);
                 }
                 final EventPropertyDescriptor propertyDescriptor =
                     new EventPropertyDescriptor(propertyName, string, real);
                 typeDescriptor.getProperties().add(propertyDescriptor);
+                propertiesByName.put(propertyName, propertyDescriptor);
+            }
+            final Result<Record3<String, String, String>> facets = context
+                .select(Tables.EVENT.TYPE, Tables.EVENT_PROPERTY.NAME, Tables.EVENT_PROPERTY.VALUE)
+                .from(Tables.EVENT)
+                .join(Tables.EVENT_PROPERTY)
+                .on(Tables.EVENT.EVENT_ID.eq(Tables.EVENT_PROPERTY.EVENT_ID))
+                .groupBy(Tables.EVENT.TYPE, Tables.EVENT_PROPERTY.NAME, Tables.EVENT_PROPERTY.VALUE)
+                .orderBy(Tables.EVENT_PROPERTY.VALUE.count())
+                .fetch();
+            for (final Record3<String, String, String> facet : facets) {
+                Map<String, EventPropertyDescriptor> propertiesByName = propertyMap.get(facet.value1());
+                final EventPropertyDescriptor property = propertiesByName.get(facet.value2());
+                property.getFacets().add(facet.value3());
             }
         }
         return out;
@@ -209,6 +225,19 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
         }
 
         return out;
+    }
+
+    @Override
+    public void deleteOldData(final long deleteBeforeEpoch) throws MonitoringDBException {
+        try (final DSLContext context = getContext()) {
+            context.deleteFrom(Tables.EVENT).where(Tables.EVENT.TIME.lessThan(deleteBeforeEpoch)).execute();
+            context.deleteFrom(Tables.COUNTER_VALUE).where(Tables.COUNTER_VALUE.TIME.lessThan(deleteBeforeEpoch))
+                .execute();
+            context.deleteFrom(Tables.METRIC_VALUE).where(Tables.METRIC_VALUE.TIME.lessThan(deleteBeforeEpoch))
+                .execute();
+        } catch (MonitoringDBException e) {
+            throw new MonitoringDBException(e);
+        }
     }
 
     private DSLContext getContext() throws MonitoringDBException {
