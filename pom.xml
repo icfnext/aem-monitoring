@@ -21,6 +21,7 @@
         <module>h2</module>
         <module>visualization</module>
         <module>ui</module>
+        <module>serialization</module>
     </modules>
 
     <properties>
@@ -122,6 +123,16 @@
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq</artifactId>
                 <version>3.8.5</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.davidmoten</groupId>
+                <artifactId>flatbuffers-java</artifactId>
+                <version>1.4.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.4</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

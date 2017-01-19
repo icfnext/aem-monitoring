@@ -1,8 +1,8 @@
 import React from 'react';
-import {Select, SelectItem} from './coral/Coral';
 import $ from 'jquery';
-import TIME_CONSTANTS from './times';
+import TIME_CONSTANTS from '../times';
 import FacetFilters from './FacetFilters';
+import {Select, SelectItem} from '../coral/Coral';
 
 class EventTypeSelector extends React.Component {
     render() {

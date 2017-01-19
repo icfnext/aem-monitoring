@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public interface MonitoringCounter {
 
-    String[] getName();
+    QualifiedName getName();
 
     LocalDateTime getTimestamp();
 

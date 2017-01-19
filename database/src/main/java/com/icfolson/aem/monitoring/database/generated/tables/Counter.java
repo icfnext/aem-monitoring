@@ -35,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Counter extends TableImpl<CounterRecord> {
 
-    private static final long serialVersionUID = -2129636753;
+    private static final long serialVersionUID = -1661649555;
 
     /**
      * The reference instance of <code>MONITORING.COUNTER</code>
@@ -53,17 +53,12 @@ public class Counter extends TableImpl<CounterRecord> {
     /**
      * The column <code>MONITORING.COUNTER.COUNTER_ID</code>.
      */
-    public final TableField<CounterRecord, Long> COUNTER_ID = createField("COUNTER_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_7CA45243_ED25_439D_B8A8_61048174A2B8)", org.jooq.impl.SQLDataType.BIGINT)), this, "");
-
-    /**
-     * The column <code>MONITORING.COUNTER.PARENT_COUNTER_ID</code>.
-     */
-    public final TableField<CounterRecord, Long> PARENT_COUNTER_ID = createField("PARENT_COUNTER_ID", org.jooq.impl.SQLDataType.BIGINT, this, "");
+    public final TableField<CounterRecord, Short> COUNTER_ID = createField("COUNTER_ID", org.jooq.impl.SQLDataType.SMALLINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_C623ED94_B8C0_4919_A139_3CEDBDDD12C8)", org.jooq.impl.SQLDataType.SMALLINT)), this, "");
 
     /**
      * The column <code>MONITORING.COUNTER.COUNTER_NAME</code>.
      */
-    public final TableField<CounterRecord, String> COUNTER_NAME = createField("COUNTER_NAME", org.jooq.impl.SQLDataType.VARCHAR.length(64).nullable(false), this, "");
+    public final TableField<CounterRecord, String> COUNTER_NAME = createField("COUNTER_NAME", org.jooq.impl.SQLDataType.VARCHAR.length(256).nullable(false), this, "");
 
     /**
      * Create a <code>MONITORING.COUNTER</code> table reference
@@ -99,7 +94,7 @@ public class Counter extends TableImpl<CounterRecord> {
      * {@inheritDoc}
      */
     @Override
-    public Identity<CounterRecord, Long> getIdentity() {
+    public Identity<CounterRecord, Short> getIdentity() {
         return Keys.IDENTITY_COUNTER;
     }
 
@@ -116,7 +111,7 @@ public class Counter extends TableImpl<CounterRecord> {
      */
     @Override
     public List<UniqueKey<CounterRecord>> getKeys() {
-        return Arrays.<UniqueKey<CounterRecord>>asList(Keys.CONSTRAINT_6);
+        return Arrays.<UniqueKey<CounterRecord>>asList(Keys.CONSTRAINT_6, Keys.UNIQUE_COUNTER_NAME);
     }
 
     /**

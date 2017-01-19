@@ -1,8 +1,8 @@
 import React from 'react';
-import {Button, TextField, Select, SelectItem, Tag} from './coral/Coral';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import $ from 'jquery';
 import './FacetFilters.css'
+import {Button, TextField, Select, SelectItem, Tag} from '../coral/Coral';
 
 class FacetFilter extends React.Component {
     render() {

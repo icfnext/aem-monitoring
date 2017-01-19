@@ -8,6 +8,7 @@ import com.icfolson.aem.monitoring.database.generated.tables.Counter;
 import com.icfolson.aem.monitoring.database.generated.tables.CounterValue;
 import com.icfolson.aem.monitoring.database.generated.tables.Event;
 import com.icfolson.aem.monitoring.database.generated.tables.EventProperty;
+import com.icfolson.aem.monitoring.database.generated.tables.EventType;
 import com.icfolson.aem.monitoring.database.generated.tables.Metric;
 import com.icfolson.aem.monitoring.database.generated.tables.MetricValue;
 import com.icfolson.aem.monitoring.database.generated.tables.System;
@@ -38,7 +39,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Monitoring extends SchemaImpl {
 
-    private static final long serialVersionUID = 683025316;
+    private static final long serialVersionUID = 1403693695;
 
     /**
      * The reference instance of <code>MONITORING</code>
@@ -54,6 +55,11 @@ public class Monitoring extends SchemaImpl {
      * The table <code>MONITORING.SYSTEM_PROPERTY</code>.
      */
     public final SystemProperty SYSTEM_PROPERTY = com.icfolson.aem.monitoring.database.generated.tables.SystemProperty.SYSTEM_PROPERTY;
+
+    /**
+     * The table <code>MONITORING.EVENT_TYPE</code>.
+     */
+    public final EventType EVENT_TYPE = com.icfolson.aem.monitoring.database.generated.tables.EventType.EVENT_TYPE;
 
     /**
      * The table <code>MONITORING.EVENT</code>.
@@ -110,9 +116,10 @@ public class Monitoring extends SchemaImpl {
 
     private final List<Sequence<?>> getSequences0() {
         return Arrays.<Sequence<?>>asList(
-            Sequences.SYSTEM_SEQUENCE_2DAFF3D9_4963_471A_B0A1_64EF64BC1577,
-            Sequences.SYSTEM_SEQUENCE_7CA45243_ED25_439D_B8A8_61048174A2B8,
-            Sequences.SYSTEM_SEQUENCE_DE5B8B55_FA3A_4E09_A5D5_2AD0CE56A502);
+            Sequences.SYSTEM_SEQUENCE_0FCBD5AF_7E19_40A2_A96B_523939D3E323,
+            Sequences.SYSTEM_SEQUENCE_4D38F245_6459_4B09_8554_3D91F7B32732,
+            Sequences.SYSTEM_SEQUENCE_C623ED94_B8C0_4919_A139_3CEDBDDD12C8,
+            Sequences.SYSTEM_SEQUENCE_F12265B4_F0B5_4DBD_9392_E26DAED8635C);
     }
 
     @Override
@@ -126,6 +133,7 @@ public class Monitoring extends SchemaImpl {
         return Arrays.<Table<?>>asList(
             System.SYSTEM,
             SystemProperty.SYSTEM_PROPERTY,
+            EventType.EVENT_TYPE,
             Event.EVENT,
             EventProperty.EVENT_PROPERTY,
             Counter.COUNTER,

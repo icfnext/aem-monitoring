@@ -1,12 +1,10 @@
 package com.icfolson.aem.monitoring.core.model;
 
-import java.time.LocalDateTime;
-
 public interface MonitoringMetric {
 
-    String[] getName();
+    QualifiedName getName();
 
-    LocalDateTime getTimestamp();
+    long getTimestamp();
 
     float getValue();
 

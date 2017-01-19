@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EventProperty extends TableImpl<EventPropertyRecord> {
 
-    private static final long serialVersionUID = 1578148139;
+    private static final long serialVersionUID = -345332337;
 
     /**
      * The reference instance of <code>MONITORING.EVENT_PROPERTY</code>
@@ -57,7 +57,7 @@ public class EventProperty extends TableImpl<EventPropertyRecord> {
     /**
      * The column <code>MONITORING.EVENT_PROPERTY.NAME</code>.
      */
-    public final TableField<EventPropertyRecord, String> NAME = createField("NAME", org.jooq.impl.SQLDataType.VARCHAR.length(128).nullable(false), this, "");
+    public final TableField<EventPropertyRecord, String> NAME = createField("NAME", org.jooq.impl.SQLDataType.VARCHAR.length(256).nullable(false), this, "");
 
     /**
      * The column <code>MONITORING.EVENT_PROPERTY.VALUE</code>.

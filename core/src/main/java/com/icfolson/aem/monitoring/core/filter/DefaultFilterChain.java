@@ -1,6 +1,7 @@
 package com.icfolson.aem.monitoring.core.filter;
 
 import com.icfolson.aem.monitoring.core.model.MonitoringEvent;
+import com.icfolson.aem.monitoring.core.model.QualifiedName;
 
 import java.util.Iterator;
 
@@ -24,7 +25,7 @@ public class DefaultFilterChain implements MonitoringFilterChain {
     }
 
     @Override
-    public void filterMetric(final String[] name, final float value) {
+    public void filterMetric(final QualifiedName name, final float value) {
         if (iterator.hasNext()) {
             iterator.next().filterMetric(name, value, this);
         } else {
@@ -33,7 +34,7 @@ public class DefaultFilterChain implements MonitoringFilterChain {
     }
 
     @Override
-    public void filterCounter(final String[] name, final int value) {
+    public void filterCounter(final QualifiedName name, final int value) {
         if (iterator.hasNext()) {
             iterator.next().filterCounter(name, value, this);
         } else {

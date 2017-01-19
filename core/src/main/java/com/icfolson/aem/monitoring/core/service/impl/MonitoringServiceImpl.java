@@ -5,6 +5,7 @@ import com.icfolson.aem.monitoring.core.filter.DefaultFilterChain;
 import com.icfolson.aem.monitoring.core.filter.MonitoringFilter;
 import com.icfolson.aem.monitoring.core.model.MonitoringEvent;
 import com.icfolson.aem.monitoring.core.model.MonitoringTransaction;
+import com.icfolson.aem.monitoring.core.model.QualifiedName;
 import com.icfolson.aem.monitoring.core.model.impl.DefaultMonitoringCounter;
 import com.icfolson.aem.monitoring.core.model.impl.DefaultMonitoringTransaction;
 import com.icfolson.aem.monitoring.core.model.impl.DefaultMonitoringMetric;
@@ -44,7 +45,7 @@ public class MonitoringServiceImpl implements MonitoringService, MonitoringFilte
     private final List<MonitoringWriter> writers = new ArrayList<>();
 
     @Override
-    public void initializeTransaction(final String name) {
+    public void initializeTransaction(final QualifiedName name) {
         if (currentTransaction.get() != null) {
             //throw new IllegalStateException("A transaction already exists for the current thread");
         }
@@ -52,7 +53,7 @@ public class MonitoringServiceImpl implements MonitoringService, MonitoringFilte
     }
 
     @Override
-    public String getTransactionType() {
+    public QualifiedName getTransactionType() {
         final MonitoringTransaction transaction = currentTransaction.get();
         return transaction != null ? transaction.getType() : null;
     }
@@ -94,13 +95,13 @@ public class MonitoringServiceImpl implements MonitoringService, MonitoringFilte
     }
 
     @Override
-    public void recordMetric(final String[] name, final float value) {
+    public void recordMetric(final QualifiedName name, final float value) {
         final MonitoringFilterChain chain = new DefaultFilterChain(filters.iterator(), this);
         chain.filterMetric(name, value);
     }
 
     @Override
-    public void incrementCounter(final String[] name, final int incrementValue) {
+    public void incrementCounter(final QualifiedName name, final int incrementValue) {
         final MonitoringFilterChain chain = new DefaultFilterChain(filters.iterator(), this);
         chain.filterCounter(name, incrementValue);
     }
@@ -134,11 +135,11 @@ public class MonitoringServiceImpl implements MonitoringService, MonitoringFilte
         writers.forEach(writer -> writer.writeEvent(event));
     }
 
-    private void writeMetric(final String[] name, final float value) {
+    private void writeMetric(final QualifiedName name, final float value) {
         writers.forEach(writer -> writer.writeMetric(new DefaultMonitoringMetric(name, value)));
     }
 
-    private void writeCounter(final String[] name, final int increment) {
+    private void writeCounter(final QualifiedName name, final int increment) {
         writers.forEach(writer -> writer.incrementCounter(new DefaultMonitoringCounter(name, increment)));
     }
 
@@ -148,12 +149,12 @@ public class MonitoringServiceImpl implements MonitoringService, MonitoringFilte
     }
 
     @Override
-    public void filterMetric(final String[] name, final float value) {
+    public void filterMetric(final QualifiedName name, final float value) {
         writeMetric(name, value);
     }
 
     @Override
-    public void filterCounter(final String[] name, final int value) {
+    public void filterCounter(final QualifiedName name, final int value) {
         writeCounter(name, value);
     }
 
@@ -173,12 +174,12 @@ public class MonitoringServiceImpl implements MonitoringService, MonitoringFilte
         }
 
         @Override
-        public void filterMetric(final String[] name, final float value, final MonitoringFilterChain filterChain) {
+        public void filterMetric(final QualifiedName name, final float value, final MonitoringFilterChain filterChain) {
             wrapped.filterMetric(name, value, filterChain);
         }
 
         @Override
-        public void filterCounter(final String[] name, final int value, final MonitoringFilterChain filterChain) {
+        public void filterCounter(final QualifiedName name, final int value, final MonitoringFilterChain filterChain) {
             wrapped.filterCounter(name, value, filterChain);
         }
 

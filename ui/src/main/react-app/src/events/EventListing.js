@@ -1,7 +1,7 @@
 import React from 'react';
-import {Table} from './coral/Coral';
 import $ from 'jquery';
 import _ from 'lodash';
+import {Table} from '../coral/Coral';
 
 class EventListing extends React.Component {
     constructor() {

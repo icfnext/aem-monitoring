@@ -1,0 +1,18 @@
+namespace com.icfolson.aem.monitoring.serialization.generated;
+
+table MetricValue {
+	timestamp:long;
+	nameOffset:short;
+	value:float;
+}
+
+table MetricName {
+	nameSegments:[string];
+}
+
+table Metrics {
+	metricValues:[MetricValue];
+	names:[MetricName];
+}
+
+root_type Metrics;

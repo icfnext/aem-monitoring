@@ -3,7 +3,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 import './EventDashboard.css'
 
-import TIME_CONSTANTS from './times'
+import TIME_CONSTANTS from '../times'
 import Header from './Header';
 import EventsChart from './EventsChart'
 import FacetBar from './FacetBar'
@@ -15,6 +15,7 @@ var EVENT_COUNT = "Event Count";
 class EventDashboard extends React.Component {
     constructor() {
         super();
+        this.initialized = false;
         this.state = {
             types: [],
             propertyList: [],
@@ -25,33 +26,46 @@ class EventDashboard extends React.Component {
             selectedProperty: null,
             filters: [],
             eventData: {},
-            selectedYAxis: "0",
-            selectedTime: TIME_CONSTANTS.INDICES.HOUR
+            selectedYAxis: "0"
         };
         // TODO Pull initial state from URL params
         this.loadTypes();
 
     }
+    componentDidUpdate(prevProps, prevState) {
+        if (!this.initialized) {
+            return;
+        }
+        var oldUrl = this.generateUrl(prevState, prevProps);
+        var newUrl = this.generateUrl(this.state, this.props);
+        if (oldUrl !== newUrl) {
+            this.updateQuery(newUrl);
+        }
+    }
     loadTypes() {
         $.getJSON('/bin/monitoring/eventTypes.json', null, function (data) {
+            var typeIds = [];
             var types = [];
             var typeMappings = {};
-            $.each(data, function () {
+            $.each(data, function (index) {
+                typeIds.push(this.id);
                 types.push(this.name);
-                typeMappings[this.name] = this.properties;
+                typeMappings[index] = this.properties;
             });
             this.setState({
+                typeIds: typeIds,
                 typeMappings: typeMappings,
                 types: types
             });
             this.forceUpdate(function () {
+                this.initialized = true;
                 this.typeChanged(null, 0);
             }.bind(this));
         }.bind(this));
     }
     typeChanged(event, typeIndex) {
         if (typeIndex !== this.state.selectedType) {
-            var currentProperties = this.state.typeMappings[this.state.types[typeIndex]];
+            var currentProperties = this.state.typeMappings[typeIndex];
             var newState = {};
             $.extend(newState, this.state, {
                 selectedType: typeIndex,
@@ -61,7 +75,6 @@ class EventDashboard extends React.Component {
                 filters: []
             });
             this.setPropertiesForType(newState);
-            this.updateQuery(newState);
             this.setState(newState);
         }
     }
@@ -81,14 +94,18 @@ class EventDashboard extends React.Component {
             realPropertyList: realPropertyList
         })
     }
-    propertyChanged(event, propIndex) {
-        if (propIndex !== this.state.selectedProperty) {
-            var newState = {};
-            $.extend(newState, this.state, {
-                selectedProperty: propIndex
+    propertyChanged(event, propArray) {
+        if (propArray && propArray.length === 1) {
+            let propIndex = propArray[0];
+            if (propIndex !== this.state.selectedProperty) {
+                this.setState({
+                    selectedProperty: propIndex
+                });
+            }
+        } else {
+            this.setState({
+                selectedProperty: null
             });
-            this.updateQuery(newState);
-            this.setState(newState);
         }
     }
     yAxisChanged(event, propIndex) {
@@ -97,17 +114,6 @@ class EventDashboard extends React.Component {
             $.extend(newState, this.state, {
                 selectedYAxis: propIndex
             });
-            this.updateQuery(newState);
-            this.setState(newState);
-        }
-    }
-    timeChanged(event, timeIndex) {
-        if (timeIndex !== this.state.selectedTime) {
-            var newState = {};
-            $.extend(newState, this.state, {
-                selectedTime: timeIndex
-            });
-            this.updateQuery(newState);
             this.setState(newState);
         }
     }
@@ -123,7 +129,6 @@ class EventDashboard extends React.Component {
         let filters = newState.filters || [];
         filters.push(filterString);
         newState.filters = filters;
-        this.updateQuery(newState);
         this.setState(newState);
     }
     facetRemoved(filter) {
@@ -131,14 +136,13 @@ class EventDashboard extends React.Component {
             var newState = {};
             $.extend(newState, this.state);
             newState.filters = _.without(newState.filters || [], filter);
-            this.updateQuery(newState);
             this.setState(newState);
         }
     }
     showEvents(startEpoch, endEpoch, facetIndex) {
         var stateCopy = {};
         $.extend(true, stateCopy, this.state);
-        var type = stateCopy.types[stateCopy.selectedType];
+        var type = stateCopy.typeIds[stateCopy.selectedType];
         var facet = stateCopy.stringPropertyList[stateCopy.selectedProperty];
         var filters = stateCopy.filters;
         if (facet && facetIndex != null) {
@@ -164,12 +168,12 @@ class EventDashboard extends React.Component {
             this.setState({eventData: data});
         }.bind(this));
     }
-    updateQuery(newState) {
-        var type = newState.types[newState.selectedType];
+    generateUrl(newState, newProps) {
+        var type = newState.typeIds[newState.selectedType];
         var facet = newState.stringPropertyList[newState.selectedProperty];
         var yAxis = newState.realPropertyList[newState.selectedYAxis];
         var filters = newState.filters;
-        var time = TIME_CONSTANTS.TIMES_IN_MS[newState.selectedTime];
+        var time = TIME_CONSTANTS.TIMES_IN_MS[newProps.selectedTime];
         var args = [];
         if (type) {
             args.push("type=" + type);
@@ -188,7 +192,9 @@ class EventDashboard extends React.Component {
                 args.push("filter=" + encodeURIComponent(value))
             })
         }
-        var url = encodeURI("/bin/monitoring/events.json?" + args.join("&"));
+        return encodeURI("/bin/monitoring/events.json?" + args.join("&"));
+    }
+    updateQuery(url) {
         $.getJSON(url, null, function (data) {
             this.setState({
                 chartData: data,
@@ -204,8 +210,8 @@ class EventDashboard extends React.Component {
                         types={this.state.types}
                         selectedType={this.state.selectedType}
                         typeChanged={this.typeChanged.bind(this)}
-                        selectedTime={this.state.selectedTime}
-                        timeChanged={this.timeChanged.bind(this)}
+                        selectedTime={this.props.selectedTime}
+                        timeChanged={this.props.timeChanged}
                         realPropertyList={this.state.realPropertyList}
                         stringPropertyList={this.state.stringPropertyList}
                         selectedYAxis={this.state.selectedYAxis}
@@ -226,7 +232,7 @@ class EventDashboard extends React.Component {
                         <EventsChart
                             chartData={this.state.chartData}
                             selectedYAxis={this.state.selectedYAxis}
-                            selectedTime={this.state.selectedTime}
+                            selectedTime={this.props.selectedTime}
                             pointClicked={this.showEvents.bind(this)}
                         />
                     </div>

@@ -8,6 +8,7 @@ import com.icfolson.aem.monitoring.database.generated.tables.Counter;
 import com.icfolson.aem.monitoring.database.generated.tables.CounterValue;
 import com.icfolson.aem.monitoring.database.generated.tables.Event;
 import com.icfolson.aem.monitoring.database.generated.tables.EventProperty;
+import com.icfolson.aem.monitoring.database.generated.tables.EventType;
 import com.icfolson.aem.monitoring.database.generated.tables.Metric;
 import com.icfolson.aem.monitoring.database.generated.tables.MetricValue;
 import com.icfolson.aem.monitoring.database.generated.tables.System;
@@ -38,6 +39,11 @@ public class Tables {
      * The table <code>MONITORING.SYSTEM_PROPERTY</code>.
      */
     public static final SystemProperty SYSTEM_PROPERTY = com.icfolson.aem.monitoring.database.generated.tables.SystemProperty.SYSTEM_PROPERTY;
+
+    /**
+     * The table <code>MONITORING.EVENT_TYPE</code>.
+     */
+    public static final EventType EVENT_TYPE = com.icfolson.aem.monitoring.database.generated.tables.EventType.EVENT_TYPE;
 
     /**
      * The table <code>MONITORING.EVENT</code>.

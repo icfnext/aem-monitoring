@@ -2,7 +2,7 @@ package com.icfolson.aem.monitoring.core.constants;
 
 public final class EventProperties {
 
-    public static final String TRANSACTION_LENGTH_MS = "transaction.length.ms";
+    public static final String TRANSACTION_LENGTH_MS = "duration.ms";
 
     /**
      * The namespace reserved for system properties

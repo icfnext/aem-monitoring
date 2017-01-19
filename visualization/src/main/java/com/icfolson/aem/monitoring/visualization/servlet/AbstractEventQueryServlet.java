@@ -23,12 +23,12 @@ public class AbstractEventQueryServlet extends SlingAllMethodsServlet {
     private static final String PARAM_START_EPOCH = "start-epoch";
     private static final String PARAM_END_EPOCH = "end-epoch";
     private static final String PARAM_FILTER = "filter";
-    private static final String DEFAULT_TYPE = "Sling Request";
+    private static final Short DEFAULT_TYPE = 1;
 
     protected final EventQuery parse(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
         throws IOException {
 
-        final String type = request.getParameter(PARAM_TYPE);
+        final String typeString = request.getParameter(PARAM_TYPE);
         final String facet = request.getParameter(PARAM_FACET);
         final String yAxis = request.getParameter(PARAM_Y_AXIS);
         final String startEpoch = request.getParameter(PARAM_START_EPOCH);
@@ -36,7 +36,13 @@ public class AbstractEventQueryServlet extends SlingAllMethodsServlet {
         final String[] filters = request.getParameterValues(PARAM_FILTER);
 
         final EventQuery query = new EventQuery();
-        query.setEventType(type != null ? type : DEFAULT_TYPE);
+
+        try {
+            query.setEventType(Short.parseShort(typeString));
+        } catch (NumberFormatException e) {
+            query.setEventType(DEFAULT_TYPE);
+        }
+
         query.setBinCount(60);
         final long now = System.currentTimeMillis();
         query.setWindowEnd(now);

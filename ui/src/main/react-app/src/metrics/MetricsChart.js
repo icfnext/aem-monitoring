@@ -1,11 +1,10 @@
 import React from 'react';
 import Chart from "chart.js";
-import COLORS from './colors'
 import moment from 'moment';
 import $ from 'jquery';
 import _ from 'lodash';
 
-
+import COLORS from '../colors'
 
 var timeAxes = {
     "0": "second",
@@ -53,7 +52,7 @@ function applyColor(dataset, colorIndex, lineOnly) {
     return dataset;
 }
 
-class EventsChart extends React.Component {
+class MetricsChart extends React.Component {
     render() {
         return (
             <canvas id="chart" width="400" height="180" ref={(elem) => this.element = elem}/>
@@ -102,45 +101,41 @@ class EventsChart extends React.Component {
                 }
             }
         });
-        ctx.click(function (e) {
-            let activePoints = this.chart.getElementAtEvent(e);
-            if (activePoints && activePoints.length > 0) {
-                let clickedPoint = activePoints[0];
-                let datasetIndex = clickedPoint._datasetIndex;
-                let dataset = this.datasets[datasetIndex];
-                let index = clickedPoint._index;
-                let point = dataset.data[index];
-                let nextPoint = dataset.data[index + 1];
-                let binStart = point.x;
-                let binEnd = nextPoint.x;
-                this.props.pointClicked(binStart, binEnd, datasetIndex);
-            }
-        }.bind(this));
     }
     updateChart(data) {
         var datasets = this.datasets;
         datasets.length = 0;
-        var facets = data.facets;
-        var metric = this.props.selectedYAxis !== '0';
-        var stacked;
-        if (facets) {
-            stacked = !metric;
-            $.each(facets, function (index) {
-                var timeSeries = $.map(this.timeSeries.points, function (point) {
-                    return {'x': point.epoch, 'y': metric ? point.average : point.count}
+        if(data) {
+            var facets = data.facets;
+            var timeSeries;
+            if (facets) {
+                let colorMapping = this.props.colorMapping;
+                $.each(facets, function (index) {
+                    let type = this.id;
+                    timeSeries = $.map(this.timeSeries.points, function (point) {
+                        if (point.count === 0) {
+                            return null;
+                        }
+                        return {'x': point.epoch, 'y': point.average}
+                    });
+                    let colorId = colorMapping[type];
+                    datasets.push(getDataset(timeSeries, "", colorId, true));
                 });
-                var text = this.id + " " + this.timeSeries.count;
-                datasets.push(getDataset(timeSeries, text, index, !stacked));
-            });
-        } else if (data && data.points) {
-            stacked = false;
-            var timeSeries = $.map(data.points, function (point) {
-                return {'x': point.epoch, 'y': metric ? point.average : point.count}
-            });
-            datasets.push(getDataset(timeSeries, "", datasets.length, !stacked));
+            } else if (data && data.points) {
+                timeSeries = $.map(data.points, function (point) {
+                    if (point.count === 0) {
+                        return null;
+                    }
+                    return {'x': point.epoch, 'y': point.average}
+                });
+                datasets.push(getDataset(timeSeries, "", datasets.length, true));
+            }
+            datasets.push(getDataset(timeSeries, "", datasets.length, true));
+            this.chart.options.scales.yAxes[0].stacked = false;
+            this.chart.options.scales.xAxes[0].time.minUnit = timeAxes[this.props.selectedTime];
+            this.chart.options.scales.xAxes[0].time.min = timeSeries[0].x;
+            this.chart.options.scales.xAxes[0].time.max = timeSeries[timeSeries.length - 1].x;
         }
-        this.chart.options.scales.yAxes[0].stacked = stacked;
-        this.chart.options.scales.xAxes[0].time.minUnit = timeAxes[this.props.selectedTime];
         this.chart.update();
     }
     componentDidUpdate(prevProps, prevState) {
@@ -151,4 +146,4 @@ class EventsChart extends React.Component {
     }
 }
 
-export default EventsChart;
+export default MetricsChart;

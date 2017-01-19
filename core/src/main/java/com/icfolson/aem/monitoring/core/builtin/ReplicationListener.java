@@ -1,6 +1,7 @@
 package com.icfolson.aem.monitoring.core.builtin;
 
 import com.day.cq.replication.ReplicationAction;
+import com.icfolson.aem.monitoring.core.model.QualifiedName;
 import com.icfolson.aem.monitoring.core.model.impl.DefaultMonitoringEvent;
 import com.icfolson.aem.monitoring.core.service.MonitoringService;
 import org.apache.felix.scr.annotations.Component;
@@ -26,7 +27,7 @@ public class ReplicationListener implements EventHandler {
     public void handleEvent(final Event e) {
         ReplicationAction action = ReplicationAction.fromEvent(e);
         for (final String path : action.getPaths()) {
-            DefaultMonitoringEvent event = new DefaultMonitoringEvent("AEM Replication");
+            DefaultMonitoringEvent event = new DefaultMonitoringEvent(new QualifiedName("aem", "replication"));
             event.setProperty("user", action.getUserId());
             event.setProperty("type", action.getType().getName());
             event.setProperty("path", path);

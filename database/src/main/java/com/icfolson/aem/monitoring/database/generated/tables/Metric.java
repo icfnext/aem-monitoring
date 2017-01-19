@@ -35,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Metric extends TableImpl<MetricRecord> {
 
-    private static final long serialVersionUID = -2107496083;
+    private static final long serialVersionUID = 1399523166;
 
     /**
      * The reference instance of <code>MONITORING.METRIC</code>
@@ -53,17 +53,12 @@ public class Metric extends TableImpl<MetricRecord> {
     /**
      * The column <code>MONITORING.METRIC.METRIC_ID</code>.
      */
-    public final TableField<MetricRecord, Long> METRIC_ID = createField("METRIC_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_2DAFF3D9_4963_471A_B0A1_64EF64BC1577)", org.jooq.impl.SQLDataType.BIGINT)), this, "");
-
-    /**
-     * The column <code>MONITORING.METRIC.PARENT_METRIC_ID</code>.
-     */
-    public final TableField<MetricRecord, Long> PARENT_METRIC_ID = createField("PARENT_METRIC_ID", org.jooq.impl.SQLDataType.BIGINT, this, "");
+    public final TableField<MetricRecord, Short> METRIC_ID = createField("METRIC_ID", org.jooq.impl.SQLDataType.SMALLINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_4D38F245_6459_4B09_8554_3D91F7B32732)", org.jooq.impl.SQLDataType.SMALLINT)), this, "");
 
     /**
      * The column <code>MONITORING.METRIC.METRIC_NAME</code>.
      */
-    public final TableField<MetricRecord, String> METRIC_NAME = createField("METRIC_NAME", org.jooq.impl.SQLDataType.VARCHAR.length(64).nullable(false), this, "");
+    public final TableField<MetricRecord, String> METRIC_NAME = createField("METRIC_NAME", org.jooq.impl.SQLDataType.VARCHAR.length(256).nullable(false), this, "");
 
     /**
      * Create a <code>MONITORING.METRIC</code> table reference
@@ -99,7 +94,7 @@ public class Metric extends TableImpl<MetricRecord> {
      * {@inheritDoc}
      */
     @Override
-    public Identity<MetricRecord, Long> getIdentity() {
+    public Identity<MetricRecord, Short> getIdentity() {
         return Keys.IDENTITY_METRIC;
     }
 
@@ -116,7 +111,7 @@ public class Metric extends TableImpl<MetricRecord> {
      */
     @Override
     public List<UniqueKey<MetricRecord>> getKeys() {
-        return Arrays.<UniqueKey<MetricRecord>>asList(Keys.CONSTRAINT_8);
+        return Arrays.<UniqueKey<MetricRecord>>asList(Keys.CONSTRAINT_8, Keys.UNIQUE_METRIC_NAME);
     }
 
     /**

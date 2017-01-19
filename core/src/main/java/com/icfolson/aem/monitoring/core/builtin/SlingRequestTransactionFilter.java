@@ -1,5 +1,7 @@
 package com.icfolson.aem.monitoring.core.builtin;
 
+import com.icfolson.aem.monitoring.core.constants.EventTypes;
+import com.icfolson.aem.monitoring.core.model.QualifiedName;
 import com.icfolson.aem.monitoring.core.service.MonitoringService;
 import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Modified;
@@ -11,6 +13,8 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.wrappers.SlingHttpServletResponseWrapper;
 import org.apache.sling.commons.osgi.PropertiesUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -19,6 +23,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
@@ -28,8 +35,12 @@ import java.util.Set;
     label = "AEM Monitoring: Sling Request Filter")
 public class SlingRequestTransactionFilter implements Filter {
 
+    private static final Logger LOG = LoggerFactory.getLogger(SlingRequestTransactionFilter.class);
+
     @Property(label = "Captured Headers", value = {"Referer", "Host"})
     private static final String CAPTURE_HEADERS_PROP = "capture.headers";
+
+    private static final QualifiedName SLING_REQUEST = EventTypes.SLING.getChild("request");
 
     @Reference
     private MonitoringService service;
@@ -40,22 +51,22 @@ public class SlingRequestTransactionFilter implements Filter {
     public void doFilter(final ServletRequest servletRequest, final ServletResponse servletResponse,
         final FilterChain filterChain) throws IOException, ServletException {
 
-        service.initializeTransaction("Sling Request");
+        service.initializeTransaction(SLING_REQUEST);
         if (servletRequest instanceof SlingHttpServletRequest) {
             final SlingHttpServletRequest request = (SlingHttpServletRequest) servletRequest;
-            service.setTransactionProperty("sling.path", request.getRequestPathInfo().getResourcePath());
-            service.setTransactionProperty("sling.selectors", request.getRequestPathInfo().getSelectorString());
-            service.setTransactionProperty("sling.extension", request.getRequestPathInfo().getExtension());
-            service.setTransactionProperty("sling.suffix", request.getRequestPathInfo().getSuffix());
-            service.setTransactionProperty("sling.method", request.getMethod());
+            service.setTransactionProperty("request.path", request.getRequestPathInfo().getResourcePath());
+            service.setTransactionProperty("request.selectors", request.getRequestPathInfo().getSelectorString());
+            service.setTransactionProperty("request.extension", request.getRequestPathInfo().getExtension());
+            service.setTransactionProperty("request.suffix", request.getRequestPathInfo().getSuffix());
+            service.setTransactionProperty("request.method", request.getMethod());
             for (final String headerName : capturedHeaders) {
                 final String headerValue = request.getHeader(headerName);
                 if (headerValue != null) {
-                    final String propertyName = "sling.header." + headerName.toLowerCase();
+                    final String propertyName = "request.header." + headerName.toLowerCase();
                     service.setTransactionProperty(propertyName, headerValue);
                 }
             }
-            service.setTransactionProperty("sling.user", request.getResourceResolver().getUserID());
+            service.setTransactionProperty("request.user", request.getResourceResolver().getUserID());
         }
 
         ServletResponse response = servletResponse;
@@ -66,7 +77,9 @@ public class SlingRequestTransactionFilter implements Filter {
         filterChain.doFilter(servletRequest, response);
 
         if (response instanceof ResponseWrapper) {
-            service.setTransactionProperty("sling.status", String.valueOf(((ResponseWrapper) response).getStatus()));
+            final ResponseWrapper responseWrapper = (ResponseWrapper) response;
+            service.setTransactionProperty("response.length", responseWrapper.getResponseLength());
+            service.setTransactionProperty("response.status", String.valueOf(responseWrapper.getStatus()));
         }
         service.recordTransaction();
     }
@@ -91,5 +104,27 @@ public class SlingRequestTransactionFilter implements Filter {
             super(wrappedResponse);
         }
 
+        public int getResponseLength() {
+            // TODO fix this
+            try {
+                final PrintWriter printWriter = getResponse().getWriter();
+                final Class c = printWriter.getClass();
+                final Field count = c.getDeclaredField("count");
+                count.setAccessible(true);
+                return count.getInt(printWriter);
+            } catch (Exception e) {
+                LOG.trace("Error getting length", e);
+            }
+            try {
+                final OutputStream outputStream = getResponse().getOutputStream();
+                final Class c = outputStream.getClass();
+                final Field count = c.getDeclaredField("count");
+                count.setAccessible(true);
+                return count.getInt(outputStream);
+            } catch (Exception e) {
+                LOG.trace("Error getting length", e);
+            }
+            return 0;
+        }
     }
 }

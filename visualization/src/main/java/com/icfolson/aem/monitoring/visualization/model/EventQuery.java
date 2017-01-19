@@ -10,7 +10,7 @@ public class EventQuery {
 
     private Long windowStart;
     private Long windowEnd;
-    private String eventType;
+    private Short eventType;
     private String facetProperty;
     private String metricProperty;
     private Integer binCount;
@@ -49,7 +49,7 @@ public class EventQuery {
         this.facetProperty = facetProperty;
     }
 
-    public String getEventType() {
+    public Short getEventType() {
         return eventType;
     }
 
@@ -57,7 +57,7 @@ public class EventQuery {
         return metricProperty;
     }
 
-    public void setEventType(final String eventType) {
+    public void setEventType(final Short eventType) {
         this.eventType = eventType;
     }
 

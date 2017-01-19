@@ -6,9 +6,9 @@ import java.util.Map;
 public interface MonitoringEvent {
 
     /**
-     * @return The event type
+     * @return The event type name
      */
-    String getType();
+    QualifiedName getType();
 
     /**
      * @return The event time

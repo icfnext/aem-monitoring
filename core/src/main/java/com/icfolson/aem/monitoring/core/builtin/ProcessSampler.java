@@ -1,5 +1,6 @@
 package com.icfolson.aem.monitoring.core.builtin;
 
+import com.icfolson.aem.monitoring.core.model.QualifiedName;
 import com.icfolson.aem.monitoring.core.service.MonitoringService;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Property;
@@ -23,11 +24,12 @@ public class ProcessSampler implements Runnable {
     private static final String CPU = "CPU";
     private static final String AVERAGE_LOAD = "AverageLoad";
 
-    private static final String[] COMMITTED_HEAP = new String[]{PROCESS, MEMORY, HEAP, COMMITTED, MEGABYTES};
-    private static final String[] USED_HEAP = new String[]{PROCESS, MEMORY, HEAP, USED, MEGABYTES};
-    private static final String[] COMMITTED_NON_HEAP = new String[]{PROCESS, MEMORY, NON_HEAP, COMMITTED, MEGABYTES};
-    private static final String[] USED_NON_HEAP = new String[]{PROCESS, MEMORY, NON_HEAP, USED, MEGABYTES};
-    private static final String[] AVERAGE_CPU_LOAD = new String[]{PROCESS, CPU, AVERAGE_LOAD};
+    private static final QualifiedName COMMITTED_HEAP = new QualifiedName(PROCESS, MEMORY, HEAP, COMMITTED, MEGABYTES);
+    private static final QualifiedName USED_HEAP = new QualifiedName(PROCESS, MEMORY, HEAP, USED, MEGABYTES);
+    private static final QualifiedName COMMITTED_NON_HEAP =
+        new QualifiedName(PROCESS, MEMORY, NON_HEAP, COMMITTED, MEGABYTES);
+    private static final QualifiedName USED_NON_HEAP = new QualifiedName(PROCESS, MEMORY, NON_HEAP, USED, MEGABYTES);
+    private static final QualifiedName AVERAGE_CPU_LOAD = new QualifiedName(PROCESS, CPU, AVERAGE_LOAD);
 
     private static final float MEGABYTE_IN_BYTES = 1f / (1024f * 1024f);
 

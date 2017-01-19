@@ -1,0 +1,19 @@
+namespace com.icfolson.aem.monitoring.serialization.generated;
+
+table EventProperty {
+	name:string;
+	value:string;
+	realValue:float;
+}
+
+table Event {
+	timestamp:long;
+	name:string;
+	properties:[EventProperty];
+}
+
+table Events {
+	events:[Event];
+}
+
+root_type Events;

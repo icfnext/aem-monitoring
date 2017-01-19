@@ -11,11 +11,18 @@
     </head>
     <title jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/text" text="Monitoring"/>
     <actions jcr:primaryType="nt:unstructured">
-        <!--
         <secondary jcr:primaryType="nt:unstructured">
-            <add jcr:primaryType="nt:unstructured" href="/libs/granite/operations/content/monitoring/editChart.html" sling:resourceType="granite/ui/components/coral/foundation/anchorbutton" text="Create" variant="primary"/>
+            <toggle jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/cyclebuttons" id="monitoring-switch"
+                    threshold="1">
+                <items jcr:primaryType="nt:unstructured">
+                    <events jcr:primaryType="nt:unstructured" id="monitoring-events-switch"
+                            sling:resourceType="granite/ui/components/foundation/button" text="Events"/>
+                    <metrics jcr:primaryType="nt:unstructured" id="monitoring-metrics-switch"
+                             sling:resourceType="granite/ui/components/foundation/button" text="Metrics"/>
+                </items>
+            </toggle>
         </secondary>
-        -->
     </actions>
     <content jcr:primaryType="nt:unstructured" granite:class="paddedContainer" sling:resourceType="granite/ui/components/coral/foundation/container">
         <items jcr:primaryType="nt:unstructured">

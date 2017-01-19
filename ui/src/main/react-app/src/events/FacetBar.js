@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button, SelectList, SelectListItem} from './coral/Coral';
 import $ from 'jquery';
-import COLORS from './colors'
+import {Button, SelectList, SelectListItem} from '../coral/Coral';
+import COLORS from '../colors'
 
 class EventFacetSelector extends React.Component {
     render() {

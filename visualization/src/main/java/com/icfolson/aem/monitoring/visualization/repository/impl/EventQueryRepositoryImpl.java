@@ -7,6 +7,7 @@ import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.generated.Tables;
 import com.icfolson.aem.monitoring.database.generated.tables.Event;
 import com.icfolson.aem.monitoring.database.generated.tables.EventProperty;
+import com.icfolson.aem.monitoring.database.repository.EventRepository;
 import com.icfolson.aem.monitoring.visualization.model.EventPropertyDescriptor;
 import com.icfolson.aem.monitoring.visualization.model.EventQuery;
 import com.icfolson.aem.monitoring.visualization.model.EventTypeDescriptor;
@@ -25,12 +26,14 @@ import org.jooq.Field;
 import org.jooq.Record;
 import org.jooq.Record3;
 import org.jooq.Record4;
+import org.jooq.Record5;
 import org.jooq.Result;
 import org.jooq.SQLDialect;
 import org.jooq.SelectConditionStep;
 import org.jooq.SelectHavingStep;
 import org.jooq.SelectSeekStep1;
 import org.jooq.Table;
+import org.jooq.TableOnConditionStep;
 import org.jooq.conf.ParamType;
 import org.jooq.conf.RenderNameStyle;
 import org.jooq.conf.Settings;
@@ -54,6 +57,9 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
 
     @Reference
     private ConnectionProvider connectionProvider;
+
+    @Reference
+    private EventRepository repository;
 
     @Override
     public TimeSeries executeQuery(final EventQuery query) throws MonitoringDBException {
@@ -97,25 +103,29 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
         final Map<String, EventTypeDescriptor> typeMap = new HashMap<>();
         try (final DSLContext context = getContext()) {
             final Map<String, Map<String, EventPropertyDescriptor>> propertyMap = new HashMap<>();
-            final Result<Record4<String, String, Integer, Integer>> result = context
-                .select(Tables.EVENT.TYPE,
+
+            TableOnConditionStep<Record> table = Tables.EVENT_TYPE.join(Tables.EVENT)
+                .on(Tables.EVENT.EVENT_TYPE_ID.eq(Tables.EVENT_TYPE.EVENT_TYPE_ID));
+            table = table.join(Tables.EVENT_PROPERTY)
+                .on(Tables.EVENT.EVENT_ID.eq(Tables.EVENT_PROPERTY.EVENT_ID));
+            final Result<Record5<String, Short, String, Integer, Integer>> result = context
+                .select(Tables.EVENT_TYPE.EVENT_NAME,
+                    Tables.EVENT_TYPE.EVENT_TYPE_ID,
                     Tables.EVENT_PROPERTY.NAME,
                     Tables.EVENT_PROPERTY.VALUE.count(),
-                    Tables.EVENT_PROPERTY.REALVALUE.count())
-                .from(Tables.EVENT)
-                .join(Tables.EVENT_PROPERTY)
-                .on(Tables.EVENT_PROPERTY.EVENT_ID.eq(Tables.EVENT.EVENT_ID))
-                .groupBy(Tables.EVENT.TYPE, Tables.EVENT_PROPERTY.NAME)
-                .fetch();
-            for (final Record4<String, String, Integer, Integer> record : result) {
+                    Tables.EVENT_PROPERTY.REALVALUE.count()).from(table)
+                .groupBy(Tables.EVENT_TYPE.EVENT_NAME, Tables.EVENT_PROPERTY.NAME).fetch();
+
+            for (final Record5<String, Short, String, Integer, Integer> record : result) {
                 final String typeName = record.value1();
-                final String propertyName = record.value2();
-                final boolean string = record.value3() > 0;
-                final boolean real = record.value4() > 0;
+                final Short typeId = record.value2();
+                final String propertyName = record.value3();
+                final boolean string = record.value4() > 0;
+                final boolean real = record.value5() > 0;
                 EventTypeDescriptor typeDescriptor = typeMap.get(typeName);
                 Map<String, EventPropertyDescriptor> propertiesByName = propertyMap.get(typeName);
                 if (typeDescriptor == null) {
-                    typeDescriptor = new EventTypeDescriptor(typeName);
+                    typeDescriptor = new EventTypeDescriptor(typeId, typeName);
                     typeMap.put(typeName, typeDescriptor);
                     out.add(typeDescriptor);
                     propertiesByName = new HashMap<>();
@@ -126,12 +136,11 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
                 typeDescriptor.getProperties().add(propertyDescriptor);
                 propertiesByName.put(propertyName, propertyDescriptor);
             }
+
             final Result<Record3<String, String, String>> facets = context
-                .select(Tables.EVENT.TYPE, Tables.EVENT_PROPERTY.NAME, Tables.EVENT_PROPERTY.VALUE)
-                .from(Tables.EVENT)
-                .join(Tables.EVENT_PROPERTY)
-                .on(Tables.EVENT.EVENT_ID.eq(Tables.EVENT_PROPERTY.EVENT_ID))
-                .groupBy(Tables.EVENT.TYPE, Tables.EVENT_PROPERTY.NAME, Tables.EVENT_PROPERTY.VALUE)
+                .select(Tables.EVENT_TYPE.EVENT_NAME, Tables.EVENT_PROPERTY.NAME, Tables.EVENT_PROPERTY.VALUE)
+                .from(table)
+                .groupBy(Tables.EVENT_TYPE.EVENT_NAME, Tables.EVENT_PROPERTY.NAME, Tables.EVENT_PROPERTY.VALUE)
                 .orderBy(Tables.EVENT_PROPERTY.VALUE.count())
                 .fetch();
             for (final Record3<String, String, String> facet : facets) {
@@ -250,7 +259,11 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
      * @param query
      * @return
      */
-    private static QueryEntities prepareQueryEntities(final EventQuery query) {
+    private QueryEntities prepareQueryEntities(final EventQuery query) {
+        final Short eventType = query.getEventType();
+        if (eventType == null) {
+            throw new IllegalArgumentException(); // TODO
+        }
         final QueryEntities out = new QueryEntities();
         final long endEpoch = query.getWindowEnd() != null ? query.getWindowEnd() : System.currentTimeMillis();
         final long startEpoch = query.getWindowStart() != null ? query.getWindowStart()
@@ -259,7 +272,7 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
         out.grouper = new TimeGrouper(startEpoch, endEpoch, binCount);
 
         out.conditions.add(Tables.EVENT.TIME.between(startEpoch, endEpoch));
-        out.conditions.add(Tables.EVENT.TYPE.equal(query.getEventType()));
+        out.conditions.add(Tables.EVENT.EVENT_TYPE_ID.equal(eventType));
         out.binField = Tables.EVENT.TIME.sub(out.grouper.getStartEpoch()).divide(out.grouper.getBinLength());
         out.fields.add(out.binField);
         out.countField = out.binField.count();

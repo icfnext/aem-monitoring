@@ -1,6 +1,7 @@
 package com.icfolson.aem.monitoring.core.service;
 
 import com.icfolson.aem.monitoring.core.model.MonitoringEvent;
+import com.icfolson.aem.monitoring.core.model.QualifiedName;
 
 import java.util.Map;
 
@@ -9,12 +10,12 @@ public interface MonitoringService {
     /**
      * Initialize a transaction.  The transaction and its properties are bound to the calling thread.
      */
-    void initializeTransaction(final String category);
+    void initializeTransaction(final QualifiedName name);
 
     /**
      * @return the name of the current transaction (or null, if not initialized)
      */
-    String getTransactionType();
+    QualifiedName getTransactionType();
 
     /**
      * @return a copy of the current transaction properties
@@ -37,12 +38,12 @@ public interface MonitoringService {
      * @param name The metric name
      * @param value The metric value
      */
-    void recordMetric(final String[] name, final float value);
+    void recordMetric(final QualifiedName name, final float value);
 
     /**
      * @param name The counter name
      * @param incrementValue The counter increment value
      */
-    void incrementCounter(final String[] name, final int incrementValue);
+    void incrementCounter(final QualifiedName name, final int incrementValue);
 
 }

@@ -1,6 +1,7 @@
 package com.icfolson.aem.monitoring.core.model.impl;
 
 import com.icfolson.aem.monitoring.core.model.MonitoringTransaction;
+import com.icfolson.aem.monitoring.core.model.QualifiedName;
 
 import java.time.LocalDateTime;
 
@@ -8,7 +9,7 @@ public class DefaultMonitoringTransaction extends DefaultMonitoringEvent impleme
 
     private LocalDateTime endTime;
 
-    public DefaultMonitoringTransaction(final String type) {
+    public DefaultMonitoringTransaction(final QualifiedName type) {
         super(type);
     }
 

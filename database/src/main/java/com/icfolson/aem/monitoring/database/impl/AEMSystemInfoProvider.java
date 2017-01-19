@@ -20,9 +20,8 @@ import java.util.UUID;
 
 @Service
 @Component(immediate = true)
-public class AEMSystemPropertiesProvider implements SystemInfoProvider {
+public class AEMSystemInfoProvider implements SystemInfoProvider {
 
-    private static final String ID_PROP = "id";
     private static final String RUNMODES_PROP = "runmodes";
     private static final String IS_AUTHOR_PROP = "author";
     private static final String IS_PUBLISH_PROP = "publish";
@@ -47,7 +46,6 @@ public class AEMSystemPropertiesProvider implements SystemInfoProvider {
         final UUID systemId = UUID.fromString(discoveryService.getTopology().getLocalInstance().getSlingId());
         final Map<String, String> properties = new HashMap<>();
         final Set<String> runmodes = settingsService.getRunModes();
-        properties.put(ID_PROP, systemId.toString());
         properties.put(RUNMODES_PROP, Joiner.on(',').join(runmodes));
         properties.put(IS_AUTHOR_PROP, Boolean.toString(runmodes.contains("author")));
         properties.put(IS_PUBLISH_PROP, Boolean.toString(runmodes.contains("publish")));

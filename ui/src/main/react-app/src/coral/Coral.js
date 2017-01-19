@@ -146,15 +146,23 @@ class SelectList extends React.Component {
     }
     componentDidMount() {
         this.element.addEventListener('coral-selectlist:change', function (e) {
-            if (this.props.onChange && this.element && this.element.selectedItem) {
-                this.props.onChange(this, this.element.selectedItem.value);
+            if (this.props.onChange && this.element) {
+                let values = [];
+                $.each(this.element.selectedItems, function () {
+                    values.push(this.value)
+                });
+                this.props.onChange(this, values);
             }
         }.bind(this));
     }
     componentDidUpdate(prevProps, prevState) {
         var value = this.props.value;
+        var values = this.props.values || [];
+        if (value) {
+            values.push(value);
+        }
         $.each(this.element.selectedItems, function (index, item) {
-            if (item.value === value) {
+            if ($.inArray(values, item.value) >= 0) {
                 item.selected = true;
             }
         })
@@ -171,8 +179,12 @@ class SelectListItem extends React.Component {
         if (!text && this.props.children && this.props.children && typeof this.props.children === 'string') {
             text = this.props.children;
         }
+        let style = {};
+        if (this.props.color) {
+            style['backgroundColor'] = 'rgb(' + this.props.color + ')'
+        }
         return (
-            <coral-selectlist-item value={this.props.value} {...attrs}>{text}</coral-selectlist-item>
+            <coral-selectlist-item style={style} value={this.props.value} {...attrs}>{text}</coral-selectlist-item>
         );
     }
 }
