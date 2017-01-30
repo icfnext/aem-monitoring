@@ -3,14 +3,14 @@ package com.icfolson.aem.monitoring.core.service.impl;
 import com.icfolson.aem.monitoring.core.constants.EventProperties;
 import com.icfolson.aem.monitoring.core.filter.DefaultFilterChain;
 import com.icfolson.aem.monitoring.core.filter.MonitoringFilter;
+import com.icfolson.aem.monitoring.core.filter.MonitoringFilterChain;
 import com.icfolson.aem.monitoring.core.model.MonitoringEvent;
 import com.icfolson.aem.monitoring.core.model.MonitoringTransaction;
 import com.icfolson.aem.monitoring.core.model.QualifiedName;
 import com.icfolson.aem.monitoring.core.model.impl.DefaultMonitoringCounter;
-import com.icfolson.aem.monitoring.core.model.impl.DefaultMonitoringTransaction;
 import com.icfolson.aem.monitoring.core.model.impl.DefaultMonitoringMetric;
+import com.icfolson.aem.monitoring.core.model.impl.DefaultMonitoringTransaction;
 import com.icfolson.aem.monitoring.core.service.MonitoringService;
-import com.icfolson.aem.monitoring.core.filter.MonitoringFilterChain;
 import com.icfolson.aem.monitoring.core.writer.MonitoringWriter;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
@@ -20,8 +20,6 @@ import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.commons.osgi.PropertiesUtil;
 import org.osgi.framework.Constants;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -81,9 +79,9 @@ public class MonitoringServiceImpl implements MonitoringService, MonitoringFilte
         }
         transaction.complete();
         currentTransaction.remove();
-        final LocalDateTime startTime = transaction.getStartTime();
-        final LocalDateTime endTime = transaction.getTimestamp();
-        final long length = startTime.until(endTime, ChronoUnit.MILLIS);
+        final long startTime = transaction.getStartTime();
+        final long endTime = transaction.getTimestamp();
+        final long length = endTime - startTime;
         transaction.setProperty(EventProperties.TRANSACTION_LENGTH_MS, length);
         recordEvent(transaction);
     }

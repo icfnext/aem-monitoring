@@ -181,7 +181,8 @@ class SelectListItem extends React.Component {
         }
         let style = {};
         if (this.props.color) {
-            style['backgroundColor'] = 'rgb(' + this.props.color + ')'
+            style['backgroundColor'] = 'rgb(' + this.props.color + ')';
+            style['color'] = 'rgb(255,255,255)';
         }
         return (
             <coral-selectlist-item style={style} value={this.props.value} {...attrs}>{text}</coral-selectlist-item>

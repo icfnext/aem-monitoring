@@ -18,16 +18,18 @@ class MetricsDashboard extends React.Component {
         };
         // TODO Pull initial state from URL params
         this.loadTypes();
-
     }
     componentDidUpdate(prevProps, prevState) {
         if (!this.initialized) {
             return;
         }
-        var oldUrl = this.generateUrl(prevState, prevProps);
-        var newUrl = this.generateUrl(this.state, this.props);
+        let oldUrl = this.generateUrl(prevState, prevProps);
+        let newUrl = this.generateUrl(this.state, this.props);
         if (oldUrl !== newUrl) {
             this.updateQuery(newUrl);
+            this.setState({
+                chartData: null
+            });
         }
     }
     loadTypes() {
@@ -44,7 +46,7 @@ class MetricsDashboard extends React.Component {
             });
             this.forceUpdate(function () {
                 this.initialized = true;
-                this.typeChanged(null, 0);
+                this.typeChanged(null, [0]);
             }.bind(this));
         }.bind(this));
     }
@@ -88,6 +90,9 @@ class MetricsDashboard extends React.Component {
         });
         let time = TIME_CONSTANTS.TIMES_IN_MS[newProps.selectedTime];
         let args = [];
+        if (types === null || types.length === 0) {
+            return null;
+        }
         $.each(types, function (index, value) {
             args.push("type=" + value.id);
         });

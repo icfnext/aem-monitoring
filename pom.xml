@@ -20,8 +20,8 @@
         <module>database</module>
         <module>h2</module>
         <module>visualization</module>
-        <module>ui</module>
         <module>serialization</module>
+        <module>ui</module>
     </modules>
 
     <properties>
@@ -133,6 +133,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>3.6.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

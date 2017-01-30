@@ -1,9 +1,9 @@
 package com.icfolson.aem.monitoring.serialization.servlet;
 
-import com.icfolson.aem.monitoring.core.model.MonitoringMetric;
-import com.icfolson.aem.monitoring.database.repository.MetricRepository;
+import com.icfolson.aem.monitoring.core.model.MonitoringCounter;
+import com.icfolson.aem.monitoring.database.repository.CounterRepository;
 import com.icfolson.aem.monitoring.serialization.constants.Paths;
-import com.icfolson.aem.monitoring.serialization.model.MetricsTable;
+import com.icfolson.aem.monitoring.serialization.model.CountersTable;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 @SlingServlet(paths = Paths.METRICS_SERVLET_PATH)
-public class MetricsServlet extends SlingAllMethodsServlet {
+public class CountersServlet extends SlingAllMethodsServlet {
 
     private static final String SINCE_PARAM = "since";
     private static final String LIMIT_PARAM = "limit";
@@ -24,7 +24,7 @@ public class MetricsServlet extends SlingAllMethodsServlet {
     private static final long SINCE_DEFAULT = 0;
     private static final int LIMIT_DEFAULT = 1000;
 
-    private MetricRepository repository;
+    private CounterRepository repository;
 
     @Override
     protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
@@ -41,9 +41,9 @@ public class MetricsServlet extends SlingAllMethodsServlet {
             if (limit == null || limit < 0) {
                 limit = LIMIT_DEFAULT;
             }
-            final List<MonitoringMetric> metricList = repository.getMetrics(since, limit);
-            final MetricsTable table = new MetricsTable(metricList);
-            table.writeMetrics(response.getOutputStream());
+            final List<MonitoringCounter> counterList = repository.getCounters(since, limit);
+            final CountersTable table = new CountersTable(counterList);
+            table.writeCounters(response.getOutputStream());
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Both 'since' and 'limit' parameters must be "
                 + "valid long integer values.");

@@ -1,6 +1,5 @@
 package com.icfolson.aem.monitoring.core.model;
 
-import java.time.LocalDateTime;
 import java.util.Map;
 
 public interface MonitoringEvent {
@@ -13,7 +12,7 @@ public interface MonitoringEvent {
     /**
      * @return The event time
      */
-    LocalDateTime getTimestamp();
+    long getTimestamp();
 
     void setProperty(final String name, final Object value);
 
