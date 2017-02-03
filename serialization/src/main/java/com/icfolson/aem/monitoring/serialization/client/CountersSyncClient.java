@@ -5,37 +5,55 @@ import com.icfolson.aem.monitoring.database.ConnectionProvider;
 import com.icfolson.aem.monitoring.database.writer.CountersDatabase;
 import com.icfolson.aem.monitoring.serialization.constants.Paths;
 import com.icfolson.aem.monitoring.serialization.model.CountersTable;
-import com.icfolson.aem.monitoring.serialization.model.RemoteSystem;
-import okhttp3.Request;
+import com.icfolson.aem.monitoring.serialization.model.NamedRemoteSystem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 public class CountersSyncClient extends AbstractSyncClient {
 
-    private final RemoteSystem remoteSystem;
-    private final ConnectionProvider connectionProvider;
-    private final CountersDatabase database;
+    private static final Logger LOG = LoggerFactory.getLogger(CountersSyncClient.class);
 
-    public CountersSyncClient(final RemoteSystem remoteSystem, final ConnectionProvider connectionProvider) {
-        this.remoteSystem = remoteSystem;
-        this.connectionProvider = connectionProvider;
-        this.database = new CountersDatabase(remoteSystem.getUuid(), connectionProvider);
+    private static final long LIMIT = 1000;
+
+    private final CountersDatabase database;
+    private long since;
+
+    public CountersSyncClient(final NamedRemoteSystem system, final ConnectionProvider connectionProvider) {
+        super(system, connectionProvider);
+        this.database = new CountersDatabase(system.getUuid(), connectionProvider);
+        since = database.getLatestCounterTimestamp() + 1;
     }
 
     @Override
     public void sync() {
-        final Request request = new Request.Builder()
-            .url(remoteSystem.getUrl() + Paths.COUNTERS_SERVLET_PATH)
-            .get()
-            .build();
-        try (final InputStream stream = executeRequest(request).body().byteStream()) {
+        try (final InputStream stream = executeRequest()) {
             final CountersTable table = CountersTable.readCounters(stream);
             for (final MonitoringCounter monitoringCounter : table.getCounters()) {
+                if (since < monitoringCounter.getTimestamp() + 1) {
+                    since = monitoringCounter.getTimestamp();
+                }
                 database.writeCounter(monitoringCounter); // TODO batch
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error("Error writing counters", e);
         }
+    }
+
+    @Override
+    protected String getRelativePath() {
+        return Paths.COUNTERS_SERVLET_PATH;
+    }
+
+    @Override
+    protected long getStartTimestamp() {
+        return since;
+    }
+
+    @Override
+    protected long getLimit() {
+        return LIMIT;
     }
 }

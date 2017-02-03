@@ -2,7 +2,6 @@ import React from 'react';
 import $ from 'jquery';
 
 import TIME_CONSTANTS from '../times'
-import COLORS from '../colors'
 import Header from './Header';
 import MetricsChart from './MetricsChart'
 import MetricBar from './MetricBar'
@@ -13,8 +12,7 @@ class MetricsDashboard extends React.Component {
         super();
         this.initialized = false;
         this.state = {
-            selectedTypes: [],
-            colorMapping: {}
+            selectedTypes: []
         };
         // TODO Pull initial state from URL params
         this.loadTypes();
@@ -51,36 +49,8 @@ class MetricsDashboard extends React.Component {
         }.bind(this));
     }
     typeChanged(event, typeIndices) {
-        let colorMappingCopy = {};
-        let newColors = [];
-        $.each(typeIndices, function (index, value) {
-            let val = this.state.types[value].id;
-            if (val in this.state.colorMapping) {
-                colorMappingCopy[val] = this.state.colorMapping[val];
-            } else {
-                newColors.push(val);
-            }
-        }.bind(this));
-        let remaining = new Array(COLORS.length);
-        remaining.fill(true);
-        $.each(colorMappingCopy, function (key, value) {
-            remaining[value] = false;
-        });
-        let first = 0;
-        // for each new id, find the first available color
-        $.each(newColors, function (index, value) {
-            for (; first < remaining.length; first++) {
-                if (remaining[first]) {
-                    remaining[first] = false;
-                    colorMappingCopy[value] = first;
-                    break;
-                }
-            }
-        });
-
         this.setState({
-            selectedTypes: typeIndices == null ? [] : typeIndices,
-            colorMapping: colorMappingCopy
+            selectedTypes: typeIndices == null ? [] : typeIndices
         });
     }
     generateUrl(newState, newProps) {
@@ -124,13 +94,11 @@ class MetricsDashboard extends React.Component {
                         metricList={this.state.types}
                         selectedMetric={this.state.selectedTypes}
                         metricChanged={this.typeChanged.bind(this)}
-                        colorMapping={this.state.colorMapping}
                     />
                     <div id="content">
                         <MetricsChart
                             chartData={this.state.chartData}
                             selectedTime={this.props.selectedTime}
-                            colorMapping={this.state.colorMapping}
                         />
                     </div>
                 </div>

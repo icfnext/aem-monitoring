@@ -1,4 +1,4 @@
-package com.icfolson.aem.monitoring.core.model.impl;
+package com.icfolson.aem.monitoring.core.model.base;
 
 import com.icfolson.aem.monitoring.core.model.MonitoringMetric;
 import com.icfolson.aem.monitoring.core.model.QualifiedName;

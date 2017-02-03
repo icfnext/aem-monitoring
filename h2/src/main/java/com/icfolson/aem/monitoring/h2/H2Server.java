@@ -7,6 +7,7 @@ import org.apache.felix.scr.annotations.Deactivate;
 import org.apache.felix.scr.annotations.Modified;
 import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Reference;
+import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.commons.osgi.PropertiesUtil;
 import org.apache.sling.settings.SlingSettingsService;
 import org.h2.tools.Server;
@@ -18,19 +19,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Service
 @Component(immediate = true, metatype = true, policy = ConfigurationPolicy.REQUIRE, label = "H2 Server", description =
     "Starts an H2 server, allowing remote servers to store data.")
-public class H2Server {
+public class H2Server implements DatabaseServer {
 
     private static final Logger LOG = LoggerFactory.getLogger(H2Server.class);
 
-    private static final int PORT_DEFAULT = 8025;
+    private static final String URL_TEMPLATE = "jdbc:h2:tcp://localhost:%s";
+
+    private static final int PORT_DEFAULT = 8084;
+
+    private static final String DB_REL_PATH = "/db";
 
     @Property(label = "Server Port", intValue = PORT_DEFAULT)
     private static final String PORT_PROP = "port";
 
     @Property(label = "H2 Basedir", description = "The base directory for the H2 server.  Relative URLs will be "
-        + "evaluated relative to the SLING_HOME directory.  Leave blank to not use the basedir arg (not recommended).")
+        + "evaluated relative to the SLING_HOME directory. Keep blank to use sling home.")
     private static final String BASEDIR_PROP = "basedir";
 
     @Property(label = "Allow Remote", boolValue = true)
@@ -40,14 +46,21 @@ public class H2Server {
     private SlingSettingsService settingsService;
 
     private Server server;
+    private String url;
+
+    @Override
+    public String getConnectionURL() {
+        return url;
+    }
 
     @Activate
     protected void activate(final Map<String, Object> props) {
         final int port = PropertiesUtil.toInteger(props.get(PORT_PROP), PORT_DEFAULT);
-        final String basedir = PropertiesUtil.toString(props.get(BASEDIR_PROP), "");
+        final String basedir = PropertiesUtil.toString(props.get(BASEDIR_PROP), settingsService.getSlingHomePath()
+            + DB_REL_PATH);
         final boolean allowRemote = PropertiesUtil.toBoolean(props.get(ALLOW_REMOTE_PROP), false);
-        final String finalBasedir = basedir.startsWith("/") || basedir.isEmpty() ? basedir
-            : settingsService.getSlingHomePath() + basedir;
+        final String finalBasedir = basedir.startsWith("/") ? basedir
+            : settingsService.getSlingHomePath() + DB_REL_PATH + "/" + basedir;
         final List<String> args = new ArrayList<>();
         args.add("-tcpPort");
         args.add(Integer.toString(port));
@@ -58,6 +71,7 @@ public class H2Server {
             args.add("-baseDir");
             args.add(finalBasedir);
         }
+        url = String.format(URL_TEMPLATE, port);
         try {
             server = Server.createTcpServer(args.toArray(new String[args.size()])).start();
         } catch (SQLException e) {
@@ -78,5 +92,4 @@ public class H2Server {
         deactivate();
         activate(props);
     }
-
 }

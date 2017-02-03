@@ -4,6 +4,7 @@ import com.icfolson.aem.monitoring.database.ConnectionProvider;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.ConfigurationPolicy;
 import org.apache.felix.scr.annotations.Modified;
 import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Reference;
@@ -17,23 +18,22 @@ import java.sql.SQLException;
 import java.util.Map;
 
 @Service
-@Component(immediate = true, metatype = true)
+@Component(immediate = true, metatype = true, policy = ConfigurationPolicy.REQUIRE)
 public class H2ConnectionProvider implements ConnectionProvider {
 
-    private static final String SCHEME = "jdbc:h2:";
-    private static final String SERVER_DEFAULT = "tcp://localhost:8084";
-    private static final String URL_DEFAULT_POSTFIX = "/db/monitoring;ALIAS_COLUMN_NAME=TRUE";
+    private static final String DEFAULT_NAME = "monitoring";
+    private static final String DB_ARGS = ";ALIAS_COLUMN_NAME=TRUE";
     private static final String USER_DEFAULT = "sa";
     private static final String PASSWORD_DEFAULT = "";
 
     @Reference
     private SlingSettingsService settingsService;
 
-    @Property(label = "Server / Port")
-    private static final String SERVER_PROP = "server";
+    @Reference
+    private DatabaseServer server;
 
-    @Property(label = "Path")
-    private static final String PATH_PROP = "path";
+    @Property(label = "DB Name")
+    private static final String DB_NAME_PROP = "name";
 
     @Property(label = "User")
     private static final String USER_PROP = "user";
@@ -60,13 +60,11 @@ public class H2ConnectionProvider implements ConnectionProvider {
     @Activate
     @Modified
     protected final void activate(final Map<String, Object> properties) {
-        final String server = PropertiesUtil.toString(properties.get(SERVER_PROP), SERVER_DEFAULT);
-        final String path = PropertiesUtil.toString(properties.get(PATH_PROP),
-            settingsService.getSlingHomePath() + URL_DEFAULT_POSTFIX);
+        final String name = PropertiesUtil.toString(properties.get(DB_NAME_PROP), DEFAULT_NAME);
         final String user = PropertiesUtil.toString(properties.get(USER_PROP), USER_DEFAULT);
         final String password = PropertiesUtil.toString(properties.get(PASSWORD_PROP), PASSWORD_DEFAULT);
         dataSource = new JdbcDataSource();
-        dataSource.setURL(SCHEME + server + (path.startsWith("/") ? "" : "/") + path);
+        dataSource.setURL(server.getConnectionURL() + "/" + name + DB_ARGS);
         dataSource.setUser(user);
         dataSource.setPassword(password);
     }

@@ -1,16 +1,17 @@
 package com.icfolson.aem.monitoring.visualization.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MetricsQuery {
 
-    private final List<Short> types = new ArrayList<>();
+    private short type;
     private Long startEpoch;
     private Long endEpoch;
 
-    public List<Short> getTypes() {
-        return types;
+    public short getType() {
+        return type;
+    }
+
+    public void setType(final short type) {
+        this.type = type;
     }
 
     public Long getStartEpoch() {

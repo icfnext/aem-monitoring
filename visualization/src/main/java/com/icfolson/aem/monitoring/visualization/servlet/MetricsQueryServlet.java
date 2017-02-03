@@ -3,7 +3,7 @@ package com.icfolson.aem.monitoring.visualization.servlet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.icfolson.aem.monitoring.visualization.exception.MonitoringQueryException;
 import com.icfolson.aem.monitoring.visualization.model.MetricsQuery;
-import com.icfolson.aem.monitoring.visualization.result.FacetedTimeSeries;
+import com.icfolson.aem.monitoring.visualization.result.MetricsTimeSeries;
 import com.icfolson.aem.monitoring.visualization.service.MetricsQueryService;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
@@ -32,16 +32,14 @@ public class MetricsQueryServlet extends SlingAllMethodsServlet {
     protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
         throws ServletException, IOException {
 
-        final String[] typeStrings = request.getParameterValues(PARAM_TYPE);
+        final String typeString = request.getParameter(PARAM_TYPE);
         final String startEpochString = request.getParameter(PARAM_START_EPOCH);
         final String endEpochString = request.getParameter(PARAM_END_EPOCH);
 
         final MetricsQuery query = new MetricsQuery();
 
         try {
-            for (final String typeString : typeStrings) {
-                query.getTypes().add(Short.parseShort(typeString));
-            }
+            query.setType(Short.parseShort(typeString));
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, PARAM_TYPE + " must be a short integer");
         }
@@ -59,7 +57,7 @@ public class MetricsQueryServlet extends SlingAllMethodsServlet {
         }
 
         try {
-            final FacetedTimeSeries timeSeries = service.executeQuery(query);
+            final MetricsTimeSeries timeSeries = service.executeQuery(query);
             response.setContentType(ContentType.APPLICATION_JSON.getMimeType());
             MAPPER.writeValue(response.getWriter(), timeSeries);
         } catch (MonitoringQueryException e) {

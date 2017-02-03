@@ -2,16 +2,11 @@ package com.icfolson.aem.monitoring.visualization.repository;
 
 import com.icfolson.aem.monitoring.core.time.TimeGrouper;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
-import com.icfolson.aem.monitoring.visualization.result.FacetedTimeSeries;
-import com.icfolson.aem.monitoring.visualization.result.TimeSeries;
-
-import java.util.List;
+import com.icfolson.aem.monitoring.visualization.result.MetricsTimeSeries;
 
 public interface MetricsQueryRepository {
 
-    TimeSeries getMetricData(final short metricId, final TimeGrouper timeGrouper) throws MonitoringDBException;
-
-    FacetedTimeSeries getMetricData(final List<Short> metricIds, final TimeGrouper timeGrouper)
+    MetricsTimeSeries getMetricData(final short metricId, final TimeGrouper timeGrouper)
         throws MonitoringDBException;
 
 }

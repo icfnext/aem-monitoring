@@ -43,9 +43,15 @@
                 <include>com.icfolson.aem.monitoring:aem-monitoring-core</include>
                 <include>com.icfolson.aem.monitoring:aem-monitoring-database</include>
                 <include>com.icfolson.aem.monitoring:aem-monitoring-h2</include>
+                <include>com.icfolson.aem.monitoring:aem-monitoring-serialization</include>
                 <include>com.icfolson.aem.monitoring:aem-monitoring-visualization</include>
                 <include>com.h2database:h2</include>
+                <include>org.osgi:org.osgi.service.jdbc</include>
                 <include>org.jooq:jooq</include>
+                <include>com.squareup.okhttp3:okhttp</include>
+                <include>com.fasterxml.jackson.core:jackson-databind</include>
+                <include>com.fasterxml.jackson.core:jackson-annotations</include>
+                <include>com.fasterxml.jackson.core:jackson-core</include>
             </includes>
             <useStrictFiltering>true</useStrictFiltering>
         </dependencySet>

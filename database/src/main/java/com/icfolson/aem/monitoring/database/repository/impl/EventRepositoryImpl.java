@@ -43,7 +43,7 @@ public class EventRepositoryImpl implements EventRepository {
 
     @Override
     public List<MonitoringEvent> getEvents(final Long since, final Integer limit) {
-        return null;
+        return database.getEvents(since, limit);
     }
 
     @Activate

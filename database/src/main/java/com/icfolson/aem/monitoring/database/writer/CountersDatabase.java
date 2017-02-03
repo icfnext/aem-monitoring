@@ -77,6 +77,19 @@ public class CountersDatabase {
         return out;
     }
 
+    public long getLatestCounterTimestamp() {
+        try (final DSLContext context = getContext()) {
+            final Long time = context.select(Tables.COUNTER_VALUE.TIME.max()).from(Tables.COUNTER_VALUE)
+                .where(Tables.COUNTER_VALUE.SYSTEM_ID.eq(systemId)).fetchOne(0, Long.class);
+            if (time != null) {
+                return time;
+            }
+        } catch (MonitoringDBException e) {
+            LOG.error("Error getting latest counter timestamp", e);
+        }
+        return -1;
+    }
+
     private void initCounters() {
         counterIds.clear();
         try (DSLContext context = getContext()) {

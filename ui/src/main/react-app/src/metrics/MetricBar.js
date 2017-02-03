@@ -7,10 +7,8 @@ class MetricSelector extends React.Component {
     render() {
         var items = [];
         if (this.props.metricList) {
-            let colorMapping = this.props.colorMapping;
             $.each(this.props.metricList, function (index, metric) {
-                let color = COLORS[colorMapping[metric.id]];
-                items.push(<SelectListItem key={index} text={metric.name} color={color} value={index}/>);
+                items.push(<SelectListItem key={index} text={metric.name} value={index}/>);
             });
         }
         return (
@@ -18,10 +16,9 @@ class MetricSelector extends React.Component {
                     <div>Show:</div>
                     <SelectList
                         placeholder="Metrics"
-                        values={this.props.selectedMetric}
+                        value={this.props.selectedMetric}
                         onChange={this.props.metricChanged}
                         id="facet-selector"
-                        multiple
                     >
                         {items}
                     </SelectList>
@@ -41,7 +38,6 @@ class MetricBar extends React.Component {
                     metricList={this.props.metricList}
                     selectedMetric={this.props.selectedMetric}
                     metricChanged={this.props.metricChanged}
-                    colorMapping={this.props.colorMapping}
                 />
             </div>
         );

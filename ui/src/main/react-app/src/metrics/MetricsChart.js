@@ -109,7 +109,6 @@ class MetricsChart extends React.Component {
             var facets = data.facets;
             var timeSeries;
             if (facets) {
-                let colorMapping = this.props.colorMapping;
                 $.each(facets, function (index) {
                     let type = this.id;
                     timeSeries = $.map(this.timeSeries.points, function (point) {
@@ -118,8 +117,7 @@ class MetricsChart extends React.Component {
                         }
                         return {'x': point.epoch, 'y': point.average}
                     });
-                    let colorId = colorMapping[type];
-                    datasets.push(getDataset(timeSeries, "", colorId, true));
+                    datasets.push(getDataset(timeSeries, "", index, true));
                 });
             } else if (data && data.points) {
                 timeSeries = $.map(data.points, function (point) {

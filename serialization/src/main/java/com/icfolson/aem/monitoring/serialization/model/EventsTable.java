@@ -2,8 +2,10 @@ package com.icfolson.aem.monitoring.serialization.model;
 
 import com.icfolson.aem.monitoring.core.model.MonitoringEvent;
 import com.icfolson.aem.monitoring.core.model.QualifiedName;
-import com.icfolson.aem.monitoring.core.model.impl.DefaultMonitoringEvent;
+import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringEvent;
 import com.icfolson.aem.monitoring.database.util.NameUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -16,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 public class EventsTable {
+
+    private static final Logger LOG = LoggerFactory.getLogger(EventsTable.class);
 
     private final List<MonitoringEvent> events;
 
@@ -57,7 +61,7 @@ public class EventsTable {
                 event.setProperty(name, value);
             }
         } catch (IOException e) {
-            e.printStackTrace(); // TODO
+            LOG.error("Error reading table", e);
         }
         return out;
     }
@@ -105,7 +109,7 @@ public class EventsTable {
             stream.write(propertyByteBuffer.toByteArray());
             stream.flush();
         } catch (IOException e) {
-            e.printStackTrace(); // TODO
+            LOG.error("Error writing table", e);
         }
     }
 

@@ -9,6 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>aem-monitoring-serialization</artifactId>
+    <packaging>bundle</packaging>
+
     <build>
         <plugins>
             <plugin>
@@ -18,6 +20,39 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Name>${project.name}</Bundle-Name>
+                        <Bundle-Vendor>${project.parent.organization.name}</Bundle-Vendor>
+                        <Export-Package>
+                            com.icfolson.aem.monitoring.serialization.*;
+                            okhttp3.*; <!-- Remove when okhttp is properly bundled -->
+                            okio; <!-- Remove when okhttp is properly bundled -->
+                            android.util <!-- Remove when okhttp is properly bundled -->
+                        </Export-Package>
+                        <DynamicImport-Package>*</DynamicImport-Package>
+                        <Sling-Model-Packages>com.icfolson.aem.monitoring.serialization.model</Sling-Model-Packages>
+                    </instructions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-scr-plugin</artifactId>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>generate-scr-scrdescriptor</id>
+                        <goals>
+                            <goal>scr</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -48,6 +83,11 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
         </dependency>
     </dependencies>
 </project>

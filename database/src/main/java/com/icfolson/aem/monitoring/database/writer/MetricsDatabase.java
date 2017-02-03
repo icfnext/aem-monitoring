@@ -1,6 +1,10 @@
 package com.icfolson.aem.monitoring.database.writer;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 import com.icfolson.aem.monitoring.core.model.MonitoringMetric;
+import com.icfolson.aem.monitoring.core.model.QualifiedName;
+import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringMetric;
 import com.icfolson.aem.monitoring.database.ConnectionProvider;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.generated.Tables;
@@ -15,10 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 public class MetricsDatabase {
@@ -27,16 +28,16 @@ public class MetricsDatabase {
 
     private final UUID systemId;
     private final ConnectionProvider connectionProvider;
-    private final Map<String, Short> metricIds = Collections.synchronizedMap(new HashMap<>());
+    private final BiMap<String, Short> metricIds = HashBiMap.create();
 
     public MetricsDatabase(final UUID systemId, final ConnectionProvider connectionProvider) {
         this.systemId = systemId;
         this.connectionProvider = connectionProvider;
     }
 
-    public Map<String, Short> getMetricTypes() {
+    public BiMap<String, Short> getMetricTypes() {
         initMetrics();
-        return new HashMap<>(metricIds);
+        return HashBiMap.create(metricIds);
     }
 
     public void writeMetric(final MonitoringMetric metric) {
@@ -60,16 +61,35 @@ public class MetricsDatabase {
     public List<MonitoringMetric> getMetrics(final Long since, final Integer limit) {
         List<MonitoringMetric> out = new ArrayList<>();
         try (DSLContext context = getContext()) {
+            final BiMap<Short, String> inverse = metricIds.inverse();
             final Result<MetricValueRecord> records = context.selectFrom(Tables.METRIC_VALUE)
                 .where(Tables.METRIC_VALUE.TIME.greaterOrEqual(since)
                     .and(Tables.METRIC_VALUE.SYSTEM_ID.eq(systemId))).limit(limit).fetch();
             for (final MetricValueRecord record : records) {
-                // TODO add CB interface to avoid successive copying
+                final Short id = record.getMetricId();
+                final String name = inverse.get(id);
+                final QualifiedName qualifiedName = NameUtil.toName(name);
+                final Long time = record.getTime();
+                final Float value = record.getMetricValue();
+                out.add(new DefaultMonitoringMetric(qualifiedName, time, value));
             }
         } catch (MonitoringDBException e) {
             LOG.error("Error writing metric data", e);
         }
         return out;
+    }
+
+    public long getLatestMetricTimestamp() {
+        try (final DSLContext context = getContext()) {
+            final Long time = context.select(Tables.METRIC_VALUE.TIME.max()).from(Tables.METRIC_VALUE)
+                .where(Tables.METRIC_VALUE.SYSTEM_ID.eq(systemId)).fetchOne(0, Long.class);
+            if (time != null) {
+                return time;
+            }
+        } catch (MonitoringDBException e) {
+            LOG.error("Error getting latest metric timestamp", e);
+        }
+        return -1;
     }
 
     private void initMetrics() {

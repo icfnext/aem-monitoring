@@ -3,6 +3,7 @@ package com.icfolson.aem.monitoring.database.writer;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.icfolson.aem.monitoring.core.model.MonitoringEvent;
+import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringEvent;
 import com.icfolson.aem.monitoring.database.ConnectionProvider;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.generated.Tables;
@@ -20,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -35,6 +37,11 @@ public class EventsDatabase {
     public EventsDatabase(final UUID systemId, final ConnectionProvider connectionProvider) {
         this.systemId = systemId;
         this.connectionProvider = connectionProvider;
+        try {
+            initEvents();
+        } catch (MonitoringDBException e) {
+            LOG.error("Error initializing events", e);
+        }
     }
 
     public BiMap<String, Short> getEventTypeMap() {
@@ -84,12 +91,45 @@ public class EventsDatabase {
                 .where(Tables.EVENT.EVENT_ID.in(
                     context.select(Tables.EVENT.EVENT_ID).from(Tables.EVENT)
                         .where(Tables.EVENT.TIME.greaterOrEqual(since)).limit(limit)
-                )).fetch();
-
+                ))
+                .orderBy(Tables.EVENT.TIME)
+                .fetch();
+            Map<Long, MonitoringEvent> map = new LinkedHashMap<>();
+            final BiMap<Short, String> eventTypes = getEventTypeMap().inverse();
+            for (final Record6<Long, Short, Long, String, Float, String> result : results) {
+                long eventId = result.value1();
+                MonitoringEvent event = map.get(eventId);
+                if (event == null) {
+                    final Short eventTypeId = result.value2();
+                    final String eventType = eventTypes.get(eventTypeId);
+                    final Long timestamp = result.value3();
+                    event = new DefaultMonitoringEvent(NameUtil.toName(eventType), timestamp);
+                    map.put(eventId, event);
+                }
+                Object value = result.value5();
+                if (value == null) {
+                    value = result.value6();
+                }
+                event.setProperty(result.value4(), value);
+            }
+            return new ArrayList<>(map.values());
         } catch (MonitoringDBException e) {
             LOG.error("Error loading events", e);
         }
         return out;
+    }
+
+    public long getLatestEventTimestamp() {
+        try (final DSLContext context = getContext()) {
+            final Long time = context.select(Tables.EVENT.TIME.max()).from(Tables.EVENT)
+                .where(Tables.EVENT.SYSTEM_ID.eq(systemId)).fetchOne(0, Long.class);
+            if (time != null) {
+                return time;
+            }
+        } catch (MonitoringDBException e) {
+            LOG.error("Error getting latest event timestamp", e);
+        }
+        return -1;
     }
 
     private synchronized short initEvent(final String joinedName) throws MonitoringDBException {

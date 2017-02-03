@@ -2,8 +2,10 @@ package com.icfolson.aem.monitoring.serialization.model;
 
 import com.icfolson.aem.monitoring.core.model.MonitoringMetric;
 import com.icfolson.aem.monitoring.core.model.QualifiedName;
-import com.icfolson.aem.monitoring.core.model.impl.DefaultMonitoringMetric;
+import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringMetric;
 import com.icfolson.aem.monitoring.database.util.NameUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -15,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MetricsTable {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MetricsTable.class);
 
     private final List<MonitoringMetric> metrics;
 
@@ -49,6 +53,7 @@ public class MetricsTable {
             metricsBuffer.flush();
             final DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
             stringTable.writeTable(dataOutputStream);
+            dataOutputStream.writeShort(metrics.size());
             dataOutputStream.flush();
             outputStream.write(bytes.toByteArray());
         } catch (IOException e) {
@@ -71,7 +76,7 @@ public class MetricsTable {
                 out.metrics.add(metric);
             }
         } catch (IOException e) {
-            e.printStackTrace(); // TODO
+            LOG.error("Error reading metrics", e);
         }
         return out;
     }

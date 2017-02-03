@@ -2,7 +2,7 @@ package com.icfolson.aem.monitoring.core.builtin;
 
 import com.day.cq.replication.ReplicationAction;
 import com.icfolson.aem.monitoring.core.model.QualifiedName;
-import com.icfolson.aem.monitoring.core.model.impl.DefaultMonitoringEvent;
+import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringEvent;
 import com.icfolson.aem.monitoring.core.service.MonitoringService;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Properties;

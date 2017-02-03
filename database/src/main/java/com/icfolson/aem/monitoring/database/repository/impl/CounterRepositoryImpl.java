@@ -38,7 +38,7 @@ public class CounterRepositoryImpl implements CounterRepository {
 
     @Override
     public List<MonitoringCounter> getCounters(final Long since, final Integer limit) {
-        return null;
+        return database.getCounters(since, limit);
     }
 
     @Activate

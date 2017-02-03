@@ -1,34 +1,51 @@
 package com.icfolson.aem.monitoring.serialization.model;
 
-import java.util.UUID;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Model;
 
+import javax.inject.Inject;
+
+@Model(adaptables = Resource.class)
 public class RemoteSystem {
 
-    private final UUID uuid;
-    private final String url;
-    private final String user;
-    private final String password;
+    @Inject
+    private String host;
+    @Inject
+    private int port;
+    @Inject
+    private String user;
+    @Inject
+    private String password;
 
-    public RemoteSystem(final UUID uuid, final String url, final String user, final String password) {
-        this.uuid = uuid;
-        this.url = url;
-        this.user = user;
-        this.password = password;
+    public String getHost() {
+        return host;
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public void setHost(final String host) {
+        this.host = host;
     }
 
-    public String getUrl() {
-        return url;
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(final int port) {
+        this.port = port;
     }
 
     public String getUser() {
         return user;
     }
 
+    public void setUser(final String user) {
+        this.user = user;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(final String password) {
+        this.password = password;
     }
 }

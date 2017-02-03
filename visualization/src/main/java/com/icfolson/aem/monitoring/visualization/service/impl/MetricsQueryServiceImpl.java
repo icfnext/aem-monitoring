@@ -5,7 +5,7 @@ import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.visualization.exception.MonitoringQueryException;
 import com.icfolson.aem.monitoring.visualization.model.MetricsQuery;
 import com.icfolson.aem.monitoring.visualization.repository.MetricsQueryRepository;
-import com.icfolson.aem.monitoring.visualization.result.FacetedTimeSeries;
+import com.icfolson.aem.monitoring.visualization.result.MetricsTimeSeries;
 import com.icfolson.aem.monitoring.visualization.service.MetricsQueryService;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
@@ -21,10 +21,10 @@ public class MetricsQueryServiceImpl implements MetricsQueryService {
     private MetricsQueryRepository repository;
 
     @Override
-    public FacetedTimeSeries executeQuery(final MetricsQuery query) throws MonitoringQueryException {
+    public MetricsTimeSeries executeQuery(final MetricsQuery query) throws MonitoringQueryException {
         TimeGrouper grouper = new TimeGrouper(query.getStartEpoch(), query.getEndEpoch(), DEFAULT_BIN_COUNT);
         try {
-            return repository.getMetricData(query.getTypes(), grouper);
+            return repository.getMetricData(query.getType(), grouper);
         } catch (MonitoringDBException e) {
             throw new MonitoringQueryException(e);
         }
