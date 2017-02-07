@@ -3,7 +3,7 @@ package com.icfolson.aem.monitoring.serialization.model;
 import com.icfolson.aem.monitoring.core.model.MonitoringEvent;
 import com.icfolson.aem.monitoring.core.model.QualifiedName;
 import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringEvent;
-import com.icfolson.aem.monitoring.database.util.NameUtil;
+import com.icfolson.aem.monitoring.core.util.NameUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

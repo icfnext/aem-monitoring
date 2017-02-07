@@ -1,4 +1,4 @@
-package com.icfolson.aem.monitoring.database.util;
+package com.icfolson.aem.monitoring.core.util;
 
 import com.google.common.base.Splitter;
 import com.icfolson.aem.monitoring.core.model.QualifiedName;

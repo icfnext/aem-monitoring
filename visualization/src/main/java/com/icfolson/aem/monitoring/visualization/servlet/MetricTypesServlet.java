@@ -2,7 +2,7 @@ package com.icfolson.aem.monitoring.visualization.servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.icfolson.aem.monitoring.database.repository.MetricRepository;
-import com.icfolson.aem.monitoring.database.util.NameUtil;
+import com.icfolson.aem.monitoring.core.util.NameUtil;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.http.entity.ContentType;

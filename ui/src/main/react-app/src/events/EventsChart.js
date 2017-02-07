@@ -55,7 +55,9 @@ function applyColor(dataset, colorIndex, lineOnly) {
 class EventsChart extends React.Component {
     render() {
         return (
-            <canvas id="chart" width="400" height="180" ref={(elem) => this.element = elem}/>
+            <div>
+                <canvas id="chart" width="400" height="180" ref={(elem) => this.element = elem}/>
+            </div>
         );
     }
     componentDidMount() {

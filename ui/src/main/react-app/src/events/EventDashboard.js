@@ -7,7 +7,7 @@ import TIME_CONSTANTS from '../times'
 import Header from './Header';
 import EventsChart from './EventsChart'
 import FacetBar from './FacetBar'
-import FacetFilters from './FacetFilters'
+import FilterEditor from './FilterEditor'
 import EventListing from './EventListing'
 
 var EVENT_COUNT = "Event Count";
@@ -26,7 +26,8 @@ class EventDashboard extends React.Component {
             selectedProperty: null,
             filters: [],
             eventData: {},
-            selectedYAxis: "0"
+            selectedYAxis: "0",
+            showAddFilter: false
         };
         // TODO Pull initial state from URL params
         this.loadTypes();
@@ -92,6 +93,16 @@ class EventDashboard extends React.Component {
         $.extend(newState, {
             stringPropertyList: stringPropertyList,
             realPropertyList: realPropertyList
+        })
+    }
+    showAddFilter() {
+        this.setState({
+            showAddFilter: true
+        })
+    }
+    hideAddFilter() {
+        this.setState({
+            showAddFilter: false
         })
     }
     propertyChanged(event, propArray) {
@@ -203,6 +214,17 @@ class EventDashboard extends React.Component {
         }.bind(this));
     }
     render() {
+        let editors = [];
+        if (this.state.showAddFilter) {
+            editors.push(
+                <FilterEditor
+                    key="filterEditor"
+                    propertyList={this.state.propertyList}
+                    addFilter={this.addFilter.bind(this)}
+                    hideEditor={this.hideAddFilter.bind(this)}
+                />
+            );
+        }
         return (
             <div>
                 <div id="wrapper">
@@ -219,6 +241,7 @@ class EventDashboard extends React.Component {
                         filters={this.state.filters}
                         onClose={this.facetRemoved.bind(this)}
                         addFilter={this.addFilter.bind(this)}
+                        showAddFilter={this.showAddFilter.bind(this)}
                     />
                     <FacetBar
                         propertyList={this.state.stringPropertyList}
@@ -229,6 +252,7 @@ class EventDashboard extends React.Component {
                         addFacet={this.addFacet.bind(this)}
                     />
                     <div id="content">
+                        {editors}
                         <EventsChart
                             chartData={this.state.chartData}
                             selectedYAxis={this.state.selectedYAxis}

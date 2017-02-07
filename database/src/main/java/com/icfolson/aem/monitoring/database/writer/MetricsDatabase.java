@@ -11,7 +11,7 @@ import com.icfolson.aem.monitoring.database.generated.Tables;
 import com.icfolson.aem.monitoring.database.generated.tables.records.MetricRecord;
 import com.icfolson.aem.monitoring.database.generated.tables.records.MetricValueRecord;
 import com.icfolson.aem.monitoring.database.model.ConnectionWrapper;
-import com.icfolson.aem.monitoring.database.util.NameUtil;
+import com.icfolson.aem.monitoring.core.util.NameUtil;
 import org.jooq.DSLContext;
 import org.jooq.Result;
 import org.slf4j.Logger;

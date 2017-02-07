@@ -28,7 +28,7 @@ public class EventsSyncClient extends AbstractSyncClient {
     }
 
     @Override
-    public void sync() {
+    public synchronized void sync() {
         try (final InputStream stream = executeRequest()) {
             final EventsTable table = EventsTable.readEvents(stream);
             for (final MonitoringEvent monitoringEvent : table.getEvents()) {

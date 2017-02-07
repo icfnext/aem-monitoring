@@ -1,6 +1,6 @@
 package com.icfolson.aem.monitoring.visualization.model;
 
-import com.icfolson.aem.monitoring.database.util.NameUtil;
+import com.icfolson.aem.monitoring.core.util.NameUtil;
 
 import java.util.ArrayList;
 import java.util.List;

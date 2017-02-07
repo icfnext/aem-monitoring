@@ -12,7 +12,7 @@ import com.icfolson.aem.monitoring.database.generated.tables.records.EventRecord
 import com.icfolson.aem.monitoring.database.generated.tables.records.EventTypeRecord;
 import com.icfolson.aem.monitoring.database.model.ConnectionWrapper;
 import com.icfolson.aem.monitoring.database.repository.impl.EventRepositoryImpl;
-import com.icfolson.aem.monitoring.database.util.NameUtil;
+import com.icfolson.aem.monitoring.core.util.NameUtil;
 import org.jooq.DSLContext;
 import org.jooq.Record6;
 import org.jooq.Result;

@@ -41,10 +41,6 @@ public class H2ConnectionProvider implements ConnectionProvider {
 
     private JdbcDataSource dataSource;
 
-    public String getSqlVariant() {
-        return "H2";
-    }
-
     @Override
     public ConnectionWrapper getConnection() throws MonitoringDBException {
         try {

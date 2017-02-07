@@ -28,7 +28,7 @@ public class CountersSyncClient extends AbstractSyncClient {
     }
 
     @Override
-    public void sync() {
+    public synchronized void sync() {
         try (final InputStream stream = executeRequest()) {
             final CountersTable table = CountersTable.readCounters(stream);
             for (final MonitoringCounter monitoringCounter : table.getCounters()) {

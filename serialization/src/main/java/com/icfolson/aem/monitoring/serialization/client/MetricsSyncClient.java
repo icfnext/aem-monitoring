@@ -28,7 +28,7 @@ public class MetricsSyncClient extends AbstractSyncClient {
     }
 
     @Override
-    public void sync() {
+    public synchronized void sync() {
         try ( final InputStream stream = executeRequest()) {
             final MetricsTable table = MetricsTable.readMetrics(stream);
             for (final MonitoringMetric monitoringMetric : table.getMetrics()) {

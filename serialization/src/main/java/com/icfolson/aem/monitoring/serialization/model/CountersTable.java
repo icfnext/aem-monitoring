@@ -3,7 +3,7 @@ package com.icfolson.aem.monitoring.serialization.model;
 import com.icfolson.aem.monitoring.core.model.MonitoringCounter;
 import com.icfolson.aem.monitoring.core.model.QualifiedName;
 import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringCounter;
-import com.icfolson.aem.monitoring.database.util.NameUtil;
+import com.icfolson.aem.monitoring.core.util.NameUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;

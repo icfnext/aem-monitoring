@@ -95,6 +95,7 @@ class Header extends React.Component {
                         propertyList={this.props.stringPropertyList}
                         onClose={this.props.onClose}
                         addFilter={this.props.addFilter}
+                        showAddFilter={this.props.showAddFilter}
                     />
                 </div>
             </div>

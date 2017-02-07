@@ -33,7 +33,7 @@ public class SystemSyncClient extends AbstractSyncClient {
     }
 
     @Override
-    public void sync() {
+    public synchronized void sync() {
         try ( final InputStream stream = executeRequest()) {
             final SystemTable table = SystemTable.readTable(stream);
             uuid = table.getUuid();
