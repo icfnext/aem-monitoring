@@ -10,6 +10,7 @@ import com.icfolson.aem.monitoring.database.SystemInfo;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.generated.Tables;
 import com.icfolson.aem.monitoring.database.generated.tables.records.SystemPropertyRecord;
+import com.icfolson.aem.monitoring.database.model.ConnectionWrapper;
 import com.icfolson.aem.monitoring.visualization.model.Operation;
 import com.icfolson.aem.monitoring.visualization.model.Predicate;
 import com.icfolson.aem.monitoring.visualization.system.SystemRepository;
@@ -19,19 +20,8 @@ import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
 import org.jooq.DSLContext;
 import org.jooq.Result;
-import org.jooq.SQLDialect;
-import org.jooq.conf.RenderNameStyle;
-import org.jooq.conf.Settings;
-import org.jooq.impl.DSL;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Component(immediate = true)
@@ -110,15 +100,14 @@ public class SystemRepositoryImpl implements SystemRepository {
 
         return matches;
     }
-
-    private DSLContext getContext() throws MonitoringDBException {
-        return DSL.using(connectionProvider.getConnection(), SQLDialect.valueOf(connectionProvider.getSqlVariant()),
-            new Settings().withRenderNameStyle(RenderNameStyle.AS_IS));
+    private ConnectionWrapper getConnection() throws MonitoringDBException {
+        return connectionProvider.getConnection();
     }
 
     private Map<UUID, SystemInfoImpl> loadSystems() throws MonitoringDBException {
         final Map<UUID, SystemInfoImpl> out = new HashMap<>();
-        try (final DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final Result<SystemPropertyRecord> result = context.selectFrom(Tables.SYSTEM_PROPERTY).fetch();
             for (final SystemPropertyRecord propertyRecord : result) {
                 final UUID uuid = propertyRecord.getSystemId();

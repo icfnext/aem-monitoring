@@ -37,7 +37,6 @@
                             android.util <!-- Remove when okhttp is properly bundled -->
                         </Export-Package>
                         <DynamicImport-Package>*</DynamicImport-Package>
-                        <Sling-Model-Packages>com.icfolson.aem.monitoring.serialization.model</Sling-Model-Packages>
                     </instructions>
                 </configuration>
             </plugin>
@@ -83,11 +82,6 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-            <version>1</version>
         </dependency>
     </dependencies>
 </project>

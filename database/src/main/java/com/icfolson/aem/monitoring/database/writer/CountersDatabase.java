@@ -9,19 +9,14 @@ import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.generated.Tables;
 import com.icfolson.aem.monitoring.database.generated.tables.records.CounterRecord;
 import com.icfolson.aem.monitoring.database.generated.tables.records.CounterValueRecord;
+import com.icfolson.aem.monitoring.database.model.ConnectionWrapper;
 import com.icfolson.aem.monitoring.database.util.NameUtil;
 import org.jooq.DSLContext;
 import org.jooq.Result;
-import org.jooq.SQLDialect;
-import org.jooq.impl.DSL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Function;
 
 public class CountersDatabase {
@@ -43,7 +38,8 @@ public class CountersDatabase {
 
     public void writeCounter(final MonitoringCounter counter) {
         final String name = NameUtil.toStorageFormat(counter.getName());
-        try (DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final CounterValueRecord record = context.newRecord(Tables.COUNTER_VALUE);
             record.setSystemId(systemId);
             record.setTime(counter.getTimestamp());
@@ -60,7 +56,8 @@ public class CountersDatabase {
         List<MonitoringCounter> out = new ArrayList<>();
         final Map<Short, String> inverse = counterIds.inverse();
         Map<Short, QualifiedName> nameIndex = new HashMap<>();
-        try (DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final Result<CounterValueRecord> records = context.selectFrom(Tables.COUNTER_VALUE)
                 .where(Tables.COUNTER_VALUE.TIME.greaterOrEqual(since)
                     .and(Tables.COUNTER_VALUE.SYSTEM_ID.eq(systemId))).limit(limit).fetch();
@@ -78,7 +75,8 @@ public class CountersDatabase {
     }
 
     public long getLatestCounterTimestamp() {
-        try (final DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final Long time = context.select(Tables.COUNTER_VALUE.TIME.max()).from(Tables.COUNTER_VALUE)
                 .where(Tables.COUNTER_VALUE.SYSTEM_ID.eq(systemId)).fetchOne(0, Long.class);
             if (time != null) {
@@ -92,7 +90,8 @@ public class CountersDatabase {
 
     private void initCounters() {
         counterIds.clear();
-        try (DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final Result<CounterRecord> counterRecords = context
                 .selectFrom(Tables.COUNTER)
                 .orderBy(Tables.COUNTER.COUNTER_ID)
@@ -117,7 +116,8 @@ public class CountersDatabase {
         if (id != null) {
             return id;
         } else {
-            try (DSLContext context = getContext()) {
+            try (ConnectionWrapper wrapper = getConnection()) {
+                final DSLContext context = wrapper.getContext();
                 final CounterRecord counterRecord = context.newRecord(Tables.COUNTER);
                 counterRecord.setCounterName(joinedName);
                 counterRecord.insert();
@@ -131,8 +131,8 @@ public class CountersDatabase {
         }
     }
 
-    private DSLContext getContext() throws MonitoringDBException {
-        return DSL.using(connectionProvider.getConnection(), SQLDialect.H2);
+    private ConnectionWrapper getConnection() throws MonitoringDBException {
+        return connectionProvider.getConnection();
     }
 
     private class CounterRecordDecorator implements MonitoringCounter {

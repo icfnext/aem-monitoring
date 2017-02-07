@@ -7,6 +7,7 @@ import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.generated.Tables;
 import com.icfolson.aem.monitoring.database.generated.tables.Event;
 import com.icfolson.aem.monitoring.database.generated.tables.EventProperty;
+import com.icfolson.aem.monitoring.database.model.ConnectionWrapper;
 import com.icfolson.aem.monitoring.database.repository.EventRepository;
 import com.icfolson.aem.monitoring.visualization.model.EventPropertyDescriptor;
 import com.icfolson.aem.monitoring.visualization.model.EventQuery;
@@ -20,33 +21,14 @@ import com.icfolson.aem.monitoring.visualization.util.JooqUtil;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
-import org.jooq.Condition;
-import org.jooq.DSLContext;
-import org.jooq.Field;
-import org.jooq.Record;
-import org.jooq.Record3;
-import org.jooq.Record4;
-import org.jooq.Record5;
-import org.jooq.Result;
-import org.jooq.SQLDialect;
-import org.jooq.SelectConditionStep;
-import org.jooq.SelectHavingStep;
-import org.jooq.SelectSeekStep1;
-import org.jooq.Table;
-import org.jooq.TableOnConditionStep;
+import org.jooq.*;
 import org.jooq.conf.ParamType;
-import org.jooq.conf.RenderNameStyle;
-import org.jooq.conf.Settings;
 import org.jooq.impl.DSL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -66,7 +48,8 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
 
         final QueryEntities entities = prepareQueryEntities(query);
 
-        try (final DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
 
             // Prepare and execute the SQL query against the database
             final SelectHavingStep<Record> temp = context.select(entities.fields).from(entities.table)
@@ -101,7 +84,8 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
     public List<EventTypeDescriptor> getEventDescriptors() throws MonitoringDBException {
         final List<EventTypeDescriptor> out = new ArrayList<>();
         final Map<String, EventTypeDescriptor> typeMap = new HashMap<>();
-        try (final DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final Map<String, Map<String, EventPropertyDescriptor>> propertyMap = new HashMap<>();
 
             TableOnConditionStep<Record> table = Tables.EVENT_TYPE.join(Tables.EVENT)
@@ -158,7 +142,8 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
 
         final FacetedTimeSeries out = new FacetedTimeSeries();
         final QueryEntities entities = prepareQueryEntities(query);
-        try (final DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final Condition maxFacets = entities.facetField.in(context
                 .select(entities.facetField)
                 .from(entities.table)
@@ -202,7 +187,8 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
     public EventListing getEvents(final EventQuery query) throws MonitoringDBException {
         EventListing out = new EventListing();
         final QueryEntities entities = prepareQueryEntities(query);
-        try (final DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
 
             final SelectConditionStep<Record3<Long, Long, UUID>> events = context
                 .select(Tables.EVENT.EVENT_ID, Tables.EVENT.TIME, Tables.EVENT.SYSTEM_ID)
@@ -238,7 +224,8 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
 
     @Override
     public void deleteOldData(final long deleteBeforeEpoch) throws MonitoringDBException {
-        try (final DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             context.deleteFrom(Tables.EVENT).where(Tables.EVENT.TIME.lessThan(deleteBeforeEpoch)).execute();
             context.deleteFrom(Tables.COUNTER_VALUE).where(Tables.COUNTER_VALUE.TIME.lessThan(deleteBeforeEpoch))
                 .execute();
@@ -249,9 +236,8 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
         }
     }
 
-    private DSLContext getContext() throws MonitoringDBException {
-        return DSL.using(connectionProvider.getConnection(), SQLDialect.valueOf(connectionProvider.getSqlVariant()),
-            new Settings().withRenderNameStyle(RenderNameStyle.AS_IS));
+    private ConnectionWrapper getConnection() throws MonitoringDBException {
+        return connectionProvider.getConnection();
     }
 
     /**

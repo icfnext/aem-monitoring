@@ -1,6 +1,6 @@
 package com.icfolson.aem.monitoring.serialization.manager;
 
-import com.icfolson.aem.monitoring.serialization.model.RemoteSystem;
+import com.icfolson.aem.monitoring.core.model.RemoteSystem;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;

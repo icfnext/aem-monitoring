@@ -1,5 +1,7 @@
 package com.icfolson.aem.monitoring.serialization.model;
 
+import com.icfolson.aem.monitoring.core.model.RemoteSystem;
+
 import javax.inject.Inject;
 import java.util.UUID;
 
@@ -25,7 +27,7 @@ public class NamedRemoteSystem extends RemoteSystem {
 
     @Override
     @Inject
-    public int getPort() {
+    public Integer getPort() {
         return system.getPort();
     }
 

@@ -2,16 +2,12 @@ package com.icfolson.aem.monitoring.h2;
 
 import com.icfolson.aem.monitoring.database.ConnectionProvider;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.ConfigurationPolicy;
-import org.apache.felix.scr.annotations.Modified;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
+import com.icfolson.aem.monitoring.database.model.ConnectionWrapper;
+import org.apache.felix.scr.annotations.*;
 import org.apache.sling.commons.osgi.PropertiesUtil;
 import org.apache.sling.settings.SlingSettingsService;
 import org.h2.jdbcx.JdbcDataSource;
+import org.jooq.SQLDialect;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,6 +16,8 @@ import java.util.Map;
 @Service
 @Component(immediate = true, metatype = true, policy = ConfigurationPolicy.REQUIRE)
 public class H2ConnectionProvider implements ConnectionProvider {
+
+    private static final SQLDialect DIALECT = SQLDialect.H2;
 
     private static final String DEFAULT_NAME = "monitoring";
     private static final String DB_ARGS = ";ALIAS_COLUMN_NAME=TRUE";
@@ -43,15 +41,15 @@ public class H2ConnectionProvider implements ConnectionProvider {
 
     private JdbcDataSource dataSource;
 
-    @Override
     public String getSqlVariant() {
         return "H2";
     }
 
     @Override
-    public Connection getConnection() throws MonitoringDBException {
+    public ConnectionWrapper getConnection() throws MonitoringDBException {
         try {
-            return dataSource == null ? null : dataSource.getConnection();
+            final Connection connection = dataSource == null ? null : dataSource.getConnection();
+            return connection == null ? null : new ConnectionWrapper(connection, DIALECT);
         } catch (SQLException e) {
             throw new MonitoringDBException(e);
         }

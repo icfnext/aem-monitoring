@@ -10,11 +10,10 @@ import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.generated.Tables;
 import com.icfolson.aem.monitoring.database.generated.tables.records.MetricRecord;
 import com.icfolson.aem.monitoring.database.generated.tables.records.MetricValueRecord;
+import com.icfolson.aem.monitoring.database.model.ConnectionWrapper;
 import com.icfolson.aem.monitoring.database.util.NameUtil;
 import org.jooq.DSLContext;
 import org.jooq.Result;
-import org.jooq.SQLDialect;
-import org.jooq.impl.DSL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +41,8 @@ public class MetricsDatabase {
 
     public void writeMetric(final MonitoringMetric metric) {
         final String joinedName = NameUtil.toStorageFormat(metric.getName());
-        try (DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final MetricValueRecord record = context.newRecord(Tables.METRIC_VALUE);
             record.setSystemId(systemId);
             record.setTime(metric.getTimestamp());
@@ -60,7 +60,8 @@ public class MetricsDatabase {
 
     public List<MonitoringMetric> getMetrics(final Long since, final Integer limit) {
         List<MonitoringMetric> out = new ArrayList<>();
-        try (DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final BiMap<Short, String> inverse = metricIds.inverse();
             final Result<MetricValueRecord> records = context.selectFrom(Tables.METRIC_VALUE)
                 .where(Tables.METRIC_VALUE.TIME.greaterOrEqual(since)
@@ -80,7 +81,8 @@ public class MetricsDatabase {
     }
 
     public long getLatestMetricTimestamp() {
-        try (final DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final Long time = context.select(Tables.METRIC_VALUE.TIME.max()).from(Tables.METRIC_VALUE)
                 .where(Tables.METRIC_VALUE.SYSTEM_ID.eq(systemId)).fetchOne(0, Long.class);
             if (time != null) {
@@ -94,7 +96,8 @@ public class MetricsDatabase {
 
     private void initMetrics() {
         metricIds.clear();
-        try (DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final Result<MetricRecord> metricRecords = context
                 .selectFrom(Tables.METRIC)
                 .orderBy(Tables.METRIC.METRIC_ID)
@@ -119,7 +122,8 @@ public class MetricsDatabase {
         if (id != null) {
             return id;
         } else {
-            try (DSLContext context = getContext()) {
+            try (ConnectionWrapper wrapper = getConnection()) {
+                final DSLContext context = wrapper.getContext();
                 final MetricRecord metricRecord = context.newRecord(Tables.METRIC);
                 metricRecord.setMetricName(joinedName);
                 metricRecord.insert();
@@ -133,8 +137,8 @@ public class MetricsDatabase {
         }
     }
 
-    private DSLContext getContext() throws MonitoringDBException {
-        return DSL.using(connectionProvider.getConnection(), SQLDialect.H2);
+    private ConnectionWrapper getConnection() throws MonitoringDBException {
+        return connectionProvider.getConnection();
     }
 
 }

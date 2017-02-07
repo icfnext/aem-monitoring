@@ -7,9 +7,8 @@ import com.icfolson.aem.monitoring.database.generated.Tables;
 import com.icfolson.aem.monitoring.database.generated.tables.SystemProperty;
 import com.icfolson.aem.monitoring.database.generated.tables.records.SystemPropertyRecord;
 import com.icfolson.aem.monitoring.database.generated.tables.records.SystemRecord;
+import com.icfolson.aem.monitoring.database.model.ConnectionWrapper;
 import org.jooq.DSLContext;
-import org.jooq.SQLDialect;
-import org.jooq.impl.DSL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +23,8 @@ public class SystemDatabase {
     }
 
     public void writeSystem(final SystemInfo systemInfo) {
-        try (DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             SystemRecord systemRecord = context
                 .selectFrom(Tables.SYSTEM)
                 .where(Tables.SYSTEM.SYSTEM_ID.eq(systemInfo.getSystemId()))
@@ -57,8 +57,8 @@ public class SystemDatabase {
         }
     }
 
-    private DSLContext getContext() throws MonitoringDBException {
-        return DSL.using(connectionProvider.getConnection(), SQLDialect.H2);
+    private ConnectionWrapper getConnection() throws MonitoringDBException {
+        return connectionProvider.getConnection();
     }
 
 }

@@ -3,7 +3,7 @@ package com.icfolson.aem.monitoring.serialization.client;
 import com.icfolson.aem.monitoring.database.ConnectionProvider;
 import com.icfolson.aem.monitoring.database.writer.SystemDatabase;
 import com.icfolson.aem.monitoring.serialization.constants.Paths;
-import com.icfolson.aem.monitoring.serialization.model.RemoteSystem;
+import com.icfolson.aem.monitoring.core.model.RemoteSystem;
 import com.icfolson.aem.monitoring.serialization.model.SystemTable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

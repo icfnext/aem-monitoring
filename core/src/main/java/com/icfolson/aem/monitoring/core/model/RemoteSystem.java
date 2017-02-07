@@ -1,17 +1,18 @@
-package com.icfolson.aem.monitoring.serialization.model;
+package com.icfolson.aem.monitoring.core.model;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 
 import javax.inject.Inject;
 
-@Model(adaptables = Resource.class)
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class RemoteSystem {
 
     @Inject
     private String host;
     @Inject
-    private int port;
+    private Integer port;
     @Inject
     private String user;
     @Inject
@@ -25,11 +26,11 @@ public class RemoteSystem {
         this.host = host;
     }
 
-    public int getPort() {
+    public Integer getPort() {
         return port;
     }
 
-    public void setPort(final int port) {
+    public void setPort(final Integer port) {
         this.port = port;
     }
 

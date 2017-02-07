@@ -10,21 +10,16 @@ import com.icfolson.aem.monitoring.database.generated.Tables;
 import com.icfolson.aem.monitoring.database.generated.tables.records.EventPropertyRecord;
 import com.icfolson.aem.monitoring.database.generated.tables.records.EventRecord;
 import com.icfolson.aem.monitoring.database.generated.tables.records.EventTypeRecord;
+import com.icfolson.aem.monitoring.database.model.ConnectionWrapper;
 import com.icfolson.aem.monitoring.database.repository.impl.EventRepositoryImpl;
 import com.icfolson.aem.monitoring.database.util.NameUtil;
 import org.jooq.DSLContext;
 import org.jooq.Record6;
 import org.jooq.Result;
-import org.jooq.SQLDialect;
-import org.jooq.impl.DSL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class EventsDatabase {
 
@@ -50,7 +45,8 @@ public class EventsDatabase {
 
     public void writeEvent(final MonitoringEvent event) {
         final String joinedName = NameUtil.toStorageFormat(event.getType());
-        try (DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             Short type = eventTypeMap.get(joinedName);
             if (type == null) {
                 type = initEvent(joinedName);
@@ -82,7 +78,8 @@ public class EventsDatabase {
 
     public List<MonitoringEvent> getEvents(final Long since, final Integer limit) {
         final List<MonitoringEvent> out = new ArrayList<>();
-        try (final DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final Result<Record6<Long, Short, Long, String, Float, String>> results = context
                 .select(Tables.EVENT.EVENT_ID, Tables.EVENT.EVENT_TYPE_ID, Tables.EVENT.TIME,
                     Tables.EVENT_PROPERTY.NAME, Tables.EVENT_PROPERTY.REALVALUE, Tables.EVENT_PROPERTY.VALUE)
@@ -120,7 +117,8 @@ public class EventsDatabase {
     }
 
     public long getLatestEventTimestamp() {
-        try (final DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final Long time = context.select(Tables.EVENT.TIME.max()).from(Tables.EVENT)
                 .where(Tables.EVENT.SYSTEM_ID.eq(systemId)).fetchOne(0, Long.class);
             if (time != null) {
@@ -138,7 +136,8 @@ public class EventsDatabase {
         if (eventTypeId != null) {
             return eventTypeId;
         }
-        try (DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final EventTypeRecord eventTypeRecord = context.newRecord(Tables.EVENT_TYPE);
             eventTypeRecord.setEventName(joinedName);
             eventTypeRecord.store();
@@ -151,7 +150,8 @@ public class EventsDatabase {
     }
 
     private void initEvents() throws MonitoringDBException {
-        try (DSLContext context = getContext()) {
+        try (ConnectionWrapper wrapper = getConnection()) {
+            final DSLContext context = wrapper.getContext();
             final Result<EventTypeRecord> records = context.selectFrom(Tables.EVENT_TYPE).fetch();
             eventTypeMap.clear();
             for (final EventTypeRecord record : records) {
@@ -162,7 +162,7 @@ public class EventsDatabase {
         }
     }
 
-    private DSLContext getContext() throws MonitoringDBException {
-        return DSL.using(connectionProvider.getConnection(), SQLDialect.H2);
+    private ConnectionWrapper getConnection() throws MonitoringDBException {
+        return connectionProvider.getConnection();
     }
 }
