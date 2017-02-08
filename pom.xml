@@ -19,7 +19,7 @@
         <module>newrelic</module>
         <module>database</module>
         <module>h2</module>
-        <module>visualization</module>
+        <module>reporting</module>
         <module>serialization</module>
         <module>ui</module>
     </modules>
