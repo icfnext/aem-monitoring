@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Service
 @Component(immediate = true)
-@Property(name = ResourceChangeListener.PATHS, value = "/content")
+@Property(name = ResourceChangeListener.PATHS, value = {"/content", "/etc"})
 public class ResourceChangeRecorder implements ResourceChangeListener {
 
     @Reference
