@@ -13,15 +13,11 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.wrappers.SlingHttpServletResponseWrapper;
 import org.apache.sling.commons.osgi.PropertiesUtil;
+import org.osgi.service.cm.ConfigurationAdmin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -40,16 +36,29 @@ public class SlingRequestTransactionFilter implements Filter {
     @Property(label = "Captured Headers", value = {"Referer", "Host"})
     private static final String CAPTURE_HEADERS_PROP = "capture.headers";
 
+    @Property(label = "Disable", boolValue = false, description = "Check to disable sling request events")
+    private static final String DISABLE_PROP = "disable";
+
     private static final QualifiedName SLING_REQUEST = EventTypes.SLING.getChild("request");
 
     @Reference
     private MonitoringService service;
 
+    @Reference
+    private ConfigurationAdmin configAdmin;
+
     private final Set<String> capturedHeaders = new HashSet<>();
+
+    private boolean disabled;
 
     @Override
     public void doFilter(final ServletRequest servletRequest, final ServletResponse servletResponse,
         final FilterChain filterChain) throws IOException, ServletException {
+
+        if (disabled) {
+            filterChain.doFilter(servletRequest, servletResponse);
+            return;
+        }
 
         service.initializeTransaction(SLING_REQUEST);
         if (servletRequest instanceof SlingHttpServletRequest) {
@@ -94,8 +103,9 @@ public class SlingRequestTransactionFilter implements Filter {
     @Modified
     protected void modified(final Map<String, Object> props) {
         capturedHeaders.clear();
-        String[] headers = PropertiesUtil.toStringArray(props.get(CAPTURE_HEADERS_PROP));
+        final String[] headers = PropertiesUtil.toStringArray(props.get(CAPTURE_HEADERS_PROP));
         capturedHeaders.addAll(Arrays.asList(headers));
+        disabled = PropertiesUtil.toBoolean(props.get(DISABLE_PROP), false);
     }
 
     private class ResponseWrapper extends SlingHttpServletResponseWrapper {

@@ -60,6 +60,7 @@ public class MetricsDatabase {
 
     public List<MonitoringMetric> getMetrics(final Long since, final Integer limit) {
         List<MonitoringMetric> out = new ArrayList<>();
+        initMetrics();
         try (ConnectionWrapper wrapper = getConnection()) {
             final DSLContext context = wrapper.getContext();
             final BiMap<Short, String> inverse = metricIds.inverse();

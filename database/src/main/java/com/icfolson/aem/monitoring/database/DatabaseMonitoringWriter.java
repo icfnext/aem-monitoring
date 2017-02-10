@@ -8,11 +8,13 @@ import com.icfolson.aem.monitoring.database.repository.CounterRepository;
 import com.icfolson.aem.monitoring.database.repository.EventRepository;
 import com.icfolson.aem.monitoring.database.repository.MetricRepository;
 import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
 
 @Service
 @Component(immediate = true)
+@Property(name = MonitoringWriter.NAME_PROP, value = "local")
 public class DatabaseMonitoringWriter implements MonitoringWriter {
 
     @Reference
