@@ -1,7 +1,7 @@
 package com.icfolson.aem.monitoring.serialization.servlet;
 
-import com.icfolson.aem.monitoring.database.SystemInfo;
-import com.icfolson.aem.monitoring.database.SystemInfoProvider;
+import com.icfolson.aem.monitoring.database.system.SystemInfo;
+import com.icfolson.aem.monitoring.database.system.SystemInfoProvider;
 import com.icfolson.aem.monitoring.serialization.constants.Paths;
 import com.icfolson.aem.monitoring.serialization.model.SystemTable;
 import org.apache.felix.scr.annotations.Reference;

@@ -6,6 +6,8 @@ import com.icfolson.aem.monitoring.core.model.MonitoringMetric;
 
 public interface MonitoringWriter {
 
+    String NAME_PROP = "writer.name";
+
     void writeEvent(final MonitoringEvent event);
 
     void writeMetric(final MonitoringMetric metric);

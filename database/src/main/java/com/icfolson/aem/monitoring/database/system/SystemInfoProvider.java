@@ -1,4 +1,4 @@
-package com.icfolson.aem.monitoring.database;
+package com.icfolson.aem.monitoring.database.system;
 
 /**
  * An interface used to provide properties for the current system.  System properties can be used to query monitoring

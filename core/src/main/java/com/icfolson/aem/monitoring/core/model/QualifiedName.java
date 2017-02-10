@@ -43,6 +43,15 @@ public class QualifiedName {
         return new QualifiedName(names);
     }
 
+    public QualifiedName prefix(final String prefix) {
+        final String[] out = new String[elements.length + 1];
+        out[0] = prefix;
+        for (int i = 0; i < elements.length; i++) {
+            out[i + 1] = elements[i];
+        }
+        return new QualifiedName(out);
+    }
+
     public int getLength() {
         return elements.length;
     }

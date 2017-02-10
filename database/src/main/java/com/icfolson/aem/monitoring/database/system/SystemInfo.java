@@ -1,4 +1,4 @@
-package com.icfolson.aem.monitoring.database;
+package com.icfolson.aem.monitoring.database.system;
 
 import java.util.Set;
 import java.util.UUID;

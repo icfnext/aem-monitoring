@@ -1,8 +1,8 @@
 package com.icfolson.aem.monitoring.database.repository.impl;
 
-import com.icfolson.aem.monitoring.database.ConnectionProvider;
-import com.icfolson.aem.monitoring.database.SystemInfo;
-import com.icfolson.aem.monitoring.database.SystemInfoProvider;
+import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.system.SystemInfo;
+import com.icfolson.aem.monitoring.database.system.SystemInfoProvider;
 import com.icfolson.aem.monitoring.database.writer.SystemDatabase;
 import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Component;

@@ -1,8 +1,8 @@
-package com.icfolson.aem.monitoring.database.impl;
+package com.icfolson.aem.monitoring.database.system.impl;
 
 import com.google.common.base.Joiner;
-import com.icfolson.aem.monitoring.database.SystemInfo;
-import com.icfolson.aem.monitoring.database.SystemInfoProvider;
+import com.icfolson.aem.monitoring.database.system.SystemInfo;
+import com.icfolson.aem.monitoring.database.system.SystemInfoProvider;
 import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Deactivate;

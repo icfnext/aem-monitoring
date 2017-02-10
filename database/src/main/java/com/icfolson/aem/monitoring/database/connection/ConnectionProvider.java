@@ -1,7 +1,6 @@
-package com.icfolson.aem.monitoring.database;
+package com.icfolson.aem.monitoring.database.connection;
 
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
-import com.icfolson.aem.monitoring.database.model.ConnectionWrapper;
 
 public interface ConnectionProvider {
 

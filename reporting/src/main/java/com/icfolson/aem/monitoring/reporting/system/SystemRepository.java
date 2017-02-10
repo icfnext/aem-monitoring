@@ -1,6 +1,6 @@
 package com.icfolson.aem.monitoring.reporting.system;
 
-import com.icfolson.aem.monitoring.database.SystemInfo;
+import com.icfolson.aem.monitoring.database.system.SystemInfo;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.reporting.model.Predicate;
 

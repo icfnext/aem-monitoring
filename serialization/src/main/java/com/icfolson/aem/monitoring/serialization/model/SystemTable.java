@@ -1,6 +1,6 @@
 package com.icfolson.aem.monitoring.serialization.model;
 
-import com.icfolson.aem.monitoring.database.SystemInfo;
+import com.icfolson.aem.monitoring.database.system.SystemInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

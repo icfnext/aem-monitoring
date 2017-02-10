@@ -1,6 +1,6 @@
 package com.icfolson.aem.monitoring.serialization.client;
 
-import com.icfolson.aem.monitoring.database.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
 import com.icfolson.aem.monitoring.serialization.constants.Parameters;
 import com.icfolson.aem.monitoring.core.model.RemoteSystem;
 import okhttp3.Authenticator;

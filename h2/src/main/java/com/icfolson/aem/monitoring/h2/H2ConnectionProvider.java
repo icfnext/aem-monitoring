@@ -1,8 +1,8 @@
 package com.icfolson.aem.monitoring.h2;
 
-import com.icfolson.aem.monitoring.database.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
-import com.icfolson.aem.monitoring.database.model.ConnectionWrapper;
+import com.icfolson.aem.monitoring.database.connection.ConnectionWrapper;
 import org.apache.felix.scr.annotations.*;
 import org.apache.sling.commons.osgi.PropertiesUtil;
 import org.apache.sling.settings.SlingSettingsService;

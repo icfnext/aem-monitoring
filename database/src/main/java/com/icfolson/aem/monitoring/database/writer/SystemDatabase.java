@@ -1,13 +1,13 @@
 package com.icfolson.aem.monitoring.database.writer;
 
-import com.icfolson.aem.monitoring.database.ConnectionProvider;
-import com.icfolson.aem.monitoring.database.SystemInfo;
+import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.system.SystemInfo;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.generated.Tables;
 import com.icfolson.aem.monitoring.database.generated.tables.SystemProperty;
 import com.icfolson.aem.monitoring.database.generated.tables.records.SystemPropertyRecord;
 import com.icfolson.aem.monitoring.database.generated.tables.records.SystemRecord;
-import com.icfolson.aem.monitoring.database.model.ConnectionWrapper;
+import com.icfolson.aem.monitoring.database.connection.ConnectionWrapper;
 import org.jooq.DSLContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

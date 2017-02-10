@@ -3,7 +3,7 @@ package com.icfolson.aem.monitoring.serialization.client;
 import com.icfolson.aem.monitoring.core.model.QualifiedName;
 import com.icfolson.aem.monitoring.core.model.RemoteSystem;
 import com.icfolson.aem.monitoring.core.service.MonitoringService;
-import com.icfolson.aem.monitoring.database.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
 import com.icfolson.aem.monitoring.serialization.model.NamedRemoteSystem;
 
 import java.util.ArrayList;

@@ -1,46 +1,40 @@
 package com.icfolson.aem.monitoring.core.service.impl;
 
+import com.google.common.collect.Iterators;
 import com.icfolson.aem.monitoring.core.constants.EventProperties;
 import com.icfolson.aem.monitoring.core.filter.DefaultFilterChain;
 import com.icfolson.aem.monitoring.core.filter.MonitoringFilter;
 import com.icfolson.aem.monitoring.core.filter.MonitoringFilterChain;
-import com.icfolson.aem.monitoring.core.model.MonitoringEvent;
-import com.icfolson.aem.monitoring.core.model.MonitoringTransaction;
-import com.icfolson.aem.monitoring.core.model.QualifiedName;
-import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringCounter;
-import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringMetric;
+import com.icfolson.aem.monitoring.core.model.*;
 import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringTransaction;
 import com.icfolson.aem.monitoring.core.service.MonitoringService;
 import com.icfolson.aem.monitoring.core.writer.MonitoringWriter;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.ReferenceCardinality;
-import org.apache.felix.scr.annotations.ReferencePolicy;
-import org.apache.felix.scr.annotations.Service;
+import org.apache.felix.scr.annotations.*;
 import org.apache.sling.commons.osgi.PropertiesUtil;
 import org.osgi.framework.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 @Service
 @Component(immediate = true)
-public class MonitoringServiceImpl implements MonitoringService, MonitoringFilterChain {
+public class MonitoringServiceImpl implements MonitoringService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MonitoringServiceImpl.class);
+
+    @Reference(referenceInterface = MonitoringFilter.class, policy = ReferencePolicy.DYNAMIC,
+            cardinality = ReferenceCardinality.OPTIONAL_MULTIPLE, bind = "bindFilter", unbind = "unbindFilter")
+    private final PriorityQueue<PriorityFilter> inputFilters = new PriorityQueue<>();
+    private final Map<String, PriorityQueue<PriorityFilter>> filterMap = new HashMap<>();
+
+    @Reference(referenceInterface = MonitoringWriter.class, policy = ReferencePolicy.DYNAMIC,
+            cardinality = ReferenceCardinality.OPTIONAL_MULTIPLE, bind = "bindWriter", unbind = "unbindWriter")
+    private final Map<String, MonitoringWriter> writerMap = new HashMap<>();
 
     private final ThreadLocal<DefaultMonitoringTransaction> currentTransaction = new ThreadLocal<>();
 
-    @Reference(referenceInterface = MonitoringFilter.class, target = "(filter.context=input)",
-        policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL_MULTIPLE, bind = "bindFilter",
-        unbind = "unbindFilter")
-    private final PriorityQueue<PriorityFilter> filters = new PriorityQueue<>();
-
-    @Reference(referenceInterface = MonitoringWriter.class, policy = ReferencePolicy.DYNAMIC,
-        cardinality = ReferenceCardinality.OPTIONAL_MULTIPLE, bind = "bindWriter", unbind = "unbindWriter")
-    private final List<MonitoringWriter> writers = new ArrayList<>();
+    private final InputFilterTerminator inputFilterTerminator = new InputFilterTerminator();
 
     @Override
     public void initializeTransaction(final QualifiedName name) {
@@ -88,72 +82,96 @@ public class MonitoringServiceImpl implements MonitoringService, MonitoringFilte
 
     @Override
     public void recordEvent(final MonitoringEvent event) {
-        final MonitoringFilterChain chain = new DefaultFilterChain(filters.iterator(), this);
+        final MonitoringFilterChain chain = new DefaultFilterChain(inputFilters.iterator(), inputFilterTerminator);
         chain.filterEvent(event);
     }
 
     @Override
     public void recordMetric(final QualifiedName name, final float value) {
-        final MonitoringFilterChain chain = new DefaultFilterChain(filters.iterator(), this);
+        final MonitoringFilterChain chain = new DefaultFilterChain(inputFilters.iterator(), inputFilterTerminator);
         chain.filterMetric(name, value);
     }
 
     @Override
     public void incrementCounter(final QualifiedName name, final int incrementValue) {
-        final MonitoringFilterChain chain = new DefaultFilterChain(filters.iterator(), this);
+        final MonitoringFilterChain chain = new DefaultFilterChain(inputFilters.iterator(), inputFilterTerminator);
         chain.filterCounter(name, incrementValue);
     }
 
     protected void bindFilter(final MonitoringFilter filter, final Map<String, Object> properties) {
+        String context = PropertiesUtil.toString(properties.get(MonitoringFilter.CONTEXT_PROP), null);
+        final PriorityQueue<PriorityFilter> filters;
+        if (context == null) {
+            filters = inputFilters;
+        } else {
+            filters = filterMap.computeIfAbsent(context, k -> new PriorityQueue<>());
+        }
         final int ranking = PropertiesUtil.toInteger(properties.get(Constants.SERVICE_RANKING), 0);
         final PriorityFilter priorityFilter = new PriorityFilter(ranking, filter);
         filters.add(priorityFilter);
+        LOG.info("Added filter {} to context {}", filter.getClass(), context);
+
     }
 
-    protected void unbindFilter(final MonitoringFilter filter) {
-        final Iterator<PriorityFilter> filterIterator = filters.iterator();
-        while (filterIterator.hasNext()) {
-            final PriorityFilter priorityFilter = filterIterator.next();
-            if (priorityFilter.wrapped.equals(filter)) {
-                filterIterator.remove();
-                return;
+    protected void unbindFilter(final MonitoringFilter filter, final Map<String, Object> properties) {
+        final String context = PropertiesUtil.toString(properties.get(MonitoringFilter.CONTEXT_PROP), null);
+        final PriorityQueue<PriorityFilter> filters = filterMap.get(context);
+        if (filters != null) {
+            final Iterator<PriorityFilter> filterIterator = filters.iterator();
+            while (filterIterator.hasNext()) {
+                final PriorityFilter priorityFilter = filterIterator.next();
+                if (priorityFilter.wrapped.equals(filter)) {
+                    filterIterator.remove();
+                    return;
+                }
             }
         }
     }
 
-    protected void bindWriter(final MonitoringWriter writer) {
-        writers.add(writer);
+    protected void bindWriter(final MonitoringWriter writer, final Map<String, Object> properties) {
+        final String name = PropertiesUtil.toString(properties.get(MonitoringWriter.NAME_PROP), null);
+        if (name == null) {
+            LOG.warn("MonitoringWriter service {} does not specify a 'writer.name' property and will be ignored.",
+                    writer.getClass());
+        } else {
+            writerMap.put(name, writer);
+        }
     }
 
-    protected void unbindWriter(final MonitoringWriter writer) {
-        writers.remove(writer);
+    protected void unbindWriter(final MonitoringWriter writer, final Map<String, Object> properties) {
+        for (Map.Entry<String, MonitoringWriter> e : new HashSet<>(writerMap.entrySet())) {
+            if (writer.equals(e.getValue())) {
+                writerMap.remove(e.getKey());
+            }
+        }
     }
 
     private void writeEvent(final MonitoringEvent event) {
-        writers.forEach(writer -> writer.writeEvent(event));
+        for (Map.Entry<String, MonitoringWriter> e : writerMap.entrySet()) {
+            final MonitoringFilterChain chain = constructWriterChain(e.getKey(), e.getValue());
+            chain.filterEvent(event);
+        }
     }
 
     private void writeMetric(final QualifiedName name, final float value) {
-        writers.forEach(writer -> writer.writeMetric(new DefaultMonitoringMetric(name, value)));
+        for (Map.Entry<String, MonitoringWriter> e : writerMap.entrySet()) {
+            final MonitoringFilterChain chain = constructWriterChain(e.getKey(), e.getValue());
+            chain.filterMetric(name, value);
+        }
     }
 
     private void writeCounter(final QualifiedName name, final int increment) {
-        writers.forEach(writer -> writer.incrementCounter(new DefaultMonitoringCounter(name, increment)));
+        for (Map.Entry<String, MonitoringWriter> e : writerMap.entrySet()) {
+            final MonitoringFilterChain chain = constructWriterChain(e.getKey(), e.getValue());
+            chain.filterCounter(name, increment);
+        }
     }
 
-    @Override
-    public void filterEvent(final MonitoringEvent event) {
-        writeEvent(event);
-    }
-
-    @Override
-    public void filterMetric(final QualifiedName name, final float value) {
-        writeMetric(name, value);
-    }
-
-    @Override
-    public void filterCounter(final QualifiedName name, final int value) {
-        writeCounter(name, value);
+    private MonitoringFilterChain constructWriterChain(final String name, final MonitoringWriter writer) {
+        final WriterFilterTerminator terminator = WriterFilterTerminator.getInstance(name, writer);
+        final PriorityQueue<PriorityFilter> filters = filterMap.get(name);
+        final Iterator<PriorityFilter> iterator = filters == null ? Iterators.emptyIterator() : filters.iterator();
+        return new DefaultFilterChain(iterator, terminator);
     }
 
     private class PriorityFilter implements MonitoringFilter, Comparable<PriorityFilter> {
@@ -184,6 +202,86 @@ public class MonitoringServiceImpl implements MonitoringService, MonitoringFilte
         @Override
         public int compareTo(final PriorityFilter o) {
             return o.priority - priority;
+        }
+    }
+
+    private class InputFilterTerminator implements MonitoringFilterChain {
+
+        @Override
+        public void filterEvent(final MonitoringEvent event) {
+            writeEvent(event);
+        }
+
+        @Override
+        public void filterMetric(final QualifiedName name, final float value) {
+            writeMetric(name, value);
+        }
+
+        @Override
+        public void filterCounter(final QualifiedName name, final int value) {
+            writeCounter(name, value);
+        }
+    }
+
+    private static class WriterFilterTerminator implements MonitoringFilterChain {
+
+        private static final Map<String, WriterFilterTerminator> INSTANCES = new HashMap<>();
+
+        public static WriterFilterTerminator getInstance(final String name, final MonitoringWriter writer) {
+            return INSTANCES.computeIfAbsent(name, k -> new WriterFilterTerminator(writer));
+        }
+
+        private final MonitoringWriter writer;
+
+        private WriterFilterTerminator(MonitoringWriter writer) {
+            this.writer = writer;
+        }
+
+        @Override
+        public void filterEvent(MonitoringEvent event) {
+            writer.writeEvent(event);
+        }
+
+        @Override
+        public void filterMetric(QualifiedName name, float value) {
+            final long timestamp = System.currentTimeMillis();
+            writer.writeMetric(new MonitoringMetric() {
+                @Override
+                public QualifiedName getName() {
+                    return name;
+                }
+
+                @Override
+                public long getTimestamp() {
+                    return timestamp;
+                }
+
+                @Override
+                public float getValue() {
+                    return value;
+                }
+            });
+        }
+
+        @Override
+        public void filterCounter(QualifiedName name, int value) {
+            final long timestamp = System.currentTimeMillis();
+            writer.incrementCounter(new MonitoringCounter() {
+                @Override
+                public QualifiedName getName() {
+                    return name;
+                }
+
+                @Override
+                public long getTimestamp() {
+                    return timestamp;
+                }
+
+                @Override
+                public int getIncrement() {
+                    return value;
+                }
+            });
         }
     }
 

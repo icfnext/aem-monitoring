@@ -3,7 +3,7 @@ package com.icfolson.aem.monitoring.reporting.service.impl;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.icfolson.aem.monitoring.core.constants.EventProperties;
-import com.icfolson.aem.monitoring.database.SystemInfo;
+import com.icfolson.aem.monitoring.database.system.SystemInfo;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.reporting.exception.MonitoringQueryException;
 import com.icfolson.aem.monitoring.reporting.model.EventPropertyDescriptor;

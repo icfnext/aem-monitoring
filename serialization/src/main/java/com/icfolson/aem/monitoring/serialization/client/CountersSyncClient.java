@@ -1,7 +1,7 @@
 package com.icfolson.aem.monitoring.serialization.client;
 
 import com.icfolson.aem.monitoring.core.model.MonitoringCounter;
-import com.icfolson.aem.monitoring.database.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
 import com.icfolson.aem.monitoring.database.writer.CountersDatabase;
 import com.icfolson.aem.monitoring.serialization.constants.Paths;
 import com.icfolson.aem.monitoring.serialization.model.CountersTable;

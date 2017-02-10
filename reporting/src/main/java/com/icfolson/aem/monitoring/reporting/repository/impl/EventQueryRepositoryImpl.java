@@ -2,12 +2,12 @@ package com.icfolson.aem.monitoring.reporting.repository.impl;
 
 import com.icfolson.aem.monitoring.core.constants.EventProperties;
 import com.icfolson.aem.monitoring.core.time.TimeGrouper;
-import com.icfolson.aem.monitoring.database.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.generated.Tables;
 import com.icfolson.aem.monitoring.database.generated.tables.Event;
 import com.icfolson.aem.monitoring.database.generated.tables.EventProperty;
-import com.icfolson.aem.monitoring.database.model.ConnectionWrapper;
+import com.icfolson.aem.monitoring.database.connection.ConnectionWrapper;
 import com.icfolson.aem.monitoring.database.repository.EventRepository;
 import com.icfolson.aem.monitoring.reporting.model.EventPropertyDescriptor;
 import com.icfolson.aem.monitoring.reporting.model.EventQuery;
