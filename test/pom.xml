@@ -8,7 +8,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>aem-monitoring-serialization</artifactId>
+    <artifactId>aem-monitoring-test</artifactId>
     <packaging>bundle</packaging>
 
     <build>
@@ -31,10 +31,7 @@
                         <Bundle-Name>${project.name}</Bundle-Name>
                         <Bundle-Vendor>${project.parent.organization.name}</Bundle-Vendor>
                         <Export-Package>
-                            com.icfolson.aem.monitoring.serialization.*;
-                            okhttp3.*; <!-- Remove when okhttp is properly bundled -->
-                            okio; <!-- Remove when okhttp is properly bundled -->
-                            android.util <!-- Remove when okhttp is properly bundled -->
+                            com.icfolson.aem.monitoring.test.*;
                         </Export-Package>
                         <DynamicImport-Package>*</DynamicImport-Package>
                     </instructions>
@@ -58,20 +55,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.scr.annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-database</artifactId>
+            <artifactId>aem-monitoring-core</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -80,9 +65,7 @@
             <classifier>obfuscated-apis</classifier>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
     </dependencies>
+
+
 </project>

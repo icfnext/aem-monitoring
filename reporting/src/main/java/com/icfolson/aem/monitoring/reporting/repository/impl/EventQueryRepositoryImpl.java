@@ -120,18 +120,6 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
                 typeDescriptor.getProperties().add(propertyDescriptor);
                 propertiesByName.put(propertyName, propertyDescriptor);
             }
-
-            final Result<Record3<String, String, String>> facets = context
-                .select(Tables.EVENT_TYPE.EVENT_NAME, Tables.EVENT_PROPERTY.NAME, Tables.EVENT_PROPERTY.VALUE)
-                .from(table)
-                .groupBy(Tables.EVENT_TYPE.EVENT_NAME, Tables.EVENT_PROPERTY.NAME, Tables.EVENT_PROPERTY.VALUE)
-                .orderBy(Tables.EVENT_PROPERTY.VALUE.count())
-                .fetch();
-            for (final Record3<String, String, String> facet : facets) {
-                Map<String, EventPropertyDescriptor> propertiesByName = propertyMap.get(facet.value1());
-                final EventPropertyDescriptor property = propertiesByName.get(facet.value2());
-                property.getFacets().add(facet.value3());
-            }
         }
         return out;
     }

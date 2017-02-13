@@ -22,6 +22,7 @@
         <module>reporting</module>
         <module>serialization</module>
         <module>ui</module>
+        <module>test</module>
     </modules>
 
     <properties>

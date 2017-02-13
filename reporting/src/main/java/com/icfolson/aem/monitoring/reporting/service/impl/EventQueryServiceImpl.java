@@ -80,7 +80,6 @@ public class EventQueryServiceImpl implements EventQueryService {
             List<EventPropertyDescriptor> systemProperties = new ArrayList<>();
             for (final Map.Entry<String, Collection<String>> entry : mappings.entrySet()) {
                 EventPropertyDescriptor descriptor = new EventPropertyDescriptor(entry.getKey(), true, false);
-                descriptor.getFacets().addAll(entry.getValue());
                 systemProperties.add(descriptor);
             }
             descriptors.forEach(item -> item.getProperties().addAll(systemProperties));

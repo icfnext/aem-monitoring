@@ -5,12 +5,7 @@ import com.icfolson.aem.monitoring.core.model.QualifiedName;
 import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringCounter;
 import com.icfolson.aem.monitoring.core.util.NameUtil;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +29,7 @@ public class CountersTable {
         counters.add(counter);
     }
 
-    public void writeCounters(final OutputStream outputStream) {
+    public void writeCounters(final DataOutputStream stream) {
         try (
             final ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             final DataOutputStream metricsBuffer = new DataOutputStream(bytes);
@@ -47,18 +42,17 @@ public class CountersTable {
                 metricsBuffer.writeInt(counter.getIncrement());
             }
             metricsBuffer.flush();
-            final DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-            stringTable.writeTable(dataOutputStream);
-            dataOutputStream.flush();
-            outputStream.write(bytes.toByteArray());
+            stringTable.writeTable(stream);
+            stream.flush();
+            stream.write(bytes.toByteArray());
         } catch (IOException e) {
             e.printStackTrace(); // TODO
         }
     }
 
-    public static CountersTable readCounters(final InputStream inputStream) {
+    public static CountersTable readCounters(final DataInputStream stream) {
         final CountersTable out = new CountersTable();
-        try (final DataInputStream stream = new DataInputStream(inputStream)) {
+        try {
             final StringTable stringTable = StringTable.readTable(stream);
             final short length = stream.readShort();
             for (short i = 0; i < length; i++) {

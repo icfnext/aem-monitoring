@@ -47,14 +47,4 @@ public class SystemSyncClient extends AbstractSyncClient {
     protected String getRelativePath() {
         return Paths.SYSTEM_SERVLET_PATH;
     }
-
-    @Override
-    protected long getStartTimestamp() {
-        return 0;
-    }
-
-    @Override
-    protected long getLimit() {
-        return 0;
-    }
 }

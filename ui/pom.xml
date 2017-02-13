@@ -203,6 +203,11 @@
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.icfolson.aem.monitoring</groupId>
+            <artifactId>aem-monitoring-test</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>

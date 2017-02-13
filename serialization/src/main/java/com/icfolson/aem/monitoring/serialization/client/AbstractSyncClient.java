@@ -1,15 +1,8 @@
 package com.icfolson.aem.monitoring.serialization.client;
 
-import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
-import com.icfolson.aem.monitoring.serialization.constants.Parameters;
 import com.icfolson.aem.monitoring.core.model.RemoteSystem;
-import okhttp3.Authenticator;
-import okhttp3.Credentials;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.Route;
+import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
+import okhttp3.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,8 +47,6 @@ public abstract class AbstractSyncClient implements SyncClient {
             .host(system.getHost())
             .port(system.getPort())
             .encodedPath(getRelativePath())
-            .addQueryParameter(Parameters.LIMIT, Long.toString(getLimit()))
-            .addQueryParameter(Parameters.SINCE, Long.toString(getStartTimestamp()))
             .build();
         final Request request = new Request.Builder()
             .url(url)
@@ -69,9 +60,5 @@ public abstract class AbstractSyncClient implements SyncClient {
     }
 
     protected abstract String getRelativePath();
-
-    protected abstract long getStartTimestamp();
-
-    protected abstract long getLimit();
 
 }

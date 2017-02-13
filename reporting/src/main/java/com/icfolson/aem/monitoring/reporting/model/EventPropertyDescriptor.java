@@ -1,12 +1,8 @@
 package com.icfolson.aem.monitoring.reporting.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class EventPropertyDescriptor {
 
     private final String name;
-    private final List<String> facets = new ArrayList<>();
     private final boolean string;
     private final boolean real;
 
@@ -26,9 +22,5 @@ public class EventPropertyDescriptor {
 
     public boolean isReal() {
         return real;
-    }
-
-    public List<String> getFacets() {
-        return facets;
     }
 }

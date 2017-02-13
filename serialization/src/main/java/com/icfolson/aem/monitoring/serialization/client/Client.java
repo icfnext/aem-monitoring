@@ -4,22 +4,26 @@ import com.icfolson.aem.monitoring.core.model.QualifiedName;
 import com.icfolson.aem.monitoring.core.model.RemoteSystem;
 import com.icfolson.aem.monitoring.core.service.MonitoringService;
 import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
+import com.icfolson.aem.monitoring.serialization.exception.MonitoringSyncException;
+import com.icfolson.aem.monitoring.serialization.model.MonitoringSyncResult;
 import com.icfolson.aem.monitoring.serialization.model.NamedRemoteSystem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Client {
 
-    private static final QualifiedName COUNTER_NAME = new QualifiedName("Meta", "Sync", "Client");
+    private static final Logger LOG = LoggerFactory.getLogger(Client.class);
 
-    private final List<SyncClient> clients = new ArrayList<>();
+    private static final QualifiedName EVENT_NAME = new QualifiedName("monitoring", "client", "sync");
+
     private final RemoteSystem system;
     private final ConnectionProvider connectionProvider;
     private final MonitoringService monitoringService;
     private final Timer timer = new Timer("monitoringSyncClient");
+    private MonitoringSyncClient client;
 
     public Client(final RemoteSystem system, final ConnectionProvider connectionProvider, MonitoringService monitoringService) {
         this.system = system;
@@ -28,24 +32,36 @@ public class Client {
         start();
     }
 
-    public void execute() {
-        for (final SyncClient client : clients) {
-            client.sync();
+    public void execute() throws MonitoringSyncException {
+        try {
+            if (client != null) {
+                monitoringService.initializeTransaction(EVENT_NAME);
+                monitoringService.setTransactionProperty("client.host", system.getHost());
+                monitoringService.setTransactionProperty("client.port", Integer.toString(system.getPort()));
+
+                final MonitoringSyncResult syncResult = client.execute();
+
+                monitoringService.setTransactionProperty("event.total", syncResult.getEventCount());
+                monitoringService.setTransactionProperty("metric.total", syncResult.getMetricCount());
+                monitoringService.setTransactionProperty("counter.total", syncResult.getCounterCount());
+
+                monitoringService.recordTransaction();
+            }
+        } catch (Throwable e) {
+            LOG.error("Error syncing with remote client: " + system.getHost(), e);
+            throw new MonitoringSyncException(e);
         }
-        monitoringService.incrementCounter(COUNTER_NAME, 1);
     }
 
     private void start() {
-        // Initialize sub-clients (async)
+        // Initialize client (async)
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 final SystemSyncClient systemSyncClient = new SystemSyncClient(system, connectionProvider);
                 systemSyncClient.sync();
                 final NamedRemoteSystem namedRemoteSystem = new NamedRemoteSystem(systemSyncClient.getUuid(), system);
-                clients.add(new EventsSyncClient(namedRemoteSystem, connectionProvider));
-                clients.add(new MetricsSyncClient(namedRemoteSystem, connectionProvider));
-                clients.add(new CountersSyncClient(namedRemoteSystem, connectionProvider));
+                client = new MonitoringSyncClient(namedRemoteSystem, connectionProvider);
             }
         }, 0L);
     }

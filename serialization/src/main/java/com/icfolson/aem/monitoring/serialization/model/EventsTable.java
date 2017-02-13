@@ -7,12 +7,7 @@ import com.icfolson.aem.monitoring.core.util.NameUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,9 +26,9 @@ public class EventsTable {
         this.events = events;
     }
 
-    public static EventsTable readEvents(final InputStream inputStream) {
+    public static EventsTable readEvents(final DataInputStream stream) {
         final EventsTable out = new EventsTable();
-        try (final DataInputStream stream = new DataInputStream(inputStream)) {
+        try {
             final StringTable stringTable = StringTable.readTable(stream);
             final short eventCount = stream.readShort();
             for (short i = 0; i < eventCount; i++) {
@@ -66,12 +61,11 @@ public class EventsTable {
         return out;
     }
 
-    public void writeTable(final OutputStream outputStream) {
+    public void writeTable(final DataOutputStream stream) {
 
         final StringTable stringTable = new StringTable();
         try (
             final ByteArrayOutputStream eventByteBuffer = new ByteArrayOutputStream();
-            final DataOutputStream stream = new DataOutputStream(outputStream);
             final ByteArrayOutputStream propertyByteBuffer = new ByteArrayOutputStream()) {
             final DataOutputStream eventBuffer = new DataOutputStream(eventByteBuffer);
             final DataOutputStream propertyBuffer = new DataOutputStream(propertyByteBuffer);

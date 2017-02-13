@@ -7,12 +7,7 @@ import com.icfolson.aem.monitoring.core.util.NameUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +18,7 @@ public class MetricsTable {
     private final List<MonitoringMetric> metrics;
 
     public MetricsTable() {
-        this(new ArrayList<MonitoringMetric>());
+        this(new ArrayList<>());
     }
 
     public MetricsTable(final List<MonitoringMetric> metrics) {
@@ -38,7 +33,7 @@ public class MetricsTable {
         metrics.add(monitoringMetric);
     }
 
-    public void writeMetrics(final OutputStream outputStream) {
+    public void writeMetrics(final DataOutputStream stream) {
         try (
             final ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             final DataOutputStream metricsBuffer = new DataOutputStream(bytes);
@@ -51,19 +46,18 @@ public class MetricsTable {
                 metricsBuffer.writeFloat(metric.getValue());
             }
             metricsBuffer.flush();
-            final DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-            stringTable.writeTable(dataOutputStream);
-            dataOutputStream.writeShort(metrics.size());
-            dataOutputStream.flush();
-            outputStream.write(bytes.toByteArray());
+            stringTable.writeTable(stream);
+            stream.writeShort(metrics.size());
+            stream.flush();
+            stream.write(bytes.toByteArray());
         } catch (IOException e) {
             e.printStackTrace(); // TODO
         }
     }
 
-    public static MetricsTable readMetrics(final InputStream inputStream) {
+    public static MetricsTable readMetrics(final DataInputStream stream) {
         final MetricsTable out = new MetricsTable();
-        try (final DataInputStream stream = new DataInputStream(inputStream)) {
+        try {
             final StringTable stringTable = StringTable.readTable(stream);
             final short length = stream.readShort();
             for (short i = 0; i < length; i++) {

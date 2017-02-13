@@ -4,7 +4,10 @@ import com.icfolson.aem.monitoring.core.service.MonitoringService;
 import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
 import com.icfolson.aem.monitoring.serialization.client.Client;
 import com.icfolson.aem.monitoring.core.model.RemoteSystem;
+import com.icfolson.aem.monitoring.serialization.exception.MonitoringSyncException;
 import org.apache.felix.scr.annotations.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,8 +15,10 @@ import java.util.Map;
 
 @Service
 @Component(immediate = true)
-@Property(name = "scheduler.period", longValue = 10)
+@Property(name = "scheduler.period", longValue = 20)
 public class ClientManager implements Runnable {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ClientManager.class);
 
     @Reference
     private ClientDataRepository repository;
@@ -59,6 +64,12 @@ public class ClientManager implements Runnable {
 
     @Override
     public void run() {
-        clients.values().forEach(Client::execute);
+        for (Client client : clients.values()) {
+            try {
+                client.execute();
+            } catch (MonitoringSyncException e) {
+                LOG.error("Error syncing client", e);
+            }
+        }
     }
 }
