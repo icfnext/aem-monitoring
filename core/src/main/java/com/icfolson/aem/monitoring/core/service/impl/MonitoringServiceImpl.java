@@ -130,11 +130,16 @@ public class MonitoringServiceImpl implements MonitoringService {
 
     protected void bindWriter(final MonitoringWriter writer, final Map<String, Object> properties) {
         final String name = PropertiesUtil.toString(properties.get(MonitoringWriter.NAME_PROP), null);
-        if (name == null) {
-            LOG.warn("MonitoringWriter service {} does not specify a 'writer.name' property and will be ignored.",
-                    writer.getClass());
+        final boolean disabled = PropertiesUtil.toBoolean(properties.get(MonitoringWriter.DISABLED_PROP), false);
+        if (disabled) {
+            LOG.info("MonitoringWriter disabled: {}", writer.getClass());
         } else {
-            writerMap.put(name, writer);
+            if (name == null) {
+                LOG.warn("MonitoringWriter service {} does not specify a 'writer.name' property and will be ignored.",
+                        writer.getClass());
+            } else {
+                writerMap.put(name, writer);
+            }
         }
     }
 

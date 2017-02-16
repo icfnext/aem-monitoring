@@ -7,14 +7,15 @@ import com.icfolson.aem.monitoring.core.writer.MonitoringWriter;
 import com.icfolson.aem.monitoring.database.repository.CounterRepository;
 import com.icfolson.aem.monitoring.database.repository.EventRepository;
 import com.icfolson.aem.monitoring.database.repository.MetricRepository;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
+import org.apache.felix.scr.annotations.*;
 
 @Service
-@Component(immediate = true)
-@Property(name = MonitoringWriter.NAME_PROP, value = "local")
+@Component(immediate = true, metatype = true, label = "AEM Monitoring: Database Monitoring Writer")
+@Properties({
+        @Property(name = MonitoringWriter.NAME_PROP, value = "local", propertyPrivate = true),
+        @Property(name = MonitoringWriter.DISABLED_PROP, boolValue = false)
+})
+
 public class DatabaseMonitoringWriter implements MonitoringWriter {
 
     @Reference
@@ -40,6 +41,5 @@ public class DatabaseMonitoringWriter implements MonitoringWriter {
     public void incrementCounter(final MonitoringCounter counter) {
         counterRepository.writeCounter(counter);
     }
-
 
 }

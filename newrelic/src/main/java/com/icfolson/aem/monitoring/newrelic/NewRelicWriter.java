@@ -6,12 +6,17 @@ import com.icfolson.aem.monitoring.core.model.MonitoringMetric;
 import com.icfolson.aem.monitoring.core.writer.MonitoringWriter;
 import com.newrelic.api.agent.NewRelic;
 import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Properties;
 import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Service;
 
 @Service
-@Component(immediate = true)
-@Property(name = MonitoringWriter.NAME_PROP, value = NewRelicWriter.NAME)
+@Component(immediate = true, metatype = true, label = "AEM Monitoring: New Relic Monitoring Writer")
+@Properties({
+        @Property(name = MonitoringWriter.NAME_PROP, value = NewRelicWriter.NAME, propertyPrivate = true),
+        @Property(name = MonitoringWriter.DISABLED_PROP, boolValue = false)
+})
+
 public class NewRelicWriter implements MonitoringWriter {
 
     public static final String NAME = "new-relic";
