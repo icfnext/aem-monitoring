@@ -17,6 +17,49 @@ AEM Monitoring is an integrated software analytics solution for AEM.  It provide
 - Easily cluster publish instance to an author instance to see an entire environment's data from the author environment
 - Store data for as long as you want, with configurable automatic deletion
 
+## Usage
+
+Although AEM Monitoring provides several types monitoring of out of the box, adding custom integrations is simple.  The primary service interface for recording metrics is [MonitoringService](core/src/main/java/com/icfolson/aem/monitoring/core/service/MonitoringService.java). Callers can leverage this service to record events, metrics, and counters:
+
+```java
+import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringEvent;
+import com.icfolson.aem.monitoring.core.model.MonitoringEvent;
+import com.icfolson.aem.monitoring.core.model.QualifiedName;
+import com.icfolson.aem.monitoring.core.service.MonitoringService;
+
+public abstract class MonitoredComponent {
+    
+    private static final QualifiedName SOME_VALUE = new QualifiedName("some", "value");
+    private static final QualifiedName EVENT_NAME = new QualifiedName("event");
+    private static final QualifiedName THING_DONE = new QualifiedName("thing", "done");
+    
+    @Reference
+    private MonitoringService monitoringService;
+    
+    public void doThing(final float someValue, final String anotherValue) {
+        monitoringService.recordMetric(SOME_VALUE, someValue);
+        
+        final MonitoringEvent event = new DefaultMonitoringEvent(EVENT_NAME);
+        event.setProperty("foo", someValue);
+        event.setProperty("bar", anotherValue);
+        
+        final long start = System.currentTimeMillis();
+        final String returnValue = actuallyDoThing();
+        final long end = System.currentTimeMillis();
+        
+        event.setProperty("duration", end - start);
+        event.setProperty("return", returnValue);
+        monitoringService.recordEvent(event);
+        
+        monitoringService.incrementCounter(THING_DONE);
+    }
+    
+    protected abstract String actuallyDoThing();
+    
+}
+
+```
+
 ## Extension Points
 - No configuration required for adding new data categories -- just code and go
 - Modify/filter/augment monitoring data via the MonitoringFilter service interface

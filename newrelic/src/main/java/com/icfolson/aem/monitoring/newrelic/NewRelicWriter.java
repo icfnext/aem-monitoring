@@ -16,7 +16,6 @@ import org.apache.felix.scr.annotations.Service;
         @Property(name = MonitoringWriter.NAME_PROP, value = NewRelicWriter.NAME, propertyPrivate = true),
         @Property(name = MonitoringWriter.DISABLED_PROP, boolValue = false)
 })
-
 public class NewRelicWriter implements MonitoringWriter {
 
     public static final String NAME = "new-relic";
