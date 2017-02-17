@@ -55,6 +55,22 @@
     </build>
     <dependencies>
         <dependency>
+            <groupId>com.icfolson.aem.monitoring</groupId>
+            <artifactId>aem-monitoring-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.icfolson.aem.monitoring</groupId>
+            <artifactId>aem-monitoring-database</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.aem</groupId>
+            <artifactId>uber-jar</artifactId>
+            <classifier>obfuscated-apis</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.apache.felix</groupId>
             <artifactId>org.osgi.core</artifactId>
         </dependency>
@@ -69,22 +85,6 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.adobe.aem</groupId>
-            <artifactId>uber-jar</artifactId>
-            <classifier>obfuscated-apis</classifier>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-core</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-database</artifactId>
-            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>

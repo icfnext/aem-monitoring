@@ -14,6 +14,20 @@
         <version>3.3.0</version>
     </parent>
 
+    <organization>
+        <name>ICF Olson</name>
+        <url>http://www.icfolson.com</url>
+    </organization>
+
+    <url>http://code.digitalatolson.com/aem-monitoring</url>
+
+    <developers>
+        <developer>
+            <name>Greg Snyder</name>
+            <email>gregory.snyder@icfolson.com</email>
+        </developer>
+    </developers>
+
     <modules>
         <module>core</module>
         <module>newrelic</module>
