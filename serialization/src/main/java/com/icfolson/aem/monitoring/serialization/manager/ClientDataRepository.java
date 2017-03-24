@@ -4,26 +4,26 @@ import com.icfolson.aem.monitoring.core.model.RemoteSystem;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
-import org.apache.sling.api.resource.LoginException;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ResourceResolverFactory;
-import org.apache.sling.api.resource.ResourceUtil;
+import org.apache.sling.api.resource.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service(ClientDataRepository.class)
 @Component(immediate = true)
 public class ClientDataRepository {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ClientDataRepository.class);
 
     private static final String CLIENT_PATH = "/etc/aem-monitoring/clients";
 
     @Reference
     private ResourceResolverFactory resolverFactory;
 
-    public List<RemoteSystem> getConfiguredSystems() {
-        List<RemoteSystem> out = new ArrayList<>();
+    public Map<String, RemoteSystem> getConfiguredSystems() {
+        Map<String, RemoteSystem> out = new HashMap<>();
         try {
             final ResourceResolver resolver = resolverFactory.getAdministrativeResourceResolver(null); //TODO
             final Resource parent = resolver.resolve(CLIENT_PATH);
@@ -31,14 +31,51 @@ public class ClientDataRepository {
                 for (final Resource child : parent.getChildren()) {
                     final RemoteSystem remoteSystem = child.adaptTo(RemoteSystem.class);
                     if (remoteSystem != null) {
-                        out.add(remoteSystem);
+                        out.put(child.getName(), remoteSystem);
                     }
                 }
             }
         } catch (LoginException e) {
-            e.printStackTrace();
+            LOG.error("Error logging in to repository", e);
         }
         return out;
+    }
+
+    public void setConfiguredSystem(final String name, final RemoteSystem configuration) {
+
+        try {
+            final ResourceResolver resolver = resolverFactory.getAdministrativeResourceResolver(null); //TODO
+            final Resource parent = resolver.resolve(CLIENT_PATH);
+            final String childName;
+            if (name == null) {
+                childName = ResourceUtil.createUniqueChildName(parent, "client");
+            } else {
+                childName = name;
+            }
+            Resource child = parent.getChild(childName);
+            if (configuration == null && child != null) {
+                resolver.delete(child);
+            } else {
+                final Map<String, Object> properties = new HashMap<>();
+                properties.put("host", configuration.getHost());
+                properties.put("port", configuration.getPort());
+                properties.put("user", configuration.getUser());
+                properties.put("password", configuration.getPassword());
+                if (child == null) {
+                    properties.put("jcr:primaryType", "nt:unstructured");
+                    resolver.create(parent, childName, properties);
+                } else {
+                    final ModifiableValueMap valueMap = child.adaptTo(ModifiableValueMap.class);
+                    valueMap.putAll(properties);
+                }
+            }
+            resolver.commit();
+        } catch (LoginException e) {
+            LOG.error("Error logging in to repository", e);
+        } catch (PersistenceException e) {
+            LOG.error("Error saving configuration data", e);
+        }
+
     }
 
 }

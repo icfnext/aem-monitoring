@@ -4,7 +4,9 @@ import $ from 'jquery';
 var buttonProps = [
     "block",
     "disabled",
-    "selected"
+    "selected",
+    "className",
+    "variant"
 ];
 
 class Button extends React.Component {
@@ -34,15 +36,41 @@ class Button extends React.Component {
     }
 }
 
+const fieldWrapperProps = [
+    'id',
+    'className'
+];
+
+class FieldWrapper extends React.Component {
+    render() {
+        let attrs = {};
+        $.extend(attrs,  this.props.attrs);
+        for (let attr of fieldWrapperProps) {
+            let value = this.props[attr];
+            if (value) {
+                attrs[attr] = value;
+            }
+        }
+        return (
+            <div className="coral-Form-fieldwrapper">
+                <label className="coral-Form-fieldlabel" id="label-aligned-textfield-0" {...attrs}>{this.props.label}</label>
+                {this.props.children}
+            </div>
+        );
+    }
+}
+
 var textFieldProps = [
     'id',
     'name',
+    'type',
     'value',
     'placeholder',
     'required',
     'readonly',
     'disabled',
-    'invalid'
+    'invalid',
+    'onChange'
 ];
 
 class TextField extends React.Component {
@@ -57,15 +85,8 @@ class TextField extends React.Component {
 
         }
         return (
-            <input is="coral-textfield" ref={(elem) => this.element = elem}/>
+            <input is="coral-textfield" ref={(elem) => this.element = elem} {...attrs}/>
         );
-    }
-    componentDidMount() {
-        if (this.props.onChange) {
-            $(this.element).change(function (e) {
-                this.props.onChange(this.element.value);
-            }.bind(this));
-        }
     }
 }
 
@@ -295,6 +316,7 @@ var Coral = window.Coral;
 module.exports = {
     Button,
     TextField,
+    FieldWrapper,
     Select,
     SelectItem,
     SelectList,

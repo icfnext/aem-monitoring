@@ -1,19 +1,18 @@
 package com.icfolson.aem.monitoring.serialization.manager;
 
+import com.icfolson.aem.monitoring.core.model.RemoteSystem;
 import com.icfolson.aem.monitoring.core.service.MonitoringService;
 import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
 import com.icfolson.aem.monitoring.serialization.client.Client;
-import com.icfolson.aem.monitoring.core.model.RemoteSystem;
 import com.icfolson.aem.monitoring.serialization.exception.MonitoringSyncException;
 import org.apache.felix.scr.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-@Service
+@Service(ClientManager.class)
 @Component(immediate = true)
 @Property(name = "scheduler.period", longValue = 20)
 public class ClientManager implements Runnable {
@@ -41,8 +40,8 @@ public class ClientManager implements Runnable {
     }
 
     public void startClients() {
-        final List<RemoteSystem> configuredSystems = repository.getConfiguredSystems();
-        configuredSystems.forEach(system -> clients.put(system,
+        final Map<String, RemoteSystem> configuredSystems = repository.getConfiguredSystems();
+        configuredSystems.values().forEach(system -> clients.put(system,
                 new Client(system, connectionProvider, monitoringService)));
     }
 

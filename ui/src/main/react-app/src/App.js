@@ -3,30 +3,41 @@ import $ from 'jquery';
 import './App.css';
 
 import TIME_CONSTANTS from './times'
+import VIEWS from './views'
 import EventDashboard from './events/EventDashboard';
 import MetricsDashboard from './metrics/MetricsDashboard';
+import ConfigDashboard from './config/ConfigDashboard';
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
-            metrics: false,
+            view: VIEWS.EVENTS,
+            clients: [],
             selectedTime: TIME_CONSTANTS.INDICES.HOUR
         };
     }
     render() {
         var items = [];
-        if (this.state.metrics) {
+        if (this.state.view === VIEWS.METRICS) {
             items.push(<MetricsDashboard
                 key="metrics"
                 selectedTime={this.state.selectedTime}
                 timeChanged={this.timeChanged.bind(this)}
             />)
-        } else {
+        } else if (this.state.view === VIEWS.EVENTS) {
             items.push(<EventDashboard
                 key="events"
                 selectedTime={this.state.selectedTime}
                 timeChanged={this.timeChanged.bind(this)}
+            />)
+        } else if (this.state.view === VIEWS.COUNTERS) {
+            items.push(<div>TO BE IMPLEMENTED</div>)
+        } else if (this.state.view === VIEWS.CONFIG) {
+            items.push(<ConfigDashboard
+                key="config"
+                clients={this.state.clients}
+                update={this.fetchClients.bind(this)}
             />)
         }
         return (
@@ -41,16 +52,30 @@ class App extends Component {
         });
     }
     componentDidMount() {
-        $('#monitoring-metrics-switch').click(function () {
+        const $switch = $('coral-buttongroup[name="monitoring-switch"]');
+        $switch.click(function () {
+            let val = $switch.find('button:selected').val();
             this.setState({
-                metrics: true
+                view: val
             })
         }.bind(this));
-        $('#monitoring-events-switch').click(function () {
+
+        this.fetchClients();
+    }
+    fetchClients() {
+        $.getJSON('/bin/monitoring/clients.json', null, function (data) {
+            const clients = [];
+            $.each(data, function(key, value){
+                let client = {
+                    name: key
+                };
+                $.extend(client, value);
+                clients.push(client);
+            });
             this.setState({
-                metrics: false
+                clients: clients
             })
-        }.bind(this));
+        }.bind(this))
     }
 
 }

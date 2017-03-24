@@ -1,0 +1,12 @@
+.monitoring-client-form {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin: 10px;
+    width: 340px;
+}
+.monitoring-client-list {
+    margin: 10px 0;
+}
+.monitoring-client-update {
+    float: right;
+}
