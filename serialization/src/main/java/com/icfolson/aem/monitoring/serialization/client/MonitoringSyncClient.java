@@ -48,9 +48,10 @@ public class MonitoringSyncClient {
     public MonitoringSyncClient(NamedRemoteSystem system, ConnectionProvider connectionProvider) {
         this.system = system;
         this.connectionProvider = connectionProvider;
-        eventsDatabase = new EventsDatabase(system.getUuid(), connectionProvider);
-        metricsDatabase = new MetricsDatabase(system.getUuid(), connectionProvider);
-        countersDatabase = new CountersDatabase(system.getUuid(), connectionProvider);
+        final String systemId = system.getUuid().toString();
+        eventsDatabase = new EventsDatabase(systemId, connectionProvider);
+        metricsDatabase = new MetricsDatabase(systemId, connectionProvider);
+        countersDatabase = new CountersDatabase(systemId, connectionProvider);
         eventsSince = eventsDatabase.getLatestEventTimestamp();
         metricsSince = metricsDatabase.getLatestMetricTimestamp();
         countersSince = countersDatabase.getLatestCounterTimestamp();

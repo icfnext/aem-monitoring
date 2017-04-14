@@ -48,7 +48,7 @@ public class MetricRepositoryImpl implements MetricRepository {
     protected final void modified() {
         final SystemInfo systemInfo = systemInfoProvider.getSystemInfo();
         final ZoneId systemZone = ZoneId.systemDefault();
-        writer = new MetricsDatabase(systemInfo.getSystemId(), connectionProvider);
+        writer = new MetricsDatabase(systemInfo.getSystemId().toString(), connectionProvider);
     }
 
 }

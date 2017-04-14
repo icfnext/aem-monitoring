@@ -60,6 +60,7 @@ public class Keys {
 
     public static final UniqueKey<SystemRecord> CONSTRAINT_9 = UniqueKeys0.CONSTRAINT_9;
     public static final UniqueKey<EventTypeRecord> CONSTRAINT_5 = UniqueKeys0.CONSTRAINT_5;
+    public static final UniqueKey<EventTypeRecord> UNIQUE_EVENT_TYPE_NAME = UniqueKeys0.UNIQUE_EVENT_TYPE_NAME;
     public static final UniqueKey<EventRecord> CONSTRAINT_3 = UniqueKeys0.CONSTRAINT_3;
     public static final UniqueKey<CounterRecord> CONSTRAINT_6 = UniqueKeys0.CONSTRAINT_6;
     public static final UniqueKey<CounterRecord> UNIQUE_COUNTER_NAME = UniqueKeys0.UNIQUE_COUNTER_NAME;
@@ -92,6 +93,7 @@ public class Keys {
     private static class UniqueKeys0 extends AbstractKeys {
         public static final UniqueKey<SystemRecord> CONSTRAINT_9 = createUniqueKey(System.SYSTEM, "CONSTRAINT_9", System.SYSTEM.SYSTEM_ID);
         public static final UniqueKey<EventTypeRecord> CONSTRAINT_5 = createUniqueKey(EventType.EVENT_TYPE, "CONSTRAINT_5", EventType.EVENT_TYPE.EVENT_TYPE_ID);
+        public static final UniqueKey<EventTypeRecord> UNIQUE_EVENT_TYPE_NAME = createUniqueKey(EventType.EVENT_TYPE, "UNIQUE_EVENT_TYPE_NAME", EventType.EVENT_TYPE.EVENT_NAME);
         public static final UniqueKey<EventRecord> CONSTRAINT_3 = createUniqueKey(Event.EVENT, "CONSTRAINT_3", Event.EVENT.EVENT_ID);
         public static final UniqueKey<CounterRecord> CONSTRAINT_6 = createUniqueKey(Counter.COUNTER, "CONSTRAINT_6", Counter.COUNTER.COUNTER_ID);
         public static final UniqueKey<CounterRecord> UNIQUE_COUNTER_NAME = createUniqueKey(Counter.COUNTER, "UNIQUE_COUNTER_NAME", Counter.COUNTER.COUNTER_NAME);

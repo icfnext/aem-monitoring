@@ -32,11 +32,14 @@
         <module>core</module>
         <module>newrelic</module>
         <module>database</module>
-        <module>h2</module>
         <module>reporting</module>
-        <module>serialization</module>
-        <module>ui</module>
         <module>test</module>
+        <module>ui</module>
+        <module>serialization</module>
+        <module>h2</module>
+        <module>h2-installation</module>
+        <module>generic-db</module>
+        <module>generic-db-installation</module>
     </modules>
 
     <properties>
@@ -182,6 +185,17 @@
                 <groupId>javax.inject</groupId>
                 <artifactId>javax.inject</artifactId>
                 <version>1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.day.commons</groupId>
+                <artifactId>day.commons.datasource.jdbcpool</artifactId>
+                <version>1.0.8</version>
+            </dependency>
+            <dependency>
+                <groupId>com.day.commons</groupId>
+                <artifactId>day.commons.datasource.poolservice</artifactId>
+                <version>1.0.10</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

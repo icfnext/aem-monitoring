@@ -10,7 +10,6 @@ import com.icfolson.aem.monitoring.database.generated.tables.records.SystemPrope
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Generated;
 
@@ -35,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SystemProperty extends TableImpl<SystemPropertyRecord> {
 
-    private static final long serialVersionUID = -722280661;
+    private static final long serialVersionUID = 2007745283;
 
     /**
      * The reference instance of <code>MONITORING.SYSTEM_PROPERTY</code>
@@ -53,7 +52,7 @@ public class SystemProperty extends TableImpl<SystemPropertyRecord> {
     /**
      * The column <code>MONITORING.SYSTEM_PROPERTY.SYSTEM_ID</code>.
      */
-    public final TableField<SystemPropertyRecord, UUID> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.UUID.nullable(false), this, "");
+    public final TableField<SystemPropertyRecord, String> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.CHAR.length(36).nullable(false), this, "");
 
     /**
      * The column <code>MONITORING.SYSTEM_PROPERTY.NAME</code>.

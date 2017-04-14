@@ -35,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EventType extends TableImpl<EventTypeRecord> {
 
-    private static final long serialVersionUID = 1859873567;
+    private static final long serialVersionUID = -359947033;
 
     /**
      * The reference instance of <code>MONITORING.EVENT_TYPE</code>
@@ -53,7 +53,7 @@ public class EventType extends TableImpl<EventTypeRecord> {
     /**
      * The column <code>MONITORING.EVENT_TYPE.EVENT_TYPE_ID</code>.
      */
-    public final TableField<EventTypeRecord, Short> EVENT_TYPE_ID = createField("EVENT_TYPE_ID", org.jooq.impl.SQLDataType.SMALLINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_0FCBD5AF_7E19_40A2_A96B_523939D3E323)", org.jooq.impl.SQLDataType.SMALLINT)), this, "");
+    public final TableField<EventTypeRecord, Short> EVENT_TYPE_ID = createField("EVENT_TYPE_ID", org.jooq.impl.SQLDataType.SMALLINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_DFF61EE5_159E_46FB_8395_7E89BBD56E64)", org.jooq.impl.SQLDataType.SMALLINT)), this, "");
 
     /**
      * The column <code>MONITORING.EVENT_TYPE.EVENT_NAME</code>.
@@ -111,7 +111,7 @@ public class EventType extends TableImpl<EventTypeRecord> {
      */
     @Override
     public List<UniqueKey<EventTypeRecord>> getKeys() {
-        return Arrays.<UniqueKey<EventTypeRecord>>asList(Keys.CONSTRAINT_5);
+        return Arrays.<UniqueKey<EventTypeRecord>>asList(Keys.CONSTRAINT_5, Keys.UNIQUE_EVENT_TYPE_NAME);
     }
 
     /**

@@ -45,7 +45,7 @@ public class CounterRepositoryImpl implements CounterRepository {
     @Modified
     protected final void modified() {
         final SystemInfo systemInfo = systemInfoProvider.getSystemInfo();
-        database = new CountersDatabase(systemInfo.getSystemId(), connectionProvider);
+        database = new CountersDatabase(systemInfo.getSystemId().toString(), connectionProvider);
     }
 
 }

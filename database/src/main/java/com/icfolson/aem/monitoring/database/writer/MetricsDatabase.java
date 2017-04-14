@@ -5,13 +5,13 @@ import com.google.common.collect.HashBiMap;
 import com.icfolson.aem.monitoring.core.model.MonitoringMetric;
 import com.icfolson.aem.monitoring.core.model.QualifiedName;
 import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringMetric;
+import com.icfolson.aem.monitoring.core.util.NameUtil;
 import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.connection.ConnectionWrapper;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.generated.Tables;
 import com.icfolson.aem.monitoring.database.generated.tables.records.MetricRecord;
 import com.icfolson.aem.monitoring.database.generated.tables.records.MetricValueRecord;
-import com.icfolson.aem.monitoring.database.connection.ConnectionWrapper;
-import com.icfolson.aem.monitoring.core.util.NameUtil;
 import org.jooq.DSLContext;
 import org.jooq.Result;
 import org.slf4j.Logger;
@@ -19,17 +19,16 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class MetricsDatabase {
 
     private static final Logger LOG = LoggerFactory.getLogger(MetricsDatabase.class);
 
-    private final UUID systemId;
+    private final String systemId;
     private final ConnectionProvider connectionProvider;
     private final BiMap<String, Short> metricIds = HashBiMap.create();
 
-    public MetricsDatabase(final UUID systemId, final ConnectionProvider connectionProvider) {
+    public MetricsDatabase(final String systemId, final ConnectionProvider connectionProvider) {
         this.systemId = systemId;
         this.connectionProvider = connectionProvider;
     }

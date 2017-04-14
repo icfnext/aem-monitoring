@@ -110,7 +110,7 @@ public class SystemRepositoryImpl implements SystemRepository {
             final DSLContext context = wrapper.getContext();
             final Result<SystemPropertyRecord> result = context.selectFrom(Tables.SYSTEM_PROPERTY).fetch();
             for (final SystemPropertyRecord propertyRecord : result) {
-                final UUID uuid = propertyRecord.getSystemId();
+                final UUID uuid = UUID.fromString(propertyRecord.getSystemId());
                 SystemInfoImpl systemInfo = out.get(uuid);
                 if (systemInfo == null) {
                     systemInfo = new SystemInfoImpl(uuid);

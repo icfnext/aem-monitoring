@@ -1,6 +1,7 @@
 package com.icfolson.aem.monitoring.h2;
 
 import com.google.common.io.CharStreams;
+import com.icfolson.aem.monitoring.database.server.DatabaseServer;
 import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
 import com.icfolson.aem.monitoring.database.connection.ConnectionWrapper;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
@@ -22,7 +23,8 @@ import java.sql.SQLException;
 import java.util.Dictionary;
 
 @Service
-@Component(immediate = true, metatype = true, policy = ConfigurationPolicy.REQUIRE)
+@Component(immediate = true, metatype = true, policy = ConfigurationPolicy.REQUIRE,
+        label = "AEM Monitoring: H2 Connection Provider")
 public class H2ConnectionProvider implements ConnectionProvider {
 
     private static final Logger LOG = LoggerFactory.getLogger(H2ConnectionProvider.class);
@@ -72,7 +74,7 @@ public class H2ConnectionProvider implements ConnectionProvider {
         dataSource.setURL(server.getConnectionURL() + "/" + name + DB_ARGS);
         dataSource.setUser(user);
         dataSource.setPassword(password);
-        final URL fileUrl = context.getBundleContext().getBundle().getEntry("/init.sql");
+        final URL fileUrl = context.getBundleContext().getBundle().getEntry("/h2-init.sql");
         if (fileUrl != null) {
             try (final InputStream in = fileUrl.openStream()) {
                 final InputStreamReader inr = new InputStreamReader(in, "utf-8");

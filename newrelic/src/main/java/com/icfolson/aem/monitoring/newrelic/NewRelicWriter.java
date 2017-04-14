@@ -13,7 +13,6 @@ import org.apache.felix.scr.annotations.Service;
 @Service
 @Component(immediate = true, metatype = true, label = "AEM Monitoring: New Relic Monitoring Writer")
 @Properties({
-        @Property(name = MonitoringWriter.NAME_PROP, value = NewRelicWriter.NAME, propertyPrivate = true),
         @Property(name = MonitoringWriter.DISABLED_PROP, boolValue = false)
 })
 public class NewRelicWriter implements MonitoringWriter {
@@ -21,6 +20,11 @@ public class NewRelicWriter implements MonitoringWriter {
     public static final String NAME = "new-relic";
 
     private static final char DIVIDER = '/';
+
+    @Override
+    public String getWriterName() {
+        return NAME;
+    }
 
     @Override
     public void writeEvent(final MonitoringEvent event) {

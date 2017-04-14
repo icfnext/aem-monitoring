@@ -10,7 +10,6 @@ import com.icfolson.aem.monitoring.database.generated.tables.records.MetricValue
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Generated;
 
@@ -35,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MetricValue extends TableImpl<MetricValueRecord> {
 
-    private static final long serialVersionUID = -100609441;
+    private static final long serialVersionUID = -36173559;
 
     /**
      * The reference instance of <code>MONITORING.METRIC_VALUE</code>
@@ -58,7 +57,7 @@ public class MetricValue extends TableImpl<MetricValueRecord> {
     /**
      * The column <code>MONITORING.METRIC_VALUE.SYSTEM_ID</code>.
      */
-    public final TableField<MetricValueRecord, UUID> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.UUID.nullable(false), this, "");
+    public final TableField<MetricValueRecord, String> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.CHAR.length(36).nullable(false), this, "");
 
     /**
      * The column <code>MONITORING.METRIC_VALUE.TIME</code>.

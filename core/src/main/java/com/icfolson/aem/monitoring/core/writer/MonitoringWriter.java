@@ -8,7 +8,7 @@ public interface MonitoringWriter {
 
     String DISABLED_PROP = "disabled";
 
-    String NAME_PROP = "writer.name";
+    String getWriterName();
 
     void writeEvent(final MonitoringEvent event);
 

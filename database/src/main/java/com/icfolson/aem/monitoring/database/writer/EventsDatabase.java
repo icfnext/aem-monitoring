@@ -25,11 +25,11 @@ public class EventsDatabase {
 
     private static final Logger LOG = LoggerFactory.getLogger(EventRepositoryImpl.class);
 
-    private final UUID systemId;
+    private final String systemId;
     private final ConnectionProvider connectionProvider;
     private final BiMap<String, Short> eventTypeMap = HashBiMap.create();
 
-    public EventsDatabase(final UUID systemId, final ConnectionProvider connectionProvider) {
+    public EventsDatabase(final String systemId, final ConnectionProvider connectionProvider) {
         this.systemId = systemId;
         this.connectionProvider = connectionProvider;
         try {

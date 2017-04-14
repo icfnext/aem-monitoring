@@ -184,17 +184,7 @@
         </dependency>
         <dependency>
             <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-h2</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.icfolson.aem.monitoring</groupId>
             <artifactId>aem-monitoring-newrelic</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-serialization</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
@@ -208,20 +198,12 @@
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.service.jdbc</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jooq</groupId>
             <artifactId>jooq</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

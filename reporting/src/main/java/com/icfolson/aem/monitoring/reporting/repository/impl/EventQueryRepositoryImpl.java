@@ -138,7 +138,7 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
                 .where(entities.conditions)
                 .groupBy(entities.facetField)
                 .orderBy(entities.facetField.count().desc())
-                .limit(maxFacetCount));
+                .limit(maxFacetCount).fetch());
             final List<Condition> conditionsWithMaxFacets = new ArrayList<>(entities.conditions);
             conditionsWithMaxFacets.add(maxFacets);
             final SelectSeekStep1<Record, Long> temp = context.select(entities.fields).from(entities.table)
@@ -178,7 +178,7 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
         try (ConnectionWrapper wrapper = getConnection()) {
             final DSLContext context = wrapper.getContext();
 
-            final SelectConditionStep<Record3<Long, Long, UUID>> events = context
+            final SelectConditionStep<Record3<Long, Long, String>> events = context
                 .select(Tables.EVENT.EVENT_ID, Tables.EVENT.TIME, Tables.EVENT.SYSTEM_ID)
                 .from(entities.table)
                 .where(entities.conditions);
@@ -187,8 +187,8 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
             for (final Record record : eventResults) {
                 final long eventId = record.get(Tables.EVENT.EVENT_ID);
                 final long timestamp = record.get(Tables.EVENT.TIME);
-                final UUID systemID = record.get(Tables.EVENT.SYSTEM_ID);
-                out.addEvent(eventId, timestamp, systemID);
+                final String systemID = record.get(Tables.EVENT.SYSTEM_ID);
+                out.addEvent(eventId, timestamp, UUID.fromString(systemID));
             }
 
             final SelectConditionStep<Record4<Long, String, String, Float>> eventProperties = context
@@ -202,7 +202,7 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
                 final Long eventId = record.get(Tables.EVENT_PROPERTY.EVENT_ID);
                 final String name = record.get(Tables.EVENT_PROPERTY.NAME);
                 final String value = record.get(Tables.EVENT_PROPERTY.VALUE);
-                final Float realValue = record.get(Tables.EVENT_PROPERTY.REALVALUE);
+                final Float realValue = record.get(Tables.EVENT_PROPERTY.REALVALUE, Float.class);
                 out.addEventProperty(eventId, name, value != null ? value : realValue);
             }
         }
@@ -247,7 +247,7 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
 
         out.conditions.add(Tables.EVENT.TIME.between(startEpoch, endEpoch));
         out.conditions.add(Tables.EVENT.EVENT_TYPE_ID.equal(eventType));
-        out.binField = Tables.EVENT.TIME.sub(out.grouper.getStartEpoch()).divide(out.grouper.getBinLength());
+        out.binField = Tables.EVENT.TIME.sub(out.grouper.getStartEpoch()).div(out.grouper.getBinLength()).floor();
         out.fields.add(out.binField);
         out.countField = out.binField.count();
         out.fields.add(out.countField);

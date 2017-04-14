@@ -1,5 +1,6 @@
 package com.icfolson.aem.monitoring.h2;
 
+import com.icfolson.aem.monitoring.database.server.DatabaseServer;
 import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.ConfigurationPolicy;
@@ -20,8 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@Component(immediate = true, metatype = true, policy = ConfigurationPolicy.REQUIRE, label = "H2 Server", description =
-    "Starts an H2 server, allowing remote servers to store data.")
+@Component(immediate = true, metatype = true, policy = ConfigurationPolicy.REQUIRE,
+        label = "AEM Monitoring: H2 DB Server", description =
+        "Starts an H2 server, allowing remote servers to store data.")
 public class H2Server implements DatabaseServer {
 
     private static final Logger LOG = LoggerFactory.getLogger(H2Server.class);
@@ -36,7 +38,7 @@ public class H2Server implements DatabaseServer {
     private static final String PORT_PROP = "port";
 
     @Property(label = "H2 Basedir", description = "The base directory for the H2 server.  Relative URLs will be "
-        + "evaluated relative to the SLING_HOME directory. Keep blank to use sling home.")
+            + "evaluated relative to the SLING_HOME directory. Keep blank to use sling home.")
     private static final String BASEDIR_PROP = "basedir";
 
     @Property(label = "Allow Remote", boolValue = true)
@@ -57,10 +59,10 @@ public class H2Server implements DatabaseServer {
     protected void activate(final Map<String, Object> props) {
         final int port = PropertiesUtil.toInteger(props.get(PORT_PROP), PORT_DEFAULT);
         final String basedir = PropertiesUtil.toString(props.get(BASEDIR_PROP), settingsService.getSlingHomePath()
-            + DB_REL_PATH);
+                + DB_REL_PATH);
         final boolean allowRemote = PropertiesUtil.toBoolean(props.get(ALLOW_REMOTE_PROP), false);
         final String finalBasedir = basedir.startsWith("/") ? basedir
-            : settingsService.getSlingHomePath() + DB_REL_PATH + "/" + basedir;
+                : settingsService.getSlingHomePath() + DB_REL_PATH + "/" + basedir;
         final List<String> args = new ArrayList<>();
         args.add("-tcpPort");
         args.add(Integer.toString(port));

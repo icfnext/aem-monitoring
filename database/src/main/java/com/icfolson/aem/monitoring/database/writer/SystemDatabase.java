@@ -23,30 +23,31 @@ public class SystemDatabase {
     }
 
     public void writeSystem(final SystemInfo systemInfo) {
+        final String systemId = systemInfo.getSystemId().toString();
         try (ConnectionWrapper wrapper = getConnection()) {
             final DSLContext context = wrapper.getContext();
             SystemRecord systemRecord = context
                 .selectFrom(Tables.SYSTEM)
-                .where(Tables.SYSTEM.SYSTEM_ID.eq(systemInfo.getSystemId()))
+                .where(Tables.SYSTEM.SYSTEM_ID.eq(systemId))
                 .fetchAny();
             if (systemRecord == null) {
                 systemRecord = context.newRecord(Tables.SYSTEM);
-                systemRecord.setSystemId(systemInfo.getSystemId());
+                systemRecord.setSystemId(systemId);
                 systemRecord.insert();
             }
             context.deleteFrom(SystemProperty.SYSTEM_PROPERTY)
-                .where(SystemProperty.SYSTEM_PROPERTY.SYSTEM_ID.eq(systemInfo.getSystemId()))
+                .where(SystemProperty.SYSTEM_PROPERTY.SYSTEM_ID.eq(systemId))
                 .execute();
             for (final String name : systemInfo.getPropertyNames()) {
                 SystemPropertyRecord propertyRecord = context
                     .selectFrom(Tables.SYSTEM_PROPERTY)
                     .where(
-                        SystemProperty.SYSTEM_PROPERTY.SYSTEM_ID.eq(systemInfo.getSystemId())
+                        SystemProperty.SYSTEM_PROPERTY.SYSTEM_ID.eq(systemId)
                             .and(SystemProperty.SYSTEM_PROPERTY.NAME.eq(name))
                     ).fetchAny();
                 if (propertyRecord == null) {
                     propertyRecord = context.newRecord(Tables.SYSTEM_PROPERTY);
-                    propertyRecord.setSystemId(systemInfo.getSystemId());
+                    propertyRecord.setSystemId(systemId);
                     propertyRecord.setName(name);
                     propertyRecord.setValue(systemInfo.getPropertyValue(name));
                     propertyRecord.insert();

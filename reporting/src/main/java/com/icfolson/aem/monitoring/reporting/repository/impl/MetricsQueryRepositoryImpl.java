@@ -34,9 +34,9 @@ public class MetricsQueryRepositoryImpl implements MetricsQueryRepository {
         try (ConnectionWrapper wrapper = getConnection()) {
             final DSLContext context = wrapper.getContext();
             final Field<Long> bin = Tables.METRIC_VALUE.TIME.sub(grouper.getStartEpoch())
-                .divide(grouper.getBinLength());
+                .div(grouper.getBinLength()).floor();
             final Result<Record4<UUID, BigDecimal, Integer, Long>> records = context
-                .select(Tables.METRIC_VALUE.SYSTEM_ID,
+                .select(Tables.METRIC_VALUE.SYSTEM_ID.cast(UUID.class),
                     Tables.METRIC_VALUE.METRIC_VALUE_.avg(), Tables.METRIC_VALUE.METRIC_VALUE_.count(), bin)
                 .from(Tables.METRIC_VALUE)
                 .where(Tables.METRIC_VALUE.TIME.greaterThan(grouper.getStartEpoch()))

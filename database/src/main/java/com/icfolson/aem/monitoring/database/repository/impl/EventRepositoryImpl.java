@@ -50,6 +50,6 @@ public class EventRepositoryImpl implements EventRepository {
     @Modified
     protected final void activate(final Map<String, Object> props) {
         final SystemInfo systemInfo = systemInfoProvider.getSystemInfo();
-        database = new EventsDatabase(systemInfo.getSystemId(), connectionProvider);
+        database = new EventsDatabase(systemInfo.getSystemId().toString(), connectionProvider);
     }
 }

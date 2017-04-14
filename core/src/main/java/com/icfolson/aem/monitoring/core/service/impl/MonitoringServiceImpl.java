@@ -82,20 +82,32 @@ public class MonitoringServiceImpl implements MonitoringService {
 
     @Override
     public void recordEvent(final MonitoringEvent event) {
-        final MonitoringFilterChain chain = new DefaultFilterChain(inputFilters.iterator(), inputFilterTerminator);
-        chain.filterEvent(event);
+        try {
+            final MonitoringFilterChain chain = new DefaultFilterChain(inputFilters.iterator(), inputFilterTerminator);
+            chain.filterEvent(event);
+        } catch (Exception e) {
+            LOG.error("Error recording event", e);
+        }
     }
 
     @Override
     public void recordMetric(final QualifiedName name, final float value) {
-        final MonitoringFilterChain chain = new DefaultFilterChain(inputFilters.iterator(), inputFilterTerminator);
-        chain.filterMetric(name, value);
+        try {
+            final MonitoringFilterChain chain = new DefaultFilterChain(inputFilters.iterator(), inputFilterTerminator);
+            chain.filterMetric(name, value);
+        } catch (Exception e) {
+            LOG.error("Error recording metric", e);
+        }
     }
 
     @Override
     public void incrementCounter(final QualifiedName name, final int incrementValue) {
-        final MonitoringFilterChain chain = new DefaultFilterChain(inputFilters.iterator(), inputFilterTerminator);
-        chain.filterCounter(name, incrementValue);
+        try {
+            final MonitoringFilterChain chain = new DefaultFilterChain(inputFilters.iterator(), inputFilterTerminator);
+            chain.filterCounter(name, incrementValue);
+        } catch (Exception e) {
+            LOG.error("Error recording counter", e);
+        }
     }
 
     protected void bindFilter(final MonitoringFilter filter, final Map<String, Object> properties) {
@@ -129,7 +141,7 @@ public class MonitoringServiceImpl implements MonitoringService {
     }
 
     protected void bindWriter(final MonitoringWriter writer, final Map<String, Object> properties) {
-        final String name = PropertiesUtil.toString(properties.get(MonitoringWriter.NAME_PROP), null);
+        final String name = writer.getWriterName();
         final boolean disabled = PropertiesUtil.toBoolean(properties.get(MonitoringWriter.DISABLED_PROP), false);
         if (disabled) {
             LOG.info("MonitoringWriter disabled: {}", writer.getClass());
@@ -143,12 +155,8 @@ public class MonitoringServiceImpl implements MonitoringService {
         }
     }
 
-    protected void unbindWriter(final MonitoringWriter writer, final Map<String, Object> properties) {
-        for (Map.Entry<String, MonitoringWriter> e : new HashSet<>(writerMap.entrySet())) {
-            if (writer.equals(e.getValue())) {
-                writerMap.remove(e.getKey());
-            }
-        }
+    protected void unbindWriter(final MonitoringWriter writer) {
+        writerMap.remove(writer.getWriterName());
     }
 
     private void writeEvent(final MonitoringEvent event) {

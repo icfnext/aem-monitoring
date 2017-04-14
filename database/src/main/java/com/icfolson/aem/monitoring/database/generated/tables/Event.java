@@ -10,7 +10,6 @@ import com.icfolson.aem.monitoring.database.generated.tables.records.EventRecord
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Generated;
 
@@ -37,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Event extends TableImpl<EventRecord> {
 
-    private static final long serialVersionUID = 907785483;
+    private static final long serialVersionUID = 121746387;
 
     /**
      * The reference instance of <code>MONITORING.EVENT</code>
@@ -55,7 +54,7 @@ public class Event extends TableImpl<EventRecord> {
     /**
      * The column <code>MONITORING.EVENT.EVENT_ID</code>.
      */
-    public final TableField<EventRecord, Long> EVENT_ID = createField("EVENT_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_F12265B4_F0B5_4DBD_9392_E26DAED8635C)", org.jooq.impl.SQLDataType.BIGINT)), this, "");
+    public final TableField<EventRecord, Long> EVENT_ID = createField("EVENT_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_7BBDC9B6_92AF_4EF5_80C2_AFC2A521B4A4)", org.jooq.impl.SQLDataType.BIGINT)), this, "");
 
     /**
      * The column <code>MONITORING.EVENT.EVENT_TYPE_ID</code>.
@@ -65,7 +64,7 @@ public class Event extends TableImpl<EventRecord> {
     /**
      * The column <code>MONITORING.EVENT.SYSTEM_ID</code>.
      */
-    public final TableField<EventRecord, UUID> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.UUID.nullable(false), this, "");
+    public final TableField<EventRecord, String> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.CHAR.length(36).nullable(false), this, "");
 
     /**
      * The column <code>MONITORING.EVENT.TIME</code>.

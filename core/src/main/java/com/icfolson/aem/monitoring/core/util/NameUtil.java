@@ -8,7 +8,7 @@ import java.util.List;
 
 public final class NameUtil {
 
-    public static final char DIVIDER = '\u241D';
+    public static final char DIVIDER = '|';
 
     public static QualifiedName toName(final String storageFormat) {
         final Iterable<String> split = Splitter.on(DIVIDER).split(storageFormat);

@@ -35,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Metric extends TableImpl<MetricRecord> {
 
-    private static final long serialVersionUID = 1399523166;
+    private static final long serialVersionUID = 176901606;
 
     /**
      * The reference instance of <code>MONITORING.METRIC</code>
@@ -53,7 +53,7 @@ public class Metric extends TableImpl<MetricRecord> {
     /**
      * The column <code>MONITORING.METRIC.METRIC_ID</code>.
      */
-    public final TableField<MetricRecord, Short> METRIC_ID = createField("METRIC_ID", org.jooq.impl.SQLDataType.SMALLINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_4D38F245_6459_4B09_8554_3D91F7B32732)", org.jooq.impl.SQLDataType.SMALLINT)), this, "");
+    public final TableField<MetricRecord, Short> METRIC_ID = createField("METRIC_ID", org.jooq.impl.SQLDataType.SMALLINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_DB6E1F6E_5ADE_436F_9524_2A776C37AB95)", org.jooq.impl.SQLDataType.SMALLINT)), this, "");
 
     /**
      * The column <code>MONITORING.METRIC.METRIC_NAME</code>.
