@@ -84,4 +84,5 @@ Some other limits include:
 ## Monitoring Data Types
 AEM Monitoring provides multiple means of capturing analytics info.  Each type has different storage and visualization options.  Events are a collection of key/value pairs, metrics are real values, and counters are integers.  All types are defined by a qualified name and a timestamp.
   
-
+## Setup
+AEM Monitoring can be run in several possible configurations.  See [Supported Topologies](docs/topologies.md) for a comparison on each and setup instructions.

@@ -28,11 +28,16 @@ public class H2Server implements DatabaseServer {
 
     private static final Logger LOG = LoggerFactory.getLogger(H2Server.class);
 
-    private static final String URL_TEMPLATE = "jdbc:h2:tcp://localhost:%s";
+    private static final String URL_TEMPLATE = "jdbc:h2:tcp://%s:%s";
+
+    private static final String SERVER_DEFAULT = "localhost";
 
     private static final int PORT_DEFAULT = 8084;
 
     private static final String DB_REL_PATH = "/db";
+
+    @Property(label = "Server", value = SERVER_DEFAULT)
+    private static final String SERVER_PROP = "server";
 
     @Property(label = "Server Port", intValue = PORT_DEFAULT)
     private static final String PORT_PROP = "port";
@@ -43,6 +48,9 @@ public class H2Server implements DatabaseServer {
 
     @Property(label = "Allow Remote", boolValue = true)
     private static final String ALLOW_REMOTE_PROP = "allow.remote";
+
+    @Property(label = "Externally Managed", boolValue = false)
+    private static final String EXTERNALLY_MANAGED_PROP = "externally.managed";
 
     @Reference
     private SlingSettingsService settingsService;
@@ -57,27 +65,31 @@ public class H2Server implements DatabaseServer {
 
     @Activate
     protected void activate(final Map<String, Object> props) {
+        final String serverName = PropertiesUtil.toString(props.get(SERVER_PROP), SERVER_DEFAULT);
         final int port = PropertiesUtil.toInteger(props.get(PORT_PROP), PORT_DEFAULT);
         final String basedir = PropertiesUtil.toString(props.get(BASEDIR_PROP), settingsService.getSlingHomePath()
                 + DB_REL_PATH);
         final boolean allowRemote = PropertiesUtil.toBoolean(props.get(ALLOW_REMOTE_PROP), false);
+        final boolean external = PropertiesUtil.toBoolean(props.get(EXTERNALLY_MANAGED_PROP), false);
         final String finalBasedir = basedir.startsWith("/") ? basedir
                 : settingsService.getSlingHomePath() + DB_REL_PATH + "/" + basedir;
+        url = String.format(URL_TEMPLATE, serverName, port);
         final List<String> args = new ArrayList<>();
-        args.add("-tcpPort");
-        args.add(Integer.toString(port));
-        if (allowRemote) {
-            args.add("-tcpAllowOthers");
-        }
-        if (!finalBasedir.isEmpty()) {
-            args.add("-baseDir");
-            args.add(finalBasedir);
-        }
-        url = String.format(URL_TEMPLATE, port);
-        try {
-            server = Server.createTcpServer(args.toArray(new String[args.size()])).start();
-        } catch (SQLException e) {
-            LOG.error("Error starting H2 server", e);
+        if (!external) {
+            args.add("-tcpPort");
+            args.add(Integer.toString(port));
+            if (allowRemote) {
+                args.add("-tcpAllowOthers");
+            }
+            if (!finalBasedir.isEmpty()) {
+                args.add("-baseDir");
+                args.add(finalBasedir);
+            }
+            try {
+                server = Server.createTcpServer(args.toArray(new String[args.size()])).start();
+            } catch (SQLException e) {
+                LOG.error("Error starting H2 server", e);
+            }
         }
     }
 
