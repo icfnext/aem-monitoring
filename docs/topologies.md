@@ -1,4 +1,4 @@
-#Supported Topologies
+# Supported Topologies
 
 AEM Monitoring supports 3 primary topologies withing an AEM environment: Multiple on-instance, single on-instance, and single off-instance.  The on-instance topologies use an [H2](http://www.h2database.com) database stored on the AEM server itself (and utilizing the machine's own storage), whereas off-instance configurations can utilize several other database engines.  MySQL, MariaDB, and Aurora have been tested and verified as off-instance database engines, but in theory any database supported by [jOOQ](https://www.jooq.org/) can be used. Setup and usage for each of the configurations is discussed below.
 

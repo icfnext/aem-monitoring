@@ -3,6 +3,8 @@
     <filter root="/apps/aem-monitoring">
         <exclude pattern="/apps/aem-monitoring/h2"/>
         <exclude pattern="/apps/aem-monitoring/generic-db"/>
+        <exclude pattern="/apps/aem-monitoring/configs"/>
     </filter>
+    <filter root="/apps/aem-monitoring/configs" mode="merge"/>
     <filter root="/etc/clientlibs/aem-monitoring"/>
 </workspaceFilter>
