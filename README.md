@@ -16,6 +16,9 @@ AEM Monitoring is an integrated software analytics solution for AEM.  It provide
 - Simple extension: Create your own events and properties properties, metrics, and counters with no pre-configuration
 - Easily cluster publish instance to an author instance to see an entire environment's data from the author environment
 - Store data for as long as you want, with configurable automatic deletion
+  
+## Setup
+AEM Monitoring can be run in several possible configurations.  See [Supported Topologies](docs/topologies.md) for a comparison on each and setup instructions.  Also see [Configurations](docs/configuration.md) for a listing of the configuration options available in each topology.
 
 ## Usage
 
@@ -83,6 +86,3 @@ Some other limits include:
 
 ## Monitoring Data Types
 AEM Monitoring provides multiple means of capturing analytics info.  Each type has different storage and visualization options.  Events are a collection of key/value pairs, metrics are real values, and counters are integers.  All types are defined by a qualified name and a timestamp.
-  
-## Setup
-AEM Monitoring can be run in several possible configurations.  See [Supported Topologies](docs/topologies.md) for a comparison on each and setup instructions.
