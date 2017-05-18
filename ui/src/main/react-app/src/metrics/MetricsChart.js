@@ -111,28 +111,49 @@ class MetricsChart extends React.Component {
             if (facets) {
                 $.each(facets, function (index) {
                     let type = this.id;
-                    timeSeries = $.map(this.timeSeries.points, function (point) {
-                        if (point.count === 0) {
-                            return null;
+                    let current = null;
+                    for (let i = 0; i < this.timeSeries.points.length; i++) {
+                        let point = this.timeSeries.points[i];
+                        if (point.count !== 0) {
+                            if (current === null) {
+                                current = [];
+                            }
+                            current.push({'x': point.epoch, 'y': point.average});
+                        } else {
+                            if (current) {
+                                datasets.push(getDataset(current, "", index, true));
+                                current = null;
+                            }
                         }
-                        return {'x': point.epoch, 'y': point.average}
-                    });
-                    datasets.push(getDataset(timeSeries, "", index, true));
+                    }
+                    if (current) {
+                        datasets.push(getDataset(current, "", index, true));
+                    }
                 });
             } else if (data && data.points) {
-                timeSeries = $.map(data.points, function (point) {
-                    if (point.count === 0) {
-                        return null;
+                let current = null;
+                for (let i = 0; i < data.points.length; i++) {
+                    let point = data.points[i];
+                    if (point.count !== 0) {
+                        if (current === null) {
+                            current = [];
+                        }
+                        current.push({'x': point.epoch, 'y': point.average});
+                    } else {
+                        if (current) {
+                            datasets.push(getDataset(current, "", datasets.length, true));
+                            current = null;
+                        }
                     }
-                    return {'x': point.epoch, 'y': point.average}
-                });
-                datasets.push(getDataset(timeSeries, "", datasets.length, true));
+                }
+                if (current) {
+                    datasets.push(getDataset(current, "", datasets.length, true));
+                }
             }
-            datasets.push(getDataset(timeSeries, "", datasets.length, true));
             this.chart.options.scales.yAxes[0].stacked = false;
             this.chart.options.scales.xAxes[0].time.minUnit = timeAxes[this.props.selectedTime];
-            this.chart.options.scales.xAxes[0].time.min = timeSeries[0].x;
-            this.chart.options.scales.xAxes[0].time.max = timeSeries[timeSeries.length - 1].x;
+            //this.chart.options.scales.xAxes[0].time.min = timeSeries[0].x;
+            //this.chart.options.scales.xAxes[0].time.max = timeSeries[timeSeries.length - 1].x;
         }
         this.chart.update();
     }
