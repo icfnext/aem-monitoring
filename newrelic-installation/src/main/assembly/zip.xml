@@ -41,22 +41,7 @@
             <scope>compile</scope>
             <includes>
                 <include>com.icfolson.aem.monitoring:aem-monitoring-core</include>
-                <include>com.icfolson.aem.monitoring:aem-monitoring-database</include>
-                <include>com.icfolson.aem.monitoring:aem-monitoring-serialization</include>
-                <include>com.icfolson.aem.monitoring:aem-monitoring-h2</include>
-                <include>org.osgi:org.osgi.service.jdbc</include>
-                <include>org.jooq:jooq</include>
-                <include>com.squareup.okhttp3:okhttp</include>
-                <include>com.h2database:h2</include>
-            </includes>
-            <useStrictFiltering>true</useStrictFiltering>
-        </dependencySet>
-        <dependencySet>
-            <outputDirectory>jcr_root/etc/packages/aem-monitoring-ui</outputDirectory>
-            <useProjectArtifact>false</useProjectArtifact>
-            <scope>compile</scope>
-            <includes>
-                <include>com.icfolson.aem.monitoring:aem-monitoring-ui</include>
+                <include>com.icfolson.aem.monitoring:aem-monitoring-newrelic</include>
             </includes>
             <useStrictFiltering>true</useStrictFiltering>
         </dependencySet>

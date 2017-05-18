@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.*;
 
 @Service
-@Component(immediate = true, metatype = true, label = "AEM Monitoring: Resource change recorder")
+@Component(immediate = true, metatype = true, label = "AEM Monitoring: Resource Change Recorder")
 public class ResourceChangeRecorder implements ResourceChangeListener {
 
     private static final String PID_PROP = "service.pid";

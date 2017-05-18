@@ -114,8 +114,32 @@
     <dependencies>
         <dependency>
             <groupId>com.icfolson.aem.monitoring</groupId>
+            <artifactId>aem-monitoring-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.icfolson.aem.monitoring</groupId>
+            <artifactId>aem-monitoring-database</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.icfolson.aem.monitoring</groupId>
+            <artifactId>aem-monitoring-ui</artifactId>
+            <version>${project.parent.version}</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.icfolson.aem.monitoring</groupId>
             <artifactId>aem-monitoring-generic-db</artifactId>
             <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.service.jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
         </dependency>
     </dependencies>
 

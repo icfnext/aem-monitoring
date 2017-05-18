@@ -17,7 +17,7 @@ import java.util.Map;
 @Service
 @Component(immediate = true, metatype = true, policy = ConfigurationPolicy.REQUIRE,
         label = "AEM Monitoring: Generic DB Connection Provider")
-public class GenericDatabaseServer implements ConnectionProvider {
+public class GenericDatabaseConnectionProvider implements ConnectionProvider {
 
     private static final String NAME = "aem-monitoring";
 

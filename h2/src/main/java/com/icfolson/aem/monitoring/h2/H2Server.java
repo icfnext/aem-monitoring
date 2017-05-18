@@ -1,14 +1,7 @@
 package com.icfolson.aem.monitoring.h2;
 
 import com.icfolson.aem.monitoring.database.server.DatabaseServer;
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.ConfigurationPolicy;
-import org.apache.felix.scr.annotations.Deactivate;
-import org.apache.felix.scr.annotations.Modified;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
+import org.apache.felix.scr.annotations.*;
 import org.apache.sling.commons.osgi.PropertiesUtil;
 import org.apache.sling.settings.SlingSettingsService;
 import org.h2.tools.Server;
@@ -21,8 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@Component(immediate = true, metatype = true, policy = ConfigurationPolicy.REQUIRE,
-        label = "AEM Monitoring: H2 DB Server", description =
+@Component(immediate = true, metatype = true, label = "AEM Monitoring: H2 Server", description =
         "Starts an H2 server, allowing remote servers to store data.")
 public class H2Server implements DatabaseServer {
 
@@ -32,14 +24,16 @@ public class H2Server implements DatabaseServer {
 
     private static final String SERVER_DEFAULT = "localhost";
 
-    private static final int PORT_DEFAULT = 8084;
+    private static final int AUTHOR_PORT_DEFAULT = 8084;
+
+    private static final int PUBLISH_PORT_DEFAULT = 8085;
 
     private static final String DB_REL_PATH = "/db";
 
     @Property(label = "Server", value = SERVER_DEFAULT)
     private static final String SERVER_PROP = "server";
 
-    @Property(label = "Server Port", intValue = PORT_DEFAULT)
+    @Property(label = "Server Port")
     private static final String PORT_PROP = "port";
 
     @Property(label = "H2 Basedir", description = "The base directory for the H2 server.  Relative URLs will be "
@@ -65,8 +59,10 @@ public class H2Server implements DatabaseServer {
 
     @Activate
     protected void activate(final Map<String, Object> props) {
+        final int portDefault = settingsService.getRunModes().contains("author")
+                ? AUTHOR_PORT_DEFAULT : PUBLISH_PORT_DEFAULT;
         final String serverName = PropertiesUtil.toString(props.get(SERVER_PROP), SERVER_DEFAULT);
-        final int port = PropertiesUtil.toInteger(props.get(PORT_PROP), PORT_DEFAULT);
+        final int port = PropertiesUtil.toInteger(props.get(PORT_PROP), portDefault);
         final String basedir = PropertiesUtil.toString(props.get(BASEDIR_PROP), settingsService.getSlingHomePath()
                 + DB_REL_PATH);
         final boolean allowRemote = PropertiesUtil.toBoolean(props.get(ALLOW_REMOTE_PROP), false);

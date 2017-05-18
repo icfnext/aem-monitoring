@@ -26,7 +26,7 @@
     </actions>
     <content jcr:primaryType="nt:unstructured" granite:class="paddedContainer" sling:resourceType="granite/ui/components/coral/foundation/container">
         <items jcr:primaryType="nt:unstructured">
-            <content jcr:primaryType="nt:unstructured" sling:resourceType="aem-monitoring/components/content/events"/>
+            <content jcr:primaryType="nt:unstructured" sling:resourceType="aem-monitoring/webapp/components/content/events"/>
             <clientlibs jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/includeclientlibs"
                         js="aem.monitoring.events"/>

@@ -16,7 +16,7 @@ import java.util.Map;
 @Service
 @Component(metatype = true, label = "AEM Monitoring: Database Monitoring Writer")
 @Properties({
-        @Property(name = MonitoringWriter.DISABLED_PROP, boolValue = false)
+        @Property(label = "Disable", name = MonitoringWriter.DISABLED_PROP, boolValue = false)
 })
 public class DatabaseMonitoringWriter implements MonitoringWriter {
 

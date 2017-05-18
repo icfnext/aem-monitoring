@@ -18,8 +18,8 @@ import java.util.Hashtable;
 import java.util.Map;
 
 @Service
-@Component(immediate = true, metatype = true, label = "AEM Monitoring: Replication listener")
-public class ReplicationListener implements EventHandler {
+@Component(immediate = true, metatype = true, label = "AEM Monitoring: Replication Recorder")
+public class ReplicationRecorder implements EventHandler {
 
     private static final String PID_PROP = "service.pid";
 

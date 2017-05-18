@@ -16,18 +16,11 @@
 
     <profiles>
         <profile>
-            <id>local</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <package.goal>install</package.goal>
-            </properties>
-        </profile>
-        <profile>
             <id>react</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>react</name>
+                </property>
             </activation>
             <properties>
                 <package.goal>install</package.goal>
@@ -98,13 +91,37 @@
             </build>
         </profile>
         <profile>
-            <id>install</id>
+            <id>install-ui</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>install-ui</name>
+                </property>
             </activation>
-            <properties>
-                <package.goal>install</package.goal>
-            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.citytechinc.maven.plugins</groupId>
+                        <artifactId>cq-package-maven-plugin</artifactId>
+                        <version>0.4.0</version>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>install</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <host>${cq.host.author}</host>
+                            <port>${cq.port.author}</port>
+                            <username>${cq.username.author}</username>
+                            <password>${cq.password.author}</password>
+                            <skip>${package.skip}</skip>
+                            <installRecursive>true</installRecursive>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>replicate</id>
@@ -147,63 +164,14 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>com.citytechinc.maven.plugins</groupId>
-                <artifactId>cq-package-maven-plugin</artifactId>
-                <version>0.4.0</version>
-                <executions>
-                    <execution>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>${package.goal}</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <host>${cq.host.author}</host>
-                    <port>${cq.port.author}</port>
-                    <username>${cq.username.author}</username>
-                    <password>${cq.password.author}</password>
-                    <skip>${package.skip}</skip>
-                    <installRecursive>true</installRecursive>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
     <dependencies>
         <dependency>
             <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-core</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-database</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-newrelic</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.icfolson.aem.monitoring</groupId>
             <artifactId>aem-monitoring-reporting</artifactId>
             <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-test</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.service.jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq</artifactId>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

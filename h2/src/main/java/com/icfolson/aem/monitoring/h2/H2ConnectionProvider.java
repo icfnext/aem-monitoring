@@ -23,8 +23,7 @@ import java.sql.SQLException;
 import java.util.Dictionary;
 
 @Service
-@Component(immediate = true, metatype = true, policy = ConfigurationPolicy.REQUIRE,
-        label = "AEM Monitoring: H2 Connection Provider")
+@Component(immediate = true, metatype = true, label = "AEM Monitoring: H2 Connection Provider")
 public class H2ConnectionProvider implements ConnectionProvider {
 
     private static final Logger LOG = LoggerFactory.getLogger(H2ConnectionProvider.class);

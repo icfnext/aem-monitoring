@@ -13,8 +13,8 @@ import java.util.Date;
 import java.util.Map;
 
 @Service
-@Component(immediate = true, metatype = true, label = "AEM Monitoring: Java process sampler")
-public class ProcessSampler implements Runnable {
+@Component(immediate = true, metatype = true, label = "AEM Monitoring: Process Metrics Recorder")
+public class ProcessMetricsRecorder implements Runnable {
 
     private static final int DEFAULT_SAMPLE_INTERVAL_SECONDS = 15;
 
@@ -40,7 +40,7 @@ public class ProcessSampler implements Runnable {
     @Property(label = "Disable", boolValue = false, description = "Check to disable process metrics")
     private static final String DISABLE_PROP = "disable";
 
-    @Property(name = "sample.period", longValue = ProcessSampler.DEFAULT_SAMPLE_INTERVAL_SECONDS)
+    @Property(label = "Sample Period", longValue = ProcessMetricsRecorder.DEFAULT_SAMPLE_INTERVAL_SECONDS)
     private static final String SAMPLE_PERIOD = "sample.period";
 
     @Reference

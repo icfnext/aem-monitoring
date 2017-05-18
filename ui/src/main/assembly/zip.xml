@@ -36,16 +36,11 @@
     </fileSets>
     <dependencySets>
         <dependencySet>
-            <outputDirectory>jcr_root/apps/aem-monitoring/install</outputDirectory>
+            <outputDirectory>jcr_root/apps/aem-monitoring/webapp/install</outputDirectory>
             <useProjectArtifact>false</useProjectArtifact>
             <scope>compile</scope>
             <includes>
-                <include>com.icfolson.aem.monitoring:aem-monitoring-core</include>
-                <include>com.icfolson.aem.monitoring:aem-monitoring-database</include>
                 <include>com.icfolson.aem.monitoring:aem-monitoring-reporting</include>
-                <include>com.icfolson.aem.monitoring:aem-monitoring-test</include>
-                <include>org.osgi:org.osgi.service.jdbc</include>
-                <include>org.jooq:jooq</include>
                 <include>com.fasterxml.jackson.core:jackson-databind</include>
                 <include>com.fasterxml.jackson.core:jackson-annotations</include>
                 <include>com.fasterxml.jackson.core:jackson-core</include>

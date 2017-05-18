@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/apps/aem-monitoring">
-        <exclude pattern="/apps/aem-monitoring/h2"/>
-        <exclude pattern="/apps/aem-monitoring/generic-db"/>
-        <exclude pattern="/apps/aem-monitoring/configs"/>
-    </filter>
-    <filter root="/apps/aem-monitoring/configs" mode="merge"/>
+    <filter root="/apps/aem-monitoring/webapp"/>
+    <filter root="/apps/aem-monitoring/content"/>
     <filter root="/etc/clientlibs/aem-monitoring"/>
 </workspaceFilter>

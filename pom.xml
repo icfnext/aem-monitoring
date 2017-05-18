@@ -30,7 +30,6 @@
 
     <modules>
         <module>core</module>
-        <module>newrelic</module>
         <module>database</module>
         <module>reporting</module>
         <module>test</module>
@@ -40,6 +39,8 @@
         <module>h2-installation</module>
         <module>generic-db</module>
         <module>generic-db-installation</module>
+        <module>newrelic</module>
+        <module>newrelic-installation</module>
     </modules>
 
     <properties>

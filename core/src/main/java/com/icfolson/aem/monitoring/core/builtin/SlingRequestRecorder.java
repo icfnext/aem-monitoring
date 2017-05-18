@@ -28,10 +28,10 @@ import java.util.Map;
 import java.util.Set;
 
 @SlingFilter(order = Integer.MIN_VALUE, scope = SlingFilterScope.REQUEST, metatype = true,
-    label = "AEM Monitoring: Sling Request Filter")
-public class SlingRequestTransactionFilter implements Filter {
+    label = "AEM Monitoring: Sling Request Recorder")
+public class SlingRequestRecorder implements Filter {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SlingRequestTransactionFilter.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SlingRequestRecorder.class);
 
     @Property(label = "Captured Headers", value = {"Referer", "Host"})
     private static final String CAPTURE_HEADERS_PROP = "capture.headers";

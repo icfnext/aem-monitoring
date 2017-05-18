@@ -8,7 +8,8 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>aem-monitoring-h2-installation</artifactId>
+
+    <artifactId>aem-monitoring-newrelic-installation</artifactId>
 
     <properties>
         <assembly.descriptor>src/main/assembly/zip.xml</assembly.descriptor>
@@ -45,10 +46,10 @@
             </properties>
         </profile>
         <profile>
-            <id>install-h2</id>
+            <id>install-newrelic</id>
             <activation>
                 <property>
-                    <name>install-h2</name>
+                    <name>install-newrelic</name>
                 </property>
             </activation>
             <build>
@@ -113,36 +114,15 @@
     <dependencies>
         <dependency>
             <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-h2</artifactId>
+            <artifactId>aem-monitoring-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-serialization</artifactId>
+            <artifactId>aem-monitoring-newrelic</artifactId>
             <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-ui</artifactId>
-            <version>${project.parent.version}</version>
-            <type>zip</type>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.service.jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
         </dependency>
     </dependencies>
+
 
 </project>
