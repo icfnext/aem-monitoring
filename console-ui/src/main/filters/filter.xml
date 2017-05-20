@@ -3,5 +3,6 @@
     <filter root="/apps/aem-monitoring/webapp"/>
     <filter root="/apps/aem-monitoring/content"/>
     <filter root="/etc/clientlibs/aem-monitoring"/>
-    <filter root="/home/groups/aem-monitoring"/>
+    <filter root="/home/groups/aem-monitoring" mode="merge"/>
+    <filter root="/apps/cq/core/content/nav/tools/aem-monitoring"/>
 </workspaceFilter>

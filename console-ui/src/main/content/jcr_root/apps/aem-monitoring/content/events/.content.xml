@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured" consoleId="monitoring" jcr:title="Monitoring" sling:resourceType="granite/ui/components/shell/page">
+    <head jcr:primaryType="nt:unstructured">
+        <clientlibs jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/includeclientlibs"
+                    css="aem.monitoring.events"/>
+        <viewport jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/admin/page/viewport"/>
+        <meta jcr:primaryType="nt:unstructured" content="chrome=1" name="X-UA-Compatible" sling:resourceType="granite/ui/components/coral/foundation/meta"/>
+        <favicon jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/page/favicon"/>
+    </head>
+    <title jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/text" text="Monitoring"/>
+    <actions jcr:primaryType="nt:unstructured">
+        <secondary jcr:primaryType="nt:unstructured">
+            <toggle jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/buttongroup" name="monitoring-switch"
+                    selectionMode="single" value="EVENTS">
+                <items jcr:primaryType="nt:unstructured">
+                    <events jcr:primaryType="nt:unstructured" text="Events" value="EVENTS"/>
+                    <metrics jcr:primaryType="nt:unstructured" text="Metrics" value="METRICS"/>
+                    <counters jcr:primaryType="nt:unstructured" text="Counters" value="COUNTERS"/>
+                    <config jcr:primaryType="nt:unstructured" text="Config" value="CONFIG">
+                        <rep:policy xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal"
+                                  jcr:primaryType="rep:ACL">
+                            <deny
+                                    jcr:primaryType="rep:DenyACE"
+                                    rep:principalName="aem-monitoring-user"
+                                    rep:privileges="{Name}[jcr:read]"/>
+                            <allow
+                                    jcr:primaryType="rep:GrantACE"
+                                    rep:principalName="aem-monitoring-admin"
+                                    rep:privileges="{Name}[jcr:read]"/>
+                        </rep:policy>
+                    </config>
+                </items>
+            </toggle>
+        </secondary>
+    </actions>
+    <content jcr:primaryType="nt:unstructured" granite:class="paddedContainer" sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <content jcr:primaryType="nt:unstructured" sling:resourceType="aem-monitoring/webapp/components/content/events"/>
+            <clientlibs jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/includeclientlibs"
+                        js="aem.monitoring.events"/>
+        </items>
+    </content>
+</jcr:root>

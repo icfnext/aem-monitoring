@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:description="View Monitoring Metrics"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Metrics"
+          href="http://localhost:4502/apps/aem-monitoring/content/metrics.html"
+          id="aem-monitoring-metrics"/>

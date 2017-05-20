@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:description="View Monitoring Counters"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Counters"
+    href="http://localhost:4502/apps/aem-monitoring/content/counters.html"
+    id="aem-monitoring-counters"/>

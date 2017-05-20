@@ -13,7 +13,6 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            view: VIEWS.EVENTS,
             clients: [],
             selectedTime: TIME_CONSTANTS.INDICES.HOUR
         };
@@ -62,8 +61,13 @@ class App extends Component {
             let val = $switch.find('button:selected').val();
             this.setState({
                 view: val
-            })
+            });
         }.bind(this));
+
+        let val = $switch.find('button:selected').val();
+        this.setState({
+            view: val
+        });
 
         this.fetchClients();
     }
