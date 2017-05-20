@@ -19,7 +19,19 @@
                     <events jcr:primaryType="nt:unstructured" text="Events" value="EVENTS"/>
                     <metrics jcr:primaryType="nt:unstructured" text="Metrics" value="METRICS"/>
                     <counters jcr:primaryType="nt:unstructured" text="Counters" value="COUNTERS"/>
-                    <config jcr:primaryType="nt:unstructured" text="Config" value="CONFIG"/>
+                    <config jcr:primaryType="nt:unstructured" text="Config" value="CONFIG">
+                        <rep:policy xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal"
+                                  jcr:primaryType="rep:ACL">
+                            <deny
+                                    jcr:primaryType="rep:DenyACE"
+                                    rep:principalName="aem-monitoring-user"
+                                    rep:privileges="{Name}[jcr:read]"/>
+                            <allow
+                                    jcr:primaryType="rep:GrantACE"
+                                    rep:principalName="aem-monitoring-admin"
+                                    rep:privileges="{Name}[jcr:read]"/>
+                        </rep:policy>
+                    </config>
                 </items>
             </toggle>
         </secondary>
