@@ -124,7 +124,7 @@
         </dependency>
         <dependency>
             <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-ui</artifactId>
+            <artifactId>aem-monitoring-console-ui</artifactId>
             <version>${project.parent.version}</version>
             <type>zip</type>
         </dependency>

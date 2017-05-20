@@ -2,50 +2,47 @@ package com.icfolson.aem.monitoring.reporting.repository.impl;
 
 import com.icfolson.aem.monitoring.core.time.TimeGrouper;
 import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.connection.ConnectionWrapper;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.generated.Tables;
-import com.icfolson.aem.monitoring.database.connection.ConnectionWrapper;
-import com.icfolson.aem.monitoring.reporting.repository.MetricsQueryRepository;
+import com.icfolson.aem.monitoring.reporting.repository.CounterQueryRepository;
 import com.icfolson.aem.monitoring.reporting.result.MetricsTimeSeries;
 import com.icfolson.aem.monitoring.reporting.result.TimeSeries;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
-import org.jooq.DSLContext;
-import org.jooq.Field;
-import org.jooq.Record4;
-import org.jooq.Result;
+import org.jooq.*;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @Service
 @Component(immediate = true)
-public class MetricsQueryRepositoryImpl implements MetricsQueryRepository {
+public class CounterQueryRepositoryImpl implements CounterQueryRepository {
 
     @Reference
     private ConnectionProvider connectionProvider;
 
     @Override
-    public MetricsTimeSeries getMetricData(final short metricId, final TimeGrouper grouper)
+    public MetricsTimeSeries getCounterData(final short counterId, final TimeGrouper grouper)
         throws MonitoringDBException {
 
         final MetricsTimeSeries out = new MetricsTimeSeries();
         try (ConnectionWrapper wrapper = getConnection()) {
             final DSLContext context = wrapper.getContext();
-            final Field<Long> bin = Tables.METRIC_VALUE.TIME.sub(grouper.getStartEpoch())
+            final Field<Long> bin = Tables.COUNTER_VALUE.TIME.sub(grouper.getStartEpoch())
                 .div(grouper.getBinLength()).floor().as("BIN");
-            final Result<Record4<UUID, BigDecimal, Integer, Long>> records = context
-                .select(Tables.METRIC_VALUE.SYSTEM_ID.cast(UUID.class),
-                    Tables.METRIC_VALUE.METRIC_VALUE_.avg(), Tables.METRIC_VALUE.METRIC_VALUE_.count(), bin)
-                .from(Tables.METRIC_VALUE)
-                .where(Tables.METRIC_VALUE.TIME.greaterThan(grouper.getStartEpoch()))
-                .and(Tables.METRIC_VALUE.TIME.lessThan(grouper.getEndEpoch()))
-                .and(Tables.METRIC_VALUE.METRIC_ID.eq(metricId))
-                .groupBy(Tables.METRIC_VALUE.SYSTEM_ID, bin)
+            final Result<Record3<UUID, BigDecimal, Long>> records = context
+                .select(Tables.COUNTER_VALUE.SYSTEM_ID.cast(UUID.class),
+                    Tables.COUNTER_VALUE.INCREMENT_VALUE.sum(), bin)
+                .from(Tables.COUNTER_VALUE)
+                .where(Tables.COUNTER_VALUE.TIME.greaterThan(grouper.getStartEpoch()))
+                .and(Tables.COUNTER_VALUE.TIME.lessThan(grouper.getEndEpoch()))
+                .and(Tables.COUNTER_VALUE.COUNTER_ID.eq(counterId))
+                .groupBy(Tables.COUNTER_VALUE.SYSTEM_ID, bin)
                 .orderBy(bin)
                 .fetch();
-            for (final Record4<UUID, BigDecimal, Integer, Long> record : records) {
+            for (final Record3<UUID, BigDecimal, Long> record : records) {
                 final UUID systemId = record.value1();
                 TimeSeries timeSeries = out.getTimeSeries(systemId);
                 if (timeSeries == null) {
@@ -53,10 +50,9 @@ public class MetricsQueryRepositoryImpl implements MetricsQueryRepository {
                     grouper.getPoints().forEach(value -> ts.newPoint(value, 0).build()); // zero out points
                     timeSeries = ts;
                 }
-                final long binNumber = record.value4();
+                final long binNumber = record.value3();
                 final long epoch = grouper.getBinStartTime(binNumber);
-                final int binCount = record.value3();
-                final TimeSeries.PointBuilder pointBuilder = timeSeries.newPoint(epoch, binCount);
+                final TimeSeries.PointBuilder pointBuilder = timeSeries.newPoint(epoch, 1);
                 final Float average = record.value2().floatValue();
                 pointBuilder.average(average).build();
             }

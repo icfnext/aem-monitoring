@@ -4,5 +4,5 @@
         <exclude pattern="/apps/aem-monitoring/content"/>
         <exclude pattern="/apps/aem-monitoring/webapp"/>
     </filter>
-    <filter root="/etc/packages/aem-monitoring-ui"/>
+    <filter root="/etc/packages/aem-monitoring-console-ui"/>
 </workspaceFilter>

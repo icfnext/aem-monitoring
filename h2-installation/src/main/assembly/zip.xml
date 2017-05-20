@@ -52,11 +52,11 @@
             <useStrictFiltering>true</useStrictFiltering>
         </dependencySet>
         <dependencySet>
-            <outputDirectory>jcr_root/etc/packages/aem-monitoring-ui</outputDirectory>
+            <outputDirectory>jcr_root/etc/packages/aem-monitoring-console-ui</outputDirectory>
             <useProjectArtifact>false</useProjectArtifact>
             <scope>compile</scope>
             <includes>
-                <include>com.icfolson.aem.monitoring:aem-monitoring-ui</include>
+                <include>com.icfolson.aem.monitoring:aem-monitoring-console-ui</include>
             </includes>
             <useStrictFiltering>true</useStrictFiltering>
         </dependencySet>

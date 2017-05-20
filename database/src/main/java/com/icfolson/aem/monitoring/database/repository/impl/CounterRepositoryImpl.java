@@ -27,7 +27,7 @@ public class CounterRepositoryImpl implements CounterRepository {
     private CountersDatabase database;
 
     @Override
-    public Map<String, Short> getCounterNameHierarchy() {
+    public Map<String, Short> getCounterTypes() {
         return database.getCounterNameHierarchy();
     }
 

@@ -91,6 +91,7 @@ public class SlingRequestRecorder implements Filter {
             service.setTransactionProperty("response.status", String.valueOf(responseWrapper.getStatus()));
         }
         service.recordTransaction();
+        service.incrementCounter(SLING_REQUEST, 1);
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface CounterRepository {
 
-    Map<String, Short> getCounterNameHierarchy();
+    Map<String, Short> getCounterTypes();
 
     void writeCounter(final MonitoringCounter counter);
 

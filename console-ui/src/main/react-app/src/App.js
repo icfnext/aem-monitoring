@@ -6,6 +6,7 @@ import TIME_CONSTANTS from './times'
 import VIEWS from './views'
 import EventDashboard from './events/EventDashboard';
 import MetricsDashboard from './metrics/MetricsDashboard';
+import CounterDashboard from './counters/CounterDashboard';
 import ConfigDashboard from './config/ConfigDashboard';
 
 class App extends Component {
@@ -32,7 +33,11 @@ class App extends Component {
                 timeChanged={this.timeChanged.bind(this)}
             />)
         } else if (this.state.view === VIEWS.COUNTERS) {
-            items.push(<div>TO BE IMPLEMENTED</div>)
+            items.push(<CounterDashboard
+                key="counters"
+                selectedTime={this.state.selectedTime}
+                timeChanged={this.timeChanged.bind(this)}
+            />)
         } else if (this.state.view === VIEWS.CONFIG) {
             items.push(<ConfigDashboard
                 key="config"
