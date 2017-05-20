@@ -1,3 +1,19 @@
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
 <vaultfs version="1.1">
     <!--
         Defines the content aggregation. The order of the defined aggregates
@@ -29,9 +45,13 @@
         <aggregate type="full" title="Full Coverage Aggregate">
             <matches>
                 <include nodeType="rep:AccessControl" respectSupertype="true" />
+                <include nodeType="rep:Policy" respectSupertype="true" />
                 <include nodeType="cq:Widget" respectSupertype="true" />
                 <include nodeType="cq:EditConfig" respectSupertype="true" />
+                <include nodeType="cq:WorkflowModel" respectSupertype="true" />
                 <include nodeType="vlt:FullCoverage" respectSupertype="true" />
+                <include nodeType="mix:language" respectSupertype="true" />
+                <include nodeType="sling:OsgiConfig" respectSupertype="true" />
             </matches>
         </aggregate>
 
@@ -41,8 +61,6 @@
         <aggregate type="generic" title="Folder Aggregate">
             <matches>
                 <include nodeType="nt:folder" respectSupertype="true" />
-                <include nodeType="cq:Folder" respectSupertype="true" />
-                <include nodeType="sling:Folder" respectSupertype="true" />
             </matches>
             <contains>
                 <exclude isNode="true" />

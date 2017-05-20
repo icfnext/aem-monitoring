@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal"
+    jcr:primaryType="rep:ACL">
+    <deny
+        jcr:primaryType="rep:DenyACE"
+        rep:principalName="contributor"
+        rep:privileges="{Name}[jcr:read]"/>
+    <allow
+        jcr:primaryType="rep:GrantACE"
+        rep:principalName="aem-monitoring-user"
+        rep:privileges="{Name}[jcr:read]"/>
+</jcr:root>

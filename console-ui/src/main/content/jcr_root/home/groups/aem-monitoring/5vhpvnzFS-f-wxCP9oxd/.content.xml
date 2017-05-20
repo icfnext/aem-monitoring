@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="rep:Group"
+    jcr:uuid="ad7bd527-83f9-36d7-be92-89ab92320e7d"
+    rep:authorizableId="aem-monitoring-user"
+    rep:principalName="aem-monitoring-user">
+    <profile
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="cq/security/components/profile"/>
+</jcr:root>
