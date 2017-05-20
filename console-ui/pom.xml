@@ -8,7 +8,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>aem-monitoring-ui</artifactId>
+    <artifactId>aem-monitoring-console-ui</artifactId>
 
     <properties>
         <assembly.descriptor>src/main/assembly/zip.xml</assembly.descriptor>
@@ -170,7 +170,7 @@
     <dependencies>
         <dependency>
             <groupId>com.icfolson.aem.monitoring</groupId>
-            <artifactId>aem-monitoring-reporting</artifactId>
+            <artifactId>aem-monitoring-console</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>

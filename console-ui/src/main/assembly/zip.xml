@@ -40,7 +40,7 @@
             <useProjectArtifact>false</useProjectArtifact>
             <scope>compile</scope>
             <includes>
-                <include>com.icfolson.aem.monitoring:aem-monitoring-reporting</include>
+                <include>com.icfolson.aem.monitoring:aem-monitoring-console</include>
                 <include>com.fasterxml.jackson.core:jackson-databind</include>
                 <include>com.fasterxml.jackson.core:jackson-annotations</include>
                 <include>com.fasterxml.jackson.core:jackson-core</include>

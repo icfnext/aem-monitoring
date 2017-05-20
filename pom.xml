@@ -31,9 +31,9 @@
     <modules>
         <module>core</module>
         <module>database</module>
-        <module>reporting</module>
+        <module>console</module>
+        <module>console-ui</module>
         <module>test</module>
-        <module>ui</module>
         <module>serialization</module>
         <module>h2</module>
         <module>h2-installation</module>
