@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+enen#set$defaultProjectNameaem-monitoring#set$datePosition#set$datePositionleft#set$versionPosition#set$versionPositionleft#set$datePositionleft#set$projectSiteLochttp://code.digitalatolson.com/aem-monitoring#set$projectSiteLoc$projectSiteLoc#set$currentFileLoc$uriTool.toURI( "$projectSiteLoc" ).resolve( "$currentFileName" ).toString()#set$tocTop#set$tocSidebar#set<h1>Supported Topologies</h1>
+<p>AEM Monitoring supports 4 primary topologies withing an AEM environment: Multiple on-instance, single on-instance, single off-instance, and New Relic. The on-instance topologies use an <a class="externalLink" href="http://www.h2database.com">H2</a> database stored on the AEM server itself (and utilizing the machine&#x2019;s own storage), whereas off-instance configurations can utilize several other database engines. MySQL, MariaDB, and Aurora have been tested and verified as off-instance database engines, but in theory any database supported by <a class="externalLink" href="https://www.jooq.org/">jOOQ</a> can be used. The New Relic configuration requires a <a class="externalLink" href="https://newrelic.com/">New Relic</a> subscription, and installation of the <a class="externalLink" href="https://docs.newrelic.com/docs/agents/java-agent">Java agent</a> on all instances. Setup and usage for each of the configurations is discussed below.</p>
+<p>It is worth noting that different environments can support different topologies without differing your code base. For example, a common setup might involve developers working with an H2 setup on their local instances, while higher environments are configured to use a New Relic topology.</p>
+<div class="section">
+<h2>Multiple On-Instance<a name="Multiple_On-Instance"></a></h2>
+<p>Multiple on-instance topologies use a separate H2 database for each AEM instance. A service on author calls servlets on the publish instances to &#x201c;reverse replicate&#x201d; monitoring data to the author instance, where the AEM Monitoring console is accessed. The benefit of this topology is that data from the publish instance(s) will not be lost when the author instance is offline. The downside is that there is a small overhead on author and publish instances for the data replication.</p>
+<p>This configuration can be set up by installing the <tt>aem-monitoring-ui</tt> and <tt>aem-monitoring-h2</tt> packages on each AEM instance. The H2 package contains configurations to start an H2 server and auto-initialize the schema, using port 8084 for author and 8085 for publish (to avoid conflicts in local setups). Additionally, serialization will need to be configured from publish to author. Go to <a class="externalLink" href="http://localhost:4502/apps/aem-monitoring/content/console.html">the console</a> on author and select the &#x201c;Config&#x201d; tab, creating client configurations for each publish instance.</p>
+<p><img src="config.png" alt="Client Configuration Screen" /></p></div>
+<div class="section">
+<h2>Single On-Instance<a name="Single_On-Instance"></a></h2>
+<p>A single on-instance topology will have data from all instance written directly to an H2 server running on author. This configuration eliminates the overhead of serializing data between instances, as the publish instances write directly to the single database via the H2 server managed by the author instance. The downside of this configuration is that data from the publish instances will be lost while the author instance is down.</p>
+<p>To configure this topology, first remove all clients from the configuration screen (above), as publish instances will be writing directly to the database. Next, configure the &#x201c;AEM Monitoring: H2 DB Server&#x201d; service in the Sling console. Select &#x201c;Externally Managed&#x201d; and enter the author server address and port (8084 by default) to route publish data directly to the database managed by the author instance.</p>
+<p><img src="h2-server.png" alt="H2 Server Configuration" /></p></div>
+<div class="section">
+<h2>Off-Instance<a name="Off-Instance"></a></h2>
+<p>The off-instance topology writes all data to a single externally-managed database instance. This is the most stable and available configuration, but requires additional setup.</p>
+<p>For MySQL-based DBs, <a href="../generic-db/src/main/resources/mysql-init.sql">this SQL script</a> can be used to initialize the monitoring database schema. Install both the <tt>aem-monitoring-ui</tt> and <tt>aem-monitoring-generic-db-installation</tt> packages. Create a &#x201c;Day Commons JDBC Connection Pool&#x201d; configuration for your database, using <tt>aem-monitoring</tt> as the datasource name, and ensuring that the JDBC driver for your database is installed in the OSGi environment. Finally, configure the &#x201c;AEM Monitoring: Generic DB Connection Provider&#x201d; service, entering the appropriate Dialect constant for jOOQ from <a class="externalLink" href="https://www.jooq.org/javadoc/3.6.2/org/jooq/SQLDialect.html">this page</a>.</p>
+<p><img src="jdbc.png" alt="JDBC Configuration" /></p></div>
+<div class="section">
+<h2>New Relic<a name="New_Relic"></a></h2>
+<p>The New Relic topology delegates all data storage and visualization/reporting to New Relic&#x2019;s <a class="externalLink" href="https://newrelic.com/insights">Insights</a> services.</p></div>$htmlTool.setAttr( $bodyContent, "a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], a[href$=png], a[href$=gif], a[href$=bmp]:has(img)", "rel", "lightbox[page]" )#set<h1>Supported Topologies</h1>
+<p>AEM Monitoring supports 4 primary topologies withing an AEM environment: Multiple on-instance, single on-instance, single off-instance, and New Relic. The on-instance topologies use an <a class="externalLink" href="http://www.h2database.com">H2</a> database stored on the AEM server itself (and utilizing the machine&#x2019;s own storage), whereas off-instance configurations can utilize several other database engines. MySQL, MariaDB, and Aurora have been tested and verified as off-instance database engines, but in theory any database supported by <a class="externalLink" href="https://www.jooq.org/">jOOQ</a> can be used. The New Relic configuration requires a <a class="externalLink" href="https://newrelic.com/">New Relic</a> subscription, and installation of the <a class="externalLink" href="https://docs.newrelic.com/docs/agents/java-agent">Java agent</a> on all instances. Setup and usage for each of the configurations is discussed below.</p>
+<p>It is worth noting that different environments can support different topologies without differing your code base. For example, a common setup might involve developers working with an H2 setup on their local instances, while higher environments are configured to use a New Relic topology.</p>
+<div class="section">
+<h2>Multiple On-Instance<a name="Multiple_On-Instance"></a></h2>
+<p>Multiple on-instance topologies use a separate H2 database for each AEM instance. A service on author calls servlets on the publish instances to &#x201c;reverse replicate&#x201d; monitoring data to the author instance, where the AEM Monitoring console is accessed. The benefit of this topology is that data from the publish instance(s) will not be lost when the author instance is offline. The downside is that there is a small overhead on author and publish instances for the data replication.</p>
+<p>This configuration can be set up by installing the <tt>aem-monitoring-ui</tt> and <tt>aem-monitoring-h2</tt> packages on each AEM instance. The H2 package contains configurations to start an H2 server and auto-initialize the schema, using port 8084 for author and 8085 for publish (to avoid conflicts in local setups). Additionally, serialization will need to be configured from publish to author. Go to <a class="externalLink" href="http://localhost:4502/apps/aem-monitoring/content/console.html">the console</a> on author and select the &#x201c;Config&#x201d; tab, creating client configurations for each publish instance.</p>
+<p><img src="config.png" alt="Client Configuration Screen" /></p></div>
+<div class="section">
+<h2>Single On-Instance<a name="Single_On-Instance"></a></h2>
+<p>A single on-instance topology will have data from all instance written directly to an H2 server running on author. This configuration eliminates the overhead of serializing data between instances, as the publish instances write directly to the single database via the H2 server managed by the author instance. The downside of this configuration is that data from the publish instances will be lost while the author instance is down.</p>
+<p>To configure this topology, first remove all clients from the configuration screen (above), as publish instances will be writing directly to the database. Next, configure the &#x201c;AEM Monitoring: H2 DB Server&#x201d; service in the Sling console. Select &#x201c;Externally Managed&#x201d; and enter the author server address and port (8084 by default) to route publish data directly to the database managed by the author instance.</p>
+<p><img src="h2-server.png" alt="H2 Server Configuration" /></p></div>
+<div class="section">
+<h2>Off-Instance<a name="Off-Instance"></a></h2>
+<p>The off-instance topology writes all data to a single externally-managed database instance. This is the most stable and available configuration, but requires additional setup.</p>
+<p>For MySQL-based DBs, <a href="../generic-db/src/main/resources/mysql-init.sql">this SQL script</a> can be used to initialize the monitoring database schema. Install both the <tt>aem-monitoring-ui</tt> and <tt>aem-monitoring-generic-db-installation</tt> packages. Create a &#x201c;Day Commons JDBC Connection Pool&#x201d; configuration for your database, using <tt>aem-monitoring</tt> as the datasource name, and ensuring that the JDBC driver for your database is installed in the OSGi environment. Finally, configure the &#x201c;AEM Monitoring: Generic DB Connection Provider&#x201d; service, entering the appropriate Dialect constant for jOOQ from <a class="externalLink" href="https://www.jooq.org/javadoc/3.6.2/org/jooq/SQLDialect.html">this page</a>.</p>
+<p><img src="jdbc.png" alt="JDBC Configuration" /></p></div>
+<div class="section">
+<h2>New Relic<a name="New_Relic"></a></h2>
+<p>The New Relic topology delegates all data storage and visualization/reporting to New Relic&#x2019;s <a class="externalLink" href="https://newrelic.com/insights">Insights</a> services.</p></div>$htmlTool.headingAnchorToId( $bodyContent )#set<h1>Supported Topologies</h1>
+<p>AEM Monitoring supports 4 primary topologies withing an AEM environment: Multiple on-instance, single on-instance, single off-instance, and New Relic. The on-instance topologies use an <a class="externalLink" href="http://www.h2database.com">H2</a> database stored on the AEM server itself (and utilizing the machine&#x2019;s own storage), whereas off-instance configurations can utilize several other database engines. MySQL, MariaDB, and Aurora have been tested and verified as off-instance database engines, but in theory any database supported by <a class="externalLink" href="https://www.jooq.org/">jOOQ</a> can be used. The New Relic configuration requires a <a class="externalLink" href="https://newrelic.com/">New Relic</a> subscription, and installation of the <a class="externalLink" href="https://docs.newrelic.com/docs/agents/java-agent">Java agent</a> on all instances. Setup and usage for each of the configurations is discussed below.</p>
+<p>It is worth noting that different environments can support different topologies without differing your code base. For example, a common setup might involve developers working with an H2 setup on their local instances, while higher environments are configured to use a New Relic topology.</p>
+<div class="section">
+<h2>Multiple On-Instance<a name="Multiple_On-Instance"></a></h2>
+<p>Multiple on-instance topologies use a separate H2 database for each AEM instance. A service on author calls servlets on the publish instances to &#x201c;reverse replicate&#x201d; monitoring data to the author instance, where the AEM Monitoring console is accessed. The benefit of this topology is that data from the publish instance(s) will not be lost when the author instance is offline. The downside is that there is a small overhead on author and publish instances for the data replication.</p>
+<p>This configuration can be set up by installing the <tt>aem-monitoring-ui</tt> and <tt>aem-monitoring-h2</tt> packages on each AEM instance. The H2 package contains configurations to start an H2 server and auto-initialize the schema, using port 8084 for author and 8085 for publish (to avoid conflicts in local setups). Additionally, serialization will need to be configured from publish to author. Go to <a class="externalLink" href="http://localhost:4502/apps/aem-monitoring/content/console.html">the console</a> on author and select the &#x201c;Config&#x201d; tab, creating client configurations for each publish instance.</p>
+<p><img src="config.png" alt="Client Configuration Screen" /></p></div>
+<div class="section">
+<h2>Single On-Instance<a name="Single_On-Instance"></a></h2>
+<p>A single on-instance topology will have data from all instance written directly to an H2 server running on author. This configuration eliminates the overhead of serializing data between instances, as the publish instances write directly to the single database via the H2 server managed by the author instance. The downside of this configuration is that data from the publish instances will be lost while the author instance is down.</p>
+<p>To configure this topology, first remove all clients from the configuration screen (above), as publish instances will be writing directly to the database. Next, configure the &#x201c;AEM Monitoring: H2 DB Server&#x201d; service in the Sling console. Select &#x201c;Externally Managed&#x201d; and enter the author server address and port (8084 by default) to route publish data directly to the database managed by the author instance.</p>
+<p><img src="h2-server.png" alt="H2 Server Configuration" /></p></div>
+<div class="section">
+<h2>Off-Instance<a name="Off-Instance"></a></h2>
+<p>The off-instance topology writes all data to a single externally-managed database instance. This is the most stable and available configuration, but requires additional setup.</p>
+<p>For MySQL-based DBs, <a href="../generic-db/src/main/resources/mysql-init.sql">this SQL script</a> can be used to initialize the monitoring database schema. Install both the <tt>aem-monitoring-ui</tt> and <tt>aem-monitoring-generic-db-installation</tt> packages. Create a &#x201c;Day Commons JDBC Connection Pool&#x201d; configuration for your database, using <tt>aem-monitoring</tt> as the datasource name, and ensuring that the JDBC driver for your database is installed in the OSGi environment. Finally, configure the &#x201c;AEM Monitoring: Generic DB Connection Provider&#x201d; service, entering the appropriate Dialect constant for jOOQ from <a class="externalLink" href="https://www.jooq.org/javadoc/3.6.2/org/jooq/SQLDialect.html">this page</a>.</p>
+<p><img src="jdbc.png" alt="JDBC Configuration" /></p></div>
+<div class="section">
+<h2>New Relic<a name="New_Relic"></a></h2>
+<p>The New Relic topology delegates all data storage and visualization/reporting to New Relic&#x2019;s <a class="externalLink" href="https://newrelic.com/insights">Insights</a> services.</p></div>$htmlTool.addClass( $bodyContent, "table.bodyTable", ["table", "table-striped", "table-hover"] )#set<h1>Supported Topologies</h1>
+<p>AEM Monitoring supports 4 primary topologies withing an AEM environment: Multiple on-instance, single on-instance, single off-instance, and New Relic. The on-instance topologies use an <a class="externalLink" href="http://www.h2database.com">H2</a> database stored on the AEM server itself (and utilizing the machine&#x2019;s own storage), whereas off-instance configurations can utilize several other database engines. MySQL, MariaDB, and Aurora have been tested and verified as off-instance database engines, but in theory any database supported by <a class="externalLink" href="https://www.jooq.org/">jOOQ</a> can be used. The New Relic configuration requires a <a class="externalLink" href="https://newrelic.com/">New Relic</a> subscription, and installation of the <a class="externalLink" href="https://docs.newrelic.com/docs/agents/java-agent">Java agent</a> on all instances. Setup and usage for each of the configurations is discussed below.</p>
+<p>It is worth noting that different environments can support different topologies without differing your code base. For example, a common setup might involve developers working with an H2 setup on their local instances, while higher environments are configured to use a New Relic topology.</p>
+<div class="section">
+<h2>Multiple On-Instance<a name="Multiple_On-Instance"></a></h2>
+<p>Multiple on-instance topologies use a separate H2 database for each AEM instance. A service on author calls servlets on the publish instances to &#x201c;reverse replicate&#x201d; monitoring data to the author instance, where the AEM Monitoring console is accessed. The benefit of this topology is that data from the publish instance(s) will not be lost when the author instance is offline. The downside is that there is a small overhead on author and publish instances for the data replication.</p>
+<p>This configuration can be set up by installing the <tt>aem-monitoring-ui</tt> and <tt>aem-monitoring-h2</tt> packages on each AEM instance. The H2 package contains configurations to start an H2 server and auto-initialize the schema, using port 8084 for author and 8085 for publish (to avoid conflicts in local setups). Additionally, serialization will need to be configured from publish to author. Go to <a class="externalLink" href="http://localhost:4502/apps/aem-monitoring/content/console.html">the console</a> on author and select the &#x201c;Config&#x201d; tab, creating client configurations for each publish instance.</p>
+<p><img src="config.png" alt="Client Configuration Screen" /></p></div>
+<div class="section">
+<h2>Single On-Instance<a name="Single_On-Instance"></a></h2>
+<p>A single on-instance topology will have data from all instance written directly to an H2 server running on author. This configuration eliminates the overhead of serializing data between instances, as the publish instances write directly to the single database via the H2 server managed by the author instance. The downside of this configuration is that data from the publish instances will be lost while the author instance is down.</p>
+<p>To configure this topology, first remove all clients from the configuration screen (above), as publish instances will be writing directly to the database. Next, configure the &#x201c;AEM Monitoring: H2 DB Server&#x201d; service in the Sling console. Select &#x201c;Externally Managed&#x201d; and enter the author server address and port (8084 by default) to route publish data directly to the database managed by the author instance.</p>
+<p><img src="h2-server.png" alt="H2 Server Configuration" /></p></div>
+<div class="section">
+<h2>Off-Instance<a name="Off-Instance"></a></h2>
+<p>The off-instance topology writes all data to a single externally-managed database instance. This is the most stable and available configuration, but requires additional setup.</p>
+<p>For MySQL-based DBs, <a href="../generic-db/src/main/resources/mysql-init.sql">this SQL script</a> can be used to initialize the monitoring database schema. Install both the <tt>aem-monitoring-ui</tt> and <tt>aem-monitoring-generic-db-installation</tt> packages. Create a &#x201c;Day Commons JDBC Connection Pool&#x201d; configuration for your database, using <tt>aem-monitoring</tt> as the datasource name, and ensuring that the JDBC driver for your database is installed in the OSGi environment. Finally, configure the &#x201c;AEM Monitoring: Generic DB Connection Provider&#x201d; service, entering the appropriate Dialect constant for jOOQ from <a class="externalLink" href="https://www.jooq.org/javadoc/3.6.2/org/jooq/SQLDialect.html">this page</a>.</p>
+<p><img src="jdbc.png" alt="JDBC Configuration" /></p></div>
+<div class="section">
+<h2>New Relic<a name="New_Relic"></a></h2>
+<p>The New Relic topology delegates all data storage and visualization/reporting to New Relic&#x2019;s <a class="externalLink" href="https://newrelic.com/insights">Insights</a> services.</p></div>$htmlTool.fixTableHeads( $bodyContent )*#**#set$iconReplacements#set<h1>Supported Topologies</h1>
+<p>AEM Monitoring supports 4 primary topologies withing an AEM environment: Multiple on-instance, single on-instance, single off-instance, and New Relic. The on-instance topologies use an <a class="externalLink" href="http://www.h2database.com">H2</a> database stored on the AEM server itself (and utilizing the machine&#x2019;s own storage), whereas off-instance configurations can utilize several other database engines. MySQL, MariaDB, and Aurora have been tested and verified as off-instance database engines, but in theory any database supported by <a class="externalLink" href="https://www.jooq.org/">jOOQ</a> can be used. The New Relic configuration requires a <a class="externalLink" href="https://newrelic.com/">New Relic</a> subscription, and installation of the <a class="externalLink" href="https://docs.newrelic.com/docs/agents/java-agent">Java agent</a> on all instances. Setup and usage for each of the configurations is discussed below.</p>
+<p>It is worth noting that different environments can support different topologies without differing your code base. For example, a common setup might involve developers working with an H2 setup on their local instances, while higher environments are configured to use a New Relic topology.</p>
+<div class="section">
+<h2>Multiple On-Instance<a name="Multiple_On-Instance"></a></h2>
+<p>Multiple on-instance topologies use a separate H2 database for each AEM instance. A service on author calls servlets on the publish instances to &#x201c;reverse replicate&#x201d; monitoring data to the author instance, where the AEM Monitoring console is accessed. The benefit of this topology is that data from the publish instance(s) will not be lost when the author instance is offline. The downside is that there is a small overhead on author and publish instances for the data replication.</p>
+<p>This configuration can be set up by installing the <tt>aem-monitoring-ui</tt> and <tt>aem-monitoring-h2</tt> packages on each AEM instance. The H2 package contains configurations to start an H2 server and auto-initialize the schema, using port 8084 for author and 8085 for publish (to avoid conflicts in local setups). Additionally, serialization will need to be configured from publish to author. Go to <a class="externalLink" href="http://localhost:4502/apps/aem-monitoring/content/console.html">the console</a> on author and select the &#x201c;Config&#x201d; tab, creating client configurations for each publish instance.</p>
+<p><img src="config.png" alt="Client Configuration Screen" /></p></div>
+<div class="section">
+<h2>Single On-Instance<a name="Single_On-Instance"></a></h2>
+<p>A single on-instance topology will have data from all instance written directly to an H2 server running on author. This configuration eliminates the overhead of serializing data between instances, as the publish instances write directly to the single database via the H2 server managed by the author instance. The downside of this configuration is that data from the publish instances will be lost while the author instance is down.</p>
+<p>To configure this topology, first remove all clients from the configuration screen (above), as publish instances will be writing directly to the database. Next, configure the &#x201c;AEM Monitoring: H2 DB Server&#x201d; service in the Sling console. Select &#x201c;Externally Managed&#x201d; and enter the author server address and port (8084 by default) to route publish data directly to the database managed by the author instance.</p>
+<p><img src="h2-server.png" alt="H2 Server Configuration" /></p></div>
+<div class="section">
+<h2>Off-Instance<a name="Off-Instance"></a></h2>
+<p>The off-instance topology writes all data to a single externally-managed database instance. This is the most stable and available configuration, but requires additional setup.</p>
+<p>For MySQL-based DBs, <a href="../generic-db/src/main/resources/mysql-init.sql">this SQL script</a> can be used to initialize the monitoring database schema. Install both the <tt>aem-monitoring-ui</tt> and <tt>aem-monitoring-generic-db-installation</tt> packages. Create a &#x201c;Day Commons JDBC Connection Pool&#x201d; configuration for your database, using <tt>aem-monitoring</tt> as the datasource name, and ensuring that the JDBC driver for your database is installed in the OSGi environment. Finally, configure the &#x201c;AEM Monitoring: Generic DB Connection Provider&#x201d; service, entering the appropriate Dialect constant for jOOQ from <a class="externalLink" href="https://www.jooq.org/javadoc/3.6.2/org/jooq/SQLDialect.html">this page</a>.</p>
+<p><img src="jdbc.png" alt="JDBC Configuration" /></p></div>
+<div class="section">
+<h2>New Relic<a name="New_Relic"></a></h2>
+<p>The New Relic topology delegates all data storage and visualization/reporting to New Relic&#x2019;s <a class="externalLink" href="https://newrelic.com/insights">Insights</a> services.</p></div>$htmlTool.replaceAll( $bodyContent, $iconReplacements )#set$shortTitleGenerated#set$hTexts$htmlTool.text( $bodyContent, "h1" )UTF-8aem-monitoring - en#set$protocol#set$resourcePath.#set$bootstrapCssPath$resourcePath#set$bootstrapCssResponsivePath$bootstrapCssPath#set$bootstrapJsPath$resourcePath$bootstrapCssPath$bootstrapCssResponsivePath$resourcePath$resourcePath$resourcePath$resourcePath$resourcePath$resourcePath$config.fileId$config.projectId#*							<li>*</li>
+*#set$filterMenus[name = 'Main'
+inherit = 'top'
+ref = 'null'
+img = 'null'
+alt = 'null'
+position = 'left'
+border = 'null'
+width = 'null'
+height = 'null'
+title = 'null'
+items = '[description = 'null'
+collapse = 'false'
+ref = 'null'
+items = '[]'
+name = 'Home'
+href = 'index.html'
+img = 'null'
+position = 'left'
+alt = 'null'
+border = 'null'
+width = 'null'
+height = 'null'
+target = 'null'
+title = 'null', description = 'null'
+collapse = 'false'
+ref = 'null'
+items = '[]'
+name = 'GitHub'
+href = 'https://github.com/OlsonDigital/aem-monitoring/'
+img = 'null'
+position = 'left'
+alt = 'null'
+border = 'null'
+width = 'null'
+height = 'null'
+target = 'null'
+title = 'null', description = 'null'
+collapse = 'false'
+ref = 'null'
+items = '[]'
+name = 'Java Doc'
+href = 'apidocs/index.html'
+img = 'null'
+position = 'left'
+alt = 'null'
+border = 'null'
+width = 'null'
+height = 'null'
+target = 'null'
+title = 'null', description = 'null'
+collapse = 'false'
+ref = 'null'
+items = '[]'
+name = 'ICF Olson'
+href = 'http://www.icfolson.com'
+img = 'null'
+position = 'left'
+alt = 'null'
+border = 'null'
+width = 'null'
+height = 'null'
+target = 'null'
+title = 'null']', name = 'Basics'
+inherit = 'bottom'
+ref = 'null'
+img = 'null'
+alt = 'null'
+position = 'left'
+border = 'null'
+width = 'null'
+height = 'null'
+title = 'null'
+items = '[description = 'null'
+collapse = 'false'
+ref = 'null'
+items = '[]'
+name = 'Topologies'
+href = 'topologies.html'
+img = 'null'
+position = 'left'
+alt = 'null'
+border = 'null'
+width = 'null'
+height = 'null'
+target = 'null'
+title = 'null', description = 'null'
+collapse = 'false'
+ref = 'null'
+items = '[]'
+name = 'Configuration'
+href = 'configuration.html'
+img = 'null'
+position = 'left'
+alt = 'null'
+border = 'null'
+width = 'null'
+height = 'null'
+target = 'null'
+title = 'null']']*							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">$menu.name <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+*									<li>*</li>
+*									<li class="dropdown-submenu">
+										*
+										<ul class="dropdown-menu">
+*											<li>*</li>
+*										</ul>
+									</li>
+*								</ul>
+							</li>
+**					<a href="$relativeExtLink" id="bannerRight">*					<div id="bannerRight">***					<p class="lead">$config.slogan.getValue()</p>
+***$navSpan****#set$jQueryVersion$protocol${jQueryVersion}$resourcePath${jQueryVersion}$bootstrapJsPath$resourcePath$resourcePath$resourcePath$resourcePath

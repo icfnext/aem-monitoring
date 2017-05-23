@@ -1,0 +1,690 @@
+
+<!DOCTYPE html>
+enen#set$defaultProjectNameaem-monitoring#set$datePosition#set$datePositionleft#set$versionPosition#set$versionPositionleft#set$datePositionleft#set$projectSiteLochttp://code.digitalatolson.com/aem-monitoring#set$projectSiteLoc$projectSiteLoc#set$currentFileLoc$uriTool.toURI( "$projectSiteLoc" ).resolve( "$currentFileName" ).toString()#set$tocTop#set$tocSidebar#set<h1>Configurations</h1>
+<p>This document lists the configuration options exposed by the various AEM Monitoring bundles.</p>
+<div class="section">
+<h2>Core Bundle<a name="Core_Bundle"></a></h2>
+<p>The core bundle is installed in all installation topologies. It contains the following configurable services:</p>
+<div class="section">
+<h3>Process Metrics Recorder<a name="Process_Metrics_Recorder"></a></h3>
+<p>The Process Metrics Recorder samples the AEM Java Process and records various attributes as monitoring metrics. The attributes recorded are:</p>
+
+<ul>
+  
+<li>CPU Average Load</li>
+  
+<li>Heap Memory Used</li>
+  
+<li>Heap Memory Committed</li>
+  
+<li>Non-Heap Memory Used</li>
+  
+<li>Non-Heap Memory Committed</li>
+</ul>
+<p>It exposes the following configuration options:</p>
+
+<ul>
+  
+<li>Disable (boolean, default <tt>false</tt>): Whether to disable the recorder</li>
+  
+<li>Sample Period (integer, default <tt>15</tt>): The number of seconds between each sample</li>
+</ul></div>
+<div class="section">
+<h3>Replication Recorder<a name="Replication_Recorder"></a></h3>
+<p>The Replication Recorder records replications on the instance as monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>user (string): The user ID that requested the replication</li>
+  
+<li>type (string): The replication type (&#x201c;ACTIVATE&#x201d;, &#x201c;DEACTIVATE&#x201d;, or &#x201c;DELETE&#x201d;)</li>
+  
+<li>path (string): The path replicated</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder</p></div>
+<div class="section">
+<h3>Resource Change Recorder<a name="Resource_Change_Recorder"></a></h3>
+<p>The Resource Change Recorder records changes made to resources and monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>user (string); The user who updated the resource</li>
+  
+<li>type (string): The change type (&#x201c;ADDED&#x201d;, &#x201c;REMOVED&#x201d;, or &#x201c;CHANGED&#x201d;)</li>
+  
+<li>path (string): The path of the changed resource</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder * Watched Paths (string, multiple, default [&#x201c;/content&#x201d;, &#x201c;/etc&#x201d;]): The paths that should be monitored for resource changes</p></div>
+<div class="section">
+<h3>Sling Request Recorder<a name="Sling_Request_Recorder"></a></h3>
+<p>The Sling Request Recorder records incoming Sling requests as monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>request</li>
+  
+<li>user (string): The user ID that made the request</li>
+  
+<li>method (string): The method of the request</li>
+  
+<li>path (string): The path of the requested resource (if resolved)</li>
+  
+<li>selectors (string): The selector string (if any)</li>
+  
+<li>extension (string): The extension (if any)</li>
+  
+<li>suffix (string): The suffix (if any)</li>
+  
+<li>header (string): Captured headers (see configuration below)</li>
+  
+<li>response</li>
+  
+<li>status (string): The response code returned</li>
+  
+<li>length (integer): The length, in bytes, of the response</li>
+  
+<li>duration ms (integer): The duration, in milliseconds, of the transaction</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder * Captured Headers (string, multiple, default [&#x201c;Host&#x201d;, &#x201c;Referer&#x201d;]): The headers that should be captured with the monitoring event. Captured headers will be recorded as additional event properties (with string values) named <tt>request.header.HEADER_NAME</tt></p></div>
+<div class="section">
+<h3>Logging Monitoring Writer<a name="Logging_Monitoring_Writer"></a></h3>
+<p>The Logging Monitoring Writer outputs all monitoring data to a log (on TRACE) for debugging. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the logging writer</p></div></div>
+<div class="section">
+<h2>Database Bundle<a name="Database_Bundle"></a></h2>
+<p>The database bundle is installed in H2 and Generic DB topologies (i.e., all except the New Relic topology). It contains the following configurable services:</p>
+<div class="section">
+<h3>Database Monitoring Writer<a name="Database_Monitoring_Writer"></a></h3>
+<p>The Database Monitoring Writer outputs all monitoring data to the configured monitoring database via JDBC. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the database writer</p></div>
+<div class="section">
+<h3>Delete Old Data Task<a name="Delete_Old_Data_Task"></a></h3>
+<p>The Delete Old Data Task is a scheduled task that deletes monitoring data older than a configured limit. By default, it runs at midnight and deletes data older than 7 days. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the task * Storage Period (integer, default <tt>7</tt>): The length of time, in days, to retain monitoring data * Task Schedule (string, default <tt>0 0 0 * * ?</tt>): A cron expression used to schedule the task</p></div></div>
+<div class="section">
+<h2>H2 Bundle<a name="H2_Bundle"></a></h2>
+<p>The H2 bundle is only installed in the on-instance topologies. It contains the following configurable services:</p>
+<div class="section">
+<h3>H2 Server<a name="H2_Server"></a></h3>
+<p>The H2 Server service configures (and optionally manages) an H2 server instance for storage of monitoring data. The service exposes the following configuration options: * Server (string, default <tt>localhost</tt>): A server name or IP address used to connect to the server * Server Port (int, default <tt>8084</tt> on author and <tt>8085</tt> on publish): The port that the server runs on * H2 basedir (string, default <tt>$SLING_HOME/db</tt>): An optional base directory. * Allow Remote (boolean, default <tt>true</tt>): Whether the server allows access to other instances. Also required to access the DB using the H2 console. * Externally Managed (boolean, default <tt>false</tt>): Check to prevent this service from starting/stopping the server. The server must be started externally and accessible from the specified server/port.</p>
+<p>### H2 Connection Provider</p>
+<p>The H2 Connection Provider service generates DB connections for the client code. It uses the H2 Server configured above, and additionally specifies a database name, user, and password. The service exposes the following configuration options:  * DB Name (string, default <tt>monitoring</tt>): The database name to connect to  * User (string, default &#x2018;sa&#x2019;): The user to connect as  * Password (string): The password to connect with</p>
+<p>## Generic DB Bundle</p>
+<p>The Generic DB bundle is only installed in the off-instance topology. It contains the following configurable service:</p>
+<p>### Generic Database Connection Provider</p>
+<p>The Generic Database Connection Provider assumes there is a configured Day Commons JDBC Connection Pool with a name <tt>aem-monitoring</tt>. It&#x2019;s only purpose is to wrap the connections in a jOOQ wrapper that specifies the dialect of the connected database. The service exposes the following configuration options: * SQL Dialect (string, required): The SQL Dialect to use for the <tt>aem-monitoring</tt> database. See <a class="externalLink" href="http://www.jooq.org/javadoc/3.6.2/org/jooq/SQLDialect.html">jOOQ Documentation</a> for available constants</p></div></div>
+<div class="section">
+<h2>New Relic Bundle<a name="New_Relic_Bundle"></a></h2>
+<p>The New Relic bundle is only installed in the New Relic topology. It contains the following configurable service: </p>
+<div class="section">
+<h3>New Relic Monitoring Writer<a name="New_Relic_Monitoring_Writer"></a></h3>
+<p>The New Relic Monitoring Writer writes monitoring data to New Relic servers. It assumes the New Relic agent is installed on the instance (and will fail if not). The writer exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the writer</p></div></div>$htmlTool.setAttr( $bodyContent, "a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], a[href$=png], a[href$=gif], a[href$=bmp]:has(img)", "rel", "lightbox[page]" )#set<h1>Configurations</h1>
+<p>This document lists the configuration options exposed by the various AEM Monitoring bundles.</p>
+<div class="section">
+<h2>Core Bundle<a name="Core_Bundle"></a></h2>
+<p>The core bundle is installed in all installation topologies. It contains the following configurable services:</p>
+<div class="section">
+<h3>Process Metrics Recorder<a name="Process_Metrics_Recorder"></a></h3>
+<p>The Process Metrics Recorder samples the AEM Java Process and records various attributes as monitoring metrics. The attributes recorded are:</p>
+
+<ul>
+  
+<li>CPU Average Load</li>
+  
+<li>Heap Memory Used</li>
+  
+<li>Heap Memory Committed</li>
+  
+<li>Non-Heap Memory Used</li>
+  
+<li>Non-Heap Memory Committed</li>
+</ul>
+<p>It exposes the following configuration options:</p>
+
+<ul>
+  
+<li>Disable (boolean, default <tt>false</tt>): Whether to disable the recorder</li>
+  
+<li>Sample Period (integer, default <tt>15</tt>): The number of seconds between each sample</li>
+</ul></div>
+<div class="section">
+<h3>Replication Recorder<a name="Replication_Recorder"></a></h3>
+<p>The Replication Recorder records replications on the instance as monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>user (string): The user ID that requested the replication</li>
+  
+<li>type (string): The replication type (&#x201c;ACTIVATE&#x201d;, &#x201c;DEACTIVATE&#x201d;, or &#x201c;DELETE&#x201d;)</li>
+  
+<li>path (string): The path replicated</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder</p></div>
+<div class="section">
+<h3>Resource Change Recorder<a name="Resource_Change_Recorder"></a></h3>
+<p>The Resource Change Recorder records changes made to resources and monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>user (string); The user who updated the resource</li>
+  
+<li>type (string): The change type (&#x201c;ADDED&#x201d;, &#x201c;REMOVED&#x201d;, or &#x201c;CHANGED&#x201d;)</li>
+  
+<li>path (string): The path of the changed resource</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder * Watched Paths (string, multiple, default [&#x201c;/content&#x201d;, &#x201c;/etc&#x201d;]): The paths that should be monitored for resource changes</p></div>
+<div class="section">
+<h3>Sling Request Recorder<a name="Sling_Request_Recorder"></a></h3>
+<p>The Sling Request Recorder records incoming Sling requests as monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>request</li>
+  
+<li>user (string): The user ID that made the request</li>
+  
+<li>method (string): The method of the request</li>
+  
+<li>path (string): The path of the requested resource (if resolved)</li>
+  
+<li>selectors (string): The selector string (if any)</li>
+  
+<li>extension (string): The extension (if any)</li>
+  
+<li>suffix (string): The suffix (if any)</li>
+  
+<li>header (string): Captured headers (see configuration below)</li>
+  
+<li>response</li>
+  
+<li>status (string): The response code returned</li>
+  
+<li>length (integer): The length, in bytes, of the response</li>
+  
+<li>duration ms (integer): The duration, in milliseconds, of the transaction</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder * Captured Headers (string, multiple, default [&#x201c;Host&#x201d;, &#x201c;Referer&#x201d;]): The headers that should be captured with the monitoring event. Captured headers will be recorded as additional event properties (with string values) named <tt>request.header.HEADER_NAME</tt></p></div>
+<div class="section">
+<h3>Logging Monitoring Writer<a name="Logging_Monitoring_Writer"></a></h3>
+<p>The Logging Monitoring Writer outputs all monitoring data to a log (on TRACE) for debugging. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the logging writer</p></div></div>
+<div class="section">
+<h2>Database Bundle<a name="Database_Bundle"></a></h2>
+<p>The database bundle is installed in H2 and Generic DB topologies (i.e., all except the New Relic topology). It contains the following configurable services:</p>
+<div class="section">
+<h3>Database Monitoring Writer<a name="Database_Monitoring_Writer"></a></h3>
+<p>The Database Monitoring Writer outputs all monitoring data to the configured monitoring database via JDBC. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the database writer</p></div>
+<div class="section">
+<h3>Delete Old Data Task<a name="Delete_Old_Data_Task"></a></h3>
+<p>The Delete Old Data Task is a scheduled task that deletes monitoring data older than a configured limit. By default, it runs at midnight and deletes data older than 7 days. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the task * Storage Period (integer, default <tt>7</tt>): The length of time, in days, to retain monitoring data * Task Schedule (string, default <tt>0 0 0 * * ?</tt>): A cron expression used to schedule the task</p></div></div>
+<div class="section">
+<h2>H2 Bundle<a name="H2_Bundle"></a></h2>
+<p>The H2 bundle is only installed in the on-instance topologies. It contains the following configurable services:</p>
+<div class="section">
+<h3>H2 Server<a name="H2_Server"></a></h3>
+<p>The H2 Server service configures (and optionally manages) an H2 server instance for storage of monitoring data. The service exposes the following configuration options: * Server (string, default <tt>localhost</tt>): A server name or IP address used to connect to the server * Server Port (int, default <tt>8084</tt> on author and <tt>8085</tt> on publish): The port that the server runs on * H2 basedir (string, default <tt>$SLING_HOME/db</tt>): An optional base directory. * Allow Remote (boolean, default <tt>true</tt>): Whether the server allows access to other instances. Also required to access the DB using the H2 console. * Externally Managed (boolean, default <tt>false</tt>): Check to prevent this service from starting/stopping the server. The server must be started externally and accessible from the specified server/port.</p>
+<p>### H2 Connection Provider</p>
+<p>The H2 Connection Provider service generates DB connections for the client code. It uses the H2 Server configured above, and additionally specifies a database name, user, and password. The service exposes the following configuration options:  * DB Name (string, default <tt>monitoring</tt>): The database name to connect to  * User (string, default &#x2018;sa&#x2019;): The user to connect as  * Password (string): The password to connect with</p>
+<p>## Generic DB Bundle</p>
+<p>The Generic DB bundle is only installed in the off-instance topology. It contains the following configurable service:</p>
+<p>### Generic Database Connection Provider</p>
+<p>The Generic Database Connection Provider assumes there is a configured Day Commons JDBC Connection Pool with a name <tt>aem-monitoring</tt>. It&#x2019;s only purpose is to wrap the connections in a jOOQ wrapper that specifies the dialect of the connected database. The service exposes the following configuration options: * SQL Dialect (string, required): The SQL Dialect to use for the <tt>aem-monitoring</tt> database. See <a class="externalLink" href="http://www.jooq.org/javadoc/3.6.2/org/jooq/SQLDialect.html">jOOQ Documentation</a> for available constants</p></div></div>
+<div class="section">
+<h2>New Relic Bundle<a name="New_Relic_Bundle"></a></h2>
+<p>The New Relic bundle is only installed in the New Relic topology. It contains the following configurable service: </p>
+<div class="section">
+<h3>New Relic Monitoring Writer<a name="New_Relic_Monitoring_Writer"></a></h3>
+<p>The New Relic Monitoring Writer writes monitoring data to New Relic servers. It assumes the New Relic agent is installed on the instance (and will fail if not). The writer exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the writer</p></div></div>$htmlTool.headingAnchorToId( $bodyContent )#set<h1>Configurations</h1>
+<p>This document lists the configuration options exposed by the various AEM Monitoring bundles.</p>
+<div class="section">
+<h2>Core Bundle<a name="Core_Bundle"></a></h2>
+<p>The core bundle is installed in all installation topologies. It contains the following configurable services:</p>
+<div class="section">
+<h3>Process Metrics Recorder<a name="Process_Metrics_Recorder"></a></h3>
+<p>The Process Metrics Recorder samples the AEM Java Process and records various attributes as monitoring metrics. The attributes recorded are:</p>
+
+<ul>
+  
+<li>CPU Average Load</li>
+  
+<li>Heap Memory Used</li>
+  
+<li>Heap Memory Committed</li>
+  
+<li>Non-Heap Memory Used</li>
+  
+<li>Non-Heap Memory Committed</li>
+</ul>
+<p>It exposes the following configuration options:</p>
+
+<ul>
+  
+<li>Disable (boolean, default <tt>false</tt>): Whether to disable the recorder</li>
+  
+<li>Sample Period (integer, default <tt>15</tt>): The number of seconds between each sample</li>
+</ul></div>
+<div class="section">
+<h3>Replication Recorder<a name="Replication_Recorder"></a></h3>
+<p>The Replication Recorder records replications on the instance as monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>user (string): The user ID that requested the replication</li>
+  
+<li>type (string): The replication type (&#x201c;ACTIVATE&#x201d;, &#x201c;DEACTIVATE&#x201d;, or &#x201c;DELETE&#x201d;)</li>
+  
+<li>path (string): The path replicated</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder</p></div>
+<div class="section">
+<h3>Resource Change Recorder<a name="Resource_Change_Recorder"></a></h3>
+<p>The Resource Change Recorder records changes made to resources and monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>user (string); The user who updated the resource</li>
+  
+<li>type (string): The change type (&#x201c;ADDED&#x201d;, &#x201c;REMOVED&#x201d;, or &#x201c;CHANGED&#x201d;)</li>
+  
+<li>path (string): The path of the changed resource</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder * Watched Paths (string, multiple, default [&#x201c;/content&#x201d;, &#x201c;/etc&#x201d;]): The paths that should be monitored for resource changes</p></div>
+<div class="section">
+<h3>Sling Request Recorder<a name="Sling_Request_Recorder"></a></h3>
+<p>The Sling Request Recorder records incoming Sling requests as monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>request</li>
+  
+<li>user (string): The user ID that made the request</li>
+  
+<li>method (string): The method of the request</li>
+  
+<li>path (string): The path of the requested resource (if resolved)</li>
+  
+<li>selectors (string): The selector string (if any)</li>
+  
+<li>extension (string): The extension (if any)</li>
+  
+<li>suffix (string): The suffix (if any)</li>
+  
+<li>header (string): Captured headers (see configuration below)</li>
+  
+<li>response</li>
+  
+<li>status (string): The response code returned</li>
+  
+<li>length (integer): The length, in bytes, of the response</li>
+  
+<li>duration ms (integer): The duration, in milliseconds, of the transaction</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder * Captured Headers (string, multiple, default [&#x201c;Host&#x201d;, &#x201c;Referer&#x201d;]): The headers that should be captured with the monitoring event. Captured headers will be recorded as additional event properties (with string values) named <tt>request.header.HEADER_NAME</tt></p></div>
+<div class="section">
+<h3>Logging Monitoring Writer<a name="Logging_Monitoring_Writer"></a></h3>
+<p>The Logging Monitoring Writer outputs all monitoring data to a log (on TRACE) for debugging. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the logging writer</p></div></div>
+<div class="section">
+<h2>Database Bundle<a name="Database_Bundle"></a></h2>
+<p>The database bundle is installed in H2 and Generic DB topologies (i.e., all except the New Relic topology). It contains the following configurable services:</p>
+<div class="section">
+<h3>Database Monitoring Writer<a name="Database_Monitoring_Writer"></a></h3>
+<p>The Database Monitoring Writer outputs all monitoring data to the configured monitoring database via JDBC. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the database writer</p></div>
+<div class="section">
+<h3>Delete Old Data Task<a name="Delete_Old_Data_Task"></a></h3>
+<p>The Delete Old Data Task is a scheduled task that deletes monitoring data older than a configured limit. By default, it runs at midnight and deletes data older than 7 days. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the task * Storage Period (integer, default <tt>7</tt>): The length of time, in days, to retain monitoring data * Task Schedule (string, default <tt>0 0 0 * * ?</tt>): A cron expression used to schedule the task</p></div></div>
+<div class="section">
+<h2>H2 Bundle<a name="H2_Bundle"></a></h2>
+<p>The H2 bundle is only installed in the on-instance topologies. It contains the following configurable services:</p>
+<div class="section">
+<h3>H2 Server<a name="H2_Server"></a></h3>
+<p>The H2 Server service configures (and optionally manages) an H2 server instance for storage of monitoring data. The service exposes the following configuration options: * Server (string, default <tt>localhost</tt>): A server name or IP address used to connect to the server * Server Port (int, default <tt>8084</tt> on author and <tt>8085</tt> on publish): The port that the server runs on * H2 basedir (string, default <tt>$SLING_HOME/db</tt>): An optional base directory. * Allow Remote (boolean, default <tt>true</tt>): Whether the server allows access to other instances. Also required to access the DB using the H2 console. * Externally Managed (boolean, default <tt>false</tt>): Check to prevent this service from starting/stopping the server. The server must be started externally and accessible from the specified server/port.</p>
+<p>### H2 Connection Provider</p>
+<p>The H2 Connection Provider service generates DB connections for the client code. It uses the H2 Server configured above, and additionally specifies a database name, user, and password. The service exposes the following configuration options:  * DB Name (string, default <tt>monitoring</tt>): The database name to connect to  * User (string, default &#x2018;sa&#x2019;): The user to connect as  * Password (string): The password to connect with</p>
+<p>## Generic DB Bundle</p>
+<p>The Generic DB bundle is only installed in the off-instance topology. It contains the following configurable service:</p>
+<p>### Generic Database Connection Provider</p>
+<p>The Generic Database Connection Provider assumes there is a configured Day Commons JDBC Connection Pool with a name <tt>aem-monitoring</tt>. It&#x2019;s only purpose is to wrap the connections in a jOOQ wrapper that specifies the dialect of the connected database. The service exposes the following configuration options: * SQL Dialect (string, required): The SQL Dialect to use for the <tt>aem-monitoring</tt> database. See <a class="externalLink" href="http://www.jooq.org/javadoc/3.6.2/org/jooq/SQLDialect.html">jOOQ Documentation</a> for available constants</p></div></div>
+<div class="section">
+<h2>New Relic Bundle<a name="New_Relic_Bundle"></a></h2>
+<p>The New Relic bundle is only installed in the New Relic topology. It contains the following configurable service: </p>
+<div class="section">
+<h3>New Relic Monitoring Writer<a name="New_Relic_Monitoring_Writer"></a></h3>
+<p>The New Relic Monitoring Writer writes monitoring data to New Relic servers. It assumes the New Relic agent is installed on the instance (and will fail if not). The writer exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the writer</p></div></div>$htmlTool.addClass( $bodyContent, "table.bodyTable", ["table", "table-striped", "table-hover"] )#set<h1>Configurations</h1>
+<p>This document lists the configuration options exposed by the various AEM Monitoring bundles.</p>
+<div class="section">
+<h2>Core Bundle<a name="Core_Bundle"></a></h2>
+<p>The core bundle is installed in all installation topologies. It contains the following configurable services:</p>
+<div class="section">
+<h3>Process Metrics Recorder<a name="Process_Metrics_Recorder"></a></h3>
+<p>The Process Metrics Recorder samples the AEM Java Process and records various attributes as monitoring metrics. The attributes recorded are:</p>
+
+<ul>
+  
+<li>CPU Average Load</li>
+  
+<li>Heap Memory Used</li>
+  
+<li>Heap Memory Committed</li>
+  
+<li>Non-Heap Memory Used</li>
+  
+<li>Non-Heap Memory Committed</li>
+</ul>
+<p>It exposes the following configuration options:</p>
+
+<ul>
+  
+<li>Disable (boolean, default <tt>false</tt>): Whether to disable the recorder</li>
+  
+<li>Sample Period (integer, default <tt>15</tt>): The number of seconds between each sample</li>
+</ul></div>
+<div class="section">
+<h3>Replication Recorder<a name="Replication_Recorder"></a></h3>
+<p>The Replication Recorder records replications on the instance as monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>user (string): The user ID that requested the replication</li>
+  
+<li>type (string): The replication type (&#x201c;ACTIVATE&#x201d;, &#x201c;DEACTIVATE&#x201d;, or &#x201c;DELETE&#x201d;)</li>
+  
+<li>path (string): The path replicated</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder</p></div>
+<div class="section">
+<h3>Resource Change Recorder<a name="Resource_Change_Recorder"></a></h3>
+<p>The Resource Change Recorder records changes made to resources and monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>user (string); The user who updated the resource</li>
+  
+<li>type (string): The change type (&#x201c;ADDED&#x201d;, &#x201c;REMOVED&#x201d;, or &#x201c;CHANGED&#x201d;)</li>
+  
+<li>path (string): The path of the changed resource</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder * Watched Paths (string, multiple, default [&#x201c;/content&#x201d;, &#x201c;/etc&#x201d;]): The paths that should be monitored for resource changes</p></div>
+<div class="section">
+<h3>Sling Request Recorder<a name="Sling_Request_Recorder"></a></h3>
+<p>The Sling Request Recorder records incoming Sling requests as monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>request</li>
+  
+<li>user (string): The user ID that made the request</li>
+  
+<li>method (string): The method of the request</li>
+  
+<li>path (string): The path of the requested resource (if resolved)</li>
+  
+<li>selectors (string): The selector string (if any)</li>
+  
+<li>extension (string): The extension (if any)</li>
+  
+<li>suffix (string): The suffix (if any)</li>
+  
+<li>header (string): Captured headers (see configuration below)</li>
+  
+<li>response</li>
+  
+<li>status (string): The response code returned</li>
+  
+<li>length (integer): The length, in bytes, of the response</li>
+  
+<li>duration ms (integer): The duration, in milliseconds, of the transaction</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder * Captured Headers (string, multiple, default [&#x201c;Host&#x201d;, &#x201c;Referer&#x201d;]): The headers that should be captured with the monitoring event. Captured headers will be recorded as additional event properties (with string values) named <tt>request.header.HEADER_NAME</tt></p></div>
+<div class="section">
+<h3>Logging Monitoring Writer<a name="Logging_Monitoring_Writer"></a></h3>
+<p>The Logging Monitoring Writer outputs all monitoring data to a log (on TRACE) for debugging. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the logging writer</p></div></div>
+<div class="section">
+<h2>Database Bundle<a name="Database_Bundle"></a></h2>
+<p>The database bundle is installed in H2 and Generic DB topologies (i.e., all except the New Relic topology). It contains the following configurable services:</p>
+<div class="section">
+<h3>Database Monitoring Writer<a name="Database_Monitoring_Writer"></a></h3>
+<p>The Database Monitoring Writer outputs all monitoring data to the configured monitoring database via JDBC. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the database writer</p></div>
+<div class="section">
+<h3>Delete Old Data Task<a name="Delete_Old_Data_Task"></a></h3>
+<p>The Delete Old Data Task is a scheduled task that deletes monitoring data older than a configured limit. By default, it runs at midnight and deletes data older than 7 days. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the task * Storage Period (integer, default <tt>7</tt>): The length of time, in days, to retain monitoring data * Task Schedule (string, default <tt>0 0 0 * * ?</tt>): A cron expression used to schedule the task</p></div></div>
+<div class="section">
+<h2>H2 Bundle<a name="H2_Bundle"></a></h2>
+<p>The H2 bundle is only installed in the on-instance topologies. It contains the following configurable services:</p>
+<div class="section">
+<h3>H2 Server<a name="H2_Server"></a></h3>
+<p>The H2 Server service configures (and optionally manages) an H2 server instance for storage of monitoring data. The service exposes the following configuration options: * Server (string, default <tt>localhost</tt>): A server name or IP address used to connect to the server * Server Port (int, default <tt>8084</tt> on author and <tt>8085</tt> on publish): The port that the server runs on * H2 basedir (string, default <tt>$SLING_HOME/db</tt>): An optional base directory. * Allow Remote (boolean, default <tt>true</tt>): Whether the server allows access to other instances. Also required to access the DB using the H2 console. * Externally Managed (boolean, default <tt>false</tt>): Check to prevent this service from starting/stopping the server. The server must be started externally and accessible from the specified server/port.</p>
+<p>### H2 Connection Provider</p>
+<p>The H2 Connection Provider service generates DB connections for the client code. It uses the H2 Server configured above, and additionally specifies a database name, user, and password. The service exposes the following configuration options:  * DB Name (string, default <tt>monitoring</tt>): The database name to connect to  * User (string, default &#x2018;sa&#x2019;): The user to connect as  * Password (string): The password to connect with</p>
+<p>## Generic DB Bundle</p>
+<p>The Generic DB bundle is only installed in the off-instance topology. It contains the following configurable service:</p>
+<p>### Generic Database Connection Provider</p>
+<p>The Generic Database Connection Provider assumes there is a configured Day Commons JDBC Connection Pool with a name <tt>aem-monitoring</tt>. It&#x2019;s only purpose is to wrap the connections in a jOOQ wrapper that specifies the dialect of the connected database. The service exposes the following configuration options: * SQL Dialect (string, required): The SQL Dialect to use for the <tt>aem-monitoring</tt> database. See <a class="externalLink" href="http://www.jooq.org/javadoc/3.6.2/org/jooq/SQLDialect.html">jOOQ Documentation</a> for available constants</p></div></div>
+<div class="section">
+<h2>New Relic Bundle<a name="New_Relic_Bundle"></a></h2>
+<p>The New Relic bundle is only installed in the New Relic topology. It contains the following configurable service: </p>
+<div class="section">
+<h3>New Relic Monitoring Writer<a name="New_Relic_Monitoring_Writer"></a></h3>
+<p>The New Relic Monitoring Writer writes monitoring data to New Relic servers. It assumes the New Relic agent is installed on the instance (and will fail if not). The writer exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the writer</p></div></div>$htmlTool.fixTableHeads( $bodyContent )*#**#set$iconReplacements#set<h1>Configurations</h1>
+<p>This document lists the configuration options exposed by the various AEM Monitoring bundles.</p>
+<div class="section">
+<h2>Core Bundle<a name="Core_Bundle"></a></h2>
+<p>The core bundle is installed in all installation topologies. It contains the following configurable services:</p>
+<div class="section">
+<h3>Process Metrics Recorder<a name="Process_Metrics_Recorder"></a></h3>
+<p>The Process Metrics Recorder samples the AEM Java Process and records various attributes as monitoring metrics. The attributes recorded are:</p>
+
+<ul>
+  
+<li>CPU Average Load</li>
+  
+<li>Heap Memory Used</li>
+  
+<li>Heap Memory Committed</li>
+  
+<li>Non-Heap Memory Used</li>
+  
+<li>Non-Heap Memory Committed</li>
+</ul>
+<p>It exposes the following configuration options:</p>
+
+<ul>
+  
+<li>Disable (boolean, default <tt>false</tt>): Whether to disable the recorder</li>
+  
+<li>Sample Period (integer, default <tt>15</tt>): The number of seconds between each sample</li>
+</ul></div>
+<div class="section">
+<h3>Replication Recorder<a name="Replication_Recorder"></a></h3>
+<p>The Replication Recorder records replications on the instance as monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>user (string): The user ID that requested the replication</li>
+  
+<li>type (string): The replication type (&#x201c;ACTIVATE&#x201d;, &#x201c;DEACTIVATE&#x201d;, or &#x201c;DELETE&#x201d;)</li>
+  
+<li>path (string): The path replicated</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder</p></div>
+<div class="section">
+<h3>Resource Change Recorder<a name="Resource_Change_Recorder"></a></h3>
+<p>The Resource Change Recorder records changes made to resources and monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>user (string); The user who updated the resource</li>
+  
+<li>type (string): The change type (&#x201c;ADDED&#x201d;, &#x201c;REMOVED&#x201d;, or &#x201c;CHANGED&#x201d;)</li>
+  
+<li>path (string): The path of the changed resource</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder * Watched Paths (string, multiple, default [&#x201c;/content&#x201d;, &#x201c;/etc&#x201d;]): The paths that should be monitored for resource changes</p></div>
+<div class="section">
+<h3>Sling Request Recorder<a name="Sling_Request_Recorder"></a></h3>
+<p>The Sling Request Recorder records incoming Sling requests as monitoring events with the following properties:</p>
+
+<ul>
+  
+<li>request</li>
+  
+<li>user (string): The user ID that made the request</li>
+  
+<li>method (string): The method of the request</li>
+  
+<li>path (string): The path of the requested resource (if resolved)</li>
+  
+<li>selectors (string): The selector string (if any)</li>
+  
+<li>extension (string): The extension (if any)</li>
+  
+<li>suffix (string): The suffix (if any)</li>
+  
+<li>header (string): Captured headers (see configuration below)</li>
+  
+<li>response</li>
+  
+<li>status (string): The response code returned</li>
+  
+<li>length (integer): The length, in bytes, of the response</li>
+  
+<li>duration ms (integer): The duration, in milliseconds, of the transaction</li>
+</ul>
+<p>The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the recorder * Captured Headers (string, multiple, default [&#x201c;Host&#x201d;, &#x201c;Referer&#x201d;]): The headers that should be captured with the monitoring event. Captured headers will be recorded as additional event properties (with string values) named <tt>request.header.HEADER_NAME</tt></p></div>
+<div class="section">
+<h3>Logging Monitoring Writer<a name="Logging_Monitoring_Writer"></a></h3>
+<p>The Logging Monitoring Writer outputs all monitoring data to a log (on TRACE) for debugging. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the logging writer</p></div></div>
+<div class="section">
+<h2>Database Bundle<a name="Database_Bundle"></a></h2>
+<p>The database bundle is installed in H2 and Generic DB topologies (i.e., all except the New Relic topology). It contains the following configurable services:</p>
+<div class="section">
+<h3>Database Monitoring Writer<a name="Database_Monitoring_Writer"></a></h3>
+<p>The Database Monitoring Writer outputs all monitoring data to the configured monitoring database via JDBC. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the database writer</p></div>
+<div class="section">
+<h3>Delete Old Data Task<a name="Delete_Old_Data_Task"></a></h3>
+<p>The Delete Old Data Task is a scheduled task that deletes monitoring data older than a configured limit. By default, it runs at midnight and deletes data older than 7 days. The service exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the task * Storage Period (integer, default <tt>7</tt>): The length of time, in days, to retain monitoring data * Task Schedule (string, default <tt>0 0 0 * * ?</tt>): A cron expression used to schedule the task</p></div></div>
+<div class="section">
+<h2>H2 Bundle<a name="H2_Bundle"></a></h2>
+<p>The H2 bundle is only installed in the on-instance topologies. It contains the following configurable services:</p>
+<div class="section">
+<h3>H2 Server<a name="H2_Server"></a></h3>
+<p>The H2 Server service configures (and optionally manages) an H2 server instance for storage of monitoring data. The service exposes the following configuration options: * Server (string, default <tt>localhost</tt>): A server name or IP address used to connect to the server * Server Port (int, default <tt>8084</tt> on author and <tt>8085</tt> on publish): The port that the server runs on * H2 basedir (string, default <tt>$SLING_HOME/db</tt>): An optional base directory. * Allow Remote (boolean, default <tt>true</tt>): Whether the server allows access to other instances. Also required to access the DB using the H2 console. * Externally Managed (boolean, default <tt>false</tt>): Check to prevent this service from starting/stopping the server. The server must be started externally and accessible from the specified server/port.</p>
+<p>### H2 Connection Provider</p>
+<p>The H2 Connection Provider service generates DB connections for the client code. It uses the H2 Server configured above, and additionally specifies a database name, user, and password. The service exposes the following configuration options:  * DB Name (string, default <tt>monitoring</tt>): The database name to connect to  * User (string, default &#x2018;sa&#x2019;): The user to connect as  * Password (string): The password to connect with</p>
+<p>## Generic DB Bundle</p>
+<p>The Generic DB bundle is only installed in the off-instance topology. It contains the following configurable service:</p>
+<p>### Generic Database Connection Provider</p>
+<p>The Generic Database Connection Provider assumes there is a configured Day Commons JDBC Connection Pool with a name <tt>aem-monitoring</tt>. It&#x2019;s only purpose is to wrap the connections in a jOOQ wrapper that specifies the dialect of the connected database. The service exposes the following configuration options: * SQL Dialect (string, required): The SQL Dialect to use for the <tt>aem-monitoring</tt> database. See <a class="externalLink" href="http://www.jooq.org/javadoc/3.6.2/org/jooq/SQLDialect.html">jOOQ Documentation</a> for available constants</p></div></div>
+<div class="section">
+<h2>New Relic Bundle<a name="New_Relic_Bundle"></a></h2>
+<p>The New Relic bundle is only installed in the New Relic topology. It contains the following configurable service: </p>
+<div class="section">
+<h3>New Relic Monitoring Writer<a name="New_Relic_Monitoring_Writer"></a></h3>
+<p>The New Relic Monitoring Writer writes monitoring data to New Relic servers. It assumes the New Relic agent is installed on the instance (and will fail if not). The writer exposes the following configuration options: * Disable (boolean, default <tt>false</tt>): Whether to disable the writer</p></div></div>$htmlTool.replaceAll( $bodyContent, $iconReplacements )#set$shortTitleGenerated#set$hTexts$htmlTool.text( $bodyContent, "h1" )UTF-8aem-monitoring - en#set$protocol#set$resourcePath.#set$bootstrapCssPath$resourcePath#set$bootstrapCssResponsivePath$bootstrapCssPath#set$bootstrapJsPath$resourcePath$bootstrapCssPath$bootstrapCssResponsivePath$resourcePath$resourcePath$resourcePath$resourcePath$resourcePath$resourcePath$config.fileId$config.projectId#*							<li>*</li>
+*#set$filterMenus[name = 'Main'
+inherit = 'top'
+ref = 'null'
+img = 'null'
+alt = 'null'
+position = 'left'
+border = 'null'
+width = 'null'
+height = 'null'
+title = 'null'
+items = '[description = 'null'
+collapse = 'false'
+ref = 'null'
+items = '[]'
+name = 'Home'
+href = 'index.html'
+img = 'null'
+position = 'left'
+alt = 'null'
+border = 'null'
+width = 'null'
+height = 'null'
+target = 'null'
+title = 'null', description = 'null'
+collapse = 'false'
+ref = 'null'
+items = '[]'
+name = 'GitHub'
+href = 'https://github.com/OlsonDigital/aem-monitoring/'
+img = 'null'
+position = 'left'
+alt = 'null'
+border = 'null'
+width = 'null'
+height = 'null'
+target = 'null'
+title = 'null', description = 'null'
+collapse = 'false'
+ref = 'null'
+items = '[]'
+name = 'Java Doc'
+href = 'apidocs/index.html'
+img = 'null'
+position = 'left'
+alt = 'null'
+border = 'null'
+width = 'null'
+height = 'null'
+target = 'null'
+title = 'null', description = 'null'
+collapse = 'false'
+ref = 'null'
+items = '[]'
+name = 'ICF Olson'
+href = 'http://www.icfolson.com'
+img = 'null'
+position = 'left'
+alt = 'null'
+border = 'null'
+width = 'null'
+height = 'null'
+target = 'null'
+title = 'null']', name = 'Basics'
+inherit = 'bottom'
+ref = 'null'
+img = 'null'
+alt = 'null'
+position = 'left'
+border = 'null'
+width = 'null'
+height = 'null'
+title = 'null'
+items = '[description = 'null'
+collapse = 'false'
+ref = 'null'
+items = '[]'
+name = 'Topologies'
+href = 'topologies.html'
+img = 'null'
+position = 'left'
+alt = 'null'
+border = 'null'
+width = 'null'
+height = 'null'
+target = 'null'
+title = 'null', description = 'null'
+collapse = 'false'
+ref = 'null'
+items = '[]'
+name = 'Configuration'
+href = 'configuration.html'
+img = 'null'
+position = 'left'
+alt = 'null'
+border = 'null'
+width = 'null'
+height = 'null'
+target = 'null'
+title = 'null']']*							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">$menu.name <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+*									<li>*</li>
+*									<li class="dropdown-submenu">
+										*
+										<ul class="dropdown-menu">
+*											<li>*</li>
+*										</ul>
+									</li>
+*								</ul>
+							</li>
+**					<a href="$relativeExtLink" id="bannerRight">*					<div id="bannerRight">***					<p class="lead">$config.slogan.getValue()</p>
+***$navSpan****#set$jQueryVersion$protocol${jQueryVersion}$resourcePath${jQueryVersion}$bootstrapJsPath$resourcePath$resourcePath$resourcePath$resourcePath
