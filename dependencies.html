@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePositionleft#set$versionPosition#set$versionPositionleft#set$datePositionleft#set$projectSiteLochttp://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic#set$projectSiteLoc$projectSiteLoc#set$currentFileLoc$uriTool.toURI( "$projectSiteLoc" ).resolve( "$currentFileName" ).toString()#set$tocTop#set$tocSidebar#set<a name="Project_Dependencies"></a>
+enen#set$defaultProjectNameaem-monitoring-newrelic-installation#set$datePosition#set$datePositionleft#set$versionPosition#set$versionPositionleft#set$datePositionleft#set$projectSiteLochttp://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic-installation#set$projectSiteLoc$projectSiteLoc#set$currentFileLoc$uriTool.toURI( "$projectSiteLoc" ).resolve( "$currentFileName" ).toString()#set$tocTop#set$tocSidebar#set<a name="Project_Dependencies"></a>
 <div class="section">
 <h2>Project Dependencies<a name="Project_Dependencies"></a></h2><a name="Project_Dependencies_compile"></a>
 <div class="section">
@@ -20,48 +20,11 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>jar</td>
 <td>-</td></tr>
 <tr class="a">
-<td>org.apache.felix</td>
-<td><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">org.apache.felix.scr.annotations</a></td>
-<td>1.9.8</td>
+<td>com.icfolson.aem.monitoring</td>
+<td><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">aem-monitoring-newrelic</a></td>
+<td>1.0.0-SNAPSHOT</td>
 <td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="b">
-<td>org.apache.felix</td>
-<td><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">org.osgi.core</a></td>
-<td>1.4.0</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="a">
-<td>org.slf4j</td>
-<td>slf4j-api</td>
-<td>1.7.6</td>
-<td>jar</td>
-<td>-</td></tr></table></div><a name="Project_Dependencies_provided"></a>
-<div class="section">
-<h3>provided<a name="provided"></a></h3>
-<p>The following is a list of provided dependencies for this project. These dependencies are required to compile the application, but should be provided by default when using the library:</p>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>GroupId</th>
-<th>ArtifactId</th>
-<th>Version</th>
-<th>Classifier</th>
-<th>Type</th>
-<th>Licenses</th></tr>
-<tr class="b">
-<td>com.adobe.aem</td>
-<td>uber-jar</td>
-<td>6.2.0</td>
-<td>obfuscated-apis</td>
-<td>jar</td>
-<td>-</td></tr>
-<tr class="a">
-<td>com.newrelic.agent.java</td>
-<td><a class="externalLink" href="https://newrelic.com/">newrelic-api</a></td>
-<td>3.25.0</td>
-<td>-</td>
-<td>jar</td>
-<td><a class="externalLink" href="https://newrelic.com/docs/java/java-agent-license">null</a></td></tr></table></div></div><a name="Project_Transitive_Dependencies"></a>
+<td>-</td></tr></table></div></div><a name="Project_Transitive_Dependencies"></a>
 <div class="section">
 <h2>Project Transitive Dependencies<a name="Project_Transitive_Dependencies"></a></h2>
 <p>The following is a list of transitive dependencies for this project. Transitive dependencies are the dependencies of the project dependencies.</p><a name="Project_Transitive_Dependencies_compile"></a>
@@ -113,7 +76,19 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
 <tr class="b">
 <td>org.apache.felix</td>
+<td><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">org.apache.felix.scr.annotations</a></td>
+<td>1.9.8</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.felix</td>
 <td><a class="externalLink" href="http://felix.apache.org/org.osgi.compendium/">org.osgi.compendium</a></td>
+<td>1.4.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.felix</td>
+<td><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">org.osgi.core</a></td>
 <td>1.4.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
@@ -127,6 +102,12 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>org.apache.sling</td>
 <td>org.apache.sling.event</td>
 <td>4.0.0</td>
+<td>jar</td>
+<td>-</td></tr>
+<tr class="a">
+<td>org.slf4j</td>
+<td>slf4j-api</td>
+<td>1.7.6</td>
 <td>jar</td>
 <td>-</td></tr></table></div></div><a name="Project_Dependency_Graph"></a>
 <div class="section">
@@ -154,14 +135,14 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <div class="section">
 <h3>Dependency Tree<a name="Dependency_Tree"></a></h3>
 <ul>
-<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic:bundle:1.0.0-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
+<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic-installation:jar:1.0.0-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>aem-monitoring-newrelic</th></tr>
+<th>aem-monitoring-newrelic-installation</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>There is currently no description associated with this project.</p>
-<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic</a></p>
+<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic-installation">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic-installation</a></p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div>
 <ul>
 <li>com.icfolson.aem.monitoring:aem-monitoring-core:jar:1.0.0-SNAPSHOT (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep2" style="display:none">
@@ -174,7 +155,16 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-core">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-core</a></p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div>
 <ul>
-<li>org.apache.felix:org.osgi.compendium:jar:1.4.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep4" style="display:none">
+<li>org.apache.felix:org.osgi.core:jar:1.4.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep4" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>OSGi R4 Core Bundle</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>OSGi Service Platform Release 4 Core Interfaces and Classes.</p>
+<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">http://felix.apache.org/org.osgi.core/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.felix:org.osgi.compendium:jar:1.4.0 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep6" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>OSGi R4 Compendium Bundle</th></tr>
@@ -184,7 +174,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.compendium/">http://felix.apache.org/org.osgi.compendium/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.apache.felix:javax.servlet:jar:1.0.0 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep6" style="display:none">
+<li>org.apache.felix:javax.servlet:jar:1.0.0 (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep8" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Servlet 2.1 API</th></tr>
@@ -193,7 +183,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Servlet 2.1 API</p>
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/javax.servlet/">http://felix.apache.org/javax.servlet/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.felix:org.osgi.foundation:jar:1.2.0 (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep8" style="display:none">
+<li>org.apache.felix:org.osgi.foundation:jar:1.2.0 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep10" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>OSGi R4 Foundation EE</th></tr>
@@ -202,7 +192,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Apache felix is an OSGi implementation.</p>
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.foundation/">http://felix.apache.org/org.osgi.foundation/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>javax.servlet:javax.servlet-api:jar:3.1.0 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep10" style="display:none">
+<li>javax.servlet:javax.servlet-api:jar:3.1.0 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep12" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Java Servlet API</th></tr>
@@ -211,7 +201,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Java.net - The Source for Java Technology Collaboration</p>
 <p><b>URL: </b><a class="externalLink" href="http://servlet-spec.java.net">http://servlet-spec.java.net</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://glassfish.dev.java.net/nonav/public/CDDL+GPL.html">CDDL + GPLv2 with classpath exception</a></p></td></tr></table></div></li>
-<li>org.apache.sling:org.apache.sling.event:jar:4.0.0 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep12" style="display:none">
+<li>org.apache.sling:org.apache.sling.event:jar:4.0.0 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep14" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>org.apache.sling.event</th></tr>
@@ -219,7 +209,24 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>
 <p><b>Description: </b>POM was created by Sonatype Nexus</p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
-<li>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep14" style="display:none">
+<li>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep16" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Annotations for SCR</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Annotations for generating OSGi service descriptors.</p>
+<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">http://felix.apache.org/org.apache.felix.scr.annotations/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.slf4j:slf4j-api:jar:1.7.6 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep18" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>slf4j-api</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>There is currently no description associated with this project.</p>
+<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
+<li>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep20" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>jackson-databind</th></tr>
@@ -229,7 +236,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://github.com/FasterXML/jackson">http://github.com/FasterXML/jackson</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep16" style="display:none">
+<li>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3 (compile) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep22" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Jackson-annotations</th></tr>
@@ -238,7 +245,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Core annotations used for value types, used by Jackson data binding package.</p>
 <p><b>URL: </b><a class="externalLink" href="http://github.com/FasterXML/jackson">http://github.com/FasterXML/jackson</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.fasterxml.jackson.core:jackson-core:jar:2.8.3 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep18" style="display:none">
+<li>com.fasterxml.jackson.core:jackson-core:jar:2.8.3 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep24" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Jackson-core</th></tr>
@@ -247,7 +254,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Core Jackson abstractions, basic JSON streaming API implementation</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/FasterXML/jackson-core">https://github.com/FasterXML/jackson-core</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>javax.inject:javax.inject:jar:1 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep20" style="display:none">
+<li>javax.inject:javax.inject:jar:1 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep26" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>javax.inject</th></tr>
@@ -256,46 +263,18 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>The javax.inject API</p>
 <p><b>URL: </b><a class="externalLink" href="http://code.google.com/p/atinject/">http://code.google.com/p/atinject/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>com.adobe.aem:uber-jar:jar:obfuscated-apis:6.2.0 (provided) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep22" style="display:none"></td></tr></table></div></li>
-<li>org.apache.felix:org.osgi.core:jar:1.4.0 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep24" style="display:none">
+<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic:jar:1.0.0-SNAPSHOT (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep28" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>OSGi R4 Core Bundle</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>OSGi Service Platform Release 4 Core Interfaces and Classes.</p>
-<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">http://felix.apache.org/org.osgi.core/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep26" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Annotations for SCR</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Annotations for generating OSGi service descriptors.</p>
-<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">http://felix.apache.org/org.apache.felix.scr.annotations/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.slf4j:slf4j-api:jar:1.7.6 (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep28" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>slf4j-api</th></tr>
+<th>aem-monitoring-newrelic</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>There is currently no description associated with this project.</p>
-<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
-<li>com.newrelic.agent.java:newrelic-api:jar:3.25.0 (provided) <img id="_img31" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep30', '_img31' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep30" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>New Relic Java API Jar</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>The New Relic Java Agent Api.</p>
-<p><b>URL: </b><a class="externalLink" href="https://newrelic.com/">https://newrelic.com/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="https://newrelic.com/docs/java/java-agent-license">Unnamed</a></p></td></tr></table></div></li></ul></li></ul></div></div><a name="Licenses"></a>
+<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic</a></p>
+<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li></ul></li></ul></div></div><a name="Licenses"></a>
 <div class="section">
 <h2>Licenses<a name="Licenses"></a></h2>
-<p><b>Unnamed: </b>New Relic Java API Jar</p>
-<p><b>Unknown: </b>aem-monitoring-core, aem-monitoring-newrelic, org.apache.sling.event, slf4j-api</p>
+<p><b>Unknown: </b>aem-monitoring-core, aem-monitoring-newrelic, aem-monitoring-newrelic-installation, org.apache.sling.event, slf4j-api</p>
 <p><b>CDDL + GPLv2 with classpath exception: </b>Java Servlet API</p>
 <p><b>The Apache Software License, Version 2.0: </b>Annotations for SCR, Jackson-annotations, Jackson-core, OSGi R4 Compendium Bundle, OSGi R4 Core Bundle, OSGi R4 Foundation EE, Servlet 2.1 API, jackson-databind, javax.inject</p></div><a name="Dependency_File_Details"></a>
 <div class="section">
@@ -310,14 +289,6 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>Java Version</th>
 <th title="Indicates whether these dependencies have been compiled with debug information.">Debug Information</th></tr>
 <tr class="b">
-<td>uber-jar-6.2.0-obfuscated-apis.jar</td>
-<td>15.7 MB</td>
-<td>13910</td>
-<td>12546</td>
-<td>1096</td>
-<td>1.7</td>
-<td>Yes</td></tr>
-<tr class="a">
 <td>jackson-annotations-2.8.3.jar</td>
 <td>55.7 kB</td>
 <td>74</td>
@@ -325,7 +296,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>1</td>
 <td>1.6</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>jackson-core-2.8.3.jar</td>
 <td>281.1 kB</td>
 <td>117</td>
@@ -333,7 +304,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>9</td>
 <td>1.6</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>jackson-databind-2.8.3.jar</td>
 <td>1.2 MB</td>
 <td>615</td>
@@ -341,7 +312,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>20</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>aem-monitoring-core-1.0.0-SNAPSHOT.jar</td>
 <td>58.7 kB</td>
 <td>80</td>
@@ -349,15 +320,15 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>11</td>
 <td>1.8</td>
 <td>Yes</td></tr>
-<tr class="a">
-<td>newrelic-api-3.25.0.jar</td>
-<td>15.2 kB</td>
-<td>32</td>
-<td>25</td>
-<td>1</td>
-<td>1.6</td>
-<td>Yes</td></tr>
 <tr class="b">
+<td>aem-monitoring-newrelic-1.0.0-SNAPSHOT.jar</td>
+<td>8.8 kB</td>
+<td>21</td>
+<td>3</td>
+<td>1</td>
+<td>1.8</td>
+<td>Yes</td></tr>
+<tr class="a">
 <td>javax.inject-1.jar</td>
 <td>2.5 kB</td>
 <td>8</td>
@@ -365,7 +336,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>1</td>
 <td>1.5</td>
 <td>No</td></tr>
-<tr class="a">
+<tr class="b">
 <td>javax.servlet-api-3.1.0.jar</td>
 <td>95.8 kB</td>
 <td>103</td>
@@ -373,7 +344,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>4</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>javax.servlet-1.0.0.jar</td>
 <td>30.5 kB</td>
 <td>37</td>
@@ -381,7 +352,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>2</td>
 <td>1.4</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix.scr.annotations-1.9.8.jar</td>
 <td>32.9 kB</td>
 <td>44</td>
@@ -389,7 +360,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>3</td>
 <td>1.5</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.osgi.compendium-1.4.0.jar</td>
 <td>181.9 kB</td>
 <td>272</td>
@@ -397,7 +368,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>28</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.osgi.core-1.4.0.jar</td>
 <td>100 kB</td>
 <td>106</td>
@@ -405,7 +376,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>8</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.osgi.foundation-1.2.0.jar</td>
 <td>259.5 kB</td>
 <td>460</td>
@@ -413,7 +384,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>17</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.sling.event-4.0.0.jar</td>
 <td>294.9 kB</td>
 <td>197</td>
@@ -421,7 +392,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>17</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>slf4j-api-1.7.6.jar</td>
 <td>28.7 kB</td>
 <td>35</td>
@@ -429,7 +400,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>3</td>
 <td>1.5</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Total</th>
 <th>Size</th>
 <th>Entries</th>
@@ -437,30 +408,22 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>Packages</th>
 <th>Java Version</th>
 <th>Debug Information</th></tr>
-<tr class="b">
-<td>15</td>
-<td>18.4 MB</td>
-<td>16090</td>
-<td>14271</td>
-<td>1221</td>
-<td>1.8</td>
-<td>14</td></tr>
 <tr class="a">
-<td>compile: 13</td>
-<td>compile: 2.7 MB</td>
-<td>compile: 2148</td>
-<td>compile: 1700</td>
-<td>compile: 124</td>
-<td>-</td>
-<td>compile: 12</td></tr>
+<td>14</td>
+<td>2.7 MB</td>
+<td>2169</td>
+<td>1703</td>
+<td>125</td>
+<td>1.8</td>
+<td>13</td></tr>
 <tr class="b">
-<td>provided: 2</td>
-<td>provided: 15.8 MB</td>
-<td>provided: 13942</td>
-<td>provided: 12571</td>
-<td>provided: 1097</td>
+<td>compile: 14</td>
+<td>compile: 2.7 MB</td>
+<td>compile: 2169</td>
+<td>compile: 1703</td>
+<td>compile: 125</td>
 <td>-</td>
-<td>provided: 2</td></tr></table></div><a name="Dependency_Repository_Locations"></a>
+<td>compile: 13</td></tr></table></div><a name="Dependency_Repository_Locations"></a>
 <div class="section">
 <h2>Dependency Repository Locations<a name="Dependency_Repository_Locations"></a></h2>
 <table border="0" class="bodyTable">
@@ -542,15 +505,6 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>citytech-public-releases</th>
 <th>citytech-public-snapshots</th></tr>
 <tr class="b">
-<td>com.adobe.aem:uber-jar:jar:obfuscated-apis:6.2.0</td>
-<td>-</td>
-<td>-</td>
-<td><a class="externalLink" href="http://nexus.citytech.ctmsp.com/content/groups/public/com/adobe/aem/uber-jar/6.2.0/uber-jar-6.2.0-obfuscated-apis.jar"><img alt="Found at http://nexus.citytech.ctmsp.com/content/groups/public" src="images/icon_success_sml.gif" /></a></td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td></tr>
-<tr class="a">
 <td>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.8.3/jackson-annotations-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -559,7 +513,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>com.fasterxml.jackson.core:jackson-core:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.8.3/jackson-core-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -568,7 +522,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.8.3/jackson-databind-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -577,7 +531,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>com.icfolson.aem.monitoring:aem-monitoring-core:jar:1.0.0-SNAPSHOT</td>
 <td>-</td>
 <td>-</td>
@@ -586,16 +540,16 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
-<td>com.newrelic.agent.java:newrelic-api:jar:3.25.0</td>
-<td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/newrelic/agent/java/newrelic-api/3.25.0/newrelic-api-3.25.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<tr class="b">
+<td>com.icfolson.aem.monitoring:aem-monitoring-newrelic:jar:1.0.0-SNAPSHOT</td>
 <td>-</td>
-<td><a class="externalLink" href="http://nexus.citytech.ctmsp.com/content/groups/public/com/newrelic/agent/java/newrelic-api/3.25.0/newrelic-api-3.25.0.jar"><img alt="Found at http://nexus.citytech.ctmsp.com/content/groups/public" src="images/icon_success_sml.gif" /></a></td>
+<td>-</td>
+<td>-</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>javax.inject:javax.inject:jar:1</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/javax/inject/javax.inject/1/javax.inject-1.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -604,7 +558,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>javax.servlet:javax.servlet-api:jar:3.1.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -613,7 +567,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:javax.servlet:jar:1.0.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/javax.servlet/1.0.0/javax.servlet-1.0.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -622,7 +576,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.apache.felix.scr.annotations/1.9.8/org.apache.felix.scr.annotations-1.9.8.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -631,7 +585,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:org.osgi.compendium:jar:1.4.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.compendium/1.4.0/org.osgi.compendium-1.4.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -640,7 +594,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix:org.osgi.core:jar:1.4.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.core/1.4.0/org.osgi.core-1.4.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -649,7 +603,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:org.osgi.foundation:jar:1.2.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.foundation/1.2.0/org.osgi.foundation-1.2.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -658,7 +612,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.sling:org.apache.sling.event:jar:4.0.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/sling/org.apache.sling.event/4.0.0/org.apache.sling.event-4.0.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -667,7 +621,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.slf4j:slf4j-api:jar:1.7.6</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7.6.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -676,7 +630,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Total</th>
 <th>central</th>
 <th>adobe</th>
@@ -685,11 +639,11 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>jvnet-nexus-snapshots</th>
 <th>citytech-public-releases</th>
 <th>citytech-public-snapshots</th></tr>
-<tr class="b">
-<td>15 (compile: 13, provided: 2)</td>
-<td>13</td>
+<tr class="a">
+<td>14 (compile: 14)</td>
+<td>12</td>
 <td>0</td>
-<td>14</td>
+<td>12</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
@@ -713,48 +667,11 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>jar</td>
 <td>-</td></tr>
 <tr class="a">
-<td>org.apache.felix</td>
-<td><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">org.apache.felix.scr.annotations</a></td>
-<td>1.9.8</td>
+<td>com.icfolson.aem.monitoring</td>
+<td><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">aem-monitoring-newrelic</a></td>
+<td>1.0.0-SNAPSHOT</td>
 <td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="b">
-<td>org.apache.felix</td>
-<td><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">org.osgi.core</a></td>
-<td>1.4.0</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="a">
-<td>org.slf4j</td>
-<td>slf4j-api</td>
-<td>1.7.6</td>
-<td>jar</td>
-<td>-</td></tr></table></div><a name="Project_Dependencies_provided"></a>
-<div class="section">
-<h3>provided<a name="provided"></a></h3>
-<p>The following is a list of provided dependencies for this project. These dependencies are required to compile the application, but should be provided by default when using the library:</p>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>GroupId</th>
-<th>ArtifactId</th>
-<th>Version</th>
-<th>Classifier</th>
-<th>Type</th>
-<th>Licenses</th></tr>
-<tr class="b">
-<td>com.adobe.aem</td>
-<td>uber-jar</td>
-<td>6.2.0</td>
-<td>obfuscated-apis</td>
-<td>jar</td>
-<td>-</td></tr>
-<tr class="a">
-<td>com.newrelic.agent.java</td>
-<td><a class="externalLink" href="https://newrelic.com/">newrelic-api</a></td>
-<td>3.25.0</td>
-<td>-</td>
-<td>jar</td>
-<td><a class="externalLink" href="https://newrelic.com/docs/java/java-agent-license">null</a></td></tr></table></div></div><a name="Project_Transitive_Dependencies"></a>
+<td>-</td></tr></table></div></div><a name="Project_Transitive_Dependencies"></a>
 <div class="section">
 <h2>Project Transitive Dependencies<a name="Project_Transitive_Dependencies"></a></h2>
 <p>The following is a list of transitive dependencies for this project. Transitive dependencies are the dependencies of the project dependencies.</p><a name="Project_Transitive_Dependencies_compile"></a>
@@ -806,7 +723,19 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
 <tr class="b">
 <td>org.apache.felix</td>
+<td><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">org.apache.felix.scr.annotations</a></td>
+<td>1.9.8</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.felix</td>
 <td><a class="externalLink" href="http://felix.apache.org/org.osgi.compendium/">org.osgi.compendium</a></td>
+<td>1.4.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.felix</td>
+<td><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">org.osgi.core</a></td>
 <td>1.4.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
@@ -820,6 +749,12 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>org.apache.sling</td>
 <td>org.apache.sling.event</td>
 <td>4.0.0</td>
+<td>jar</td>
+<td>-</td></tr>
+<tr class="a">
+<td>org.slf4j</td>
+<td>slf4j-api</td>
+<td>1.7.6</td>
 <td>jar</td>
 <td>-</td></tr></table></div></div><a name="Project_Dependency_Graph"></a>
 <div class="section">
@@ -847,14 +782,14 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <div class="section">
 <h3>Dependency Tree<a name="Dependency_Tree"></a></h3>
 <ul>
-<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic:bundle:1.0.0-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
+<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic-installation:jar:1.0.0-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>aem-monitoring-newrelic</th></tr>
+<th>aem-monitoring-newrelic-installation</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>There is currently no description associated with this project.</p>
-<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic</a></p>
+<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic-installation">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic-installation</a></p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div>
 <ul>
 <li>com.icfolson.aem.monitoring:aem-monitoring-core:jar:1.0.0-SNAPSHOT (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep2" style="display:none">
@@ -867,7 +802,16 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-core">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-core</a></p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div>
 <ul>
-<li>org.apache.felix:org.osgi.compendium:jar:1.4.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep4" style="display:none">
+<li>org.apache.felix:org.osgi.core:jar:1.4.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep4" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>OSGi R4 Core Bundle</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>OSGi Service Platform Release 4 Core Interfaces and Classes.</p>
+<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">http://felix.apache.org/org.osgi.core/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.felix:org.osgi.compendium:jar:1.4.0 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep6" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>OSGi R4 Compendium Bundle</th></tr>
@@ -877,7 +821,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.compendium/">http://felix.apache.org/org.osgi.compendium/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.apache.felix:javax.servlet:jar:1.0.0 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep6" style="display:none">
+<li>org.apache.felix:javax.servlet:jar:1.0.0 (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep8" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Servlet 2.1 API</th></tr>
@@ -886,7 +830,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Servlet 2.1 API</p>
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/javax.servlet/">http://felix.apache.org/javax.servlet/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.felix:org.osgi.foundation:jar:1.2.0 (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep8" style="display:none">
+<li>org.apache.felix:org.osgi.foundation:jar:1.2.0 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep10" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>OSGi R4 Foundation EE</th></tr>
@@ -895,7 +839,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Apache felix is an OSGi implementation.</p>
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.foundation/">http://felix.apache.org/org.osgi.foundation/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>javax.servlet:javax.servlet-api:jar:3.1.0 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep10" style="display:none">
+<li>javax.servlet:javax.servlet-api:jar:3.1.0 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep12" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Java Servlet API</th></tr>
@@ -904,7 +848,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Java.net - The Source for Java Technology Collaboration</p>
 <p><b>URL: </b><a class="externalLink" href="http://servlet-spec.java.net">http://servlet-spec.java.net</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://glassfish.dev.java.net/nonav/public/CDDL+GPL.html">CDDL + GPLv2 with classpath exception</a></p></td></tr></table></div></li>
-<li>org.apache.sling:org.apache.sling.event:jar:4.0.0 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep12" style="display:none">
+<li>org.apache.sling:org.apache.sling.event:jar:4.0.0 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep14" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>org.apache.sling.event</th></tr>
@@ -912,7 +856,24 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>
 <p><b>Description: </b>POM was created by Sonatype Nexus</p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
-<li>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep14" style="display:none">
+<li>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep16" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Annotations for SCR</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Annotations for generating OSGi service descriptors.</p>
+<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">http://felix.apache.org/org.apache.felix.scr.annotations/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.slf4j:slf4j-api:jar:1.7.6 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep18" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>slf4j-api</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>There is currently no description associated with this project.</p>
+<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
+<li>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep20" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>jackson-databind</th></tr>
@@ -922,7 +883,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://github.com/FasterXML/jackson">http://github.com/FasterXML/jackson</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep16" style="display:none">
+<li>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3 (compile) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep22" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Jackson-annotations</th></tr>
@@ -931,7 +892,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Core annotations used for value types, used by Jackson data binding package.</p>
 <p><b>URL: </b><a class="externalLink" href="http://github.com/FasterXML/jackson">http://github.com/FasterXML/jackson</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.fasterxml.jackson.core:jackson-core:jar:2.8.3 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep18" style="display:none">
+<li>com.fasterxml.jackson.core:jackson-core:jar:2.8.3 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep24" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Jackson-core</th></tr>
@@ -940,7 +901,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Core Jackson abstractions, basic JSON streaming API implementation</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/FasterXML/jackson-core">https://github.com/FasterXML/jackson-core</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>javax.inject:javax.inject:jar:1 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep20" style="display:none">
+<li>javax.inject:javax.inject:jar:1 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep26" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>javax.inject</th></tr>
@@ -949,46 +910,18 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>The javax.inject API</p>
 <p><b>URL: </b><a class="externalLink" href="http://code.google.com/p/atinject/">http://code.google.com/p/atinject/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>com.adobe.aem:uber-jar:jar:obfuscated-apis:6.2.0 (provided) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep22" style="display:none"></td></tr></table></div></li>
-<li>org.apache.felix:org.osgi.core:jar:1.4.0 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep24" style="display:none">
+<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic:jar:1.0.0-SNAPSHOT (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep28" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>OSGi R4 Core Bundle</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>OSGi Service Platform Release 4 Core Interfaces and Classes.</p>
-<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">http://felix.apache.org/org.osgi.core/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep26" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Annotations for SCR</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Annotations for generating OSGi service descriptors.</p>
-<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">http://felix.apache.org/org.apache.felix.scr.annotations/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.slf4j:slf4j-api:jar:1.7.6 (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep28" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>slf4j-api</th></tr>
+<th>aem-monitoring-newrelic</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>There is currently no description associated with this project.</p>
-<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
-<li>com.newrelic.agent.java:newrelic-api:jar:3.25.0 (provided) <img id="_img31" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep30', '_img31' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep30" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>New Relic Java API Jar</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>The New Relic Java Agent Api.</p>
-<p><b>URL: </b><a class="externalLink" href="https://newrelic.com/">https://newrelic.com/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="https://newrelic.com/docs/java/java-agent-license">Unnamed</a></p></td></tr></table></div></li></ul></li></ul></div></div><a name="Licenses"></a>
+<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic</a></p>
+<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li></ul></li></ul></div></div><a name="Licenses"></a>
 <div class="section">
 <h2>Licenses<a name="Licenses"></a></h2>
-<p><b>Unnamed: </b>New Relic Java API Jar</p>
-<p><b>Unknown: </b>aem-monitoring-core, aem-monitoring-newrelic, org.apache.sling.event, slf4j-api</p>
+<p><b>Unknown: </b>aem-monitoring-core, aem-monitoring-newrelic, aem-monitoring-newrelic-installation, org.apache.sling.event, slf4j-api</p>
 <p><b>CDDL + GPLv2 with classpath exception: </b>Java Servlet API</p>
 <p><b>The Apache Software License, Version 2.0: </b>Annotations for SCR, Jackson-annotations, Jackson-core, OSGi R4 Compendium Bundle, OSGi R4 Core Bundle, OSGi R4 Foundation EE, Servlet 2.1 API, jackson-databind, javax.inject</p></div><a name="Dependency_File_Details"></a>
 <div class="section">
@@ -1003,14 +936,6 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>Java Version</th>
 <th title="Indicates whether these dependencies have been compiled with debug information.">Debug Information</th></tr>
 <tr class="b">
-<td>uber-jar-6.2.0-obfuscated-apis.jar</td>
-<td>15.7 MB</td>
-<td>13910</td>
-<td>12546</td>
-<td>1096</td>
-<td>1.7</td>
-<td>Yes</td></tr>
-<tr class="a">
 <td>jackson-annotations-2.8.3.jar</td>
 <td>55.7 kB</td>
 <td>74</td>
@@ -1018,7 +943,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>1</td>
 <td>1.6</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>jackson-core-2.8.3.jar</td>
 <td>281.1 kB</td>
 <td>117</td>
@@ -1026,7 +951,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>9</td>
 <td>1.6</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>jackson-databind-2.8.3.jar</td>
 <td>1.2 MB</td>
 <td>615</td>
@@ -1034,7 +959,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>20</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>aem-monitoring-core-1.0.0-SNAPSHOT.jar</td>
 <td>58.7 kB</td>
 <td>80</td>
@@ -1042,15 +967,15 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>11</td>
 <td>1.8</td>
 <td>Yes</td></tr>
-<tr class="a">
-<td>newrelic-api-3.25.0.jar</td>
-<td>15.2 kB</td>
-<td>32</td>
-<td>25</td>
-<td>1</td>
-<td>1.6</td>
-<td>Yes</td></tr>
 <tr class="b">
+<td>aem-monitoring-newrelic-1.0.0-SNAPSHOT.jar</td>
+<td>8.8 kB</td>
+<td>21</td>
+<td>3</td>
+<td>1</td>
+<td>1.8</td>
+<td>Yes</td></tr>
+<tr class="a">
 <td>javax.inject-1.jar</td>
 <td>2.5 kB</td>
 <td>8</td>
@@ -1058,7 +983,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>1</td>
 <td>1.5</td>
 <td>No</td></tr>
-<tr class="a">
+<tr class="b">
 <td>javax.servlet-api-3.1.0.jar</td>
 <td>95.8 kB</td>
 <td>103</td>
@@ -1066,7 +991,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>4</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>javax.servlet-1.0.0.jar</td>
 <td>30.5 kB</td>
 <td>37</td>
@@ -1074,7 +999,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>2</td>
 <td>1.4</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix.scr.annotations-1.9.8.jar</td>
 <td>32.9 kB</td>
 <td>44</td>
@@ -1082,7 +1007,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>3</td>
 <td>1.5</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.osgi.compendium-1.4.0.jar</td>
 <td>181.9 kB</td>
 <td>272</td>
@@ -1090,7 +1015,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>28</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.osgi.core-1.4.0.jar</td>
 <td>100 kB</td>
 <td>106</td>
@@ -1098,7 +1023,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>8</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.osgi.foundation-1.2.0.jar</td>
 <td>259.5 kB</td>
 <td>460</td>
@@ -1106,7 +1031,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>17</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.sling.event-4.0.0.jar</td>
 <td>294.9 kB</td>
 <td>197</td>
@@ -1114,7 +1039,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>17</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>slf4j-api-1.7.6.jar</td>
 <td>28.7 kB</td>
 <td>35</td>
@@ -1122,7 +1047,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>3</td>
 <td>1.5</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Total</th>
 <th>Size</th>
 <th>Entries</th>
@@ -1130,30 +1055,22 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>Packages</th>
 <th>Java Version</th>
 <th>Debug Information</th></tr>
-<tr class="b">
-<td>15</td>
-<td>18.4 MB</td>
-<td>16090</td>
-<td>14271</td>
-<td>1221</td>
-<td>1.8</td>
-<td>14</td></tr>
 <tr class="a">
-<td>compile: 13</td>
-<td>compile: 2.7 MB</td>
-<td>compile: 2148</td>
-<td>compile: 1700</td>
-<td>compile: 124</td>
-<td>-</td>
-<td>compile: 12</td></tr>
+<td>14</td>
+<td>2.7 MB</td>
+<td>2169</td>
+<td>1703</td>
+<td>125</td>
+<td>1.8</td>
+<td>13</td></tr>
 <tr class="b">
-<td>provided: 2</td>
-<td>provided: 15.8 MB</td>
-<td>provided: 13942</td>
-<td>provided: 12571</td>
-<td>provided: 1097</td>
+<td>compile: 14</td>
+<td>compile: 2.7 MB</td>
+<td>compile: 2169</td>
+<td>compile: 1703</td>
+<td>compile: 125</td>
 <td>-</td>
-<td>provided: 2</td></tr></table></div><a name="Dependency_Repository_Locations"></a>
+<td>compile: 13</td></tr></table></div><a name="Dependency_Repository_Locations"></a>
 <div class="section">
 <h2>Dependency Repository Locations<a name="Dependency_Repository_Locations"></a></h2>
 <table border="0" class="bodyTable">
@@ -1235,15 +1152,6 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>citytech-public-releases</th>
 <th>citytech-public-snapshots</th></tr>
 <tr class="b">
-<td>com.adobe.aem:uber-jar:jar:obfuscated-apis:6.2.0</td>
-<td>-</td>
-<td>-</td>
-<td><a class="externalLink" href="http://nexus.citytech.ctmsp.com/content/groups/public/com/adobe/aem/uber-jar/6.2.0/uber-jar-6.2.0-obfuscated-apis.jar"><img alt="Found at http://nexus.citytech.ctmsp.com/content/groups/public" src="images/icon_success_sml.gif" /></a></td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td></tr>
-<tr class="a">
 <td>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.8.3/jackson-annotations-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1252,7 +1160,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>com.fasterxml.jackson.core:jackson-core:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.8.3/jackson-core-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1261,7 +1169,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.8.3/jackson-databind-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1270,7 +1178,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>com.icfolson.aem.monitoring:aem-monitoring-core:jar:1.0.0-SNAPSHOT</td>
 <td>-</td>
 <td>-</td>
@@ -1279,16 +1187,16 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
-<td>com.newrelic.agent.java:newrelic-api:jar:3.25.0</td>
-<td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/newrelic/agent/java/newrelic-api/3.25.0/newrelic-api-3.25.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<tr class="b">
+<td>com.icfolson.aem.monitoring:aem-monitoring-newrelic:jar:1.0.0-SNAPSHOT</td>
 <td>-</td>
-<td><a class="externalLink" href="http://nexus.citytech.ctmsp.com/content/groups/public/com/newrelic/agent/java/newrelic-api/3.25.0/newrelic-api-3.25.0.jar"><img alt="Found at http://nexus.citytech.ctmsp.com/content/groups/public" src="images/icon_success_sml.gif" /></a></td>
+<td>-</td>
+<td>-</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>javax.inject:javax.inject:jar:1</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/javax/inject/javax.inject/1/javax.inject-1.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1297,7 +1205,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>javax.servlet:javax.servlet-api:jar:3.1.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1306,7 +1214,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:javax.servlet:jar:1.0.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/javax.servlet/1.0.0/javax.servlet-1.0.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1315,7 +1223,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.apache.felix.scr.annotations/1.9.8/org.apache.felix.scr.annotations-1.9.8.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1324,7 +1232,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:org.osgi.compendium:jar:1.4.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.compendium/1.4.0/org.osgi.compendium-1.4.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1333,7 +1241,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix:org.osgi.core:jar:1.4.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.core/1.4.0/org.osgi.core-1.4.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1342,7 +1250,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:org.osgi.foundation:jar:1.2.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.foundation/1.2.0/org.osgi.foundation-1.2.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1351,7 +1259,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.sling:org.apache.sling.event:jar:4.0.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/sling/org.apache.sling.event/4.0.0/org.apache.sling.event-4.0.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1360,7 +1268,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.slf4j:slf4j-api:jar:1.7.6</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7.6.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1369,7 +1277,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Total</th>
 <th>central</th>
 <th>adobe</th>
@@ -1378,11 +1286,11 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>jvnet-nexus-snapshots</th>
 <th>citytech-public-releases</th>
 <th>citytech-public-snapshots</th></tr>
-<tr class="b">
-<td>15 (compile: 13, provided: 2)</td>
-<td>13</td>
+<tr class="a">
+<td>14 (compile: 14)</td>
+<td>12</td>
 <td>0</td>
-<td>14</td>
+<td>12</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
@@ -1406,48 +1314,11 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>jar</td>
 <td>-</td></tr>
 <tr class="a">
-<td>org.apache.felix</td>
-<td><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">org.apache.felix.scr.annotations</a></td>
-<td>1.9.8</td>
+<td>com.icfolson.aem.monitoring</td>
+<td><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">aem-monitoring-newrelic</a></td>
+<td>1.0.0-SNAPSHOT</td>
 <td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="b">
-<td>org.apache.felix</td>
-<td><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">org.osgi.core</a></td>
-<td>1.4.0</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="a">
-<td>org.slf4j</td>
-<td>slf4j-api</td>
-<td>1.7.6</td>
-<td>jar</td>
-<td>-</td></tr></table></div><a name="Project_Dependencies_provided"></a>
-<div class="section">
-<h3>provided<a name="provided"></a></h3>
-<p>The following is a list of provided dependencies for this project. These dependencies are required to compile the application, but should be provided by default when using the library:</p>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>GroupId</th>
-<th>ArtifactId</th>
-<th>Version</th>
-<th>Classifier</th>
-<th>Type</th>
-<th>Licenses</th></tr>
-<tr class="b">
-<td>com.adobe.aem</td>
-<td>uber-jar</td>
-<td>6.2.0</td>
-<td>obfuscated-apis</td>
-<td>jar</td>
-<td>-</td></tr>
-<tr class="a">
-<td>com.newrelic.agent.java</td>
-<td><a class="externalLink" href="https://newrelic.com/">newrelic-api</a></td>
-<td>3.25.0</td>
-<td>-</td>
-<td>jar</td>
-<td><a class="externalLink" href="https://newrelic.com/docs/java/java-agent-license">null</a></td></tr></table></div></div><a name="Project_Transitive_Dependencies"></a>
+<td>-</td></tr></table></div></div><a name="Project_Transitive_Dependencies"></a>
 <div class="section">
 <h2>Project Transitive Dependencies<a name="Project_Transitive_Dependencies"></a></h2>
 <p>The following is a list of transitive dependencies for this project. Transitive dependencies are the dependencies of the project dependencies.</p><a name="Project_Transitive_Dependencies_compile"></a>
@@ -1499,7 +1370,19 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
 <tr class="b">
 <td>org.apache.felix</td>
+<td><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">org.apache.felix.scr.annotations</a></td>
+<td>1.9.8</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.felix</td>
 <td><a class="externalLink" href="http://felix.apache.org/org.osgi.compendium/">org.osgi.compendium</a></td>
+<td>1.4.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.felix</td>
+<td><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">org.osgi.core</a></td>
 <td>1.4.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
@@ -1513,6 +1396,12 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>org.apache.sling</td>
 <td>org.apache.sling.event</td>
 <td>4.0.0</td>
+<td>jar</td>
+<td>-</td></tr>
+<tr class="a">
+<td>org.slf4j</td>
+<td>slf4j-api</td>
+<td>1.7.6</td>
 <td>jar</td>
 <td>-</td></tr></table></div></div><a name="Project_Dependency_Graph"></a>
 <div class="section">
@@ -1540,14 +1429,14 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <div class="section">
 <h3>Dependency Tree<a name="Dependency_Tree"></a></h3>
 <ul>
-<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic:bundle:1.0.0-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
+<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic-installation:jar:1.0.0-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>aem-monitoring-newrelic</th></tr>
+<th>aem-monitoring-newrelic-installation</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>There is currently no description associated with this project.</p>
-<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic</a></p>
+<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic-installation">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic-installation</a></p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div>
 <ul>
 <li>com.icfolson.aem.monitoring:aem-monitoring-core:jar:1.0.0-SNAPSHOT (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep2" style="display:none">
@@ -1560,7 +1449,16 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-core">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-core</a></p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div>
 <ul>
-<li>org.apache.felix:org.osgi.compendium:jar:1.4.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep4" style="display:none">
+<li>org.apache.felix:org.osgi.core:jar:1.4.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep4" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>OSGi R4 Core Bundle</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>OSGi Service Platform Release 4 Core Interfaces and Classes.</p>
+<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">http://felix.apache.org/org.osgi.core/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.felix:org.osgi.compendium:jar:1.4.0 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep6" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>OSGi R4 Compendium Bundle</th></tr>
@@ -1570,7 +1468,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.compendium/">http://felix.apache.org/org.osgi.compendium/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.apache.felix:javax.servlet:jar:1.0.0 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep6" style="display:none">
+<li>org.apache.felix:javax.servlet:jar:1.0.0 (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep8" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Servlet 2.1 API</th></tr>
@@ -1579,7 +1477,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Servlet 2.1 API</p>
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/javax.servlet/">http://felix.apache.org/javax.servlet/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.felix:org.osgi.foundation:jar:1.2.0 (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep8" style="display:none">
+<li>org.apache.felix:org.osgi.foundation:jar:1.2.0 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep10" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>OSGi R4 Foundation EE</th></tr>
@@ -1588,7 +1486,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Apache felix is an OSGi implementation.</p>
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.foundation/">http://felix.apache.org/org.osgi.foundation/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>javax.servlet:javax.servlet-api:jar:3.1.0 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep10" style="display:none">
+<li>javax.servlet:javax.servlet-api:jar:3.1.0 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep12" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Java Servlet API</th></tr>
@@ -1597,7 +1495,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Java.net - The Source for Java Technology Collaboration</p>
 <p><b>URL: </b><a class="externalLink" href="http://servlet-spec.java.net">http://servlet-spec.java.net</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://glassfish.dev.java.net/nonav/public/CDDL+GPL.html">CDDL + GPLv2 with classpath exception</a></p></td></tr></table></div></li>
-<li>org.apache.sling:org.apache.sling.event:jar:4.0.0 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep12" style="display:none">
+<li>org.apache.sling:org.apache.sling.event:jar:4.0.0 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep14" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>org.apache.sling.event</th></tr>
@@ -1605,7 +1503,24 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>
 <p><b>Description: </b>POM was created by Sonatype Nexus</p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
-<li>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep14" style="display:none">
+<li>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep16" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Annotations for SCR</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Annotations for generating OSGi service descriptors.</p>
+<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">http://felix.apache.org/org.apache.felix.scr.annotations/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.slf4j:slf4j-api:jar:1.7.6 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep18" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>slf4j-api</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>There is currently no description associated with this project.</p>
+<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
+<li>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep20" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>jackson-databind</th></tr>
@@ -1615,7 +1530,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://github.com/FasterXML/jackson">http://github.com/FasterXML/jackson</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep16" style="display:none">
+<li>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3 (compile) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep22" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Jackson-annotations</th></tr>
@@ -1624,7 +1539,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Core annotations used for value types, used by Jackson data binding package.</p>
 <p><b>URL: </b><a class="externalLink" href="http://github.com/FasterXML/jackson">http://github.com/FasterXML/jackson</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.fasterxml.jackson.core:jackson-core:jar:2.8.3 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep18" style="display:none">
+<li>com.fasterxml.jackson.core:jackson-core:jar:2.8.3 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep24" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Jackson-core</th></tr>
@@ -1633,7 +1548,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Core Jackson abstractions, basic JSON streaming API implementation</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/FasterXML/jackson-core">https://github.com/FasterXML/jackson-core</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>javax.inject:javax.inject:jar:1 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep20" style="display:none">
+<li>javax.inject:javax.inject:jar:1 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep26" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>javax.inject</th></tr>
@@ -1642,46 +1557,18 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>The javax.inject API</p>
 <p><b>URL: </b><a class="externalLink" href="http://code.google.com/p/atinject/">http://code.google.com/p/atinject/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>com.adobe.aem:uber-jar:jar:obfuscated-apis:6.2.0 (provided) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep22" style="display:none"></td></tr></table></div></li>
-<li>org.apache.felix:org.osgi.core:jar:1.4.0 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep24" style="display:none">
+<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic:jar:1.0.0-SNAPSHOT (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep28" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>OSGi R4 Core Bundle</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>OSGi Service Platform Release 4 Core Interfaces and Classes.</p>
-<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">http://felix.apache.org/org.osgi.core/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep26" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Annotations for SCR</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Annotations for generating OSGi service descriptors.</p>
-<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">http://felix.apache.org/org.apache.felix.scr.annotations/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.slf4j:slf4j-api:jar:1.7.6 (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep28" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>slf4j-api</th></tr>
+<th>aem-monitoring-newrelic</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>There is currently no description associated with this project.</p>
-<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
-<li>com.newrelic.agent.java:newrelic-api:jar:3.25.0 (provided) <img id="_img31" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep30', '_img31' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep30" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>New Relic Java API Jar</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>The New Relic Java Agent Api.</p>
-<p><b>URL: </b><a class="externalLink" href="https://newrelic.com/">https://newrelic.com/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="https://newrelic.com/docs/java/java-agent-license">Unnamed</a></p></td></tr></table></div></li></ul></li></ul></div></div><a name="Licenses"></a>
+<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic</a></p>
+<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li></ul></li></ul></div></div><a name="Licenses"></a>
 <div class="section">
 <h2>Licenses<a name="Licenses"></a></h2>
-<p><b>Unnamed: </b>New Relic Java API Jar</p>
-<p><b>Unknown: </b>aem-monitoring-core, aem-monitoring-newrelic, org.apache.sling.event, slf4j-api</p>
+<p><b>Unknown: </b>aem-monitoring-core, aem-monitoring-newrelic, aem-monitoring-newrelic-installation, org.apache.sling.event, slf4j-api</p>
 <p><b>CDDL + GPLv2 with classpath exception: </b>Java Servlet API</p>
 <p><b>The Apache Software License, Version 2.0: </b>Annotations for SCR, Jackson-annotations, Jackson-core, OSGi R4 Compendium Bundle, OSGi R4 Core Bundle, OSGi R4 Foundation EE, Servlet 2.1 API, jackson-databind, javax.inject</p></div><a name="Dependency_File_Details"></a>
 <div class="section">
@@ -1696,14 +1583,6 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>Java Version</th>
 <th title="Indicates whether these dependencies have been compiled with debug information.">Debug Information</th></tr>
 <tr class="b">
-<td>uber-jar-6.2.0-obfuscated-apis.jar</td>
-<td>15.7 MB</td>
-<td>13910</td>
-<td>12546</td>
-<td>1096</td>
-<td>1.7</td>
-<td>Yes</td></tr>
-<tr class="a">
 <td>jackson-annotations-2.8.3.jar</td>
 <td>55.7 kB</td>
 <td>74</td>
@@ -1711,7 +1590,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>1</td>
 <td>1.6</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>jackson-core-2.8.3.jar</td>
 <td>281.1 kB</td>
 <td>117</td>
@@ -1719,7 +1598,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>9</td>
 <td>1.6</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>jackson-databind-2.8.3.jar</td>
 <td>1.2 MB</td>
 <td>615</td>
@@ -1727,7 +1606,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>20</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>aem-monitoring-core-1.0.0-SNAPSHOT.jar</td>
 <td>58.7 kB</td>
 <td>80</td>
@@ -1735,15 +1614,15 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>11</td>
 <td>1.8</td>
 <td>Yes</td></tr>
-<tr class="a">
-<td>newrelic-api-3.25.0.jar</td>
-<td>15.2 kB</td>
-<td>32</td>
-<td>25</td>
-<td>1</td>
-<td>1.6</td>
-<td>Yes</td></tr>
 <tr class="b">
+<td>aem-monitoring-newrelic-1.0.0-SNAPSHOT.jar</td>
+<td>8.8 kB</td>
+<td>21</td>
+<td>3</td>
+<td>1</td>
+<td>1.8</td>
+<td>Yes</td></tr>
+<tr class="a">
 <td>javax.inject-1.jar</td>
 <td>2.5 kB</td>
 <td>8</td>
@@ -1751,7 +1630,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>1</td>
 <td>1.5</td>
 <td>No</td></tr>
-<tr class="a">
+<tr class="b">
 <td>javax.servlet-api-3.1.0.jar</td>
 <td>95.8 kB</td>
 <td>103</td>
@@ -1759,7 +1638,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>4</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>javax.servlet-1.0.0.jar</td>
 <td>30.5 kB</td>
 <td>37</td>
@@ -1767,7 +1646,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>2</td>
 <td>1.4</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix.scr.annotations-1.9.8.jar</td>
 <td>32.9 kB</td>
 <td>44</td>
@@ -1775,7 +1654,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>3</td>
 <td>1.5</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.osgi.compendium-1.4.0.jar</td>
 <td>181.9 kB</td>
 <td>272</td>
@@ -1783,7 +1662,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>28</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.osgi.core-1.4.0.jar</td>
 <td>100 kB</td>
 <td>106</td>
@@ -1791,7 +1670,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>8</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.osgi.foundation-1.2.0.jar</td>
 <td>259.5 kB</td>
 <td>460</td>
@@ -1799,7 +1678,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>17</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.sling.event-4.0.0.jar</td>
 <td>294.9 kB</td>
 <td>197</td>
@@ -1807,7 +1686,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>17</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>slf4j-api-1.7.6.jar</td>
 <td>28.7 kB</td>
 <td>35</td>
@@ -1815,7 +1694,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>3</td>
 <td>1.5</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Total</th>
 <th>Size</th>
 <th>Entries</th>
@@ -1823,30 +1702,22 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>Packages</th>
 <th>Java Version</th>
 <th>Debug Information</th></tr>
-<tr class="b">
-<td>15</td>
-<td>18.4 MB</td>
-<td>16090</td>
-<td>14271</td>
-<td>1221</td>
-<td>1.8</td>
-<td>14</td></tr>
 <tr class="a">
-<td>compile: 13</td>
-<td>compile: 2.7 MB</td>
-<td>compile: 2148</td>
-<td>compile: 1700</td>
-<td>compile: 124</td>
-<td>-</td>
-<td>compile: 12</td></tr>
+<td>14</td>
+<td>2.7 MB</td>
+<td>2169</td>
+<td>1703</td>
+<td>125</td>
+<td>1.8</td>
+<td>13</td></tr>
 <tr class="b">
-<td>provided: 2</td>
-<td>provided: 15.8 MB</td>
-<td>provided: 13942</td>
-<td>provided: 12571</td>
-<td>provided: 1097</td>
+<td>compile: 14</td>
+<td>compile: 2.7 MB</td>
+<td>compile: 2169</td>
+<td>compile: 1703</td>
+<td>compile: 125</td>
 <td>-</td>
-<td>provided: 2</td></tr></table></div><a name="Dependency_Repository_Locations"></a>
+<td>compile: 13</td></tr></table></div><a name="Dependency_Repository_Locations"></a>
 <div class="section">
 <h2>Dependency Repository Locations<a name="Dependency_Repository_Locations"></a></h2>
 <table border="0" class="bodyTable">
@@ -1928,15 +1799,6 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>citytech-public-releases</th>
 <th>citytech-public-snapshots</th></tr>
 <tr class="b">
-<td>com.adobe.aem:uber-jar:jar:obfuscated-apis:6.2.0</td>
-<td>-</td>
-<td>-</td>
-<td><a class="externalLink" href="http://nexus.citytech.ctmsp.com/content/groups/public/com/adobe/aem/uber-jar/6.2.0/uber-jar-6.2.0-obfuscated-apis.jar"><img alt="Found at http://nexus.citytech.ctmsp.com/content/groups/public" src="images/icon_success_sml.gif" /></a></td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td></tr>
-<tr class="a">
 <td>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.8.3/jackson-annotations-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1945,7 +1807,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>com.fasterxml.jackson.core:jackson-core:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.8.3/jackson-core-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1954,7 +1816,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.8.3/jackson-databind-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1963,7 +1825,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>com.icfolson.aem.monitoring:aem-monitoring-core:jar:1.0.0-SNAPSHOT</td>
 <td>-</td>
 <td>-</td>
@@ -1972,16 +1834,16 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
-<td>com.newrelic.agent.java:newrelic-api:jar:3.25.0</td>
-<td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/newrelic/agent/java/newrelic-api/3.25.0/newrelic-api-3.25.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<tr class="b">
+<td>com.icfolson.aem.monitoring:aem-monitoring-newrelic:jar:1.0.0-SNAPSHOT</td>
 <td>-</td>
-<td><a class="externalLink" href="http://nexus.citytech.ctmsp.com/content/groups/public/com/newrelic/agent/java/newrelic-api/3.25.0/newrelic-api-3.25.0.jar"><img alt="Found at http://nexus.citytech.ctmsp.com/content/groups/public" src="images/icon_success_sml.gif" /></a></td>
+<td>-</td>
+<td>-</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>javax.inject:javax.inject:jar:1</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/javax/inject/javax.inject/1/javax.inject-1.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1990,7 +1852,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>javax.servlet:javax.servlet-api:jar:3.1.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -1999,7 +1861,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:javax.servlet:jar:1.0.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/javax.servlet/1.0.0/javax.servlet-1.0.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2008,7 +1870,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.apache.felix.scr.annotations/1.9.8/org.apache.felix.scr.annotations-1.9.8.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2017,7 +1879,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:org.osgi.compendium:jar:1.4.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.compendium/1.4.0/org.osgi.compendium-1.4.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2026,7 +1888,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix:org.osgi.core:jar:1.4.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.core/1.4.0/org.osgi.core-1.4.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2035,7 +1897,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:org.osgi.foundation:jar:1.2.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.foundation/1.2.0/org.osgi.foundation-1.2.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2044,7 +1906,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.sling:org.apache.sling.event:jar:4.0.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/sling/org.apache.sling.event/4.0.0/org.apache.sling.event-4.0.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2053,7 +1915,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.slf4j:slf4j-api:jar:1.7.6</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7.6.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2062,7 +1924,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Total</th>
 <th>central</th>
 <th>adobe</th>
@@ -2071,11 +1933,11 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>jvnet-nexus-snapshots</th>
 <th>citytech-public-releases</th>
 <th>citytech-public-snapshots</th></tr>
-<tr class="b">
-<td>15 (compile: 13, provided: 2)</td>
-<td>13</td>
+<tr class="a">
+<td>14 (compile: 14)</td>
+<td>12</td>
 <td>0</td>
-<td>14</td>
+<td>12</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
@@ -2099,48 +1961,11 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>jar</td>
 <td>-</td></tr>
 <tr class="a">
-<td>org.apache.felix</td>
-<td><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">org.apache.felix.scr.annotations</a></td>
-<td>1.9.8</td>
+<td>com.icfolson.aem.monitoring</td>
+<td><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">aem-monitoring-newrelic</a></td>
+<td>1.0.0-SNAPSHOT</td>
 <td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="b">
-<td>org.apache.felix</td>
-<td><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">org.osgi.core</a></td>
-<td>1.4.0</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="a">
-<td>org.slf4j</td>
-<td>slf4j-api</td>
-<td>1.7.6</td>
-<td>jar</td>
-<td>-</td></tr></table></div><a name="Project_Dependencies_provided"></a>
-<div class="section">
-<h3>provided<a name="provided"></a></h3>
-<p>The following is a list of provided dependencies for this project. These dependencies are required to compile the application, but should be provided by default when using the library:</p>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>GroupId</th>
-<th>ArtifactId</th>
-<th>Version</th>
-<th>Classifier</th>
-<th>Type</th>
-<th>Licenses</th></tr>
-<tr class="b">
-<td>com.adobe.aem</td>
-<td>uber-jar</td>
-<td>6.2.0</td>
-<td>obfuscated-apis</td>
-<td>jar</td>
-<td>-</td></tr>
-<tr class="a">
-<td>com.newrelic.agent.java</td>
-<td><a class="externalLink" href="https://newrelic.com/">newrelic-api</a></td>
-<td>3.25.0</td>
-<td>-</td>
-<td>jar</td>
-<td><a class="externalLink" href="https://newrelic.com/docs/java/java-agent-license">null</a></td></tr></table></div></div><a name="Project_Transitive_Dependencies"></a>
+<td>-</td></tr></table></div></div><a name="Project_Transitive_Dependencies"></a>
 <div class="section">
 <h2>Project Transitive Dependencies<a name="Project_Transitive_Dependencies"></a></h2>
 <p>The following is a list of transitive dependencies for this project. Transitive dependencies are the dependencies of the project dependencies.</p><a name="Project_Transitive_Dependencies_compile"></a>
@@ -2192,7 +2017,19 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
 <tr class="b">
 <td>org.apache.felix</td>
+<td><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">org.apache.felix.scr.annotations</a></td>
+<td>1.9.8</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.felix</td>
 <td><a class="externalLink" href="http://felix.apache.org/org.osgi.compendium/">org.osgi.compendium</a></td>
+<td>1.4.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.felix</td>
+<td><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">org.osgi.core</a></td>
 <td>1.4.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
@@ -2206,6 +2043,12 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>org.apache.sling</td>
 <td>org.apache.sling.event</td>
 <td>4.0.0</td>
+<td>jar</td>
+<td>-</td></tr>
+<tr class="a">
+<td>org.slf4j</td>
+<td>slf4j-api</td>
+<td>1.7.6</td>
 <td>jar</td>
 <td>-</td></tr></table></div></div><a name="Project_Dependency_Graph"></a>
 <div class="section">
@@ -2233,14 +2076,14 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <div class="section">
 <h3>Dependency Tree<a name="Dependency_Tree"></a></h3>
 <ul>
-<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic:bundle:1.0.0-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
+<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic-installation:jar:1.0.0-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>aem-monitoring-newrelic</th></tr>
+<th>aem-monitoring-newrelic-installation</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>There is currently no description associated with this project.</p>
-<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic</a></p>
+<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic-installation">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic-installation</a></p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div>
 <ul>
 <li>com.icfolson.aem.monitoring:aem-monitoring-core:jar:1.0.0-SNAPSHOT (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep2" style="display:none">
@@ -2253,7 +2096,16 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-core">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-core</a></p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div>
 <ul>
-<li>org.apache.felix:org.osgi.compendium:jar:1.4.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep4" style="display:none">
+<li>org.apache.felix:org.osgi.core:jar:1.4.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep4" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>OSGi R4 Core Bundle</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>OSGi Service Platform Release 4 Core Interfaces and Classes.</p>
+<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">http://felix.apache.org/org.osgi.core/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.felix:org.osgi.compendium:jar:1.4.0 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep6" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>OSGi R4 Compendium Bundle</th></tr>
@@ -2263,7 +2115,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.compendium/">http://felix.apache.org/org.osgi.compendium/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.apache.felix:javax.servlet:jar:1.0.0 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep6" style="display:none">
+<li>org.apache.felix:javax.servlet:jar:1.0.0 (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep8" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Servlet 2.1 API</th></tr>
@@ -2272,7 +2124,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Servlet 2.1 API</p>
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/javax.servlet/">http://felix.apache.org/javax.servlet/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.felix:org.osgi.foundation:jar:1.2.0 (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep8" style="display:none">
+<li>org.apache.felix:org.osgi.foundation:jar:1.2.0 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep10" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>OSGi R4 Foundation EE</th></tr>
@@ -2281,7 +2133,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Apache felix is an OSGi implementation.</p>
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.foundation/">http://felix.apache.org/org.osgi.foundation/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>javax.servlet:javax.servlet-api:jar:3.1.0 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep10" style="display:none">
+<li>javax.servlet:javax.servlet-api:jar:3.1.0 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep12" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Java Servlet API</th></tr>
@@ -2290,7 +2142,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Java.net - The Source for Java Technology Collaboration</p>
 <p><b>URL: </b><a class="externalLink" href="http://servlet-spec.java.net">http://servlet-spec.java.net</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://glassfish.dev.java.net/nonav/public/CDDL+GPL.html">CDDL + GPLv2 with classpath exception</a></p></td></tr></table></div></li>
-<li>org.apache.sling:org.apache.sling.event:jar:4.0.0 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep12" style="display:none">
+<li>org.apache.sling:org.apache.sling.event:jar:4.0.0 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep14" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>org.apache.sling.event</th></tr>
@@ -2298,7 +2150,24 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>
 <p><b>Description: </b>POM was created by Sonatype Nexus</p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
-<li>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep14" style="display:none">
+<li>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep16" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Annotations for SCR</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Annotations for generating OSGi service descriptors.</p>
+<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">http://felix.apache.org/org.apache.felix.scr.annotations/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.slf4j:slf4j-api:jar:1.7.6 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep18" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>slf4j-api</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>There is currently no description associated with this project.</p>
+<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
+<li>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep20" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>jackson-databind</th></tr>
@@ -2308,7 +2177,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://github.com/FasterXML/jackson">http://github.com/FasterXML/jackson</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep16" style="display:none">
+<li>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3 (compile) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep22" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Jackson-annotations</th></tr>
@@ -2317,7 +2186,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Core annotations used for value types, used by Jackson data binding package.</p>
 <p><b>URL: </b><a class="externalLink" href="http://github.com/FasterXML/jackson">http://github.com/FasterXML/jackson</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.fasterxml.jackson.core:jackson-core:jar:2.8.3 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep18" style="display:none">
+<li>com.fasterxml.jackson.core:jackson-core:jar:2.8.3 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep24" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Jackson-core</th></tr>
@@ -2326,7 +2195,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Core Jackson abstractions, basic JSON streaming API implementation</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/FasterXML/jackson-core">https://github.com/FasterXML/jackson-core</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>javax.inject:javax.inject:jar:1 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep20" style="display:none">
+<li>javax.inject:javax.inject:jar:1 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep26" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>javax.inject</th></tr>
@@ -2335,46 +2204,18 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>The javax.inject API</p>
 <p><b>URL: </b><a class="externalLink" href="http://code.google.com/p/atinject/">http://code.google.com/p/atinject/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>com.adobe.aem:uber-jar:jar:obfuscated-apis:6.2.0 (provided) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep22" style="display:none"></td></tr></table></div></li>
-<li>org.apache.felix:org.osgi.core:jar:1.4.0 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep24" style="display:none">
+<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic:jar:1.0.0-SNAPSHOT (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep28" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>OSGi R4 Core Bundle</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>OSGi Service Platform Release 4 Core Interfaces and Classes.</p>
-<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">http://felix.apache.org/org.osgi.core/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep26" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Annotations for SCR</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Annotations for generating OSGi service descriptors.</p>
-<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">http://felix.apache.org/org.apache.felix.scr.annotations/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.slf4j:slf4j-api:jar:1.7.6 (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep28" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>slf4j-api</th></tr>
+<th>aem-monitoring-newrelic</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>There is currently no description associated with this project.</p>
-<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
-<li>com.newrelic.agent.java:newrelic-api:jar:3.25.0 (provided) <img id="_img31" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep30', '_img31' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep30" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>New Relic Java API Jar</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>The New Relic Java Agent Api.</p>
-<p><b>URL: </b><a class="externalLink" href="https://newrelic.com/">https://newrelic.com/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="https://newrelic.com/docs/java/java-agent-license">Unnamed</a></p></td></tr></table></div></li></ul></li></ul></div></div><a name="Licenses"></a>
+<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic</a></p>
+<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li></ul></li></ul></div></div><a name="Licenses"></a>
 <div class="section">
 <h2>Licenses<a name="Licenses"></a></h2>
-<p><b>Unnamed: </b>New Relic Java API Jar</p>
-<p><b>Unknown: </b>aem-monitoring-core, aem-monitoring-newrelic, org.apache.sling.event, slf4j-api</p>
+<p><b>Unknown: </b>aem-monitoring-core, aem-monitoring-newrelic, aem-monitoring-newrelic-installation, org.apache.sling.event, slf4j-api</p>
 <p><b>CDDL + GPLv2 with classpath exception: </b>Java Servlet API</p>
 <p><b>The Apache Software License, Version 2.0: </b>Annotations for SCR, Jackson-annotations, Jackson-core, OSGi R4 Compendium Bundle, OSGi R4 Core Bundle, OSGi R4 Foundation EE, Servlet 2.1 API, jackson-databind, javax.inject</p></div><a name="Dependency_File_Details"></a>
 <div class="section">
@@ -2389,14 +2230,6 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>Java Version</th>
 <th title="Indicates whether these dependencies have been compiled with debug information.">Debug Information</th></tr>
 <tr class="b">
-<td>uber-jar-6.2.0-obfuscated-apis.jar</td>
-<td>15.7 MB</td>
-<td>13910</td>
-<td>12546</td>
-<td>1096</td>
-<td>1.7</td>
-<td>Yes</td></tr>
-<tr class="a">
 <td>jackson-annotations-2.8.3.jar</td>
 <td>55.7 kB</td>
 <td>74</td>
@@ -2404,7 +2237,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>1</td>
 <td>1.6</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>jackson-core-2.8.3.jar</td>
 <td>281.1 kB</td>
 <td>117</td>
@@ -2412,7 +2245,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>9</td>
 <td>1.6</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>jackson-databind-2.8.3.jar</td>
 <td>1.2 MB</td>
 <td>615</td>
@@ -2420,7 +2253,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>20</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>aem-monitoring-core-1.0.0-SNAPSHOT.jar</td>
 <td>58.7 kB</td>
 <td>80</td>
@@ -2428,15 +2261,15 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>11</td>
 <td>1.8</td>
 <td>Yes</td></tr>
-<tr class="a">
-<td>newrelic-api-3.25.0.jar</td>
-<td>15.2 kB</td>
-<td>32</td>
-<td>25</td>
-<td>1</td>
-<td>1.6</td>
-<td>Yes</td></tr>
 <tr class="b">
+<td>aem-monitoring-newrelic-1.0.0-SNAPSHOT.jar</td>
+<td>8.8 kB</td>
+<td>21</td>
+<td>3</td>
+<td>1</td>
+<td>1.8</td>
+<td>Yes</td></tr>
+<tr class="a">
 <td>javax.inject-1.jar</td>
 <td>2.5 kB</td>
 <td>8</td>
@@ -2444,7 +2277,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>1</td>
 <td>1.5</td>
 <td>No</td></tr>
-<tr class="a">
+<tr class="b">
 <td>javax.servlet-api-3.1.0.jar</td>
 <td>95.8 kB</td>
 <td>103</td>
@@ -2452,7 +2285,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>4</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>javax.servlet-1.0.0.jar</td>
 <td>30.5 kB</td>
 <td>37</td>
@@ -2460,7 +2293,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>2</td>
 <td>1.4</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix.scr.annotations-1.9.8.jar</td>
 <td>32.9 kB</td>
 <td>44</td>
@@ -2468,7 +2301,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>3</td>
 <td>1.5</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.osgi.compendium-1.4.0.jar</td>
 <td>181.9 kB</td>
 <td>272</td>
@@ -2476,7 +2309,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>28</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.osgi.core-1.4.0.jar</td>
 <td>100 kB</td>
 <td>106</td>
@@ -2484,7 +2317,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>8</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.osgi.foundation-1.2.0.jar</td>
 <td>259.5 kB</td>
 <td>460</td>
@@ -2492,7 +2325,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>17</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.sling.event-4.0.0.jar</td>
 <td>294.9 kB</td>
 <td>197</td>
@@ -2500,7 +2333,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>17</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>slf4j-api-1.7.6.jar</td>
 <td>28.7 kB</td>
 <td>35</td>
@@ -2508,7 +2341,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>3</td>
 <td>1.5</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Total</th>
 <th>Size</th>
 <th>Entries</th>
@@ -2516,30 +2349,22 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>Packages</th>
 <th>Java Version</th>
 <th>Debug Information</th></tr>
-<tr class="b">
-<td>15</td>
-<td>18.4 MB</td>
-<td>16090</td>
-<td>14271</td>
-<td>1221</td>
-<td>1.8</td>
-<td>14</td></tr>
 <tr class="a">
-<td>compile: 13</td>
-<td>compile: 2.7 MB</td>
-<td>compile: 2148</td>
-<td>compile: 1700</td>
-<td>compile: 124</td>
-<td>-</td>
-<td>compile: 12</td></tr>
+<td>14</td>
+<td>2.7 MB</td>
+<td>2169</td>
+<td>1703</td>
+<td>125</td>
+<td>1.8</td>
+<td>13</td></tr>
 <tr class="b">
-<td>provided: 2</td>
-<td>provided: 15.8 MB</td>
-<td>provided: 13942</td>
-<td>provided: 12571</td>
-<td>provided: 1097</td>
+<td>compile: 14</td>
+<td>compile: 2.7 MB</td>
+<td>compile: 2169</td>
+<td>compile: 1703</td>
+<td>compile: 125</td>
 <td>-</td>
-<td>provided: 2</td></tr></table></div><a name="Dependency_Repository_Locations"></a>
+<td>compile: 13</td></tr></table></div><a name="Dependency_Repository_Locations"></a>
 <div class="section">
 <h2>Dependency Repository Locations<a name="Dependency_Repository_Locations"></a></h2>
 <table border="0" class="bodyTable">
@@ -2621,15 +2446,6 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>citytech-public-releases</th>
 <th>citytech-public-snapshots</th></tr>
 <tr class="b">
-<td>com.adobe.aem:uber-jar:jar:obfuscated-apis:6.2.0</td>
-<td>-</td>
-<td>-</td>
-<td><a class="externalLink" href="http://nexus.citytech.ctmsp.com/content/groups/public/com/adobe/aem/uber-jar/6.2.0/uber-jar-6.2.0-obfuscated-apis.jar"><img alt="Found at http://nexus.citytech.ctmsp.com/content/groups/public" src="images/icon_success_sml.gif" /></a></td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td></tr>
-<tr class="a">
 <td>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.8.3/jackson-annotations-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2638,7 +2454,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>com.fasterxml.jackson.core:jackson-core:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.8.3/jackson-core-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2647,7 +2463,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.8.3/jackson-databind-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2656,7 +2472,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>com.icfolson.aem.monitoring:aem-monitoring-core:jar:1.0.0-SNAPSHOT</td>
 <td>-</td>
 <td>-</td>
@@ -2665,16 +2481,16 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
-<td>com.newrelic.agent.java:newrelic-api:jar:3.25.0</td>
-<td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/newrelic/agent/java/newrelic-api/3.25.0/newrelic-api-3.25.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<tr class="b">
+<td>com.icfolson.aem.monitoring:aem-monitoring-newrelic:jar:1.0.0-SNAPSHOT</td>
 <td>-</td>
-<td><a class="externalLink" href="http://nexus.citytech.ctmsp.com/content/groups/public/com/newrelic/agent/java/newrelic-api/3.25.0/newrelic-api-3.25.0.jar"><img alt="Found at http://nexus.citytech.ctmsp.com/content/groups/public" src="images/icon_success_sml.gif" /></a></td>
+<td>-</td>
+<td>-</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>javax.inject:javax.inject:jar:1</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/javax/inject/javax.inject/1/javax.inject-1.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2683,7 +2499,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>javax.servlet:javax.servlet-api:jar:3.1.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2692,7 +2508,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:javax.servlet:jar:1.0.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/javax.servlet/1.0.0/javax.servlet-1.0.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2701,7 +2517,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.apache.felix.scr.annotations/1.9.8/org.apache.felix.scr.annotations-1.9.8.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2710,7 +2526,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:org.osgi.compendium:jar:1.4.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.compendium/1.4.0/org.osgi.compendium-1.4.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2719,7 +2535,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix:org.osgi.core:jar:1.4.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.core/1.4.0/org.osgi.core-1.4.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2728,7 +2544,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:org.osgi.foundation:jar:1.2.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.foundation/1.2.0/org.osgi.foundation-1.2.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2737,7 +2553,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.sling:org.apache.sling.event:jar:4.0.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/sling/org.apache.sling.event/4.0.0/org.apache.sling.event-4.0.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2746,7 +2562,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.slf4j:slf4j-api:jar:1.7.6</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7.6.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -2755,7 +2571,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Total</th>
 <th>central</th>
 <th>adobe</th>
@@ -2764,11 +2580,11 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>jvnet-nexus-snapshots</th>
 <th>citytech-public-releases</th>
 <th>citytech-public-snapshots</th></tr>
-<tr class="b">
-<td>15 (compile: 13, provided: 2)</td>
-<td>13</td>
+<tr class="a">
+<td>14 (compile: 14)</td>
+<td>12</td>
 <td>0</td>
-<td>14</td>
+<td>12</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
@@ -2792,48 +2608,11 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>jar</td>
 <td>-</td></tr>
 <tr class="a">
-<td>org.apache.felix</td>
-<td><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">org.apache.felix.scr.annotations</a></td>
-<td>1.9.8</td>
+<td>com.icfolson.aem.monitoring</td>
+<td><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">aem-monitoring-newrelic</a></td>
+<td>1.0.0-SNAPSHOT</td>
 <td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="b">
-<td>org.apache.felix</td>
-<td><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">org.osgi.core</a></td>
-<td>1.4.0</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="a">
-<td>org.slf4j</td>
-<td>slf4j-api</td>
-<td>1.7.6</td>
-<td>jar</td>
-<td>-</td></tr></table></div><a name="Project_Dependencies_provided"></a>
-<div class="section">
-<h3>provided<a name="provided"></a></h3>
-<p>The following is a list of provided dependencies for this project. These dependencies are required to compile the application, but should be provided by default when using the library:</p>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>GroupId</th>
-<th>ArtifactId</th>
-<th>Version</th>
-<th>Classifier</th>
-<th>Type</th>
-<th>Licenses</th></tr>
-<tr class="b">
-<td>com.adobe.aem</td>
-<td>uber-jar</td>
-<td>6.2.0</td>
-<td>obfuscated-apis</td>
-<td>jar</td>
-<td>-</td></tr>
-<tr class="a">
-<td>com.newrelic.agent.java</td>
-<td><a class="externalLink" href="https://newrelic.com/">newrelic-api</a></td>
-<td>3.25.0</td>
-<td>-</td>
-<td>jar</td>
-<td><a class="externalLink" href="https://newrelic.com/docs/java/java-agent-license">null</a></td></tr></table></div></div><a name="Project_Transitive_Dependencies"></a>
+<td>-</td></tr></table></div></div><a name="Project_Transitive_Dependencies"></a>
 <div class="section">
 <h2>Project Transitive Dependencies<a name="Project_Transitive_Dependencies"></a></h2>
 <p>The following is a list of transitive dependencies for this project. Transitive dependencies are the dependencies of the project dependencies.</p><a name="Project_Transitive_Dependencies_compile"></a>
@@ -2885,7 +2664,19 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
 <tr class="b">
 <td>org.apache.felix</td>
+<td><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">org.apache.felix.scr.annotations</a></td>
+<td>1.9.8</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.felix</td>
 <td><a class="externalLink" href="http://felix.apache.org/org.osgi.compendium/">org.osgi.compendium</a></td>
+<td>1.4.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.felix</td>
+<td><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">org.osgi.core</a></td>
 <td>1.4.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
@@ -2899,6 +2690,12 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>org.apache.sling</td>
 <td>org.apache.sling.event</td>
 <td>4.0.0</td>
+<td>jar</td>
+<td>-</td></tr>
+<tr class="a">
+<td>org.slf4j</td>
+<td>slf4j-api</td>
+<td>1.7.6</td>
 <td>jar</td>
 <td>-</td></tr></table></div></div><a name="Project_Dependency_Graph"></a>
 <div class="section">
@@ -2926,14 +2723,14 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <div class="section">
 <h3>Dependency Tree<a name="Dependency_Tree"></a></h3>
 <ul>
-<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic:bundle:1.0.0-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
+<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic-installation:jar:1.0.0-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>aem-monitoring-newrelic</th></tr>
+<th>aem-monitoring-newrelic-installation</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>There is currently no description associated with this project.</p>
-<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic</a></p>
+<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic-installation">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic-installation</a></p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div>
 <ul>
 <li>com.icfolson.aem.monitoring:aem-monitoring-core:jar:1.0.0-SNAPSHOT (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep2" style="display:none">
@@ -2946,7 +2743,16 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-core">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-core</a></p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div>
 <ul>
-<li>org.apache.felix:org.osgi.compendium:jar:1.4.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep4" style="display:none">
+<li>org.apache.felix:org.osgi.core:jar:1.4.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep4" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>OSGi R4 Core Bundle</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>OSGi Service Platform Release 4 Core Interfaces and Classes.</p>
+<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">http://felix.apache.org/org.osgi.core/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.felix:org.osgi.compendium:jar:1.4.0 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep6" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>OSGi R4 Compendium Bundle</th></tr>
@@ -2956,7 +2762,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.compendium/">http://felix.apache.org/org.osgi.compendium/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.apache.felix:javax.servlet:jar:1.0.0 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep6" style="display:none">
+<li>org.apache.felix:javax.servlet:jar:1.0.0 (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep8" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Servlet 2.1 API</th></tr>
@@ -2965,7 +2771,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Servlet 2.1 API</p>
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/javax.servlet/">http://felix.apache.org/javax.servlet/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.felix:org.osgi.foundation:jar:1.2.0 (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep8" style="display:none">
+<li>org.apache.felix:org.osgi.foundation:jar:1.2.0 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep10" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>OSGi R4 Foundation EE</th></tr>
@@ -2974,7 +2780,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Apache felix is an OSGi implementation.</p>
 <p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.foundation/">http://felix.apache.org/org.osgi.foundation/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>javax.servlet:javax.servlet-api:jar:3.1.0 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep10" style="display:none">
+<li>javax.servlet:javax.servlet-api:jar:3.1.0 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep12" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Java Servlet API</th></tr>
@@ -2983,7 +2789,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Java.net - The Source for Java Technology Collaboration</p>
 <p><b>URL: </b><a class="externalLink" href="http://servlet-spec.java.net">http://servlet-spec.java.net</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://glassfish.dev.java.net/nonav/public/CDDL+GPL.html">CDDL + GPLv2 with classpath exception</a></p></td></tr></table></div></li>
-<li>org.apache.sling:org.apache.sling.event:jar:4.0.0 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep12" style="display:none">
+<li>org.apache.sling:org.apache.sling.event:jar:4.0.0 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep14" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>org.apache.sling.event</th></tr>
@@ -2991,7 +2797,24 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>
 <p><b>Description: </b>POM was created by Sonatype Nexus</p>
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
-<li>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep14" style="display:none">
+<li>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep16" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Annotations for SCR</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Annotations for generating OSGi service descriptors.</p>
+<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">http://felix.apache.org/org.apache.felix.scr.annotations/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.slf4j:slf4j-api:jar:1.7.6 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep18" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>slf4j-api</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>There is currently no description associated with this project.</p>
+<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
+<li>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep20" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>jackson-databind</th></tr>
@@ -3001,7 +2824,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>URL: </b><a class="externalLink" href="http://github.com/FasterXML/jackson">http://github.com/FasterXML/jackson</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep16" style="display:none">
+<li>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3 (compile) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep22" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Jackson-annotations</th></tr>
@@ -3010,7 +2833,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Core annotations used for value types, used by Jackson data binding package.</p>
 <p><b>URL: </b><a class="externalLink" href="http://github.com/FasterXML/jackson">http://github.com/FasterXML/jackson</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.fasterxml.jackson.core:jackson-core:jar:2.8.3 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep18" style="display:none">
+<li>com.fasterxml.jackson.core:jackson-core:jar:2.8.3 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep24" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Jackson-core</th></tr>
@@ -3019,7 +2842,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>Core Jackson abstractions, basic JSON streaming API implementation</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/FasterXML/jackson-core">https://github.com/FasterXML/jackson-core</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>javax.inject:javax.inject:jar:1 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep20" style="display:none">
+<li>javax.inject:javax.inject:jar:1 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep26" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>javax.inject</th></tr>
@@ -3028,46 +2851,18 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <p><b>Description: </b>The javax.inject API</p>
 <p><b>URL: </b><a class="externalLink" href="http://code.google.com/p/atinject/">http://code.google.com/p/atinject/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>com.adobe.aem:uber-jar:jar:obfuscated-apis:6.2.0 (provided) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep22" style="display:none"></td></tr></table></div></li>
-<li>org.apache.felix:org.osgi.core:jar:1.4.0 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep24" style="display:none">
+<li>com.icfolson.aem.monitoring:aem-monitoring-newrelic:jar:1.0.0-SNAPSHOT (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep28" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>OSGi R4 Core Bundle</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>OSGi Service Platform Release 4 Core Interfaces and Classes.</p>
-<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.osgi.core/">http://felix.apache.org/org.osgi.core/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep26" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Annotations for SCR</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Annotations for generating OSGi service descriptors.</p>
-<p><b>URL: </b><a class="externalLink" href="http://felix.apache.org/org.apache.felix.scr.annotations/">http://felix.apache.org/org.apache.felix.scr.annotations/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.slf4j:slf4j-api:jar:1.7.6 (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep28" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>slf4j-api</th></tr>
+<th>aem-monitoring-newrelic</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>There is currently no description associated with this project.</p>
-<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li>
-<li>com.newrelic.agent.java:newrelic-api:jar:3.25.0 (provided) <img id="_img31" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep30', '_img31' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep30" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>New Relic Java API Jar</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>The New Relic Java Agent Api.</p>
-<p><b>URL: </b><a class="externalLink" href="https://newrelic.com/">https://newrelic.com/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="https://newrelic.com/docs/java/java-agent-license">Unnamed</a></p></td></tr></table></div></li></ul></li></ul></div></div><a name="Licenses"></a>
+<p><b>URL: </b><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic">http://code.digitalatolson.com/aem-monitoring/aem-monitoring-newrelic</a></p>
+<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li></ul></li></ul></div></div><a name="Licenses"></a>
 <div class="section">
 <h2>Licenses<a name="Licenses"></a></h2>
-<p><b>Unnamed: </b>New Relic Java API Jar</p>
-<p><b>Unknown: </b>aem-monitoring-core, aem-monitoring-newrelic, org.apache.sling.event, slf4j-api</p>
+<p><b>Unknown: </b>aem-monitoring-core, aem-monitoring-newrelic, aem-monitoring-newrelic-installation, org.apache.sling.event, slf4j-api</p>
 <p><b>CDDL + GPLv2 with classpath exception: </b>Java Servlet API</p>
 <p><b>The Apache Software License, Version 2.0: </b>Annotations for SCR, Jackson-annotations, Jackson-core, OSGi R4 Compendium Bundle, OSGi R4 Core Bundle, OSGi R4 Foundation EE, Servlet 2.1 API, jackson-databind, javax.inject</p></div><a name="Dependency_File_Details"></a>
 <div class="section">
@@ -3082,14 +2877,6 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>Java Version</th>
 <th title="Indicates whether these dependencies have been compiled with debug information.">Debug Information</th></tr>
 <tr class="b">
-<td>uber-jar-6.2.0-obfuscated-apis.jar</td>
-<td>15.7 MB</td>
-<td>13910</td>
-<td>12546</td>
-<td>1096</td>
-<td>1.7</td>
-<td>Yes</td></tr>
-<tr class="a">
 <td>jackson-annotations-2.8.3.jar</td>
 <td>55.7 kB</td>
 <td>74</td>
@@ -3097,7 +2884,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>1</td>
 <td>1.6</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>jackson-core-2.8.3.jar</td>
 <td>281.1 kB</td>
 <td>117</td>
@@ -3105,7 +2892,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>9</td>
 <td>1.6</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>jackson-databind-2.8.3.jar</td>
 <td>1.2 MB</td>
 <td>615</td>
@@ -3113,7 +2900,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>20</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>aem-monitoring-core-1.0.0-SNAPSHOT.jar</td>
 <td>58.7 kB</td>
 <td>80</td>
@@ -3121,15 +2908,15 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>11</td>
 <td>1.8</td>
 <td>Yes</td></tr>
-<tr class="a">
-<td>newrelic-api-3.25.0.jar</td>
-<td>15.2 kB</td>
-<td>32</td>
-<td>25</td>
-<td>1</td>
-<td>1.6</td>
-<td>Yes</td></tr>
 <tr class="b">
+<td>aem-monitoring-newrelic-1.0.0-SNAPSHOT.jar</td>
+<td>8.8 kB</td>
+<td>21</td>
+<td>3</td>
+<td>1</td>
+<td>1.8</td>
+<td>Yes</td></tr>
+<tr class="a">
 <td>javax.inject-1.jar</td>
 <td>2.5 kB</td>
 <td>8</td>
@@ -3137,7 +2924,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>1</td>
 <td>1.5</td>
 <td>No</td></tr>
-<tr class="a">
+<tr class="b">
 <td>javax.servlet-api-3.1.0.jar</td>
 <td>95.8 kB</td>
 <td>103</td>
@@ -3145,7 +2932,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>4</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>javax.servlet-1.0.0.jar</td>
 <td>30.5 kB</td>
 <td>37</td>
@@ -3153,7 +2940,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>2</td>
 <td>1.4</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix.scr.annotations-1.9.8.jar</td>
 <td>32.9 kB</td>
 <td>44</td>
@@ -3161,7 +2948,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>3</td>
 <td>1.5</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.osgi.compendium-1.4.0.jar</td>
 <td>181.9 kB</td>
 <td>272</td>
@@ -3169,7 +2956,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>28</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.osgi.core-1.4.0.jar</td>
 <td>100 kB</td>
 <td>106</td>
@@ -3177,7 +2964,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>8</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.osgi.foundation-1.2.0.jar</td>
 <td>259.5 kB</td>
 <td>460</td>
@@ -3185,7 +2972,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>17</td>
 <td>1.3</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.sling.event-4.0.0.jar</td>
 <td>294.9 kB</td>
 <td>197</td>
@@ -3193,7 +2980,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>17</td>
 <td>1.7</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>slf4j-api-1.7.6.jar</td>
 <td>28.7 kB</td>
 <td>35</td>
@@ -3201,7 +2988,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>3</td>
 <td>1.5</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Total</th>
 <th>Size</th>
 <th>Entries</th>
@@ -3209,30 +2996,22 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>Packages</th>
 <th>Java Version</th>
 <th>Debug Information</th></tr>
-<tr class="b">
-<td>15</td>
-<td>18.4 MB</td>
-<td>16090</td>
-<td>14271</td>
-<td>1221</td>
-<td>1.8</td>
-<td>14</td></tr>
 <tr class="a">
-<td>compile: 13</td>
-<td>compile: 2.7 MB</td>
-<td>compile: 2148</td>
-<td>compile: 1700</td>
-<td>compile: 124</td>
-<td>-</td>
-<td>compile: 12</td></tr>
+<td>14</td>
+<td>2.7 MB</td>
+<td>2169</td>
+<td>1703</td>
+<td>125</td>
+<td>1.8</td>
+<td>13</td></tr>
 <tr class="b">
-<td>provided: 2</td>
-<td>provided: 15.8 MB</td>
-<td>provided: 13942</td>
-<td>provided: 12571</td>
-<td>provided: 1097</td>
+<td>compile: 14</td>
+<td>compile: 2.7 MB</td>
+<td>compile: 2169</td>
+<td>compile: 1703</td>
+<td>compile: 125</td>
 <td>-</td>
-<td>provided: 2</td></tr></table></div><a name="Dependency_Repository_Locations"></a>
+<td>compile: 13</td></tr></table></div><a name="Dependency_Repository_Locations"></a>
 <div class="section">
 <h2>Dependency Repository Locations<a name="Dependency_Repository_Locations"></a></h2>
 <table border="0" class="bodyTable">
@@ -3314,15 +3093,6 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>citytech-public-releases</th>
 <th>citytech-public-snapshots</th></tr>
 <tr class="b">
-<td>com.adobe.aem:uber-jar:jar:obfuscated-apis:6.2.0</td>
-<td>-</td>
-<td>-</td>
-<td><a class="externalLink" href="http://nexus.citytech.ctmsp.com/content/groups/public/com/adobe/aem/uber-jar/6.2.0/uber-jar-6.2.0-obfuscated-apis.jar"><img alt="Found at http://nexus.citytech.ctmsp.com/content/groups/public" src="images/icon_success_sml.gif" /></a></td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td></tr>
-<tr class="a">
 <td>com.fasterxml.jackson.core:jackson-annotations:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.8.3/jackson-annotations-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -3331,7 +3101,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>com.fasterxml.jackson.core:jackson-core:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.8.3/jackson-core-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -3340,7 +3110,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>com.fasterxml.jackson.core:jackson-databind:jar:2.8.3</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.8.3/jackson-databind-2.8.3.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -3349,7 +3119,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>com.icfolson.aem.monitoring:aem-monitoring-core:jar:1.0.0-SNAPSHOT</td>
 <td>-</td>
 <td>-</td>
@@ -3358,16 +3128,16 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
-<td>com.newrelic.agent.java:newrelic-api:jar:3.25.0</td>
-<td><a class="externalLink" href="https://repo.maven.apache.org/maven2/com/newrelic/agent/java/newrelic-api/3.25.0/newrelic-api-3.25.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
+<tr class="b">
+<td>com.icfolson.aem.monitoring:aem-monitoring-newrelic:jar:1.0.0-SNAPSHOT</td>
 <td>-</td>
-<td><a class="externalLink" href="http://nexus.citytech.ctmsp.com/content/groups/public/com/newrelic/agent/java/newrelic-api/3.25.0/newrelic-api-3.25.0.jar"><img alt="Found at http://nexus.citytech.ctmsp.com/content/groups/public" src="images/icon_success_sml.gif" /></a></td>
+<td>-</td>
+<td>-</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>javax.inject:javax.inject:jar:1</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/javax/inject/javax.inject/1/javax.inject-1.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -3376,7 +3146,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>javax.servlet:javax.servlet-api:jar:3.1.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -3385,7 +3155,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:javax.servlet:jar:1.0.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/javax.servlet/1.0.0/javax.servlet-1.0.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -3394,7 +3164,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix:org.apache.felix.scr.annotations:jar:1.9.8</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.apache.felix.scr.annotations/1.9.8/org.apache.felix.scr.annotations-1.9.8.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -3403,7 +3173,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:org.osgi.compendium:jar:1.4.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.compendium/1.4.0/org.osgi.compendium-1.4.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -3412,7 +3182,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.felix:org.osgi.core:jar:1.4.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.core/1.4.0/org.osgi.core-1.4.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -3421,7 +3191,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.felix:org.osgi.foundation:jar:1.2.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/felix/org.osgi.foundation/1.2.0/org.osgi.foundation-1.2.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -3430,7 +3200,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.sling:org.apache.sling.event:jar:4.0.0</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/apache/sling/org.apache.sling.event/4.0.0/org.apache.sling.event-4.0.0.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -3439,7 +3209,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.slf4j:slf4j-api:jar:1.7.6</td>
 <td><a class="externalLink" href="https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7.6.jar"><img alt="Found at https://repo.maven.apache.org/maven2" src="images/icon_success_sml.gif" /></a></td>
 <td>-</td>
@@ -3448,7 +3218,7 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <td>-</td>
 <td>-</td>
 <td>-</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Total</th>
 <th>central</th>
 <th>adobe</th>
@@ -3457,15 +3227,15 @@ enen#set$defaultProjectNameaem-monitoring-newrelic#set$datePosition#set$datePosi
 <th>jvnet-nexus-snapshots</th>
 <th>citytech-public-releases</th>
 <th>citytech-public-snapshots</th></tr>
-<tr class="b">
-<td>15 (compile: 13, provided: 2)</td>
-<td>13</td>
+<tr class="a">
+<td>14 (compile: 14)</td>
+<td>12</td>
 <td>0</td>
-<td>14</td>
+<td>12</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
-<td>0</td></tr></table></div>$htmlTool.replaceAll( $bodyContent, $iconReplacements )#set$shortTitleGeneratedUTF-8aem-monitoring-newrelic - Project Dependenciesen#set$protocol#set$resourcePath.#set$bootstrapCssPath$resourcePath#set$bootstrapCssResponsivePath$bootstrapCssPath#set$bootstrapJsPath$resourcePath$bootstrapCssPath$bootstrapCssResponsivePath$resourcePath$resourcePath$resourcePath$resourcePath$resourcePath$resourcePath$config.fileId$config.projectId#*							<li>*</li>
+<td>0</td></tr></table></div>$htmlTool.replaceAll( $bodyContent, $iconReplacements )#set$shortTitleGeneratedUTF-8aem-monitoring-newrelic-installation - Project Dependenciesen#set$protocol#set$resourcePath.#set$bootstrapCssPath$resourcePath#set$bootstrapCssResponsivePath$bootstrapCssPath#set$bootstrapJsPath$resourcePath$bootstrapCssPath$bootstrapCssResponsivePath$resourcePath$resourcePath$resourcePath$resourcePath$resourcePath$resourcePath$config.fileId$config.projectId#*							<li>*</li>
 *#set$filterMenus[name = 'Main'
 inherit = 'top'
 ref = 'null'
