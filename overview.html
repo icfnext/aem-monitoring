@@ -60,10 +60,11 @@
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="https://github.com/OlsonDigital/aem-monitoring" title="GitHub" class="externalLink">GitHub </a></li>
-							<li class="active"><a href="" title="Overview">Overview </a></li>
+							<li><a href="index.html" title="Overview">Overview </a></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
 								<ul class="dropdown-menu">
+									<li><a href="usage.html" title="Usage">Usage </a></li>
 									<li><a href="topologies.html" title="Topologies">Topologies </a></li>
 									<li><a href="configuration.html" title="Configuration">Configuration </a></li>
 								</ul>
@@ -128,49 +129,6 @@
  <p>AEM Monitoring can be run in several possible configurations. See <a href="topologies.html">Supported Topologies</a> for a comparison on each and setup instructions. Also see <a href="configuration.md">Configurations</a> for a listing of the configuration options available in each topology.</p>
 </div> 
 <div class="section"> 
- <h2 id="Usage">Usage</h2> 
- <p>Although AEM Monitoring provides several types monitoring of out of the box, adding custom integrations is simple. The primary service interface for recording metrics is <a href="../core/src/main/java/com/icfolson/aem/monitoring/core/service/MonitoringService.java">MonitoringService</a>. Callers can leverage this service to record events, metrics, and counters:</p> 
- <div class="source"> 
-  <pre>import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringEvent;
-import com.icfolson.aem.monitoring.core.model.MonitoringEvent;
-import com.icfolson.aem.monitoring.core.model.QualifiedName;
-import com.icfolson.aem.monitoring.core.service.MonitoringService;
-
-public abstract class MonitoredComponent {
-    
-    private static final QualifiedName SOME_VALUE = new QualifiedName(&quot;some&quot;, &quot;value&quot;);
-    private static final QualifiedName EVENT_NAME = new QualifiedName(&quot;event&quot;);
-    private static final QualifiedName THING_DONE = new QualifiedName(&quot;thing&quot;, &quot;done&quot;);
-    
-    @Reference
-    private MonitoringService monitoringService;
-    
-    public void doThing(final float someValue, final String anotherValue) {
-        monitoringService.recordMetric(SOME_VALUE, someValue);
-        
-        final MonitoringEvent event = new DefaultMonitoringEvent(EVENT_NAME);
-        event.setProperty(&quot;foo&quot;, someValue);
-        event.setProperty(&quot;bar&quot;, anotherValue);
-        
-        final long start = System.currentTimeMillis();
-        final String returnValue = actuallyDoThing();
-        final long end = System.currentTimeMillis();
-        
-        event.setProperty(&quot;duration&quot;, end - start);
-        event.setProperty(&quot;return&quot;, returnValue);
-        monitoringService.recordEvent(event);
-        
-        monitoringService.incrementCounter(THING_DONE);
-    }
-    
-    protected abstract String actuallyDoThing();
-    
-}
-
-</pre>
- </div>
-</div> 
-<div class="section"> 
  <h2 id="Extension_Points">Extension Points</h2> 
  <ul> 
   <li>No configuration required for adding new data categories – just code and go</li> 
@@ -204,6 +162,9 @@ public abstract class MonitoredComponent {
 				<div class="span4 bottom-nav">
 					<ul class="nav nav-list">
 						<li class="nav-header">User Guide</li>
+						<li>
+							<a href="usage.html" title="Usage">Usage </a>
+						</li>
 						<li>
 							<a href="topologies.html" title="Topologies">Topologies </a>
 						</li>

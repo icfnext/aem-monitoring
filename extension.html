@@ -4,7 +4,7 @@
 
 	<head>
 		<meta charset="UTF-8" />
-		<title>Project Distribution Management | aem-monitoring</title>
+		<title>Extension | aem-monitoring</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="" />
 		<meta http-equiv="content-language" content="en" />
@@ -43,7 +43,7 @@
 		</script>
 		</head>
 
-	<body class="page-distribution-management project-aem-monitoring" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
+	<body class="page-extension project-aem-monitoring" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
 
 		<nav class="navbar navbar-default navbar-fixed-top">
 				<div class="container">
@@ -69,7 +69,7 @@
 									<li><a href="configuration.html" title="Configuration">Configuration </a></li>
 								</ul>
 							</li>
-							<li class="dropdown active">
+							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Project Documentation <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li class="dropdown-submenu">
@@ -78,7 +78,7 @@
 											<li><a href="dependency-convergence.html" title="Dependency Convergence">Dependency Convergence </a></li>
 											<li><a href="dependency-info.html" title="Dependency Information">Dependency Information </a></li>
 											<li><a href="dependency-management.html" title="Dependency Management">Dependency Management </a></li>
-											<li class="active"><a href="" title="Distribution Management">Distribution Management </a></li>
+											<li><a href="distribution-management.html" title="Distribution Management">Distribution Management </a></li>
 											<li><a href="index.html" title="About">About </a></li>
 											<li><a href="license.html" title="Licenses">Licenses </a></li>
 											<li><a href="modules.html" title="Project Modules">Project Modules </a></li>
@@ -124,20 +124,19 @@
 	<div class="row">
 		<div class="span12">
 			<div class="body-content">
+<h1>Extension</h1> 
+<p>AEM Monitoring provides 3 primary extension points for modifying monitoring behavior.</p> 
 <div class="section"> 
- <h2 id="Overview">Overview</h2>
- <a name="Overview"></a> 
- <p>The following is the distribution management information used by this project.</p> 
- <div class="section"> 
-  <h3 id="Repository_-_citytech-public-releases">Repository - citytech-public-releases</h3>
-  <a name="Repository_-_citytech-public-releases"></a>
-  <a class="externalLink" href="http://nexus.citytech.ctmsp.com/content/repositories/public-releases">http://nexus.citytech.ctmsp.com/content/repositories/public-releases</a>
- </div> 
- <div class="section"> 
-  <h3 id="Snapshot_Repository_-_citytech-public-snapshots">Snapshot Repository - citytech-public-snapshots</h3>
-  <a name="Snapshot_Repository_-_citytech-public-snapshots"></a>
-  <a class="externalLink" href="http://nexus.citytech.ctmsp.com/content/repositories/public-snapshots">http://nexus.citytech.ctmsp.com/content/repositories/public-snapshots</a>
- </div>
+ <h2 id="Monitoring_Writer">Monitoring Writer</h2> 
+ <p><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/apidocs/com/icfolson/aem/monitoring/core/writer/MonitoringWriter.html">MonitoringWriter</a> is the service interface used to define OSGi components that write monitoring data to external systems. Each writer must specify a unique name that can be used to apply filters to the writer (see below). See <a class="externalLink" href="https://github.com/OlsonDigital/aem-monitoring/blob/develop/newrelic/src/main/java/com/icfolson/aem/monitoring/newrelic/NewRelicWriter.java">NewRelicWriter</a> for an example implementation.</p>
+</div> 
+<div class="section"> 
+ <h2 id="Monitoring_Filter">Monitoring Filter</h2> 
+ <p><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/apidocs/com/icfolson/aem/monitoring/core/filter/MonitoringFilter.html">MonitoringFilter</a> is an service interface that filters and transforms monitoring data that is input via <a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/apidocs/com/icfolson/aem/monitoring/core/service/MonitoringService.html">MonitoringService</a>. Monitoring Filters function similarly to <a class="externalLink" href="https://sling.apache.org/documentation/the-sling-engine/filters.html">Sling Filters</a> in that they provide a scope and an order. The scope is the name of a writer (see above). When a writer is not provided, the filter is applied as the data is input, before any writers are called. See <a class="externalLink" href="https://github.com/OlsonDigital/aem-monitoring/blob/develop/newrelic/src/main/java/com/icfolson/aem/monitoring/newrelic/NewRelicFilter.java">NewRelicFilter</a> for an example implementation.</p>
+</div> 
+<div class="section"> 
+ <h2 id="System_Info_Provider">System Info Provider</h2> 
+ <p><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/apidocs/com/icfolson/aem/monitoring/database/system/SystemInfoProvider.html">SystemInfoProvider</a> is an interface used to provide info about the system providing monitoring data. In a clustered topology, where data is aggregated from several systems, this data is used to sort, facet, and filter data points. See <a class="externalLink" href="https://github.com/OlsonDigital/aem-monitoring/blob/develop/database/src/main/java/com/icfolson/aem/monitoring/database/system/impl/AEMSystemInfoProvider.java">AEMSystemInfoProvider</a> for an example implementation.</p>
 </div>
 			</div>
 		</div>
@@ -169,45 +168,7 @@
 					<ul class="nav nav-list">
 						<li class="nav-header">Project Documentation</li>
 						<li>
-							<a href="project-info.html" title="Project Information">Project Information <i class="icon-chevron-down"></i></a>
-							<ul class="nav nav-list">
-						<li>
-							<a href="dependency-convergence.html" title="Dependency Convergence">Dependency Convergence </a>
-						</li>
-						<li>
-							<a href="dependency-info.html" title="Dependency Information">Dependency Information </a>
-						</li>
-						<li>
-							<a href="dependency-management.html" title="Dependency Management">Dependency Management </a>
-						</li>
-						<li class="active">
-							<a href="#" title="Distribution Management">Distribution Management </a>
-						</li>
-						<li>
-							<a href="index.html" title="About">About </a>
-						</li>
-						<li>
-							<a href="license.html" title="Licenses">Licenses </a>
-						</li>
-						<li>
-							<a href="modules.html" title="Project Modules">Project Modules </a>
-						</li>
-						<li>
-							<a href="plugin-management.html" title="Plugin Management">Plugin Management </a>
-						</li>
-						<li>
-							<a href="plugins.html" title="Plugins">Plugins </a>
-						</li>
-						<li>
-							<a href="team-list.html" title="Team">Team </a>
-						</li>
-						<li>
-							<a href="source-repository.html" title="Source Code Management">Source Code Management </a>
-						</li>
-						<li>
-							<a href="project-summary.html" title="Summary">Summary </a>
-						</li>
-							</ul>
+							<a href="project-info.html" title="Project Information">Project Information <i class="icon-chevron-right"></i></a>
 						</li>
 					</ul>
 				</div>
