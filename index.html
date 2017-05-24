@@ -27,7 +27,21 @@
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 
-	</head>
+		<!-- Google Analytics -->
+		<script type="text/javascript">
+		
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-99868238-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+
+		</script>
+		</head>
 
 	<body class="page-index project-aem-monitoring" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
 
@@ -109,7 +123,7 @@
 	<div class="row columns columns1">
 		<div class="span12">
 			<h1>AEM Monitoring</h1>
-<p>AEM Monitoring is an integrated software analytics solution for AEM. It provides a simple interface for recording custom events, metrics, and counters, and a UI for analyzing data produced by your application. The solution can be configured to use one of several potential storage engines for monitoring data, including several database engines, as well as New Relic (subscription required). When using database storage, a console is provided for viewing/analysis of monitoring data from the author instance.</p>
+<p>AEM Monitoring is an integrated software analytics solution for AEM. It provides a simple interface for recording custom events, metrics, and counters, and a UI for analyzing data produced by your application. The solution can be configured to use one of several potential storage engines for monitoring data, including several database engines, as well as New Relic. When using database storage, a console is provided for viewing/analysis of monitoring data from the author instance.</p>
 <p><img src="https://github.com/OlsonDigital/aem-monitoring/raw/develop/src/site/markdown/events.png" alt="Event Visualization" /></p>
 <div class="section">   
 </div>
@@ -136,9 +150,16 @@
 <ul> 
  <li>High performance: capable of processing 100K complex events per hour</li> 
  <li>Simple extension: Create your own events and properties properties, metrics, and counters with no pre-configuration</li> 
- <li>Easily cluster publish instance to an author instance to see an entire environment’s data from the author environment</li> 
- <li>Store data for as long as you want, with configurable automatic deletion</li> 
+ <li>Store data for as long as needed, with configurable automatic deletion</li> 
 </ul>
+<div class="section">   
+</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<h2 id="Installation__Setup">Installation / Setup</h2>
+<p>See <a href="topologies.html">Topologies</a> for a listing of potential system configurations and installation instructions for each. See <a href="configuration.html">Configurations</a> for a listing of the configuration options exposed.</p>
 		</div>
 	</div>
 	<div class="row">
