@@ -116,7 +116,6 @@ public class SlingRequestRecorder implements Filter {
         }
 
         public int getResponseLength() {
-            // TODO fix this
             try {
                 final PrintWriter printWriter = getResponse().getWriter();
                 final Class c = printWriter.getClass();
