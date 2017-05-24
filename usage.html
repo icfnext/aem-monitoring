@@ -65,6 +65,7 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li class="active"><a href="" title="Usage">Usage </a></li>
+									<li><a href="console.html" title="Console">Console </a></li>
 									<li><a href="extension.html" title="Extension">Extension </a></li>
 									<li><a href="topologies.html" title="Topologies">Topologies </a></li>
 									<li><a href="configuration.html" title="Configuration">Configuration </a></li>
@@ -126,7 +127,7 @@
 		<div class="span12">
 			<div class="body-content">
 <h1>Usage</h1>
-<p>Although AEM Monitoring provides several types monitoring of out of the box, adding custom data from your domain is simple. The primary service interface for recording metrics is <a href="../core/src/main/java/com/icfolson/aem/monitoring/core/service/MonitoringService.java">MonitoringService</a>. Callers can leverage this service to record events, metrics, and counters:</p>
+<p>Although AEM Monitoring provides several types monitoring of out of the box, adding custom data from your domain is simple. The primary service interface for recording metrics is <a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring/apidocs/com/icfolson/aem/monitoring/core/service/MonitoringService.html">MonitoringService</a>. Callers can leverage this service to record events, metrics, and counters:</p>
 
 <div class="source">
 <pre>import com.icfolson.aem.monitoring.core.model.base.DefaultMonitoringEvent;
@@ -183,6 +184,9 @@ public abstract class MonitoredComponent {
 						<li class="nav-header">User Guide</li>
 						<li class="active">
 							<a href="#" title="Usage">Usage </a>
+						</li>
+						<li>
+							<a href="console.html" title="Console">Console </a>
 						</li>
 						<li>
 							<a href="extension.html" title="Extension">Extension </a>

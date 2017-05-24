@@ -4,7 +4,7 @@
 
 	<head>
 		<meta charset="UTF-8" />
-		<title>Project Summary | aem-monitoring</title>
+		<title>AEM Monitoring Console | aem-monitoring</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="" />
 		<meta http-equiv="content-language" content="en" />
@@ -43,7 +43,7 @@
 		</script>
 		</head>
 
-	<body class="page-project-summary project-aem-monitoring" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
+	<body class="page-console project-aem-monitoring" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
 
 		<nav class="navbar navbar-default navbar-fixed-top">
 				<div class="container">
@@ -61,17 +61,17 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="https://github.com/OlsonDigital/aem-monitoring" title="GitHub" class="externalLink">GitHub </a></li>
 							<li><a href="index.html" title="Overview">Overview </a></li>
-							<li class="dropdown">
+							<li class="dropdown active">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="usage.html" title="Usage">Usage </a></li>
-									<li><a href="console.html" title="Console">Console </a></li>
+									<li class="active"><a href="" title="Console">Console </a></li>
 									<li><a href="extension.html" title="Extension">Extension </a></li>
 									<li><a href="topologies.html" title="Topologies">Topologies </a></li>
 									<li><a href="configuration.html" title="Configuration">Configuration </a></li>
 								</ul>
 							</li>
-							<li class="dropdown active">
+							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Project Documentation <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li class="dropdown-submenu">
@@ -88,7 +88,7 @@
 											<li><a href="plugins.html" title="Plugins">Plugins </a></li>
 											<li><a href="team-list.html" title="Team">Team </a></li>
 											<li><a href="source-repository.html" title="Source Code Management">Source Code Management </a></li>
-											<li class="active"><a href="" title="Summary">Summary </a></li>
+											<li><a href="project-summary.html" title="Summary">Summary </a></li>
 										</ul>
 									</li>
 								</ul>
@@ -126,87 +126,21 @@
 	<div class="row">
 		<div class="span12">
 			<div class="body-content">
+<h1>AEM Monitoring Console</h1> 
+<p>The AEM Monitoring console provides data visualization and analysis. It is available in all topologies utilizing local database storage (H2 or generic DB). The console can be found at <a class="externalLink" href="http://localhost:4502/apps/aem-monitoring/content/console.html"><tt>/apps/aem-monitoring/content/console.html</tt></a> on your author instance. Note that access is restricted to the following AEM user groups: <tt>administrators</tt>, <tt>aem-monitoring-user</tt>, or <tt>aem-monitoring-admin</tt>. The console functionality is split into three major views, outlined below.</p> 
 <div class="section"> 
- <h2 id="Project_Summary">Project Summary</h2> 
- <a name="Project_Summary"></a> 
- <div class="section"> 
-  <h3 id="Project_Information">Project Information</h3> 
-  <a name="Project_Information"></a> 
-  <table border="0" class="bodyTable table table-striped table-hover">
-   <thead>
-    <tr class="a"> 
-     <th>Field</th> 
-     <th>Value</th> 
-    </tr>
-   </thead> 
-   <tbody>  
-    <tr class="b"> 
-     <td>Name</td> 
-     <td>aem-monitoring</td> 
-    </tr> 
-    <tr class="a"> 
-     <td>Description</td> 
-     <td>Maven parent POM for AEM (Adobe CQ) projects that defines a dependency management section containing all of the available dependencies that are provided by the OSGi container.</td> 
-    </tr> 
-    <tr class="b"> 
-     <td>Homepage</td> 
-     <td><a class="externalLink" href="http://code.digitalatolson.com/aem-monitoring">http://code.digitalatolson.com/aem-monitoring</a></td> 
-    </tr> 
-   </tbody> 
-  </table> 
- </div> 
- <div class="section"> 
-  <h3 id="Project_Organization">Project Organization</h3> 
-  <a name="Project_Organization"></a> 
-  <table border="0" class="bodyTable table table-striped table-hover">
-   <thead>
-    <tr class="a"> 
-     <th>Field</th> 
-     <th>Value</th> 
-    </tr>
-   </thead> 
-   <tbody>  
-    <tr class="b"> 
-     <td>Name</td> 
-     <td>ICF Olson</td> 
-    </tr> 
-    <tr class="a"> 
-     <td>URL</td> 
-     <td><a class="externalLink" href="http://www.icfolson.com">http://www.icfolson.com</a></td> 
-    </tr> 
-   </tbody> 
-  </table> 
- </div> 
- <div class="section"> 
-  <h3 id="Build_Information">Build Information</h3> 
-  <a name="Build_Information"></a> 
-  <table border="0" class="bodyTable table table-striped table-hover">
-   <thead>
-    <tr class="a"> 
-     <th>Field</th> 
-     <th>Value</th> 
-    </tr>
-   </thead> 
-   <tbody>  
-    <tr class="b"> 
-     <td>GroupId</td> 
-     <td>com.icfolson.aem.monitoring</td> 
-    </tr> 
-    <tr class="a"> 
-     <td>ArtifactId</td> 
-     <td>aem-monitoring</td> 
-    </tr> 
-    <tr class="b"> 
-     <td>Version</td> 
-     <td>1.0.0-SNAPSHOT</td> 
-    </tr> 
-    <tr class="a"> 
-     <td>Type</td> 
-     <td>pom</td> 
-    </tr> 
-   </tbody> 
-  </table> 
- </div> 
+ <h2 id="Events">Events</h2> 
+ <p>The Events view visualizes recently-submitted events from various time periods. The events are plotted on a graph, allowing users to facet and filter the result set displayed.</p> 
+ <p>Events are segregated by type, with only a single type being graphed at a time. Users can switch between types using the select widget in the upper left of the console. The next selector controls the time period displayed. The final selector along the top of the console allows the user to switch between graphing the event count (the default), and other numeric fields (when applicable for the selected event type).</p> 
+ <p>The left side of the console displays the facets. Results can be faceted by any property submitted with a string value. For example, sling request events can be faceted by the request extension. Clicking on a facet will split the graph into facets according to values for that property included in the current dataset – continuing with the request extension example, the facets might include “html”, “js”, “css”, and “json”. Clicking on a facet will filter the dataset. For example, clicking on the “html” facet would show only data for requests with an “html” extension. Active filters appear as tags in the upper-right of the console, and can be removed by clicking on the “X” on each.</p>
+</div> 
+<div class="section"> 
+ <h2 id="Metrics">Metrics</h2> 
+ <p>The Metrics view displays recently-submitted metrics data. It displays a category listing to the right hand side. Once selected, the average for that metric will be graphed for the selected time frame. When operating in a topology with multiple instances, data for each instance will be displayed as a separate line.</p>
+</div> 
+<div class="section"> 
+ <h2 id="Counters">Counters</h2> 
+ <p>The Counters view is similar to the metrics view. The only difference is that instead of displaying an average value, counters are shown as a rate.</p>
 </div>
 			</div>
 		</div>
@@ -226,8 +160,8 @@
 						<li>
 							<a href="usage.html" title="Usage">Usage </a>
 						</li>
-						<li>
-							<a href="console.html" title="Console">Console </a>
+						<li class="active">
+							<a href="#" title="Console">Console </a>
 						</li>
 						<li>
 							<a href="extension.html" title="Extension">Extension </a>
@@ -244,45 +178,7 @@
 					<ul class="nav nav-list">
 						<li class="nav-header">Project Documentation</li>
 						<li>
-							<a href="project-info.html" title="Project Information">Project Information <i class="icon-chevron-down"></i></a>
-							<ul class="nav nav-list">
-						<li>
-							<a href="dependency-convergence.html" title="Dependency Convergence">Dependency Convergence </a>
-						</li>
-						<li>
-							<a href="dependency-info.html" title="Dependency Information">Dependency Information </a>
-						</li>
-						<li>
-							<a href="dependency-management.html" title="Dependency Management">Dependency Management </a>
-						</li>
-						<li>
-							<a href="distribution-management.html" title="Distribution Management">Distribution Management </a>
-						</li>
-						<li>
-							<a href="index.html" title="About">About </a>
-						</li>
-						<li>
-							<a href="license.html" title="Licenses">Licenses </a>
-						</li>
-						<li>
-							<a href="modules.html" title="Project Modules">Project Modules </a>
-						</li>
-						<li>
-							<a href="plugin-management.html" title="Plugin Management">Plugin Management </a>
-						</li>
-						<li>
-							<a href="plugins.html" title="Plugins">Plugins </a>
-						</li>
-						<li>
-							<a href="team-list.html" title="Team">Team </a>
-						</li>
-						<li>
-							<a href="source-repository.html" title="Source Code Management">Source Code Management </a>
-						</li>
-						<li class="active">
-							<a href="#" title="Summary">Summary </a>
-						</li>
-							</ul>
+							<a href="project-info.html" title="Project Information">Project Information <i class="icon-chevron-right"></i></a>
 						</li>
 					</ul>
 				</div>

@@ -65,6 +65,7 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="usage.html" title="Usage">Usage </a></li>
+									<li><a href="console.html" title="Console">Console </a></li>
 									<li><a href="extension.html" title="Extension">Extension </a></li>
 									<li class="active"><a href="" title="Topologies">Topologies </a></li>
 									<li><a href="configuration.html" title="Configuration">Configuration </a></li>
@@ -132,19 +133,19 @@
  <h2 id="Multiple_On-Instance">Multiple On-Instance</h2> 
  <p>Multiple on-instance topologies use a separate H2 database for each AEM instance. A service on author calls servlets on the publish instances to “reverse replicate” monitoring data to the author instance, where the AEM Monitoring console is accessed. The benefit of this topology is that data from the publish instance(s) will not be lost when the author instance is offline. The downside is that there is a small overhead on author and publish instances for the data replication.</p> 
  <p>This configuration can be set up by installing the <tt>aem-monitoring-ui</tt> and <tt>aem-monitoring-h2</tt> packages on each AEM instance. The H2 package contains configurations to start an H2 server and auto-initialize the schema, using port 8084 for author and 8085 for publish (to avoid conflicts in local setups). Additionally, serialization will need to be configured from publish to author. Go to <a class="externalLink" href="http://localhost:4502/apps/aem-monitoring/content/console.html">the console</a> on author and select the “Config” tab, creating client configurations for each publish instance.</p> 
- <p><img src="config.png" alt="Client Configuration Screen" /></p>
+ <p><img src="https://github.com/OlsonDigital/aem-monitoring/raw/develop/src/site/images/config.png" alt="Client Configuration Screen" /></p>
 </div> 
 <div class="section"> 
  <h2 id="Single_On-Instance">Single On-Instance</h2> 
  <p>A single on-instance topology will have data from all instance written directly to an H2 server running on author. This configuration eliminates the overhead of serializing data between instances, as the publish instances write directly to the single database via the H2 server managed by the author instance. The downside of this configuration is that data from the publish instances will be lost while the author instance is down.</p> 
  <p>To configure this topology, first remove all clients from the configuration screen (above), as publish instances will be writing directly to the database. Next, configure the “AEM Monitoring: H2 DB Server” service in the Sling console. Select “Externally Managed” and enter the author server address and port (8084 by default) to route publish data directly to the database managed by the author instance.</p> 
- <p><img src="h2-server.png" alt="H2 Server Configuration" /></p>
+ <p><img src="https://github.com/OlsonDigital/aem-monitoring/raw/develop/src/site/images/h2-server.png" alt="H2 Server Configuration" /></p>
 </div> 
 <div class="section"> 
  <h2 id="Off-Instance">Off-Instance</h2> 
  <p>The off-instance topology writes all data to a single externally-managed database instance. This is the most stable and available configuration, but requires additional setup.</p> 
- <p>For MySQL-based DBs, <a href="../generic-db/src/main/resources/mysql-init.sql">this SQL script</a> can be used to initialize the monitoring database schema. Install both the <tt>aem-monitoring-ui</tt> and <tt>aem-monitoring-generic-db-installation</tt> packages. Create a “Day Commons JDBC Connection Pool” configuration for your database, using <tt>aem-monitoring</tt> as the datasource name, and ensuring that the JDBC driver for your database is installed in the OSGi environment. Finally, configure the “AEM Monitoring: Generic DB Connection Provider” service, entering the appropriate Dialect constant for jOOQ from <a class="externalLink" href="https://www.jooq.org/javadoc/3.6.2/org/jooq/SQLDialect.html">this page</a>.</p> 
- <p><img src="jdbc.png" alt="JDBC Configuration" /></p>
+ <p>For MySQL-based DBs, <a class="externalLink" href="https://github.com/OlsonDigital/aem-monitoring/blob/develop/generic-db/src/main/resources/mysql-init.sql">this SQL script</a> can be used to initialize the monitoring database schema. Install both the <tt>aem-monitoring-ui</tt> and <tt>aem-monitoring-generic-db-installation</tt> packages. Create a “Day Commons JDBC Connection Pool” configuration for your database, using <tt>aem-monitoring</tt> as the datasource name, and ensuring that the JDBC driver for your database is installed in the OSGi environment. Finally, configure the “AEM Monitoring: Generic DB Connection Provider” service, entering the appropriate Dialect constant for jOOQ from <a class="externalLink" href="https://www.jooq.org/javadoc/3.6.2/org/jooq/SQLDialect.html">this page</a>.</p> 
+ <p><img src="https://github.com/OlsonDigital/aem-monitoring/raw/develop/src/site/images/jdbc.png" alt="JDBC Configuration" /></p>
 </div> 
 <div class="section"> 
  <h2 id="New_Relic">New Relic</h2> 
@@ -167,6 +168,9 @@
 						<li class="nav-header">User Guide</li>
 						<li>
 							<a href="usage.html" title="Usage">Usage </a>
+						</li>
+						<li>
+							<a href="console.html" title="Console">Console </a>
 						</li>
 						<li>
 							<a href="extension.html" title="Extension">Extension </a>
