@@ -326,7 +326,7 @@
             <dependency>
                 <groupId>com.day.commons</groupId>
                 <artifactId>day.commons.datasource.jdbcpool</artifactId>
-                <version>1.0.8</version>
+                <version>1.0.10</version>
             </dependency>
             <dependency>
                 <groupId>com.day.commons</groupId>
