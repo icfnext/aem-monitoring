@@ -30,6 +30,8 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Activator>com.icfolson.aem.monitoring.newrelic.Activator</Bundle-Activator>
                         <Bundle-Name>${project.name}</Bundle-Name>
+                        <Bundle-Category>aem-monitoring</Bundle-Category>
+                        <Bundle-Description>Provides code supporting the AEM Monitoring New Relic installation</Bundle-Description>
                         <Bundle-Vendor>${project.parent.organization.name}</Bundle-Vendor>
                         <Export-Package>com.icfolson.aem.monitoring.newrelic.*</Export-Package>
                         <DynamicImport-Package>*</DynamicImport-Package>

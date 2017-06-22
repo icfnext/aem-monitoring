@@ -29,6 +29,8 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.name}</Bundle-Name>
+                        <Bundle-Category>aem-monitoring</Bundle-Category>
+                        <Bundle-Description>Provides code that load-tests core AEM Monitoring functionality</Bundle-Description>
                         <Bundle-Vendor>${project.parent.organization.name}</Bundle-Vendor>
                         <Export-Package>
                             com.icfolson.aem.monitoring.test.*;

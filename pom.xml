@@ -77,6 +77,11 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <version>3.3.0</version>
+                <configuration>
+                    <instructions>
+                        <Bundle-DocURL>http://code.digitalatolson.com/aem-monitoring/</Bundle-DocURL>
+                    </instructions>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
