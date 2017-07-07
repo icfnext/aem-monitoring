@@ -14,6 +14,7 @@ import java.util.List;
 import javax.annotation.Generated;
 
 import org.jooq.Field;
+import org.jooq.Identity;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -34,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class System extends TableImpl<SystemRecord> {
 
-    private static final long serialVersionUID = 1879783729;
+    private static final long serialVersionUID = 2006241901;
 
     /**
      * The reference instance of <code>MONITORING.SYSTEM</code>
@@ -52,7 +53,12 @@ public class System extends TableImpl<SystemRecord> {
     /**
      * The column <code>MONITORING.SYSTEM.SYSTEM_ID</code>.
      */
-    public final TableField<SystemRecord, String> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.CHAR.length(36).nullable(false), this, "");
+    public final TableField<SystemRecord, Short> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.SMALLINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_00594B8E_F9F8_43AA_97BE_538605687EAC)", org.jooq.impl.SQLDataType.SMALLINT)), this, "");
+
+    /**
+     * The column <code>MONITORING.SYSTEM.REPOSITORY_UUID</code>.
+     */
+    public final TableField<SystemRecord, String> REPOSITORY_UUID = createField("REPOSITORY_UUID", org.jooq.impl.SQLDataType.CHAR.length(36), this, "");
 
     /**
      * Create a <code>MONITORING.SYSTEM</code> table reference
@@ -88,6 +94,14 @@ public class System extends TableImpl<SystemRecord> {
      * {@inheritDoc}
      */
     @Override
+    public Identity<SystemRecord, Short> getIdentity() {
+        return Keys.IDENTITY_SYSTEM;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public UniqueKey<SystemRecord> getPrimaryKey() {
         return Keys.CONSTRAINT_9;
     }
@@ -97,7 +111,7 @@ public class System extends TableImpl<SystemRecord> {
      */
     @Override
     public List<UniqueKey<SystemRecord>> getKeys() {
-        return Arrays.<UniqueKey<SystemRecord>>asList(Keys.CONSTRAINT_9);
+        return Arrays.<UniqueKey<SystemRecord>>asList(Keys.CONSTRAINT_9, Keys.CONSTRAINT_92);
     }
 
     /**

@@ -15,7 +15,7 @@ import com.icfolson.aem.monitoring.console.result.EventListing;
 import com.icfolson.aem.monitoring.console.result.FacetedTimeSeries;
 import com.icfolson.aem.monitoring.console.result.TimeSeries;
 import com.icfolson.aem.monitoring.console.service.EventQueryService;
-import com.icfolson.aem.monitoring.console.system.SystemRepository;
+import com.icfolson.aem.monitoring.console.system.SystemQueryRepository;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
@@ -41,7 +41,7 @@ public class EventQueryServiceImpl implements EventQueryService {
     private EventQueryRepository events;
 
     @Reference
-    private SystemRepository systems;
+    private SystemQueryRepository systems;
 
     @Override
     public TimeSeries executeQuery(final EventQuery query) throws MonitoringQueryException {

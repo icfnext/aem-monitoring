@@ -2,17 +2,16 @@ package com.icfolson.aem.monitoring.database.repository.impl;
 
 import com.icfolson.aem.monitoring.core.model.MonitoringMetric;
 import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
+import com.icfolson.aem.monitoring.database.repository.MetricRepository;
+import com.icfolson.aem.monitoring.database.repository.SystemRepository;
 import com.icfolson.aem.monitoring.database.system.SystemInfo;
 import com.icfolson.aem.monitoring.database.system.SystemInfoProvider;
-import com.icfolson.aem.monitoring.database.repository.MetricRepository;
 import com.icfolson.aem.monitoring.database.writer.MetricsDatabase;
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Modified;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
+import org.apache.felix.scr.annotations.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.time.ZoneId;
 import java.util.List;
 import java.util.Map;
 
@@ -20,11 +19,16 @@ import java.util.Map;
 @Component(immediate = true)
 public class MetricRepositoryImpl implements MetricRepository {
 
+    private static final Logger LOG = LoggerFactory.getLogger(MetricRepositoryImpl.class);
+
     @Reference
     private SystemInfoProvider systemInfoProvider;
 
     @Reference
     private ConnectionProvider connectionProvider;
+
+    @Reference
+    private SystemRepository systemRepository;
 
     private MetricsDatabase writer;
 
@@ -46,9 +50,14 @@ public class MetricRepositoryImpl implements MetricRepository {
     @Activate
     @Modified
     protected final void modified() {
-        final SystemInfo systemInfo = systemInfoProvider.getSystemInfo();
-        final ZoneId systemZone = ZoneId.systemDefault();
-        writer = new MetricsDatabase(systemInfo.getSystemId().toString(), connectionProvider);
+        try {
+            final SystemInfo systemInfo = systemInfoProvider.getSystemInfo();
+            final String repositoryUuid = systemInfo.getSystemId().toString();
+            final short systemId = systemRepository.getSystemId(repositoryUuid);
+            writer = new MetricsDatabase(systemId, connectionProvider);
+        } catch (MonitoringDBException e) {
+            LOG.error("Error starting Metric Repository", e);
+        }
     }
 
 }

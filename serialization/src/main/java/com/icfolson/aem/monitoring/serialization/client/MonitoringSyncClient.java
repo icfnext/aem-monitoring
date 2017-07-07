@@ -5,9 +5,11 @@ import com.icfolson.aem.monitoring.core.model.MonitoringEvent;
 import com.icfolson.aem.monitoring.core.model.MonitoringMetric;
 import com.icfolson.aem.monitoring.core.model.RemoteSystem;
 import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.writer.CountersDatabase;
 import com.icfolson.aem.monitoring.database.writer.EventsDatabase;
 import com.icfolson.aem.monitoring.database.writer.MetricsDatabase;
+import com.icfolson.aem.monitoring.database.writer.SystemDatabase;
 import com.icfolson.aem.monitoring.serialization.constants.Parameters;
 import com.icfolson.aem.monitoring.serialization.constants.Paths;
 import com.icfolson.aem.monitoring.serialization.exception.MonitoringSyncException;
@@ -35,6 +37,7 @@ public class MonitoringSyncClient {
     private final RemoteSystem system;
     private final ConnectionProvider connectionProvider;
 
+    private final SystemDatabase systemDatabase;
     private final EventsDatabase eventsDatabase;
     private final MetricsDatabase metricsDatabase;
     private final CountersDatabase countersDatabase;
@@ -45,10 +48,14 @@ public class MonitoringSyncClient {
     private long metricsSince;
     private long countersSince;
 
-    public MonitoringSyncClient(NamedRemoteSystem system, ConnectionProvider connectionProvider) {
+    public MonitoringSyncClient(NamedRemoteSystem system, ConnectionProvider connectionProvider)
+            throws MonitoringDBException {
+
         this.system = system;
         this.connectionProvider = connectionProvider;
-        final String systemId = system.getUuid().toString();
+        final String repositoryUuid = system.getUuid().toString();
+        systemDatabase = new SystemDatabase(connectionProvider);
+        final short systemId = systemDatabase.getId(repositoryUuid);
         eventsDatabase = new EventsDatabase(systemId, connectionProvider);
         metricsDatabase = new MetricsDatabase(systemId, connectionProvider);
         countersDatabase = new CountersDatabase(systemId, connectionProvider);

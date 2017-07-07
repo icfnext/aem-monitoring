@@ -1,14 +1,6 @@
 package com.icfolson.aem.monitoring.console.repository.impl;
 
-import com.icfolson.aem.monitoring.core.constants.EventProperties;
-import com.icfolson.aem.monitoring.core.time.TimeGrouper;
-import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
-import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
-import com.icfolson.aem.monitoring.database.generated.Tables;
-import com.icfolson.aem.monitoring.database.generated.tables.Event;
-import com.icfolson.aem.monitoring.database.generated.tables.EventProperty;
-import com.icfolson.aem.monitoring.database.connection.ConnectionWrapper;
-import com.icfolson.aem.monitoring.database.repository.EventRepository;
+
 import com.icfolson.aem.monitoring.console.model.EventPropertyDescriptor;
 import com.icfolson.aem.monitoring.console.model.EventQuery;
 import com.icfolson.aem.monitoring.console.model.EventTypeDescriptor;
@@ -18,6 +10,16 @@ import com.icfolson.aem.monitoring.console.result.EventListing;
 import com.icfolson.aem.monitoring.console.result.FacetedTimeSeries;
 import com.icfolson.aem.monitoring.console.result.TimeSeries;
 import com.icfolson.aem.monitoring.console.util.JooqUtil;
+import com.icfolson.aem.monitoring.core.constants.EventProperties;
+import com.icfolson.aem.monitoring.core.time.TimeGrouper;
+import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.connection.ConnectionWrapper;
+import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
+import com.icfolson.aem.monitoring.database.generated.Tables;
+import com.icfolson.aem.monitoring.database.generated.tables.Event;
+import com.icfolson.aem.monitoring.database.generated.tables.EventProperty;
+import com.icfolson.aem.monitoring.database.repository.EventRepository;
+import com.icfolson.aem.monitoring.database.repository.SystemRepository;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
@@ -42,6 +44,9 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
 
     @Reference
     private EventRepository repository;
+
+    @Reference
+    private SystemRepository systemRepository;
 
     @Override
     public TimeSeries executeQuery(final EventQuery query) throws MonitoringDBException {
@@ -178,7 +183,7 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
         try (ConnectionWrapper wrapper = getConnection()) {
             final DSLContext context = wrapper.getContext();
 
-            final SelectConditionStep<Record3<Long, Long, String>> events = context
+            final SelectConditionStep<Record3<Long, Long, Short>> events = context
                 .select(Tables.EVENT.EVENT_ID, Tables.EVENT.TIME, Tables.EVENT.SYSTEM_ID)
                 .from(entities.table)
                 .where(entities.conditions);
@@ -187,8 +192,9 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
             for (final Record record : eventResults) {
                 final long eventId = record.get(Tables.EVENT.EVENT_ID);
                 final long timestamp = record.get(Tables.EVENT.TIME);
-                final String systemID = record.get(Tables.EVENT.SYSTEM_ID);
-                out.addEvent(eventId, timestamp, UUID.fromString(systemID));
+                final short systemID = record.get(Tables.EVENT.SYSTEM_ID);
+                final String repositoryUuid = systemRepository.getRepositoryUuid(systemID);
+                out.addEvent(eventId, timestamp, UUID.fromString(repositoryUuid));
             }
 
             final SelectConditionStep<Record4<Long, String, String, Float>> eventProperties = context

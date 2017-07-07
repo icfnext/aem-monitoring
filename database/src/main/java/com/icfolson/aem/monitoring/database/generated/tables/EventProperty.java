@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EventProperty extends TableImpl<EventPropertyRecord> {
 
-    private static final long serialVersionUID = -345332337;
+    private static final long serialVersionUID = -363984419;
 
     /**
      * The reference instance of <code>MONITORING.EVENT_PROPERTY</code>
@@ -104,7 +104,7 @@ public class EventProperty extends TableImpl<EventPropertyRecord> {
      */
     @Override
     public List<ForeignKey<EventPropertyRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<EventPropertyRecord, ?>>asList(Keys.CONSTRAINT_92);
+        return Arrays.<ForeignKey<EventPropertyRecord, ?>>asList(Keys.CONSTRAINT_924);
     }
 
     /**

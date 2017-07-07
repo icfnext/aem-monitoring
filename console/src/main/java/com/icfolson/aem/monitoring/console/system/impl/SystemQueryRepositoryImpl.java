@@ -10,10 +10,11 @@ import com.icfolson.aem.monitoring.database.connection.ConnectionWrapper;
 import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.generated.Tables;
 import com.icfolson.aem.monitoring.database.generated.tables.records.SystemPropertyRecord;
+import com.icfolson.aem.monitoring.database.repository.SystemRepository;
 import com.icfolson.aem.monitoring.database.system.SystemInfo;
 import com.icfolson.aem.monitoring.console.model.Operation;
 import com.icfolson.aem.monitoring.console.model.Predicate;
-import com.icfolson.aem.monitoring.console.system.SystemRepository;
+import com.icfolson.aem.monitoring.console.system.SystemQueryRepository;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Deactivate;
 import org.apache.felix.scr.annotations.Reference;
@@ -25,13 +26,16 @@ import java.util.*;
 
 @Service
 @Component(immediate = true)
-public class SystemRepositoryImpl implements SystemRepository {
+public class SystemQueryRepositoryImpl implements SystemQueryRepository {
 
     // TODO add support for LIKE
     private static final Set<Operation> SUPPORTED = ImmutableSet.of(Operation.EQUAL, Operation.NOT_EQUAL);
 
     @Reference
     private ConnectionProvider connectionProvider;
+
+    @Reference
+    private SystemRepository systemRepository;
 
     private Map<UUID, SystemInfoImpl> cache;
 
@@ -110,7 +114,9 @@ public class SystemRepositoryImpl implements SystemRepository {
             final DSLContext context = wrapper.getContext();
             final Result<SystemPropertyRecord> result = context.selectFrom(Tables.SYSTEM_PROPERTY).fetch();
             for (final SystemPropertyRecord propertyRecord : result) {
-                final UUID uuid = UUID.fromString(propertyRecord.getSystemId());
+                final short systemId = propertyRecord.getSystemId();
+                final String repositoryUuid = systemRepository.getRepositoryUuid(systemId);
+                final UUID uuid = UUID.fromString(repositoryUuid);
                 SystemInfoImpl systemInfo = out.get(uuid);
                 if (systemInfo == null) {
                     systemInfo = new SystemInfoImpl(uuid);

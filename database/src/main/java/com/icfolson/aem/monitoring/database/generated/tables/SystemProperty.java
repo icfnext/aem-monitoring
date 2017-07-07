@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SystemProperty extends TableImpl<SystemPropertyRecord> {
 
-    private static final long serialVersionUID = 2007745283;
+    private static final long serialVersionUID = 454934190;
 
     /**
      * The reference instance of <code>MONITORING.SYSTEM_PROPERTY</code>
@@ -52,7 +52,7 @@ public class SystemProperty extends TableImpl<SystemPropertyRecord> {
     /**
      * The column <code>MONITORING.SYSTEM_PROPERTY.SYSTEM_ID</code>.
      */
-    public final TableField<SystemPropertyRecord, String> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.CHAR.length(36).nullable(false), this, "");
+    public final TableField<SystemPropertyRecord, Short> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.SMALLINT.nullable(false), this, "");
 
     /**
      * The column <code>MONITORING.SYSTEM_PROPERTY.NAME</code>.

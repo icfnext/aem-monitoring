@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-public interface SystemRepository {
+public interface SystemQueryRepository {
 
     Map<UUID, SystemInfo> getSystemInfo() throws MonitoringDBException;
 

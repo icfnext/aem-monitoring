@@ -35,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Counter extends TableImpl<CounterRecord> {
 
-    private static final long serialVersionUID = 2048643730;
+    private static final long serialVersionUID = 317978147;
 
     /**
      * The reference instance of <code>MONITORING.COUNTER</code>
@@ -53,7 +53,7 @@ public class Counter extends TableImpl<CounterRecord> {
     /**
      * The column <code>MONITORING.COUNTER.COUNTER_ID</code>.
      */
-    public final TableField<CounterRecord, Short> COUNTER_ID = createField("COUNTER_ID", org.jooq.impl.SQLDataType.SMALLINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_7E0C0270_2B27_4802_9BFD_20E74CA4349D)", org.jooq.impl.SQLDataType.SMALLINT)), this, "");
+    public final TableField<CounterRecord, Short> COUNTER_ID = createField("COUNTER_ID", org.jooq.impl.SQLDataType.SMALLINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("(NEXT VALUE FOR MONITORING.SYSTEM_SEQUENCE_E8544E63_4839_4480_AC30_C38A382E5E69)", org.jooq.impl.SQLDataType.SMALLINT)), this, "");
 
     /**
      * The column <code>MONITORING.COUNTER.COUNTER_NAME</code>.

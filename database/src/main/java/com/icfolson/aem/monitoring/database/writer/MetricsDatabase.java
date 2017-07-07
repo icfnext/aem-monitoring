@@ -24,11 +24,11 @@ public class MetricsDatabase {
 
     private static final Logger LOG = LoggerFactory.getLogger(MetricsDatabase.class);
 
-    private final String systemId;
+    private final short systemId;
     private final ConnectionProvider connectionProvider;
     private final BiMap<String, Short> metricIds = HashBiMap.create();
 
-    public MetricsDatabase(final String systemId, final ConnectionProvider connectionProvider) {
+    public MetricsDatabase(final short systemId, final ConnectionProvider connectionProvider) {
         this.systemId = systemId;
         this.connectionProvider = connectionProvider;
     }

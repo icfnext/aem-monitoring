@@ -4,6 +4,7 @@ import com.icfolson.aem.monitoring.core.model.QualifiedName;
 import com.icfolson.aem.monitoring.core.model.RemoteSystem;
 import com.icfolson.aem.monitoring.core.service.MonitoringService;
 import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.serialization.exception.MonitoringSyncException;
 import com.icfolson.aem.monitoring.serialization.model.MonitoringSyncResult;
 import com.icfolson.aem.monitoring.serialization.model.NamedRemoteSystem;
@@ -61,7 +62,11 @@ public class Client {
                 final SystemSyncClient systemSyncClient = new SystemSyncClient(system, connectionProvider);
                 systemSyncClient.sync();
                 final NamedRemoteSystem namedRemoteSystem = new NamedRemoteSystem(systemSyncClient.getUuid(), system);
-                client = new MonitoringSyncClient(namedRemoteSystem, connectionProvider);
+                try {
+                    client = new MonitoringSyncClient(namedRemoteSystem, connectionProvider);
+                } catch (MonitoringDBException e) {
+                    LOG.error("Error initializing client", e);
+                }
             }
         }, 0L);
     }

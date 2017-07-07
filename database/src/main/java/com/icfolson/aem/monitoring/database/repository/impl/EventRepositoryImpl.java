@@ -3,15 +3,13 @@ package com.icfolson.aem.monitoring.database.repository.impl;
 import com.google.common.collect.BiMap;
 import com.icfolson.aem.monitoring.core.model.MonitoringEvent;
 import com.icfolson.aem.monitoring.database.connection.ConnectionProvider;
+import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
+import com.icfolson.aem.monitoring.database.repository.EventRepository;
+import com.icfolson.aem.monitoring.database.repository.SystemRepository;
 import com.icfolson.aem.monitoring.database.system.SystemInfo;
 import com.icfolson.aem.monitoring.database.system.SystemInfoProvider;
-import com.icfolson.aem.monitoring.database.repository.EventRepository;
 import com.icfolson.aem.monitoring.database.writer.EventsDatabase;
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Modified;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
+import org.apache.felix.scr.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +27,9 @@ public class EventRepositoryImpl implements EventRepository {
 
     @Reference
     private SystemInfoProvider systemInfoProvider;
+
+    @Reference
+    private SystemRepository systemRepository;
     private EventsDatabase database;
 
     @Override
@@ -49,7 +50,13 @@ public class EventRepositoryImpl implements EventRepository {
     @Activate
     @Modified
     protected final void activate(final Map<String, Object> props) {
-        final SystemInfo systemInfo = systemInfoProvider.getSystemInfo();
-        database = new EventsDatabase(systemInfo.getSystemId().toString(), connectionProvider);
+        try {
+            final SystemInfo systemInfo = systemInfoProvider.getSystemInfo();
+            final String repositoryUuid = systemInfo.getSystemId().toString();
+            final short systemId = systemRepository.getSystemId(repositoryUuid);
+            database = new EventsDatabase(systemId, connectionProvider);
+        } catch (MonitoringDBException e) {
+            LOG.error("Error starting Counter Repository", e);
+        }
     }
 }

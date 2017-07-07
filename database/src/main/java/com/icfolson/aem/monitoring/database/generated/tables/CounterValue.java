@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class CounterValue extends TableImpl<CounterValueRecord> {
 
-    private static final long serialVersionUID = -1740117882;
+    private static final long serialVersionUID = 689269179;
 
     /**
      * The reference instance of <code>MONITORING.COUNTER_VALUE</code>
@@ -57,7 +57,7 @@ public class CounterValue extends TableImpl<CounterValueRecord> {
     /**
      * The column <code>MONITORING.COUNTER_VALUE.SYSTEM_ID</code>.
      */
-    public final TableField<CounterValueRecord, String> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.CHAR.length(36).nullable(false), this, "");
+    public final TableField<CounterValueRecord, Short> SYSTEM_ID = createField("SYSTEM_ID", org.jooq.impl.SQLDataType.SMALLINT.nullable(false), this, "");
 
     /**
      * The column <code>MONITORING.COUNTER_VALUE.TIME</code>.

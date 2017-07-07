@@ -23,11 +23,11 @@ public class CountersDatabase {
 
     private static final Logger LOG = LoggerFactory.getLogger(CountersDatabase.class);
 
-    private final String systemId;
+    private final short systemId;
     private final ConnectionProvider connectionProvider;
     private final BiMap<String, Short> counterIds = HashBiMap.create();
 
-    public CountersDatabase(final String systemId, final ConnectionProvider connectionProvider) {
+    public CountersDatabase(final short systemId, final ConnectionProvider connectionProvider) {
         this.systemId = systemId;
         this.connectionProvider = connectionProvider;
     }
