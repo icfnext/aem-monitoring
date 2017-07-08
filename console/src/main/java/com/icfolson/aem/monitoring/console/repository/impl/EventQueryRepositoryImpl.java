@@ -18,6 +18,7 @@ import com.icfolson.aem.monitoring.database.exception.MonitoringDBException;
 import com.icfolson.aem.monitoring.database.generated.Tables;
 import com.icfolson.aem.monitoring.database.generated.tables.Event;
 import com.icfolson.aem.monitoring.database.generated.tables.EventProperty;
+import com.icfolson.aem.monitoring.database.generated.tables.System;
 import com.icfolson.aem.monitoring.database.repository.EventRepository;
 import com.icfolson.aem.monitoring.database.repository.SystemRepository;
 import org.apache.felix.scr.annotations.Component;
@@ -245,7 +246,8 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
             throw new IllegalArgumentException(); // TODO
         }
         final QueryEntities out = new QueryEntities();
-        final long endEpoch = query.getWindowEnd() != null ? query.getWindowEnd() : System.currentTimeMillis();
+        final long endEpoch = query.getWindowEnd() != null ? query.getWindowEnd()
+                : java.lang.System.currentTimeMillis();
         final long startEpoch = query.getWindowStart() != null ? query.getWindowStart()
             : endEpoch - TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS);
         final int binCount = query.getBinCount();
@@ -330,7 +332,8 @@ public class EventQueryRepositoryImpl implements EventQueryRepository {
             }
         }
         if (systemFacet) {
-            final Field<String> string = Event.EVENT.SYSTEM_ID.cast(String.class);
+            out.table = out.table.leftJoin(System.SYSTEM).on(Event.EVENT.SYSTEM_ID.eq(System.SYSTEM.SYSTEM_ID));
+            final Field<String> string = System.SYSTEM.REPOSITORY_UUID;
             out.facetField = string;
             out.fields.add(string);
             out.groupBy.add(string);
