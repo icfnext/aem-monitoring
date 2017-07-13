@@ -125,7 +125,7 @@ class EventsChart extends React.Component {
         var metric = this.props.selectedYAxis !== '0';
         var stacked;
         var timeSeries;
-        if (facets) {
+        if (facets && facets.length > 0) {
             stacked = !metric;
             $.each(facets, function (index) {
                 timeSeries = $.map(this.timeSeries.points, function (point) {
@@ -140,6 +140,9 @@ class EventsChart extends React.Component {
                 return {'x': point.epoch, 'y': metric ? point.average : point.count}
             });
             datasets.push(getDataset(timeSeries, "", datasets.length, !stacked));
+        } else {
+            this.chart.update();
+            return; // TODO: No data -- show empty state
         }
         this.chart.options.scales.yAxes[0].stacked = stacked;
         this.chart.options.scales.xAxes[0].time.minUnit = timeAxes[this.props.selectedTime];

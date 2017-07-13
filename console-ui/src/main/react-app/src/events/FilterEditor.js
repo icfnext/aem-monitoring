@@ -71,7 +71,7 @@ class FilterValueEditor extends React.Component {
         return (
             <div className="inline">
                 <div>Value:</div>
-                <TextField placeholder="Value" onChange={this.props.onChange}/>
+                <TextField placeholder="Value" onValueChange={this.props.onChange}/>
             </div>
         );
     }

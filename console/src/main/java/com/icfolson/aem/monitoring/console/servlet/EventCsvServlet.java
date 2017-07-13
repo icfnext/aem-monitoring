@@ -6,7 +6,6 @@ import com.icfolson.aem.monitoring.console.model.EventQuery;
 import com.icfolson.aem.monitoring.console.result.EventListing;
 import com.icfolson.aem.monitoring.console.service.EventQueryService;
 import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@SlingServlet(paths = "/bin/monitoring/eventData", extensions = "csv")
+//@SlingServlet(paths = "/bin/monitoring/eventData", extensions = "csv")
 public class EventCsvServlet extends AbstractEventQueryServlet {
 
     @Reference

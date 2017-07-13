@@ -15,6 +15,7 @@ var EVENT_COUNT = "Event Count";
 class EventDashboard extends React.Component {
     constructor() {
         super();
+        this.mounted = false;
         this.initialized = false;
         this.state = {
             types: [],
@@ -29,8 +30,6 @@ class EventDashboard extends React.Component {
             selectedYAxis: "0",
             showAddFilter: false
         };
-        // TODO Pull initial state from URL params
-        this.loadTypes();
 
     }
     componentDidUpdate(prevProps, prevState) {
@@ -45,6 +44,9 @@ class EventDashboard extends React.Component {
     }
     loadTypes() {
         $.getJSON('/bin/monitoring/eventTypes.json', null, function (data) {
+            if (!this.mounted) {
+                return;
+            }
             var typeIds = [];
             var types = [];
             var typeMappings = {};
@@ -266,6 +268,14 @@ class EventDashboard extends React.Component {
                 </div>
             </div>
         );
+    }
+    componentDidMount() {
+        this.mounted = true;
+        // TODO Pull initial state from URL params
+        this.loadTypes();
+    }
+    componentWillUnmount() {
+        this.mounted = false;
     }
 }
 

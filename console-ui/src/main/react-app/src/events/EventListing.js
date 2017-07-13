@@ -7,25 +7,22 @@ class EventListing extends React.Component {
     constructor() {
         super();
         this.state = {
-            show: false
+            show: true
         };
     }
     render() {
         return (
-            <div id="modal-fullscreen" ref={(elem) => this.element = elem}>
-                <div id="overlay-content">
                     <Table properties={this.props.eventData.propertyNames} rows={this.props.eventData.events} show={this.state.show}/>
-                </div>
-            </div>
         );
     }
     componentDidUpdate(prevProps, prevState) {
-        if (!_.isEqual(prevProps.eventData, this.props.eventData)) {
-            $('#modal-fullscreen').addClass("modal-backdrop-fullscreen");
+        if (this.state.show !== true) {
+            this.setState({
+                show: true
+            })
         }
     }
     onHide() {
-        $('#modal-fullscreen').removeClass("modal-backdrop-fullscreen");
     }
 }
 

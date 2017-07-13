@@ -88,6 +88,13 @@ class TextField extends React.Component {
             <input is="coral-textfield" ref={(elem) => this.element = elem} {...attrs}/>
         );
     }
+    componentDidMount() {
+        $(this.element).change(function (e) {
+            if (this.props.onValueChange) {
+                this.props.onValueChange($(this.element).val());
+            }
+        }.bind(this));
+    }
 }
 
 var selectProps = [
