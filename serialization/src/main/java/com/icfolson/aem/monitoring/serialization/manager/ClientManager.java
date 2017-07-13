@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service(ClientManager.class)
+@Service({ClientManager.class, Runnable.class})
 @Component(immediate = true)
 @Property(name = "scheduler.period", longValue = 20)
 public class ClientManager implements Runnable {
