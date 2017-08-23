@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal"
+    jcr:primaryType="rep:SystemUser"
+    jcr:uuid="a0a4e2fb-10eb-31a1-ab9b-74f51183da43"
+    rep:authorizableId="aem-monitoring-system"
+    rep:principalName="aem-monitoring-system"/>

@@ -1,5 +1,6 @@
 package com.icfolson.aem.monitoring.serialization.manager;
 
+import com.google.common.collect.Maps;
 import com.icfolson.aem.monitoring.core.model.RemoteSystem;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
@@ -25,7 +26,7 @@ public class ClientDataRepository {
     public Map<String, RemoteSystem> getConfiguredSystems() {
         Map<String, RemoteSystem> out = new HashMap<>();
         try {
-            final ResourceResolver resolver = resolverFactory.getAdministrativeResourceResolver(null); //TODO
+            final ResourceResolver resolver = resolverFactory.getServiceResourceResolver(Maps.newHashMap());
             final Resource parent = resolver.resolve(CLIENT_PATH);
             if (!ResourceUtil.isNonExistingResource(parent)) {
                 for (final Resource child : parent.getChildren()) {
@@ -44,8 +45,11 @@ public class ClientDataRepository {
     public void setConfiguredSystem(final String name, final RemoteSystem configuration) {
 
         try {
-            final ResourceResolver resolver = resolverFactory.getAdministrativeResourceResolver(null); //TODO
-            final Resource parent = resolver.resolve(CLIENT_PATH);
+            final ResourceResolver resolver = resolverFactory.getServiceResourceResolver(Maps.newHashMap());
+
+            Map<String, Object> properties = new HashMap<>();
+            properties.put("jcr:primaryType", "nt:unstructured");
+            final Resource parent = ResourceUtil.getOrCreateResource(resolver, CLIENT_PATH, properties, "nt:unstructured", false);
             final String childName;
             if (name == null) {
                 childName = ResourceUtil.createUniqueChildName(parent, "client");
@@ -56,7 +60,7 @@ public class ClientDataRepository {
             if (configuration == null && child != null) {
                 resolver.delete(child);
             } else {
-                final Map<String, Object> properties = new HashMap<>();
+                properties = new HashMap<>();
                 properties.put("host", configuration.getHost());
                 properties.put("port", configuration.getPort());
                 properties.put("user", configuration.getUser());
